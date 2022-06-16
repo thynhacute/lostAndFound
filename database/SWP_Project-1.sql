@@ -49,7 +49,7 @@ CREATE TABLE Article
 	ImgURL nvarchar(50),
 	PostTime DateTime NOT NULL,
 	ArticleStatus bit NOT NULL,
-	Location nvarchar NOT NULL,
+	Location nvarchar(max) NOT NULL,
 	MemberID INT  NOT NULL FOREIGN KEY REFERENCES Member(MemberID),
 	ArticleTypeID int  NOT NULL FOREIGN KEY REFERENCES ArticleType(ArticleTypeID),
 	ItemID int  NOT NULL FOREIGN KEY REFERENCES ItemType(ItemID),
