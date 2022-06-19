@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
@@ -32,9 +33,7 @@
 
     </head>
     <body>
-
         <%@include file="Components/navbarComponent.jsp" %>
-
         <!-- breadcrumb-section -->
         <div class="breadcrumb-section breadcrumb-bg">
             <div class="container">
@@ -49,83 +48,78 @@
             </div>
         </div>
         <!-- end breadcrumb section -->
-
         <!-- products -->
         <div class="product-section mt-150 mb-150">
-            <div class="container">
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="product-filters">
-                            <ul>
-                                <li class="active" data-filter="*">All</li>
-                                <li data-filter=".strawberry">Strawberry</li>
-                                <li data-filter=".berry">Berry</li>
-                                <li data-filter=".lemon">Lemon</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="container">               
                 <div class="row product-lists">
-                    <div class="col-lg-4 col-md-6 text-center strawberry">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a href="Artical-detail.jsp"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+                    <div class="col-md-3">
+                        <div class="element ">
+                            <div class=" finder-tabs col-md-12">
+                                <h4 class="case27">What do you want to search?</h4>
+                                <p></p>
                             </div>
-                            <h3>Strawberry</h3>
-                            <p class="product-price"><span>Per Kg</span> 85$ </p>
-                            <a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                            <div class="type-dropdown">
+                                <label for="">Listing Type</label>
+                                <div>
+                                    <select name="" id="" class="box">
+                                        <option value="">Lost Items</option>
+                                        <option value="">Picked Items</option>
+                                    </select>
+                                </div>
+                                <br>
+                                <label for="">Type Items</label>
+                                <div>
+                                    <select name="" id="" class="box">
+                                        <option value="">Lost Items</option>
+                                        <option value="">Picked Items</option>
+                                    </select>
+                                </div>
+                                <br>
+                                <label for="">Location</label>
+                                <div>
+                                    <select name="" id="" class="box">
+                                        <option value="">Lost Items</option>
+                                        <option value="">Picked Items</option>
+                                    </select>
+                                </div>
+                                <br>
+                                <nav class="main-menu">
+                                    <ul class="map">
+                                        <li><a href="#">Map FPTU</a>
+                                            <ul class="sub-menu">
+                                                <li><a href="404.html">G</a></li>
+                                                <li><a href="404.html">1</a></li>
+                                                <li><a href="404.html">2</a></li>
+                                                <li><a href="404.html">3</a></li>
+                                                <li><a href="404.html">4</a></li>
+
+                                            </ul>
+                                        </li>
+                                    </ul>
+
+                                </nav>
+                                <br>
+                                <br>
+                                <a href="#" class="btn  btn-lg active btn-search" role="button"
+                                   aria-pressed="true">Search</a>
+
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 text-center berry">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a href="Artical-detail.jsp"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
-                            </div>
-                            <h3>Berry</h3>
-                            <p class="product-price"><span>Per Kg</span> 70$ </p>
-                            <a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 text-center lemon">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a href="Artical-detail.jsp"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
-                            </div>
-                            <h3>Lemon</h3>
-                            <p class="product-price"><span>Per Kg</span> 35$ </p>
-                            <a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 text-center">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a href="Artical-detail.jsp"><img src="assets/img/products/product-img-4.jpg" alt=""></a>
-                            </div>
-                            <h3>Avocado</h3>
-                            <p class="product-price"><span>Per Kg</span> 50$ </p>
-                            <a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 text-center">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a href="Artical-detail.jsp"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
-                            </div>
-                            <h3>Green Apple</h3>
-                            <p class="product-price"><span>Per Kg</span> 45$ </p>
-                            <a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 text-center strawberry">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a href="Artical-detail.jsp"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
-                            </div>
-                            <h3>Strawberry</h3>
-                            <p class="product-price"><span>Per Kg</span> 80$ </p>
-                            <a href="#" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    <div class="col-md-9">                       
+                        <div class="row">
+                            <c:forEach items="${LIST_ARTICLE}" var="A">
+                                <div class=" col-md-4 text-center strawberry" >
+                                    <div class="single-product-item" style="height: 450px">
+                                        <div class="product-image">
+                                            <a href="#"><img style="height: 150px;" src="${A.imgURL}"/></a>
+                                        </div>
+                                        <h3>${A.itemName}</h3>
+                                        <p class="product-price"><span>${A.phone}</span> ${A.locationName} </p>
+                                        <p>${A.fullName}</p>
+                                    </div>
+                                </div>
+                            </c:forEach>                    
                         </div>
                     </div>
                 </div>

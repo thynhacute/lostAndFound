@@ -2755,3 +2755,45 @@ table.order-details tbody td {
   vertical-align: middle;
   width: 100%;
 }
+.element {
+  height: 100%;
+  width: 100%;
+  background:  #e0e0e04f;
+  padding: 10px ;
+  margin-bottom: 25px;
+  border: 1px solid #ebebeb;
+  border-radius: 8px;
+}
+.case27{
+  font-family: 'Roboto', GlacialIndifference, sans-serif !important;
+  font-size: 1.0rem;
+  text-align: center;
+}
+.finder-tabs{
+  position: static;
+}
+.type-dropdown{
+  margin-top: 20px;
+}
+
+.box{
+  border: 0.5px white ;
+  border-radius: 8px;
+  width: 100%;
+  height: 3.2rem;
+}
+label{
+  color: #ea7f23;
+  font-size: 1.3rem;
+}
+.btn-search{
+  color: white;
+  width: 100%;
+  background-color: #ea7f23;
+}
+.map li a{
+  color: #ea7f23 !important;
+  padding-left: 18px !important;
+  margin-top: -20px !important;
+  width: 250px;
+}

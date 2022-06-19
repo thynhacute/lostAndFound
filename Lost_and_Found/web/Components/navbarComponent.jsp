@@ -50,7 +50,7 @@
                             </li>
                             <li><a href="Home.jsp">Home</a>
                                 <ul class="sub-menu">
-                                    <li><a href="Home.jsp">Home</a></li>
+                                    <li><a href="HomeController">Home</a></li>
                                     <li><a href="Artical-detail.jsp">Artical-detail</a></li>
                                 </ul>
                             </li>

@@ -14,13 +14,20 @@ public class ArticleDTO {
     private int articleID;
     private String articleContent;
     private String imgURL;
-    private float postTime;
+    private String postTime;
     private int locatioID;
     private int memberID;
     private int articleTypeID;
     private int ItemID;
+    private String fullName;
+    private String email;
+    private int phone;
+    private String picture;
+    private String articleTypeName;
+    private String itemName;
+    private String locationName;
 
-    public ArticleDTO(int articleID, String articleContent, String imgURL, float postTime, int locatioID, int memberID, int articleTypeID, int ItemID) {
+    public ArticleDTO(int articleID, String articleContent, String imgURL, String postTime, int locatioID, int memberID, int articleTypeID, int ItemID, String fullName, String email, int phone, String picture, String articleTypeName, String itemName, String locationName) {
         this.articleID = articleID;
         this.articleContent = articleContent;
         this.imgURL = imgURL;
@@ -29,19 +36,34 @@ public class ArticleDTO {
         this.memberID = memberID;
         this.articleTypeID = articleTypeID;
         this.ItemID = ItemID;
+        this.fullName = fullName;
+        this.email = email;
+        this.phone = phone;
+        this.picture = picture;
+        this.articleTypeName = articleTypeName;
+        this.itemName = itemName;
+        this.locationName = locationName;
     }
 
     public ArticleDTO() {
         this.articleID = 0;
         this.articleContent = "";
         this.imgURL = "";
-        this.postTime = 0;
+        this.postTime = "";
         this.locatioID = 0;
         this.memberID = 0;
         this.articleTypeID = 0;
         this.ItemID = 0;
+        this.fullName = "";
+        this.email = "";
+        this.phone = 0;
+        this.picture = "";
+        this.articleTypeName = "";
+        this.itemName = "";
+        this.locationName = "";
     }
 
+    
     public int getArticleID() {
         return articleID;
     }
@@ -66,11 +88,11 @@ public class ArticleDTO {
         this.imgURL = imgURL;
     }
 
-    public float getPostTime() {
+    public String getPostTime() {
         return postTime;
     }
 
-    public void setPostTime(float postTime) {
+    public void setPostTime(String postTime) {
         this.postTime = postTime;
     }
 
@@ -106,5 +128,61 @@ public class ArticleDTO {
         this.ItemID = ItemID;
     }
 
-    
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public String getArticleTypeName() {
+        return articleTypeName;
+    }
+
+    public void setArticleTypeName(String articleTypeName) {
+        this.articleTypeName = articleTypeName;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
+    }
+
+
 }

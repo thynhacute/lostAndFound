@@ -48,7 +48,7 @@
                                 <p class="subtitle">FPT University</p>
                                 <h1>Find your lost items anywhere in FPTU </h1>
                                 <div class="hero-btns">
-                                    <a href="Home.jsp" class="boxed-btn">Find Items</a>
+                                    <a href="HomeController" class="boxed-btn">Find Items</a>
                                     <a href="postNews.jsp" class="bordered-btn">Post News</a>
                                 </div>
                             </div>
