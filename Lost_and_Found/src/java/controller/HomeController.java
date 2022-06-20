@@ -5,6 +5,8 @@
  */
 package controller;
 
+import ArticleType.ArticleTypeDAO;
+import ArticleType.ArticleTypeDTO;
 import article.ArticleDAO;
 import article.ArticleDTO;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -28,10 +31,26 @@ public class HomeController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        try {
-            List<ArticleDTO> listArticles = new ArticleDAO().getAllArticle();            
+       try {
+            ArticleDAO articleDao = new ArticleDAO();
+            String searchByType = request.getParameter("searchByType");
+            List<ArticleDTO> listArticles = null;
+            if (searchByType == null) {
+                listArticles = new ArticleDAO().getAllArticle();
+            } else {
+                if (searchByType.equals("all")) {
+                    listArticles = articleDao.getAllArticle();
+                } else {
+                    listArticles = articleDao.getListArticleByType(searchByType);
+                }
+
+            }
             request.setAttribute("LIST_ARTICLE", listArticles);
-            url = SUCCESS;
+            ArticleTypeDAO dao = new ArticleTypeDAO();
+            List<ArticleTypeDTO> listArticleType = dao.getListArticleType();
+            HttpSession session = request.getSession();
+            session.setAttribute("LIST_ARTICLE_TYPE", listArticleType);
+
         } catch (Exception e) {
             log("Error at home" + e.toString());
         } finally {
