@@ -47,7 +47,6 @@ public class HomeController extends HttpServlet {
 
                 } else {
                     listArticles = articleDao.getListArticleByLocation(searchByLocation);
-
                 }
             }
             if (searchByType == null) {
