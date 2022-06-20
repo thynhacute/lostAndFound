@@ -86,9 +86,13 @@
                                     <br>
                                     <label for="">Location</label>
                                     <div>
-                                        <select name="" id="" class="box">
-                                            <option value="">Lost Items</option>
-                                            <option value="">Picked Items</option>
+                                        <c:set var="searchByLocation" value="${param.searchByLocation}"/>
+                                        <select name="searchByLocation" class="box">
+                                            <option hidden="" value="all">All</option>
+                                            <option value="all">All</option>
+                                            <c:forEach items="${sessionScope.LIST_LOCATION}" var="Location">
+                                                <option value="${Location.locationID}">${Location.locationName}</option>
+                                            </c:forEach>
                                         </select>
                                     </div>
                                     <br>
@@ -105,6 +109,48 @@
                                                 </ul>
                                             </li>
                                         </ul>
+
+
+<!--                            <form action="HomeController">
+                                <div class="type-dropdown">
+                                    <label for="">Listing Type</label>
+                                    <div>
+                                        <select name="" id="" class="box">
+                                            <option value="">Lost Items</option>
+                                            <option value="">Picked Items</option>
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <label for="">Type Items</label>
+                                    <div>
+                                        <select name="" id="" class="box">
+                                            <option value="">Lost Items</option>
+                                            <option value="">Picked Items</option>
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <label for="">Location</label>
+                                    <div>
+                                        <select name="searchByLocation" class="box">
+                                            <option hidden="" value="all">All</option>
+                                            <option value="all">All</option>
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <nav class="main-menu">
+                                        <ul class="map">
+                                            <li><a href="#">Map FPTU</a>
+                                                <ul class="sub-menu">
+                                                    <li><a href="404.html">G</a></li>
+                                                    <li><a href="404.html">1</a></li>
+                                                    <li><a href="404.html">2</a></li>
+                                                    <li><a href="404.html">3</a></li>
+                                                    <li><a href="404.html">4</a></li>
+
+                                                </ul>
+                                            </li>
+                                        </ul>-->
+
 
                                     </nav>
                                     <br>

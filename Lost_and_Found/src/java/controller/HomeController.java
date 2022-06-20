@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import location.LocationDAO;
+import location.LocationDTO;
 
 /**
  *
@@ -31,10 +33,23 @@ public class HomeController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-       try {
+
+        try {
             ArticleDAO articleDao = new ArticleDAO();
             String searchByType = request.getParameter("searchByType");
             List<ArticleDTO> listArticles = null;
+            String searchByLocation = request.getParameter("searchByLocation");
+            if (searchByLocation == null) {
+                listArticles = new ArticleDAO().getAllArticle();
+            } else {
+                if (searchByLocation.equals("all")) {
+                    listArticles = articleDao.getAllArticle();
+
+                } else {
+                    listArticles = articleDao.getListArticleByLocation(searchByLocation);
+
+                }
+            }
             if (searchByType == null) {
                 listArticles = new ArticleDAO().getAllArticle();
             } else {
@@ -45,21 +60,52 @@ public class HomeController extends HttpServlet {
                 }
 
             }
+
             request.setAttribute("LIST_ARTICLE", listArticles);
+            LocationDAO locationDao = new LocationDAO();
+            List<LocationDTO> listLocation = locationDao.getListLocation();
+//            List<ArticleDTO> listArticleAuto = articleDao.getListArticle();
+            HttpSession session = request.getSession();
+            session.setAttribute("LIST_LOCATION", listLocation);
             ArticleTypeDAO dao = new ArticleTypeDAO();
             List<ArticleTypeDTO> listArticleType = dao.getListArticleType();
-            HttpSession session = request.getSession();
             session.setAttribute("LIST_ARTICLE_TYPE", listArticleType);
+            url = SUCCESS;
 
         } catch (Exception e) {
             log("Error at home" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
+//        try {
+//            ArticleDAO articleDao = new ArticleDAO();
+//            String searchByType = request.getParameter("searchByType");
+//            List<ArticleDTO> listArticles = null;
+//            if (searchByType == null) {
+//                listArticles = new ArticleDAO().getAllArticle();
+//            } else {
+//                if (searchByType.equals("all")) {
+//                    listArticles = articleDao.getAllArticle();
+//                } else {
+//                    listArticles = articleDao.getListArticleByType(searchByType);
+//                }
+//
+//            }
+//            request.setAttribute("LIST_ARTICLE", listArticles);
+//            ArticleTypeDAO dao = new ArticleTypeDAO();
+//            List<ArticleTypeDTO> listArticleType = dao.getListArticleType();
+//            HttpSession session = request.getSession();
+//            session.setAttribute("LIST_ARTICLE_TYPE", listArticleType);
+//
+//        } catch (Exception e) {
+//            log("Error at home" + e.toString());
+//        } finally {
+//            request.getRequestDispatcher(url).forward(request, response);
+//        }
 
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
