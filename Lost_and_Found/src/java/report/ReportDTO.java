@@ -10,12 +10,13 @@ package report;
  * @author Owner
  */
 public class ReportDTO {
+
     private int articleID;
     private int memberID;
     private String reportContent;
-    private float reportTime;         
+    private String reportTime;
 
-    public ReportDTO(int articleID, int memberID, String reportContent, float reportTime) {
+    public ReportDTO(int articleID, int memberID, String reportContent, String reportTime) {
         this.articleID = articleID;
         this.memberID = memberID;
         this.reportContent = reportContent;
@@ -26,7 +27,7 @@ public class ReportDTO {
         this.articleID = 0;
         this.memberID = 0;
         this.reportContent = "";
-        this.reportTime = 0;
+        this.reportTime = "";
     }
 
     public int getArticleID() {
@@ -53,14 +54,12 @@ public class ReportDTO {
         this.reportContent = reportContent;
     }
 
-    public float getReportTime() {
+    public String getReportTime() {
         return reportTime;
     }
 
-    public void setReportTime(float reportTime) {
+    public void setReportTime(String reportTime) {
         this.reportTime = reportTime;
     }
 
-    
-    
 }

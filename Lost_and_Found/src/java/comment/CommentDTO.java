@@ -14,9 +14,9 @@ public class CommentDTO {
     private int articleID;
     private int memberID;
     private String commentContent;
-    private float commentTime;
+    private String commentTime;
 
-    public CommentDTO(int articleID, int memberID, String commentContent, float commentTime) {
+    public CommentDTO(int articleID, int memberID, String commentContent, String commentTime) {
         this.articleID = articleID;
         this.memberID = memberID;
         this.commentContent = commentContent;
@@ -27,7 +27,7 @@ public class CommentDTO {
         this.articleID = 0;
         this.memberID = 0;
         this.commentContent = "";
-        this.commentTime = 0;
+        this.commentTime = "";
     }
 
     public int getArticleID() {
@@ -54,11 +54,11 @@ public class CommentDTO {
         this.commentContent = commentContent;
     }
 
-    public float getCommentTime() {
+    public String getCommentTime() {
         return commentTime;
     }
 
-    public void setCommentTime(float commentTime) {
+    public void setCommentTime(String commentTime) {
         this.commentTime = commentTime;
     }
 

@@ -48,7 +48,7 @@
                                     <li><a href="#">4th floor</a></li>
                                 </ul>
                             </li>
-                            <li><a href="Home.jsp">Home</a>
+                            <li><a href="HomeController">Home</a>
                                 <ul class="sub-menu">
                                     <li><a href="HomeController">Home</a></li>
                                     <li><a href="Artical-detail.jsp">Artical-detail</a></li>
