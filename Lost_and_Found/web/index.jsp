@@ -110,23 +110,23 @@
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2 text-center">
                         <div class="section-title">
-                            <h3><span class="orange-text"> NEW </span> Lost items</h3>
+                            <h3><span class="orange-text"> NEW </span> Lost Articles</h3>
                         </div>
                     </div>
                 </div>                                
                 <div class="row">
-                    <c:forEach items="${sessionScope.LIST_LOST_ARTICLE}" var="L">
-                        <div class="col-lg-4 col-md-6 text-center">
-                            <div class="single-product-item" style="height: 450px">
+                    <c:forEach items="${requestScope.LIST_LOST_ARTICLE}" var="L">
+                        <div class=" col-lg-4 text-center strawberry">
+                            <div class="single-product-item" style="height: 450px; width: 80%" >
                                 <div class="product-image">
-                                    <a href="#"><img style="height: 150px; src="${L.imgURL}" /></a>
+                                    <a href="#"><img style="height: 150px;" src="${L.imgURL}" /></a>
                                 </div>
                                 <h3>${L.itemName}</h3>
                                 <p class="product-price"><span>${L.phone}</span>${L.locationName} </p>
                                 <p>${L.fullName}</p>
                             </div>
-                        </c:forEach>
-                    </div>                
+                        </div>     
+                    </c:forEach>
                 </div>
             </div>
         </div>
@@ -138,23 +138,23 @@
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2 text-center">
                         <div class="section-title">
-                            <h3><span class="orange-text">NEW </span> picked Items</h3>
+                            <h3><span class="orange-text">NEW </span> picked Articles</h3>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <c:forEach items="${sessionScope.LIST_PICKED_ARTICLE}" var="P">
-                        <div class="col-lg-4 col-md-6 text-center">
-                            <div class="single-product-item" style="height: 450px">
+                    <c:forEach items="${requestScope.LIST_PICKED_ARTICLE}" var="P">
+                        <div class=" col-lg-4 text-center strawberry ">
+                            <div class="single-product-item" style="height: 450px; width: 80%">
                                 <div class="product-image">
-                                    <a href="#"><img style="height: 150px; src="${P.imgURL}" /></a>
+                                    <a href="#"><img style="height: 150px;" src="${P.imgURL}" /></a>
                                 </div>
                                 <h3>${P.itemName}</h3>
                                 <p class="product-price"><span>${P.phone}</span>${P.locationName} </p>
                                 <p>${P.fullName}</p>
                             </div>
-                        </c:forEach>
-                    </div>
+                        </div>
+                    </c:forEach>
                 </div>
             </div>
             <!-- end product 2 section -->
