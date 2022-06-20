@@ -63,7 +63,6 @@ public class ArticleDTO {
         this.locationName = "";
     }
 
-    
     public int getArticleID() {
         return articleID;
     }
@@ -183,6 +182,5 @@ public class ArticleDTO {
     public void setLocationName(String locationName) {
         this.locationName = locationName;
     }
-
 
 }
