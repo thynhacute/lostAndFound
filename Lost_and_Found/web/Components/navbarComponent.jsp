@@ -31,7 +31,7 @@
                     <!-- menu start -->
                     <nav class="main-menu">
                         <ul>
-                            <li class="current-list-item"><a href="index.jsp">Page</a>
+                            <li class="current-list-item"><a href="PageController">Page</a>
                             </li>
                             <li><a href="blog.jsp">Blog</a>
                                 <ul class="sub-menu">

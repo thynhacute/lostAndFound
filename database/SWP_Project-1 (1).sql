@@ -245,3 +245,5 @@ INSERT [dbo].[Blog] ([BlogID], [BlogName], [BlogContent], [MemberID])
 INSERT [dbo].[Blog] ([BlogID], [BlogName], [BlogContent], [MemberID])
 	VALUES ('5', N'Ăn gì để khắc phục chứng hay quên?', N'Long nhãn – Cải thiện chứng hay quên hiệu quả, Nhân sâm – Thực phẩm cải thiện chứng hay quên, Đông trùng hạ thảo', '1')
 SET IDENTITY_INSERT Blog OFF;
+
+select * from Location
