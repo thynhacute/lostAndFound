@@ -66,8 +66,8 @@
                                     <div>
                                         <c:set var="searchByType" value = "${param.searchByType}" />
                                         <select name="searchByType" class ="box" >
-                                            <option hidden="" value="all">All</option>
-                                            <option  value="all">All</option>
+                                            <!--                                            <option hidden="" value="all">All</option>-->
+                                            <option  value="">All</option>
                                             <c:forEach items="${sessionScope.LIST_ARTICLE_TYPE}" var="type">
                                                 <option value="${type.articleTypeID}">${type.articleTypeName}</option>
                                             </c:forEach>
@@ -79,8 +79,8 @@
                                     <div>
                                         <c:set var="searchByItem" value="${param.searchByItem}"/>
                                         <select name="searchByItem" class="box">
-                                            <option hidden="" value="all">All</option>
-                                            <option value="all">All</option>
+                                            <!--                                            <option hidden="" value="all">All</option>-->
+                                            <option value="">All</option>
                                             <c:forEach items="${sessionScope.LIST_ITEM}" var="Item">
                                                 <option value="${Item.itemID}">${Item.itemName}</option>
                                             </c:forEach>
@@ -91,8 +91,8 @@
                                     <div>
                                         <c:set var="searchByLocation" value="${param.searchByLocation}"/>
                                         <select name="searchByLocation" class="box">
-                                            <option hidden="" value="all">All</option>
-                                            <option value="all">All</option>
+                                            <!--                                            <option hidden="" value="all">All</option>-->
+                                            <option value="">All</option>
                                             <c:forEach items="${sessionScope.LIST_LOCATION}" var="Location">
                                                 <option value="${Location.locationID}">${Location.locationName}</option>
                                             </c:forEach>

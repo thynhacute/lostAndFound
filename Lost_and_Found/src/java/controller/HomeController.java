@@ -42,36 +42,27 @@ public class HomeController extends HttpServlet {
             String searchByItem = request.getParameter("searchByItem");
             String searchByLocation = request.getParameter("searchByLocation");
             List<ArticleDTO> listArticles = null;
-            if (searchByLocation == null) {
-                listArticles = new ArticleDAO().getAllArticle();
-            } else {
+            if (searchByLocation != "" && searchByItem == "" && searchByType == "") {
                 if (searchByLocation.equals("all")) {
                     listArticles = articleDao.getAllArticle();
                 } else {
                     listArticles = articleDao.getListArticleByLocation(searchByLocation);
                 }
-            }
-            ///////
-            if (searchByItem == null) {
-                listArticles = new ArticleDAO().getAllArticle();
-            } else {
+            } else if (searchByLocation == "" && searchByItem != "" && searchByType == "") {
                 if (searchByItem.equals("all")) {
                     listArticles = articleDao.getAllArticle();
 
                 } else {
                     listArticles = articleDao.getListArticleByItemType(searchByItem);
-
                 }
-            }
-            ///////
-            if (searchByType == null) {
-                listArticles = new ArticleDAO().getAllArticle();
-            } else {
+            } else if (searchByLocation == "" && searchByItem == "" && searchByType != "") {
                 if (searchByType.equals("all")) {
                     listArticles = articleDao.getAllArticle();
                 } else {
                     listArticles = articleDao.getListArticleByType(searchByType);
                 }
+            } else {
+                listArticles = new ArticleDAO().getAllArticle();
             }
             request.setAttribute("LIST_ARTICLE", listArticles);
             LocationDAO locationDao = new LocationDAO();
