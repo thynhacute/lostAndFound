@@ -23,7 +23,7 @@
                 <div class="main-menu-wrap">
                     <!-- logo -->
                     <div class="site-logo">
-                        <a href="index.jsp">
+                        <a href="PageController">
                             <img src="assets/img/logoteam/logoteam.png" style="width: 33%;" alt="">
                         </a>
                     </div>
