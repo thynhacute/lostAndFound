@@ -61,7 +61,6 @@
                                 <p></p>
                             </div>
                             <form action="HomeController" method="POST">
-
                                 <div class="type-dropdown">
                                     <label for="">Listing Type</label>
                                     <div>
