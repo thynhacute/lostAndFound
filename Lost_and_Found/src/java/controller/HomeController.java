@@ -9,6 +9,8 @@ import ArticleType.ArticleTypeDAO;
 import ArticleType.ArticleTypeDTO;
 import article.ArticleDAO;
 import article.ArticleDTO;
+import item.ItemDAO;
+import item.ItemDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -37,18 +39,31 @@ public class HomeController extends HttpServlet {
         try {
             ArticleDAO articleDao = new ArticleDAO();
             String searchByType = request.getParameter("searchByType");
-            List<ArticleDTO> listArticles = null;
+            String searchByItem = request.getParameter("searchByItem");
             String searchByLocation = request.getParameter("searchByLocation");
+            List<ArticleDTO> listArticles = null;
             if (searchByLocation == null) {
                 listArticles = new ArticleDAO().getAllArticle();
             } else {
                 if (searchByLocation.equals("all")) {
                     listArticles = articleDao.getAllArticle();
-
                 } else {
                     listArticles = articleDao.getListArticleByLocation(searchByLocation);
                 }
             }
+            ///////
+            if (searchByItem == null) {
+                listArticles = new ArticleDAO().getAllArticle();
+            } else {
+                if (searchByItem.equals("all")) {
+                    listArticles = articleDao.getAllArticle();
+
+                } else {
+                    listArticles = articleDao.getListArticleByItemType(searchByItem);
+
+                }
+            }
+            ///////
             if (searchByType == null) {
                 listArticles = new ArticleDAO().getAllArticle();
             } else {
@@ -57,18 +72,18 @@ public class HomeController extends HttpServlet {
                 } else {
                     listArticles = articleDao.getListArticleByType(searchByType);
                 }
-
             }
-
             request.setAttribute("LIST_ARTICLE", listArticles);
             LocationDAO locationDao = new LocationDAO();
             List<LocationDTO> listLocation = locationDao.getListLocation();
-//            List<ArticleDTO> listArticleAuto = articleDao.getListArticle();
             HttpSession session = request.getSession();
             session.setAttribute("LIST_LOCATION", listLocation);
             ArticleTypeDAO dao = new ArticleTypeDAO();
             List<ArticleTypeDTO> listArticleType = dao.getListArticleType();
             session.setAttribute("LIST_ARTICLE_TYPE", listArticleType);
+            ItemDAO itemDao = new ItemDAO();
+            List<ItemDTO> listItem = itemDao.getListItem();
+            session.setAttribute("LIST_ITEM", listItem);
             url = SUCCESS;
 
         } catch (Exception e) {
@@ -76,32 +91,6 @@ public class HomeController extends HttpServlet {
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
-//        try {
-//            ArticleDAO articleDao = new ArticleDAO();
-//            String searchByType = request.getParameter("searchByType");
-//            List<ArticleDTO> listArticles = null;
-//            if (searchByType == null) {
-//                listArticles = new ArticleDAO().getAllArticle();
-//            } else {
-//                if (searchByType.equals("all")) {
-//                    listArticles = articleDao.getAllArticle();
-//                } else {
-//                    listArticles = articleDao.getListArticleByType(searchByType);
-//                }
-//
-//            }
-//            request.setAttribute("LIST_ARTICLE", listArticles);
-//            ArticleTypeDAO dao = new ArticleTypeDAO();
-//            List<ArticleTypeDTO> listArticleType = dao.getListArticleType();
-//            HttpSession session = request.getSession();
-//            session.setAttribute("LIST_ARTICLE_TYPE", listArticleType);
-//
-//        } catch (Exception e) {
-//            log("Error at home" + e.toString());
-//        } finally {
-//            request.getRequestDispatcher(url).forward(request, response);
-//        }
-
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
