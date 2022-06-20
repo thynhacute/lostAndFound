@@ -1,3 +1,5 @@
+<%@page import="ArticleType.ArticleTypeDTO"%>
+<%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -58,14 +60,20 @@
                                 <h4 class="case27">What do you want to search?</h4>
                                 <p></p>
                             </div>
-                            <form action="HomeController">
+                            <form action="HomeController" method="POST">
+
                                 <div class="type-dropdown">
                                     <label for="">Listing Type</label>
                                     <div>
-                                        <select name="" id="" class="box">
-                                            <option value="">Lost Items</option>
-                                            <option value="">Picked Items</option>
+                                        <c:set var="searchByType" value = "${param.searchByType}" />
+                                        <select name="searchByType" class ="box" >
+                                            <option hidden="" value="all">All</option>
+                                            <option  value="all">All</option>
+                                            <c:forEach items="${sessionScope.LIST_ARTICLE_TYPE}" var="type">
+                                                <option value="${type.articleTypeID}">${type.articleTypeName}</option>
+                                            </c:forEach>
                                         </select>
+
                                     </div>
                                     <br>
                                     <label for="">Type Items</label>
@@ -101,6 +109,48 @@
                                                 </ul>
                                             </li>
                                         </ul>
+
+
+<!--                            <form action="HomeController">
+                                <div class="type-dropdown">
+                                    <label for="">Listing Type</label>
+                                    <div>
+                                        <select name="" id="" class="box">
+                                            <option value="">Lost Items</option>
+                                            <option value="">Picked Items</option>
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <label for="">Type Items</label>
+                                    <div>
+                                        <select name="" id="" class="box">
+                                            <option value="">Lost Items</option>
+                                            <option value="">Picked Items</option>
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <label for="">Location</label>
+                                    <div>
+                                        <select name="searchByLocation" class="box">
+                                            <option hidden="" value="all">All</option>
+                                            <option value="all">All</option>
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <nav class="main-menu">
+                                        <ul class="map">
+                                            <li><a href="#">Map FPTU</a>
+                                                <ul class="sub-menu">
+                                                    <li><a href="404.html">G</a></li>
+                                                    <li><a href="404.html">1</a></li>
+                                                    <li><a href="404.html">2</a></li>
+                                                    <li><a href="404.html">3</a></li>
+                                                    <li><a href="404.html">4</a></li>
+
+                                                </ul>
+                                            </li>
+                                        </ul>-->
+
 
                                     </nav>
                                     <br>
