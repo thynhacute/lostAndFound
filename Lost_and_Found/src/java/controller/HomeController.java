@@ -14,6 +14,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import location.LocationDAO;
+import location.LocationDTO;
 
 /**
  *
@@ -29,8 +32,27 @@ public class HomeController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            List<ArticleDTO> listArticles = new ArticleDAO().getAllArticle();            
+            ArticleDAO articleDao = new ArticleDAO();
+            String searchByLocation = request.getParameter("searchByLocation");
+            List<ArticleDTO> listArticles = null;
+            if (searchByLocation == null) {
+                listArticles = new ArticleDAO().getAllArticle();
+            } else {
+                if (searchByLocation.equals("all")) {
+                    listArticles = articleDao.getAllArticle();
+
+                } else {
+                    listArticles = articleDao.getListArticleByLocation(searchByLocation);
+
+                }
+            }
+
             request.setAttribute("LIST_ARTICLE", listArticles);
+            LocationDAO locationDao = new LocationDAO();
+            List<LocationDTO> listLocation = locationDao.getListLocation();
+//            List<ArticleDTO> listArticleAuto = articleDao.getListArticle();
+            HttpSession session = request.getSession();
+            session.setAttribute("LIST_LOCATION", listLocation);
             url = SUCCESS;
         } catch (Exception e) {
             log("Error at home" + e.toString());
