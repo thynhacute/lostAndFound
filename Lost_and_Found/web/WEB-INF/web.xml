@@ -30,6 +30,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>PageController</welcome-file>
+        <welcome-file>post.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
