@@ -60,47 +60,58 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div> 
-                <div id="layoutSidenav_content">
-                    <main>
-                        <div class="container-fluid px-4">
-                            <div class="title">
-                                <h1>Đăng tin</h1>
-                                <a>Bạn muốn đăng tin gì ?</a>
+                    <div class="row" style="justify-content: center">
+
+                        <div id="layoutSidenav_content">
+
+                            <div class="container-fluid px-4">
+                                <div class="title">
+                                    <h1>Đăng tin</h1>
+                                    <a>Bạn muốn đăng tin gì ?</a>
+                                </div>
+
                             </div>
 
                         </div>
 
-                </div>
-                <div class="button-card">
-                    <a href="post-finditem.jsp">
-                        <div class="card-1">
-                            <div class="imgBox">
-                                <img src="./post/image/dothatlac.jpg" alt="" />
+                    </div>
+                    <div class="row">
+                        <div class="button-card">
+
+                            <div>
+                                <a href="post-finditem.jsp">
+                                    <div class="card-2">
+                                        <div class="imgBox">
+                                            <img src="./post/image/dothatlac.jpg" alt="" />
+                                        </div>
+                                        <div class="content">
+                                            <div class="details">
+                                                <h2>Đồ thất lạc</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                            <div class="content">
-                                <div class="details">
-                                    <h2>Đồ thất lạc</h2>
-                                </div>
+                            <div>
+                                <a href="post-pickitem.jsp">
+                                    <div class="card-2">
+                                        <div class="imgBox">
+                                            <img src="./post/image/donhatduoc.jpg" alt="" />
+                                        </div>
+                                        <div class="content">
+                                            <div class="details">
+                                                <h2>Đồ nhặt được</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
+
                         </div>
-                    </a>
-                    <a href="post-pickitem.jsp">
-                        <div class="card-2">
-                            <div class="imgBox">
-                                <img src="./post/image/donhatduoc.jpg" alt="" />
-                            </div>
-                            <div class="content">
-                                <div class="details">
-                                    <h2>Đồ nhặt được</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+                    </div>
                 </div>
             </div>
+
         </div>
         <script
             type="module"

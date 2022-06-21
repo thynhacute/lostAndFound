@@ -302,7 +302,9 @@ h1{
     background: linear-gradient(45deg,#fbda61,#ff5acd);
 }*/
 .button-card{
-    width: 1700px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 .card-1{
     position: relative;
