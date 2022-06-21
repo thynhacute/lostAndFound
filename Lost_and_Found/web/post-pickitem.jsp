@@ -37,6 +37,7 @@
         <link rel="stylesheet" href="assets/css/main.css">
         <!-- responsive -->
         <link rel="stylesheet" href="assets/css/responsive.css">
+        <script src="https://cdn.ckeditor.com/4.19.0/basic/ckeditor.js"></script>
 
 
     </head>
@@ -85,34 +86,31 @@
                             <div class="form-group font-weight-bold">
                                 <label for="comment">Mô tả chi tiết:</label>
                                 <textarea class="form-control" rows="5" id="comment"></textarea>
+                                <script>
+                                    CKEDITOR.replace('comment');
+                                </script>
                             </div>
                         </form>
-                    </div>
-                </div>
-                <div class="user-card-full mt-5">
-                    <div class="user-card-use">
+
+
 
                         <label for="exampleFormControlInput1" class="form-label font-weight-bold display-6"> <i
                                 class="fa-solid fa-location-pin"></i> Vị trí</label>
 
                         <form>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label font-weight-bold">Địa chỉ nhặt
-                                    được</label>
+                                <label for="exampleFormControlInput1" class="form-label font-weight-bold">Vị trí nhặt được</label>
                                 <input type="email" class="form-control" id="exampleFormControlInput1"
                                        placeholder="Nhặt được ở nhà vệ sinh">
                             </div>
                         </form>
-                    </div>
-                </div>
-                <div class="user-card-full mt-5">
-                    <div class="user-card-use">
+
+
                         <label for="exampleFormControlInput1" class="form-label font-weight-bold display-6"> <i
                                 class="fa-solid fa-image"></i> Ảnh</label>
                         <form>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label font-weight-bold">Ảnh đồ nhặt
-                                    được</label>
+                                <label for="exampleFormControlInput1" class="form-label font-weight-bold">Ảnh đồ nhặt được</label>
                             </div>
                             <div class="input-group mb-3">
                                 <input type="file" class="form-control" id="inputGroupFile02">
@@ -122,6 +120,8 @@
                     </div>
                 </div>
             </div>
+
+
 
             &emsp;
             <div class="col-lg-8 " style="margin-left: 45%;">
@@ -133,7 +133,6 @@
 
 
         </div>
-    </div>
 </body>
 <%@include file="Components/footerComponents.jsp" %>
 
@@ -157,6 +156,7 @@
 <script src="assets/js/sticker.js"></script>
 <!-- main js -->
 <script src="assets/js/main.js"></script>
+<script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
 
 
 </html>

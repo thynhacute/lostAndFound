@@ -37,6 +37,7 @@
         <link rel="stylesheet" href="assets/css/main.css">
         <!-- responsive -->
         <link rel="stylesheet" href="assets/css/responsive.css">
+        <script src="https://cdn.ckeditor.com/4.19.0/basic/ckeditor.js"></script>
 
 
     </head>
@@ -85,27 +86,26 @@
                             <div class="form-group font-weight-bold">
                                 <label for="comment">Mô tả chi tiết:</label>
                                 <textarea class="form-control" rows="5" id="comment"></textarea>
+                                <script>
+                                    CKEDITOR.replace('comment');
+                                </script>
                             </div>
                         </form>
-                    </div>
-                </div>
-                <div class="user-card-full mt-5">
-                    <div class="user-card-use">
+
+
 
                         <label for="exampleFormControlInput1" class="form-label font-weight-bold display-6"> <i
                                 class="fa-solid fa-location-pin"></i> Vị trí</label>
 
                         <form>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label font-weight-bold">Địa chỉ tìm kiếm</label>
+                                <label for="exampleFormControlInput1" class="form-label font-weight-bold">Vị trí tìm kiếm</label>
                                 <input type="email" class="form-control" id="exampleFormControlInput1"
                                        placeholder="Nhặt được ở nhà vệ sinh">
                             </div>
                         </form>
-                    </div>
-                </div>
-                <div class="user-card-full mt-5">
-                    <div class="user-card-use">
+
+
                         <label for="exampleFormControlInput1" class="form-label font-weight-bold display-6"> <i
                                 class="fa-solid fa-image"></i> Ảnh</label>
                         <form>
@@ -119,41 +119,44 @@
                         </form>
                     </div>
                 </div>
-
-                &emsp;
-                <div class="col-lg-8 " style="margin-left: 45%;">
-                    <input type="reset" class="btn btn-secondary btnCancel" value="Cancel">
-                    <input type="submit" form="save-form" class="btn btn-primary btnSave" value="Submit">
-                </div>
-                &emsp;
-
-
-
             </div>
-        </div>
-    </body>
-    <%@include file="Components/footerComponents.jsp" %>
 
-    <!-- jquery -->
-    <script src="assets/js/jquery-1.11.3.min.js"></script>
-    <!-- bootstrap -->
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <!-- count down -->
-    <script src="assets/js/jquery.countdown.js"></script>
-    <!-- isotope -->
-    <script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
-    <!-- waypoints -->
-    <script src="assets/js/waypoints.js"></script>
-    <!-- owl carousel -->
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <!-- magnific popup -->
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <!-- mean menu -->
-    <script src="assets/js/jquery.meanmenu.min.js"></script>
-    <!-- sticker js -->
-    <script src="assets/js/sticker.js"></script>
-    <!-- main js -->
-    <script src="assets/js/main.js"></script>
+
+
+            &emsp;
+            <div class="col-lg-8 " style="margin-left: 45%;">
+                <input type="reset" class="btn btn-secondary btnCancel" value="Cancel">
+                <input type="submit" form="save-form" class="btn btn-primary btnSave" value="Submit">
+            </div>
+            &emsp;
+
+
+
+        </div>
+</body>
+<%@include file="Components/footerComponents.jsp" %>
+
+<!-- jquery -->
+<script src="assets/js/jquery-1.11.3.min.js"></script>
+<!-- bootstrap -->
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<!-- count down -->
+<script src="assets/js/jquery.countdown.js"></script>
+<!-- isotope -->
+<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
+<!-- waypoints -->
+<script src="assets/js/waypoints.js"></script>
+<!-- owl carousel -->
+<script src="assets/js/owl.carousel.min.js"></script>
+<!-- magnific popup -->
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<!-- mean menu -->
+<script src="assets/js/jquery.meanmenu.min.js"></script>
+<!-- sticker js -->
+<script src="assets/js/sticker.js"></script>
+<!-- main js -->
+<script src="assets/js/main.js"></script>
+<script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
 
 
 </html>
