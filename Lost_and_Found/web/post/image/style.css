@@ -301,10 +301,13 @@ h1{
     min-height: 100vh;
     background: linear-gradient(45deg,#fbda61,#ff5acd);
 }*/
-.button-card{
+/*.button-card{
     width: 100%;
-    display: grid;
+    display: grid;*/
+.button-card {
+    width: 1500px;
     grid-template-columns: repeat(2, 1fr);
+    margin-left: 100px; 
 }
 .card-1{
     position: relative;

@@ -56,29 +56,15 @@
                         <div class="col-lg-8 offset-lg-2 text-center">
                             <div class="breadcrumb-text">
                                 <p>FPT University</p>
-                                <h1>Finding</h1>
+                                <h1>Post Article</h1>
                             </div>
                         </div>
                     </div>
-                    <div class="row" style="justify-content: center">
-
-                        <div id="layoutSidenav_content">
-
-                            <div class="container-fluid px-4">
-                                <div class="title">
-                                    <h1>Đăng tin</h1>
-                                    <a>Bạn muốn đăng tin gì ?</a>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
+                    
                     <div class="row">
-                        <div class="button-card">
+                        <div class="button-card"  >
 
-                            <div>
+                            <div style="margin-left: 60px;">
                                 <a href="post-finditem.jsp">
                                     <div class="card-2">
                                         <div class="imgBox">
