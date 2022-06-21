@@ -49,7 +49,6 @@
     <body>
         <%@include file="Components/navbarComponent.jsp" %>
         <!-- breadcrumb-section -->
-        <div class="br-class">
             <div class="breadcrumb-section breadcrumb-bg">
                 <div class="container">
                     <div class="row">
@@ -64,7 +63,7 @@
                     <div class="row">
                         <div class="button-card"  >
 
-                            <div style="margin-left: 60px;">
+                            <div>
                                 <a href="post-finditem.jsp">
                                     <div class="card-2">
                                         <div class="imgBox">
@@ -98,7 +97,6 @@
                 </div>
             </div>
 
-        </div>
         <script
             type="module"
             src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
