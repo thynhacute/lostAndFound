@@ -53,37 +53,38 @@
         <!-- end breadcrumb section -->
 
         <!-- single product -->
+        <c:set value="${requestScope.ARTICLE_DETAIL}" var="D"/>
         <div class="single-product mt-150 mb-150">
             <div class="container">
                 <div class="row">
                     <div class="col-md-5">
                         <div class="single-product-img">
-                            <img src="assets/img/products/product-img-5.jpg" alt="">
+                            <img src="${D.imgURL}" alt="">
                         </div>
                     </div>
                     <div class="col-md-7">
                         <div class="single-product-content">
-                            <h3>Quả táo hình cục cức</h3>
-                            <p class="single-product-pricing">Location:<span>lầu 1</span></p>
-                            <p class="single-product-pricing">Description: <span> Lorem ipsum dolor
-                                    sit amet, consectetur adipisicing elit. Dicta sint
-                                    dignissimos, rem commodi cum voluptatem quae reprehenderit repudiandae
-                                    ea tempora incidunt ipsa, quisquam animi perferendis eos eum modi!
-                                    Tempora, earum.</span></p>
+                            <h2>${D.itemName}</h2>
+                            <p class="single-product-pricing">Location:<span>${D.locationName}</span></p>
+                            <p class="single-product-pricing">Description: <span>${D.articleContent}.</span></p>
                             <div class="single-product-form">
                                 <ul>
                                     <li>
                                         <a href="#" class="cart-btn"><i class="fas fa-address-book"></i>
                                             Contract:</a>
                                         <ul class="sub-menu">
-                                            <li><i class="fas fa-phone"></i>&nbsp<a href="#">Phone: 01233444</a></li>
-                                            <li><i class="fas fa-mail-bulk"></i>&nbsp<a href="#">Email: ngu@fpt.edu.vn</a></li>
+                                            <li> Member: <a href="#">${D.fullName} </a></li>
+                                            
+                                            <li><i class="fas fa-phone"></i>&nbsp<a href="#">Phone: ${D.phone} </a></li>
+                                            <li><i class="fas fa-mail-bulk"></i>&nbsp<a href="#">Email: ${D.email}</a></li>
+                                            <br>
                                             <li><i class="fas fa-exclamation-circle"></i>&nbsp<a
-                                                    href="#">Report</a></li>
+                                                    href="#" style="color: #F28123;" >Report</a></li>            
                                         </ul>
                                     </li>
                                 </ul>
-                                <p><strong>Categories: </strong>Fruits, Organic</p>
+                                <p><strong>Post Time: </strong>${D.postTime}</p>
+                                <p><strong>${D.articleTypeName}</strong></p>
                             </div>
                         </div>
                     </div>

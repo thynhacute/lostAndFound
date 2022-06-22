@@ -30,19 +30,28 @@ public class HomeController extends HttpServlet {
 
     private static final String ERROR = "Home.jsp";
     private static final String SUCCESS = "Home.jsp";
+    
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String url = ERROR;
-
         try {
+            HttpSession session = request.getSession();
+            ArticleTypeDAO dao = new ArticleTypeDAO();
             ArticleDAO articleDao = new ArticleDAO();
+            List<ArticleTypeDTO> listArticleType = dao.getListArticleType();
+            session.setAttribute("LIST_ARTICLE_TYPE", listArticleType);
             String searchByType = request.getParameter("searchByType");
             String searchByItem = request.getParameter("searchByItem");
             String searchByLocation = request.getParameter("searchByLocation");
             List<ArticleDTO> listArticles = null;
-            if (searchByLocation != "" && searchByItem == "" && searchByType == "") {
+            if (searchByLocation == null && searchByItem == null && searchByType == null) {
+                listArticles = articleDao.getAllArticle();
+                request.setAttribute("LIST_ARTICLE", listArticles);
+            } else if (searchByLocation != "" && searchByItem == "" && searchByType == "") {
                 if (searchByLocation.equals("all")) {
                     listArticles = articleDao.getAllArticle();
                 } else {
@@ -51,7 +60,6 @@ public class HomeController extends HttpServlet {
             } else if (searchByLocation == "" && searchByItem != "" && searchByType == "") {
                 if (searchByItem.equals("all")) {
                     listArticles = articleDao.getAllArticle();
-
                 } else {
                     listArticles = articleDao.getListArticleByItemType(searchByItem);
                 }
@@ -61,22 +69,47 @@ public class HomeController extends HttpServlet {
                 } else {
                     listArticles = articleDao.getListArticleByType(searchByType);
                 }
+            } else if (searchByLocation != "" && searchByItem != "" && searchByType == "") {
+                if (searchByLocation.equals("all") || searchByItem.equals("all")) {
+                    listArticles = articleDao.getAllArticle();
+                } else {
+                    listArticles = articleDao.getArticleByItemtypeLocaion(searchByItem, searchByLocation);
+                    request.setAttribute("LIST_ARTICLE", listArticles);
+                }
+            } else if (searchByLocation != "" && searchByItem == "" && searchByType != "") {
+                if (searchByLocation.equals("all") || searchByType.equals("all")) {
+                    listArticles = articleDao.getAllArticle();
+                } else {
+                    listArticles = articleDao.getArticleByArticleTypLocation(searchByType, searchByLocation);
+                    request.setAttribute("LIST_ARTICLE", listArticles);
+                }
+            } else if (searchByLocation == "" && searchByItem != "" && searchByType != "") {
+                if (searchByType.equals("all") || searchByItem.equals("all")) {
+                    listArticles = articleDao.getAllArticle();
+                } else {
+                    listArticles = articleDao.getArticleByArticleTypeItemtype(searchByType, searchByItem);
+                    request.setAttribute("LIST_ARTICLE", listArticles);
+                }
+            } else if (searchByLocation != "" && searchByItem != "" && searchByType != "") {
+                if (searchByLocation.equals("all") || searchByItem.equals("all") || searchByType.equals("all")) {
+                    listArticles = articleDao.getAllArticle();
+                } else {
+                    listArticles = articleDao.getArticleByArticleTypeItemtypeLocaion(searchByType, searchByItem, searchByLocation);
+                    request.setAttribute("LIST_ARTICLE", listArticles);
+                }
             } else {
                 listArticles = new ArticleDAO().getAllArticle();
             }
             request.setAttribute("LIST_ARTICLE", listArticles);
             LocationDAO locationDao = new LocationDAO();
             List<LocationDTO> listLocation = locationDao.getListLocation();
-            HttpSession session = request.getSession();
+
             session.setAttribute("LIST_LOCATION", listLocation);
-            ArticleTypeDAO dao = new ArticleTypeDAO();
-            List<ArticleTypeDTO> listArticleType = dao.getListArticleType();
-            session.setAttribute("LIST_ARTICLE_TYPE", listArticleType);
+
             ItemDAO itemDao = new ItemDAO();
             List<ItemDTO> listItem = itemDao.getListItem();
             session.setAttribute("LIST_ITEM", listItem);
             url = SUCCESS;
-
         } catch (Exception e) {
             log("Error at home" + e.toString());
         } finally {

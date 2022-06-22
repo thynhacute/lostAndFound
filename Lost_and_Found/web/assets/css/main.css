@@ -2791,12 +2791,7 @@ label{
     width: 100%;
     background-color: #ea7f23;
 }
-.map li a{
-    color: #ea7f23 !important;
-    padding-left: 18px !important;
-    margin-top: -20px !important;
-    width: 250px;
-}
+
 .single-product-form ul li {
     list-style: none !important;
 }

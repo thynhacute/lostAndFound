@@ -46,12 +46,12 @@
                                     <p class="text-center">
                                         <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile&redirect_uri=http://localhost:8080/Lost_and_Found/LoginGoogleServlet&response_type=code
                                            &client_id=171987416950-24b6qtrqij1dmk3kke94nqi6ufp5g8in.apps.googleusercontent.com&approval_prompt=force" class="google btn mybtn"><i class="fa fa-google-plus">
-                                            </i> Login using Google
+                                            </i> Login with @fpt.edu.vn
                                         </a>
                                     </p>
                                 </div>
                                 <div class="form-group">
-                                    <p class="text-center">Please Loggin by FPT mail with  <a href="#" id="signup"> @fpt.edu.vn</a></p>
+                                    <p class="text-center">Please login with FPT mail  <a href="#" id="signup"> @fpt.edu.vn</a></p>
                                 </div>
                             </form>
 
