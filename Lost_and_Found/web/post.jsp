@@ -43,10 +43,11 @@
         <link rel="stylesheet" href="assets/css/main.css">
         <!-- responsive -->
         <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="post/css/style.css">
         <title>Post</title>
-        <%@include file="Components/navbarComponent.jsp" %>
     </head>
     <body>
+        <%@include file="Components/navbarComponent.jsp" %>
         <!-- breadcrumb-section -->
         <div class="breadcrumb-section breadcrumb-bg">
             <div class="container">
@@ -74,11 +75,11 @@
             <a href="post-finditem.html">
                 <div class="card-1">
                     <div class="imgBox">
-                        <img src="./post/image/dothatlac.jpg" alt="" />
+                        <img src="post/image/dothatlac.jpg" alt="" />
                     </div>
                     <div class="content">
                         <div class="details">
-                            <h2>Đồ thất lạc</h2>
+                            <h2>Lost Item</h2>
                         </div>
                     </div>
                 </div>
@@ -90,47 +91,37 @@
                     </div>
                     <div class="content">
                         <div class="details">
-                            <h2>Đồ nhặt được</h2>
+                            <h2>Picked Item</h2>
                         </div>
                     </div>
                 </div>
             </a>
         </div>
-        
+        <!--        end-->
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <!-- jquery -->
+        <script src="assets/js/jquery-1.11.3.min.js"></script>
+        <!-- bootstrap -->
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <!-- count down -->
+        <script src="assets/js/jquery.countdown.js"></script>
+        <!-- isotope -->
+        <script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
+        <!-- waypoints -->
+        <script src="assets/js/waypoints.js"></script>
+        <!-- owl carousel -->
+        <script src="assets/js/owl.carousel.min.js"></script>
+        <!-- magnific popup -->
+        <script src="assets/js/jquery.magnific-popup.min.js"></script>
+        <!-- mean menu -->
+        <script src="assets/js/jquery.meanmenu.min.js"></script>
+        <!-- sticker js -->
+        <script src="assets/js/sticker.js"></script>
+        <!-- main js -->
+        <script src="assets/js/main.js"></script>
+        <%@include file="Components/footerComponents.jsp" %>
     </body>
-
-    <script
-        type="module"
-        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-        nomodule
-        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-    ></script>
-    <!-- jquery -->
-    <script src="assets/js/jquery-1.11.3.min.js"></script>
-    <!-- bootstrap -->
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <!-- count down -->
-    <script src="assets/js/jquery.countdown.js"></script>
-    <!-- isotope -->
-    <script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
-    <!-- waypoints -->
-    <script src="assets/js/waypoints.js"></script>
-    <!-- owl carousel -->
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <!-- magnific popup -->
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <!-- mean menu -->
-    <script src="assets/js/jquery.meanmenu.min.js"></script>
-    <!-- sticker js -->
-    <script src="assets/js/sticker.js"></script>
-    <!-- main js -->
-    <script src="assets/js/main.js"></script>
-
-
-    <div<%@include file="Components/footerComponents.jsp" %>div>
-
 </html>
 
 
