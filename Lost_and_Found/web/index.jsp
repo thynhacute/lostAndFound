@@ -119,7 +119,9 @@
                         <div class=" col-lg-4 text-center strawberry">
                             <div class="single-product-item" style="height: 450px; width: 80%" >
                                 <div class="product-image">
-                                    <a href="#"><img style="height: 150px;" src="${L.imgURL}" /></a>
+                                    <a href="DetailArticleController?articleID=${L.articleID}">
+                                        <img style="height: 150px;" src="${L.imgURL}" />
+                                    </a>
                                 </div>
                                 <h3>${L.itemName}</h3>
                                 <p class="product-price"><span>${L.phone}</span>${L.locationName} </p>
@@ -147,7 +149,7 @@
                         <div class=" col-lg-4 text-center strawberry ">
                             <div class="single-product-item" style="height: 450px; width: 80%">
                                 <div class="product-image">
-                                    <a href="#"><img style="height: 150px;" src="${P.imgURL}" /></a>
+                                    <a href="DetailArticleController?articleID=${P.articleID}"><img style="height: 150px;" src="${P.imgURL}" /></a>
                                 </div>
                                 <h3>${P.itemName}</h3>
                                 <p class="product-price"><span>${P.phone}</span>${P.locationName} </p>

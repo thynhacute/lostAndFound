@@ -16,7 +16,7 @@ import member.MemberDTO;
 public class LoginGoogleServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static final String INDEX_PAGE = "index.jsp";
+    private static final String INDEX_PAGE = "HomeController";
     private static final String LOGIN = "login.jsp";
 
     public LoginGoogleServlet() {
@@ -39,7 +39,7 @@ public class LoginGoogleServlet extends HttpServlet {
                 MemberDTO member = new MemberDTO(0, googlePojo.getEmail(), googlePojo.getName(), googlePojo.getPicture(), 0, "", 2);
                 MemberDAO dao = new MemberDAO();
                 String[] email = member.getEmail().split("@");
-                if (email[1].equals("fpt.edu.vn")) {
+                if ((email[1].equals("fpt.edu.vn")) || (email[1].equals("fe.edu.vn"))) {
                     boolean check = dao.checkDuplicate(member.getEmail());
                     if (check) {
                         member = dao.getMemberByEmail(member.getEmail());

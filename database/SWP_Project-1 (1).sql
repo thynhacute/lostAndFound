@@ -245,3 +245,9 @@ INSERT [dbo].[Blog] ([BlogID], [BlogName], [BlogContent], [MemberID])
 INSERT [dbo].[Blog] ([BlogID], [BlogName], [BlogContent], [MemberID])
 	VALUES ('5', N'Ăn gì để khắc phục chứng hay quên?', N'Long nhãn – Cải thiện chứng hay quên hiệu quả, Nhân sâm – Thực phẩm cải thiện chứng hay quên, Đông trùng hạ thảo', '1')
 SET IDENTITY_INSERT Blog OFF;
+
+SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID, A.ItemID, 
+M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName 
+FROM Article A , Member M, ArticleType ART , ItemType I, Location L
+            WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID 
+			AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID and A.ArticleTypeID = 1

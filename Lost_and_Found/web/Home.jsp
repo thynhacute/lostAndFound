@@ -1,3 +1,5 @@
+<%@page import="ArticleType.ArticleTypeDTO"%>
+<%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -55,55 +57,111 @@
                     <div class="col-md-3">
                         <div class="element ">
                             <div class=" finder-tabs col-md-12">
+                                <br>
                                 <h4 class="case27">What do you want to search?</h4>
                                 <p></p>
                             </div>
-                            <div class="type-dropdown">
-                                <label for="">Listing Type</label>
-                                <div>
-                                    <select name="" id="" class="box">
-                                        <option value="">Lost Items</option>
-                                        <option value="">Picked Items</option>
-                                    </select>
-                                </div>
-                                <br>
-                                <label for="">Type Items</label>
-                                <div>
-                                    <select name="" id="" class="box">
-                                        <option value="">Lost Items</option>
-                                        <option value="">Picked Items</option>
-                                    </select>
-                                </div>
-                                <br>
-                                <label for="">Location</label>
-                                <div>
-                                    <select name="" id="" class="box">
-                                        <option value="">Lost Items</option>
-                                        <option value="">Picked Items</option>
-                                    </select>
-                                </div>
-                                <br>
-                                <nav class="main-menu">
-                                    <ul class="map">
-                                        <li><a href="#">Map FPTU</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="404.html">G</a></li>
-                                                <li><a href="404.html">1</a></li>
-                                                <li><a href="404.html">2</a></li>
-                                                <li><a href="404.html">3</a></li>
-                                                <li><a href="404.html">4</a></li>
+                            <form action="HomeController" method="POST">
+                                <div class="type-dropdown">
 
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                    <!--SEARCH BY TYPE START HERE-->
+                                    <label for="">Listing Type</label>
+                                    <c:set var="searchByType" value="${param.searchByType}"/>
+                                    <select name="searchByType" onchange="this.form.submit()" class="box">
+                                        <c:choose>
+                                            <c:when test="${empty searchByType}">
+                                                <option value="">All</option>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:set var="all" value=""/>
+                                                <c:if test="${searchByType ne all}">
+                                                    <option value="${searchByType}">${searchByType}</option>
+                                                    <option value="">All</option>
+                                                </c:if>
+                                                <c:if test="${searchByType eq all}">
+                                                    <option value="${searchByType}">${searchByType}</option>
+                                                </c:if>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <c:forEach items="${sessionScope.LIST_ARTICLE_TYPE}" var="type">
+                                            <c:if test="${type.articleTypeName ne searchByType}">
+                                                <option value="${type.articleTypeName}">${type.articleTypeName}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                    <!--SEARCH BY TYPE END HERE-->
+                                    <br>
 
-                                </nav>
-                                <br>
-                                <br>
-                                <a href="#" class="btn  btn-lg active btn-search" role="button"
-                                   aria-pressed="true">Search</a>
+                                    <!--SEARCH BY ITEMS START HERE-->
+                                    <label for="">Type Items</label>
+                                    <c:set var="searchByItem" value="${param.searchByItem}"/>
+                                    <select name="searchByItem" onchange="this.form.submit()" class="box">
+                                        <c:choose>
+                                            <c:when test="${empty searchByItem}">
+                                                <option value="">All</option>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:set var="all" value=""/>
+                                                <c:if test="${searchByItem ne all}">
+                                                    <option value="${searchByItem}">${searchByItem}</option>
+                                                    <option value="">All</option>
+                                                </c:if>
+                                                <c:if test="${searchByItem eq all}">
+                                                    <option value="${searchByItem}">${searchByItem}</option>
+                                                </c:if>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <c:forEach items="${sessionScope.LIST_ITEM}" var="Item">
+                                            <c:if test="${Item.itemName ne searchByItem}">
+                                                <option value="${Item.itemName}">${Item.itemName}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                    <!--SEARCH BY ITEMS START HERE-->
 
-                            </div>
+
+                                    <br>
+
+                                    <!--SEARCH BY LOCATION START HERE-->
+                                    <label for="">Location</label>
+
+                                    <c:set var="searchByLocation" value="${param.searchByLocation}"/>
+                                    <select name="searchByLocation" onchange="this.form.submit()" class="box">
+                                        <c:choose>
+                                            <c:when test="${empty searchByLocation}">
+                                                <option value="">All</option>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:set var="all" value=""/>
+                                                <c:if test="${searchByLocation ne all}">
+                                                    <option value="${searchByLocation}">${searchByLocation}</option>
+                                                    <option value="">All</option>
+                                                </c:if>
+                                                <c:if test="${searchByLocation eq all}">
+                                                    <option value="${searchByLocation}">${searchByLocation}</option>
+                                                </c:if>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <c:forEach items="${sessionScope.LIST_LOCATION}" var="Location">
+                                            <c:if test="${Location.locationName ne searchByLocation}">
+                                                <option value="${Location.locationName}">${Location.locationName}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+
+                                    <!--SEARCH BY LOCATION START HERE-->
+                                    <br>
+                                    <br>
+                                    <button type="submit" class="btn  btn-lg active btn-search"
+                                            ><i class="fas fa-search"></i></i>&nbspSearch</button>
+                                    <br>
+                                    <br>
+                                    <button type="#" style="width: 100% ; color:#ea7f23; " class="btn-outline-light  btn-lg "
+                                            ><i class="fas fa-redo"></i>&nbsp Reset </button>
+                                    <br>
+                                    <br>        
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <div class="col-md-9">                       
@@ -112,7 +170,8 @@
                                 <div class=" col-md-4 text-center strawberry" >
                                     <div class="single-product-item" style="height: 450px">
                                         <div class="product-image">
-                                            <a href="#"><img style="height: 150px;" src="${A.imgURL}"/></a>
+                                            <a href="DetailArticleController?articleID=${A.articleID}">
+                                                <img style="height: 150px;" src="${A.imgURL}"/></a>
                                         </div>
                                         <h3>${A.itemName}</h3>
                                         <p class="product-price"><span>${A.phone}</span> ${A.locationName} </p>

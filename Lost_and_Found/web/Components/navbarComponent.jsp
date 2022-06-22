@@ -31,6 +31,7 @@
                     <!-- menu start -->
                     <nav class="main-menu">
                         <ul>
+
                             <li class="current-list-item"><a href="PageController">Page</a>
                             </li>
                             <li><a href="blog.jsp">Blog</a>
@@ -51,15 +52,16 @@
                             <li><a href="HomeController">Home</a>
                                 <ul class="sub-menu">
                                     <li><a href="HomeController">Home</a></li>
-                                    <li><a href="Artical-detail.jsp">Artical-detail</a></li>
+                                    <li><a href="Artical-detail.jsp">Article-detail</a></li>
                                 </ul>
                             </li>
+
                             <li>
                                 <c:set value="${sessionScope.LOGIN_MEMBER}" var="L"/>
                                 <div class="header-icons">
                                     <a class="mobile-hide search-bar-icon" href="#"><i
                                             class="fas fa-search"></i></a>
-                                    <c:if test="${sessionScope.LOGIN_MEMBER == null }" >
+                                        <c:if test="${sessionScope.LOGIN_MEMBER == null }" >
                                         <a  href="login.jsp"> Login</a>  
                                     </c:if>
                                     <c:if test="${sessionScope.LOGIN_MEMBER != null }">
