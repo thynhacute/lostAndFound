@@ -155,15 +155,7 @@
                                     <button type="submit" class="btn  btn-lg active btn-search"
                                             ><i class="fas fa-search"></i></i>&nbsp Search</button>
                                     <br>
-<<<<<<< HEAD
-                                    <br>
-                                    <button type="#" style="width: 100% ; color:#ea7f23; " value="Reset" class="btn-outline-light  btn-lg "
-                                            ><i class="fas fa-redo"></i>&nbsp Reset </button>
-                                    <br>
-                                    <br>        
-=======
                                     <br>     
->>>>>>> 5b375c3cf99ae7fd20ad8760a3c64f1bd18c90ea
                                 </div>
                             </form>
                             <form action="ResetController" method="POST">
