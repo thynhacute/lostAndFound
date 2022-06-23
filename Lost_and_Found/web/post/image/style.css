@@ -17,7 +17,9 @@
     width: 30%;
 }
 
-
+.block-display{
+    display: block;
+}
 .navbar-icon-top .navbar-nav .nav-link > .fa {
     top: 3px;
     line-height: 12px;
@@ -25,6 +27,9 @@
 
 .navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
     top: -10px;
+}
+.br-class{
+    margin-right: 5000px;
 }
 
 @media (min-width: 576px) {
@@ -289,15 +294,20 @@ h1{
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-body{
-    /* display: flex; */
+/*body{
+     display: flex; 
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     background: linear-gradient(45deg,#fbda61,#ff5acd);
-}
-.button-card{
-    width: 1700px;
+}*/
+/*.button-card{
+    width: 100%;
+    display: grid;*/
+.button-card {
+    width: 1500px;
+    grid-template-columns: repeat(2, 1fr);
+    margin-left: 60px; 
 }
 .card-1{
     position: relative;
@@ -379,4 +389,9 @@ body{
     font-weight: 600;
     color: #555;
     line-height: 1.2em;
+}
+.body-color {
+
+  background-color: white ;
+  
 }

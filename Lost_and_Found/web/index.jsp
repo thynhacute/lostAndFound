@@ -50,7 +50,14 @@
                                 <h1>Find your lost items anywhere in FPTU </h1>
                                 <div class="hero-btns">
                                     <a href="HomeController" class="boxed-btn">Find Items</a>
-                                    <a href="post.jsp" class="bordered-btn">Post News</a>
+                                    <c:choose >
+                                        <c:when test="${sessionScope.LOGIN_MEMBER == null}">
+                                            <a href="login.jsp" class="bordered-btn">Post News</a>                                         
+                                        </c:when>
+                                            <c:otherwise>
+                                                <a href="post.jsp" class="bordered-btn">Post News</a>
+                                            </c:otherwise>                                  
+                                    </c:choose>                   
                                 </div>
                             </div>
                         </div>

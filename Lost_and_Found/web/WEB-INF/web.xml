@@ -16,6 +16,10 @@
         <servlet-name>DetailArticleController</servlet-name>
         <servlet-class>controller.DetailArticleController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TypePostController</servlet-name>
+        <servlet-class>controller.TypePostController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginGoogleServlet</servlet-name>
         <url-pattern>/LoginGoogleServlet</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>DetailArticleController</servlet-name>
         <url-pattern>/DetailArticleController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TypePostController</servlet-name>
+        <url-pattern>/TypePostController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
