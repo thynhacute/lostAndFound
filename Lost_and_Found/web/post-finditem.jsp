@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html"  pageEncoding="UTF-8"%>
 
 <html lang="en">
 
@@ -67,61 +67,105 @@
             </div>
             <br>
             <div class="container-all mt-5">
-                <div class="user-card-full">
-                    <div class="user-card-use">
-                        <div class ="Detail-A">
-                            <div>
-                                <label for="exampleFormControlInput1" class="form-label font-weight-bold"> <i
-                                        class="fa-solid fa-pen "></i>&nbsp Detail</label>
+                <form action="UploadPhotoController" method="post" enctype="multipart/form-data">
+                    <div class="user-card-full">
+                        <div class="user-card-use">
+                            <div class ="Detail-A">
+                                <div>
+                                    <label for="exampleFormControlInput1" class="form-label font-weight-bold"> <i
+                                            class="fa-solid fa-pen "></i>&nbsp Detail</label>
+                                </div>
                             </div>
-                        </div>
-                        <c:set value="${requestScope.LIST_ITEM}" var="I"/>
-                        <div class="pf-body Detail-A">                            
-                            <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A">Type Item</label>
-                            <div>
-                                <c:set var="searchByType" value = "${param.searchByType}" />
-                                <select name="searchByType" class ="box" >
-                                    <option hidden="" value="all">All</option>
-                                    <option  value="all">All</option>
-                                    <c:forEach items="${sessionScope.LIST_ARTICLE_TYPE}" var="type">
-                                        <option value="${type.articleTypeID}">${type.articleTypeName}</option>
+
+                            <!--SEARCH BY ITEMS START HERE-->
+                            <div class="pf-body Detail-A">                            
+                                <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A">Type Item</label>
+                                <div>
+                                    <c:set var="searchByItem" value="${param.searchByItem}"/>
+                                    <select name="searchByItem" class="box-1">
+                                        <c:choose>
+                                            <c:when test="${empty searchByItem}">
+                                                <option value="">All</option>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:set var="all" value=""/>
+                                                <c:if test="${searchByItem ne all}">
+                                                    <option value="${searchByItem}">${searchByItem}</option>
+                                                    <option value="">All</option>
+                                                </c:if>
+                                                <c:if test="${searchByItem eq all}">
+                                                    <option value="${searchByItem}">${searchByItem}</option>
+                                                </c:if>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <c:forEach items="${requestScope.LIST_ITEM}" var="Item">
+                                            <c:if test="${Item.itemName ne searchByItem}">
+                                                <option value="${Item.itemName}">${Item.itemName}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                            <!--SEARCH BY ITEMS START HERE-->
+
+                            <!--SEARCH BY LOCATION START HERE-->
+                            <div class="Detail-A">
+                                <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A"> <i
+                                        class="fa-solid fa-location-pin"></i> &nbsp Location</label> 
+                                    <c:set var="searchByLocation" value="${param.searchByLocation}"/>
+                                <select name="searchByLocation"class="box-1">
+                                    <c:choose>
+                                        <c:when test="${empty searchByLocation}">
+                                            <option value="">All</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:set var="all" value=""/>
+                                            <c:if test="${searchByLocation ne all}">
+                                                <option value="${searchByLocation}">${searchByLocation}</option>
+                                                <option value="">All</option>
+                                            </c:if>
+                                            <c:if test="${searchByLocation eq all}">
+                                                <option value="${searchByLocation}">${searchByLocation}</option>
+                                            </c:if>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <c:forEach items="${requestScope.LIST_LOCATION}" var="Location">
+                                        <c:if test="${Location.locationName ne searchByLocation}">
+                                            <option value="${Location.locationName}">${Location.locationName}</option>
+                                        </c:if>
                                     </c:forEach>
                                 </select>
-                            </div>
-                        </div>
 
-                        <div class="Detail-A">
-                            <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A"> <i
-                                    class="fa-solid fa-location-pin"></i> &nbsp Location</label> 
-                            <input type="email" class="form-control" id="exampleFormControlInput1"
-                                   placeholder="Nhặt được ở nhà vệ sinh">
-                        </div> 
-                        <br>
-                        <div class="form-group font-weight-bold Detail-A">
-                            <div class="Detail-A"><label for="comment" >Detailed Description: </label></div>                            
-                            <textarea class="form-control Detail-A" rows="5" id="comment"></textarea>
-                            <script>
-                                CKEDITOR.replace('comment');
-                            </script>
-                        </div>                                                        
-                        <div class="Detail-A">
-                            <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A"> <i
-                                    class="fa-solid fa-image"></i> Picture </label>
+                            </div> 
+                            <!--SEARCH BY LOCATION START HERE-->
+
+                            <br>
+                            <div class="form-group font-weight-bold Detail-A">
+                                <div class="Detail-A"><label for="comment" >Detailed Description: </label></div>                            
+                                <textarea class="form-control Detail-A" rows="5" id="comment"></textarea>
+                                <script>
+                                    CKEDITOR.replace('comment');
+                                </script>
+                            </div>                                                        
+                            <div class="Detail-A">
+                                <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A"> <i
+                                        class="fa-solid fa-image"></i> Picture </label>
+                            </div>
+                            <div class="input-group Detail-A " style="padding-bottom: 35px">
+                                <input type="file" class="form-control" name="photo" id="inputGroupFile02" placeholder="Enter photo">
+                                <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                            </div>   
+
                         </div>
-                        <div class="input-group Detail-A " style="padding-bottom: 35px">
-                            <input type="file" class="form-control" id="inputGroupFile02">
-                            <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                        </div>                           
                     </div>
-                </div>
-            
-            <br>
-            <div class="col-lg-8 " style="margin-left: 239px;">              
-                <button style="width: 700px" type="button" class="btn btn-success">Submit</button>                
-            </div>
-            <div class="col-lg-8 Detail-A " style="margin-left: 239px;" >              
-                <button style="width: 700px" type="button" class="btn btn-outline-danger">Danger</button>                              
-            </div>
+                    <br>
+                    <div class="col-lg-8 " style="margin-left: 239px;">              
+                        <button style="width: 700px" type="submit" class="btn btn-success">Submit</button>                
+                    </div>
+                    <div class="col-lg-8 Detail-A " style="margin-left: 239px;" >              
+                        <button style="width: 700px" type="reset" class="btn btn-outline-danger">Danger</button>                              
+                    </div>
+                </form>  
             </div>
         </div>
     </body>

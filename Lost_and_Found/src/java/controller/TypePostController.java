@@ -7,12 +7,17 @@ package controller;
 
 import article.ArticleDAO;
 import article.ArticleDTO;
+import item.ItemDAO;
+import item.ItemDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import location.LocationDAO;
+import location.LocationDTO;
 
 /**
  *
@@ -28,12 +33,23 @@ public class TypePostController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         String articleType = request.getParameter("articleTypeID");
+        String searchByItem = request.getParameter("searchByItem");
+        String searchByLocation = request.getParameter("searchByLocation");
         try {
+            
+            
+            ItemDAO itemDao = new ItemDAO();
+            List<ItemDTO> listItem = itemDao.getListItem();
+            request.setAttribute("LIST_ITEM", listItem);
+
+            LocationDAO locationDao = new LocationDAO();
+            List<LocationDTO> listLocation = locationDao.getListLocation();
+            request.setAttribute("LIST_LOCATION", listLocation);
+
             if (articleType.equals("1")) {
                 url = ERROR;
-            } else {
+            } else 
                 url = SUCCESS;
-            }
         } catch (Exception e) {
             log("Error at home" + e.toString());
         } finally {

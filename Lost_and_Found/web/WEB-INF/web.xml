@@ -20,6 +20,10 @@
         <servlet-name>TypePostController</servlet-name>
         <servlet-class>controller.TypePostController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UploadPhotoController</servlet-name>
+        <servlet-class>controller.UploadPhotoController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginGoogleServlet</servlet-name>
         <url-pattern>/LoginGoogleServlet</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>TypePostController</servlet-name>
         <url-pattern>/TypePostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadPhotoController</servlet-name>
+        <url-pattern>/UploadPhotoController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
