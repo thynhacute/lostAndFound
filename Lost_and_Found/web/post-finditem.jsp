@@ -114,13 +114,14 @@
                         </div>                           
                     </div>
                 </div>
-            </div>
+            
             <br>
-            <div class="col-lg-8 " style="margin-left: 395px;">              
+            <div class="col-lg-8 " style="margin-left: 239px;">              
                 <button style="width: 700px" type="button" class="btn btn-success">Submit</button>                
             </div>
-            <div class="col-lg-8 Detail-A " style="margin-left: 395px;" >              
+            <div class="col-lg-8 Detail-A " style="margin-left: 239px;" >              
                 <button style="width: 700px" type="button" class="btn btn-outline-danger">Danger</button>                              
+            </div>
             </div>
         </div>
     </body>
