@@ -50,7 +50,14 @@
                                 <h1>Find your lost items anywhere in FPTU </h1>
                                 <div class="hero-btns">
                                     <a href="HomeController" class="boxed-btn">Find Items</a>
-                                    <a href="postNews.jsp" class="bordered-btn">Post News</a>
+                                    <c:choose >
+                                        <c:when test="${sessionScope.LOGIN_MEMBER == null}">
+                                            <a href="login.jsp" class="bordered-btn">Post News</a>                                         
+                                        </c:when>
+                                            <c:otherwise>
+                                                <a href="post.jsp" class="bordered-btn">Post News</a>
+                                            </c:otherwise>                                  
+                                    </c:choose>                   
                                 </div>
                             </div>
                         </div>
@@ -238,9 +245,6 @@
                 </div>
             </div>
             <!-- end latest news -->
-
-
-
             <!-- jquery -->
             <script src="assets/js/jquery-1.11.3.min.js"></script>
             <!-- bootstrap -->
@@ -263,5 +267,4 @@
             <script src="assets/js/main.js"></script>
             <%@include file="Components/footerComponents.jsp" %>
     </body>
-
 </html>

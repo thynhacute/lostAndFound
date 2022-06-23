@@ -16,7 +16,7 @@ import member.MemberDTO;
 public class LoginGoogleServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static final String INDEX_PAGE = "HomeController";
+    private static final String INDEX_PAGE = "PageController";
     private static final String LOGIN = "login.jsp";
 
     public LoginGoogleServlet() {
@@ -51,7 +51,7 @@ public class LoginGoogleServlet extends HttpServlet {
                     }
                 } else {
                     url = LOGIN;
-                    request.setAttribute("ERRORMESSAGE", "Please user mail had @fpt.edu.vn ");
+                    request.setAttribute("ERRORMESSAGE", "Please use mail had @fpt.edu.vn ");
                 }
             }
         } catch (Exception e) {

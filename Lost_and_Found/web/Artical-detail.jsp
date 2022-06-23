@@ -71,7 +71,7 @@
                                 <ul>
                                     <li>
                                         <a href="#" class="cart-btn"><i class="fas fa-address-book"></i>
-                                            Contract:</a>
+                                            Contact</a>
                                         <ul class="sub-menu">
                                             <li> Member: <a href="#">${D.fullName} </a></li>
                                             
