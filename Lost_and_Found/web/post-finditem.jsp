@@ -115,38 +115,38 @@
                     </div>
                 </div>
             </div>
+            <br>
+            <div class="col-lg-8 " style="margin-left: 395px;">              
+                <button style="width: 700px" type="button" class="btn btn-success">Submit</button>                
+            </div>
+            <div class="col-lg-8 Detail-A " style="margin-left: 395px;" >              
+                <button style="width: 700px" type="button" class="btn btn-outline-danger">Danger</button>                              
+            </div>
         </div>
-        <div class="col-lg-8 Detail-A " style="margin-left: 395px;">              
-            <button style="width: 700px" type="button" class="btn btn-success">Submit</button>                
-        </div>
-        <div class="col-lg-8 Detail-A " style="margin-left: 395px;" >              
-            <button style="width: 700px" type="button" class="btn btn-outline-danger">Danger</button>                              
-        </div>
-    </div>
-</body>
-<%@include file="Components/footerComponents.jsp" %>
+    </body>
+    <%@include file="Components/footerComponents.jsp" %>
 
-<!-- jquery -->
-<script src="assets/js/jquery-1.11.3.min.js"></script>
-<!-- bootstrap -->
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<!-- count down -->
-<script src="assets/js/jquery.countdown.js"></script>
-<!-- isotope -->
-<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
-<!-- waypoints -->
-<script src="assets/js/waypoints.js"></script>
-<!-- owl carousel -->
-<script src="assets/js/owl.carousel.min.js"></script>
-<!-- magnific popup -->
-<script src="assets/js/jquery.magnific-popup.min.js"></script>
-<!-- mean menu -->
-<script src="assets/js/jquery.meanmenu.min.js"></script>
-<!-- sticker js -->
-<script src="assets/js/sticker.js"></script>
-<!-- main js -->
-<script src="assets/js/main.js"></script>
-<script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
+    <!-- jquery -->
+    <script src="assets/js/jquery-1.11.3.min.js"></script>
+    <!-- bootstrap -->
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <!-- count down -->
+    <script src="assets/js/jquery.countdown.js"></script>
+    <!-- isotope -->
+    <script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
+    <!-- waypoints -->
+    <script src="assets/js/waypoints.js"></script>
+    <!-- owl carousel -->
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <!-- magnific popup -->
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <!-- mean menu -->
+    <script src="assets/js/jquery.meanmenu.min.js"></script>
+    <!-- sticker js -->
+    <script src="assets/js/sticker.js"></script>
+    <!-- main js -->
+    <script src="assets/js/main.js"></script>
+    <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
 
 
 </html>
