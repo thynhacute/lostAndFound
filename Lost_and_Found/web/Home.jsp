@@ -148,7 +148,7 @@
                                             </c:if>
                                         </c:forEach>
                                     </select>
-
+  
                                     <!--SEARCH BY LOCATION START HERE-->
                                     <br>
                                     <br>
