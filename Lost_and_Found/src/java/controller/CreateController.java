@@ -25,7 +25,7 @@ import member.MemberDTO;
 )
 public class CreateController extends HttpServlet {
 
-    private static final String ERROR = "post-finditem.jsp";
+    private static final String ERROR = "TypePostController";
     private static final String SUCCESS = "PageController";
     private final String UPLOAD_DIRECTORY = "file_upload";
 
@@ -38,7 +38,6 @@ public class CreateController extends HttpServlet {
         }
         return null;
     }
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -59,22 +58,31 @@ public class CreateController extends HttpServlet {
         String applicationPath = request.getServletContext().getRealPath("").replace("build\\", ""); //set cái đường dẫn 
         String basePath = applicationPath + File.separator + UPLOAD_DIRECTORY + File.separator; // lấy đường dẫn folder để đưa cái thư mục zô
         File uploadDir = new File(basePath);
+        InputStream inputStream = null;
+        OutputStream outputStream = null;
         if (!uploadDir.exists()) {
             uploadDir.mkdir(); //hàm tự tạo mới 
         }
-        Part fileUpload = request.getPart("file"); //bắt param 
-        InputStream inputStream = null;
-        OutputStream outputStream = null;
-        try { // thực hiện ghi zô folder
-            String fileName = getFileName(fileUpload); // lưu zô db thì lưu cái fileName
-            String save_path = basePath + fileName;
-            File outputFilePath = new File(save_path);
-            inputStream = fileUpload.getInputStream();
-            outputStream = new FileOutputStream(outputFilePath);
-            int read = 0;
-            final byte[] bytes = new byte[1024];
-            while ((read = inputStream.read(bytes)) != -1) {
-                outputStream.write(bytes, 0, read);
+        Part fileUpload = request.getPart("file"); //bắt param             
+        String fileName = getFileName(fileUpload); //thực hiện ghi zô folder lưu zô db thì lưu cái fileName
+        try {
+            if (fileName.equals("")) {
+                fileName = "273446696_366979748282108_1704171107086216918_n.jpg";
+            } else {
+                String save_path = basePath + fileName;
+                if ((fileName.endsWith(".png") || fileName.endsWith(".jpg"))) {
+                    File outputFilePath = new File(save_path);
+                    inputStream = fileUpload.getInputStream();
+                    outputStream = new FileOutputStream(outputFilePath);
+                    int read = 0;
+                    final byte[] bytes = new byte[1024];
+                    while ((read = inputStream.read(bytes)) != -1) {
+                        outputStream.write(bytes, 0, read);
+                    }
+                } else {
+                    url = ERROR;
+                    request.setAttribute("ERROR_UPLOAD", "please upload file had '.png' or '.jgp'");
+                }
             }
             ArticleDAO dao = new ArticleDAO();
             ArticleDTO article = new ArticleDTO(0, aricleContent, fileName, "", locationID, memberID, articleTypeID, itemID, "", "", 0, "", "", "", "");
@@ -82,6 +90,7 @@ public class CreateController extends HttpServlet {
             if (checkCreate) {
                 url = SUCCESS;
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

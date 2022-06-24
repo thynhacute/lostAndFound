@@ -122,7 +122,15 @@
                             <div class="input-group Detail-A " style="padding-bottom: 35px">
                                 <input type="file" class="form-control" name="file" id="inputGroupFile02" placeholder="Enter photo">
                                 <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                            </div>   
+                                <div>
+                                <c:if test="${requestScope.ERROR_UPLOAD != null}">
+                                    
+                                        <p> &nbsp &nbsp ${requestScope.ERROR_UPLOAD}</p>
+                                    
+                                </c:if>
+                                        </div>
+                            </div>
+
 
                         </div>
                     </div>
@@ -131,7 +139,7 @@
                         <button style="width: 700px" type="submit" class="btn btn-success">Submit</button>                
                     </div>
                     <div class="col-lg-8 Detail-A " style="margin-left: 239px;" >              
-                        <button style="width: 700px" type="reset" class="btn btn-outline-danger">Danger</button>                              
+                        <a style="width: 700px" href="post.jsp" class="btn btn-outline-danger">Cancle</a>                              
                     </div>
                 </form>  
             </div>

@@ -42,7 +42,7 @@
 
     </head>
 
-    <body>
+    <body style="background-color: #f4f4f4">
         <%@include file="Components/navbarComponent.jsp" %>
         <!-- breadcrumb-section -->
         <div class="breadcrumb-section breadcrumb-bg">
@@ -66,37 +66,51 @@
                 </main>
             </div>
             <br>
-             <div class="container-all mt-5">
-                <div class="user-card-full">
-                    <div class="user-card-use">
-                        <div class ="Detail-A">
-                            <div>
-                                <label for="exampleFormControlInput1" class="form-label font-weight-bold"> <i
-                                        class="fa-solid fa-pen "></i>&nbsp Detail</label>
-                            </div>
-                        </div>
-                        <div class="pf-body">                            
-                            <!--                            <div class="Detail-A">
-                                                            <label for="exampleFormControlInput1" class="form-label font-weight-bold">Tiêu
-                                                                đề</label>
-                                                            <input type="email" class="form-control" id="exampleFormControlInput1"
-                                                                   placeholder="Rơi đồ gồm nhiều món ở trái đất">
-                                                        </div>-->
-                            <div class="Detail-A">
-                                <label for="exampleFormControlInput1" class="form-label font-weight-bold">Type Item</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+            <div class="container-all mt-5">
+                <form action="CreateController" method="post" enctype="multipart/form-data">
+                    <div class="user-card-full">
+                        <div class="user-card-use">
+                            <div class ="Detail-A">
+                                <div>
+                                    <label for="exampleFormControlInput1" class="form-label font-weight-bold"><i
+                                            class="fa-solid fa-pen "></i>  
+                                        <input type="hidden" name="articleTypeID" value="2"/>&nbsp Detail</label>
+                                </div>
                             </div>
 
+                            <!--SEARCH BY ITEMS START HERE-->
+                            <div class="pf-body Detail-A">                            
+                                <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A">
+                                    Type Item</label>
+                                <div>                                   
+                                    <select name="Items" class="box-1">
+                                        <option value=""></option>
+                                        <c:forEach items="${requestScope.LIST_ITEM}" var="Item">                                            
+                                            <option value="${Item.itemID}"> ${Item.itemName}</option>                                            
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                            <!--SEARCH BY ITEMS START HERE-->
+
+                            <!--SEARCH BY LOCATION START HERE-->
                             <div class="Detail-A">
                                 <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A"> <i
                                         class="fa-solid fa-location-pin"></i> &nbsp Location</label> 
-                                <input type="email" class="form-control" id="exampleFormControlInput1"
-                                       placeholder="Nhặt được ở nhà vệ sinh">
+                                <select name="Locations"class="box-1">
+                                    <option value="" ></option>
+                                    <c:forEach items="${requestScope.LIST_LOCATION}" var="Location">                                      
+                                        <option value="${Location.locationID}">${Location.locationName}</option>                                        
+                                    </c:forEach>
+                                </select>
+
                             </div> 
+                            <!--SEARCH BY LOCATION START HERE-->
+
                             <br>
                             <div class="form-group font-weight-bold Detail-A">
-                                <label for="comment" Detail-A" >Detailed Description: </label>
-                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                                <div class="Detail-A"><label for="comment" >Detailed Description: </label></div>                            
+                                <textarea  minlength="10" maxlength="1000"  class="form-control Detail-A" rows="5" name="articleContent" id="comment"></textarea>
                                 <script>
                                     CKEDITOR.replace('comment');
                                 </script>
@@ -106,44 +120,50 @@
                                         class="fa-solid fa-image"></i> Picture </label>
                             </div>
                             <div class="input-group Detail-A " style="padding-bottom: 35px">
-                                <input type="file" class="form-control" id="inputGroupFile02">
+                                <input type="file" class="form-control" name="file" id="inputGroupFile02" placeholder="Enter photo">
                                 <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                            </div>                           
+                                <div>
+                                    <c:if test="${requestScope.ERROR_UPLOAD != null}">
+                                        <p> &nbsp &nbsp ${requestScope.ERROR_UPLOAD}</p>
+                                    </c:if>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-8 Detail-A " style="margin-left: 395px;">              
-                <button style="width: 700px" type="button" class="btn btn-success">Submit</button>                
-            </div>
-            <div class="col-lg-8 Detail-A " style="margin-left: 395px;" >              
-                <button style="width: 700px" type="button" class="btn btn-outline-danger">Danger</button>                              
+                    <br>
+                    <div class="col-lg-8 " style="margin-left: 239px;">              
+                        <button style="width: 700px" type="submit" class="btn btn-success">Submit</button>                
+                    </div>
+                    <div class="col-lg-8 Detail-A " style="margin-left: 239px;" >              
+                        <a style="width: 700px" href="post.jsp" class="btn btn-outline-danger">Cancle</a>                                    
+                    </div>
+                </form>  
             </div>
         </div>
-</body>
-<%@include file="Components/footerComponents.jsp" %>
+    </body>
+    <%@include file="Components/footerComponents.jsp" %>
 
-<!-- jquery -->
-<script src="assets/js/jquery-1.11.3.min.js"></script>
-<!-- bootstrap -->
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<!-- count down -->
-<script src="assets/js/jquery.countdown.js"></script>
-<!-- isotope -->
-<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
-<!-- waypoints -->
-<script src="assets/js/waypoints.js"></script>
-<!-- owl carousel -->
-<script src="assets/js/owl.carousel.min.js"></script>
-<!-- magnific popup -->
-<script src="assets/js/jquery.magnific-popup.min.js"></script>
-<!-- mean menu -->
-<script src="assets/js/jquery.meanmenu.min.js"></script>
-<!-- sticker js -->
-<script src="assets/js/sticker.js"></script>
-<!-- main js -->
-<script src="assets/js/main.js"></script>
-<script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
+    <!-- jquery -->
+    <script src="assets/js/jquery-1.11.3.min.js"></script>
+    <!-- bootstrap -->
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <!-- count down -->
+    <script src="assets/js/jquery.countdown.js"></script>
+    <!-- isotope -->
+    <script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
+    <!-- waypoints -->
+    <script src="assets/js/waypoints.js"></script>
+    <!-- owl carousel -->
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <!-- magnific popup -->
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <!-- mean menu -->
+    <script src="assets/js/jquery.meanmenu.min.js"></script>
+    <!-- sticker js -->
+    <script src="assets/js/sticker.js"></script>
+    <!-- main js -->
+    <script src="assets/js/main.js"></script>
+    <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
 
 
 </html>
