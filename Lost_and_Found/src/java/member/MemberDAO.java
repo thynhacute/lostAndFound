@@ -19,7 +19,7 @@ public class MemberDAO {
 
     private static final String CHECK_DUPLICATE = "SELECT  M.FullName FROM Member M\n"
             + "WHERE M.Email = ?";
-    private static final String GET_MEMBER_BY_EMAIL = "SELECT  M.FullName, M.Email, M.Picture, M.Phone, M.ProfileInfo FROM Member M\n"
+    private static final String GET_MEMBER_BY_EMAIL = "SELECT M.MemberID,  M.FullName, M.Email, M.Picture, M.Phone, M.ProfileInfo FROM Member M\n"
             + "WHERE M.Email =?";
 
     private static final String CREATE_MEMBER = "INSERT INTO [dbo].[Member]\n"
@@ -68,16 +68,15 @@ public class MemberDAO {
             ptm.setString(1, email);
             rs = ptm.executeQuery();
             while (rs.next()) {
+                int memberID = rs.getInt("MemberID");
                 String fullName = rs.getString("FullName");
                 String email2 = rs.getString("Email");
                 String picture = rs.getString("Picture");
                 int phone = rs.getInt("Phone");
                 String profileInfo = rs.getString("ProfileInfo");
 
-                MemberDTO member = new MemberDTO(0, email2, fullName, picture, phone, profileInfo, 2);
-
+                MemberDTO member = new MemberDTO(memberID, email2, fullName, picture, phone, profileInfo, 2);
                 return member;
-
             }
         } catch (Exception e) {
         } finally {

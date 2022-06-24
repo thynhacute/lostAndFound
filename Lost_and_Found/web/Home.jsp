@@ -1,6 +1,7 @@
 <%@page import="ArticleType.ArticleTypeDTO"%>
 <%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
@@ -148,7 +149,7 @@
                                             </c:if>
                                         </c:forEach>
                                     </select>
-  
+
                                     <!--SEARCH BY LOCATION START HERE-->
                                     <br>
                                     <br>
@@ -170,8 +171,16 @@
                                 <div class=" col-md-4 text-center strawberry" >
                                     <div class="single-product-item" style="height: 450px">
                                         <div class="product-image">
-                                            <a href="DetailArticleController?articleID=${A.articleID}">
-                                                <img style="height: 150px;" src="${A.imgURL}"/></a>
+                                            <c:choose>
+                                                <c:when test="${fn:contains(A.imgURL, 'https')}">
+                                                    <a href="DetailArticleController?articleID=${A.articleID}">
+                                                        <img style="height: 150px;" src="${A.imgURL}"/></a>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                    <a href="DetailArticleController?articleID=${A.articleID}">
+                                                        <img style="height: 150px;" src="./file_upload/${A.imgURL}"/></a>
+                                                    </c:otherwise>
+                                                </c:choose>
                                         </div>
                                         <h3>${A.itemName}</h3>
                                         <p class="product-price"><span>${A.phone}</span> ${A.locationName} </p>

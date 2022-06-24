@@ -43,6 +43,8 @@ public class ArticleDAO {
     private static final String GET_ARTICLE_DETAIL = "SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName FROM Article A , Member M, ArticleType ART , ItemType I, Location L \n"
             + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID "
             + "AND A.ArticleID =?";
+    private static final String CREATE_ARTICLE = "INSERT INTO Article( ArticleContent,ImgURL,ArticleTypeID,ItemID,LocationID,MemberID,ArticleStatus)\n"
+            + "VALUES(?,?,?,?,?,?,1)";
 
     public List<ArticleDTO> getAllArticle() throws SQLException {
         List<ArticleDTO> listArticle = new ArrayList<>();
@@ -557,8 +559,8 @@ public class ArticleDAO {
                 String articleTypeName = rs.getString("ArticleTypeName");
                 String itemName = rs.getString("ItemName");
                 String locationName = rs.getString("LocationName");
-                
-                ArticleDTO article = new ArticleDTO(articleID, articleContent, imgURL, postTime, locationID, memberID, articleTypeID, itemID, fullName, email, phone, picture, articleTypeName, itemName, locationName);       
+
+                ArticleDTO article = new ArticleDTO(articleID, articleContent, imgURL, postTime, locationID, memberID, articleTypeID, itemID, fullName, email, phone, picture, articleTypeName, itemName, locationName);
                 return article;
             }
         } catch (Exception e) {
@@ -575,6 +577,35 @@ public class ArticleDAO {
             }
         }
         return null;
+    }
+
+    public boolean createArticle(ArticleDTO article) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CREATE_ARTICLE);
+                ptm.setString(1, article.getArticleContent());
+                ptm.setString(2, article.getImgURL());
+                ptm.setInt(3, article.getArticleTypeID());
+                ptm.setInt(4, article.getItemID());
+                ptm.setInt(5, article.getLocatioID());
+                ptm.setInt(6, article.getMemberID());               
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+
+        } catch (Exception e) {
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
     }
 
 }

@@ -5,52 +5,46 @@
  */
 package controller;
 
-import article.ArticleDAO;
-import article.ArticleDTO;
-import item.ItemDAO;
-import item.ItemDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import location.LocationDAO;
-import location.LocationDTO;
+import report.ReportDAO;
+import report.ReportDTO;
 
 /**
  *
  * @author Owner
  */
-public class TypePostController extends HttpServlet {
+public class ReportController extends HttpServlet {
 
-    private static final String ERROR = "post-finditem.jsp";
-    private static final String SUCCESS = "post-pickitem.jsp";
+    private static final String ERROR = "Artical-detail.jsp";
+    private static final String SUCCESS = "DetailArticleController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        String articleType = request.getParameter("articleTypeID");
-        try {
-            ItemDAO itemDao = new ItemDAO();
-            List<ItemDTO> listItem = itemDao.getListItem();
-            request.setAttribute("LIST_ITEM", listItem);
 
-            LocationDAO locationDao = new LocationDAO();
-            List<LocationDTO> listLocation = locationDao.getListLocation();
-            request.setAttribute("LIST_LOCATION", listLocation);
-                  
-            if (articleType.equals("1")) {
-                url = ERROR;
-            } else {
-                url = SUCCESS;}
+        String url = ERROR;
+        int articleID = Integer.parseInt(request.getParameter("articleID"));
+        int memberID = Integer.parseInt(request.getParameter("memberID"));
+        String reportContent = request.getParameter("reportContent");
+
+        try {
+            ReportDAO dao = new ReportDAO();
+            ReportDTO report = new ReportDTO(articleID, memberID, reportContent, "");
+            boolean checkCreate = dao.createReport(report);
+            if (checkCreate) {
+                url = SUCCESS;
+            }
         } catch (Exception e) {
-            log("Error at home" + e.toString());
+            e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

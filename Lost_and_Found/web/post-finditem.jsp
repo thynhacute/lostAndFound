@@ -67,41 +67,26 @@
             </div>
             <br>
             <div class="container-all mt-5">
-                <form action="UploadPhotoController" method="post" enctype="multipart/form-data">
+                <form action="CreateController" method="post" enctype="multipart/form-data">
                     <div class="user-card-full">
                         <div class="user-card-use">
                             <div class ="Detail-A">
                                 <div>
-                                    <label for="exampleFormControlInput1" class="form-label font-weight-bold"> <i
-                                            class="fa-solid fa-pen "></i>&nbsp Detail</label>
+                                    <label for="exampleFormControlInput1" class="form-label font-weight-bold"><i
+                                            class="fa-solid fa-pen "></i>  
+                                        <input type="hidden" name="articleTypeID" value="1"/>&nbsp Detail</label>
                                 </div>
                             </div>
 
                             <!--SEARCH BY ITEMS START HERE-->
                             <div class="pf-body Detail-A">                            
-                                <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A">Type Item</label>
-                                <div>
-                                    <c:set var="searchByItem" value="${param.searchByItem}"/>
-                                    <select name="searchByItem" class="box-1">
-                                        <c:choose>
-                                            <c:when test="${empty searchByItem}">
-                                                <option value="">All</option>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <c:set var="all" value=""/>
-                                                <c:if test="${searchByItem ne all}">
-                                                    <option value="${searchByItem}">${searchByItem}</option>
-                                                    <option value="">All</option>
-                                                </c:if>
-                                                <c:if test="${searchByItem eq all}">
-                                                    <option value="${searchByItem}">${searchByItem}</option>
-                                                </c:if>
-                                            </c:otherwise>
-                                        </c:choose>
-                                        <c:forEach items="${requestScope.LIST_ITEM}" var="Item">
-                                            <c:if test="${Item.itemName ne searchByItem}">
-                                                <option value="${Item.itemName}">${Item.itemName}</option>
-                                            </c:if>
+                                <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A">
+                                    Type Item</label>
+                                <div>                                   
+                                    <select name="Items" class="box-1">
+                                        <option value=""></option>
+                                        <c:forEach items="${requestScope.LIST_ITEM}" var="Item">                                            
+                                            <option value="${Item.itemID}"> ${Item.itemName}</option>                                            
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -112,27 +97,10 @@
                             <div class="Detail-A">
                                 <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A"> <i
                                         class="fa-solid fa-location-pin"></i> &nbsp Location</label> 
-                                    <c:set var="searchByLocation" value="${param.searchByLocation}"/>
-                                <select name="searchByLocation"class="box-1">
-                                    <c:choose>
-                                        <c:when test="${empty searchByLocation}">
-                                            <option value="">All</option>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <c:set var="all" value=""/>
-                                            <c:if test="${searchByLocation ne all}">
-                                                <option value="${searchByLocation}">${searchByLocation}</option>
-                                                <option value="">All</option>
-                                            </c:if>
-                                            <c:if test="${searchByLocation eq all}">
-                                                <option value="${searchByLocation}">${searchByLocation}</option>
-                                            </c:if>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <c:forEach items="${requestScope.LIST_LOCATION}" var="Location">
-                                        <c:if test="${Location.locationName ne searchByLocation}">
-                                            <option value="${Location.locationName}">${Location.locationName}</option>
-                                        </c:if>
+                                <select name="Locations"class="box-1">
+                                    <option value="" ></option>
+                                    <c:forEach items="${requestScope.LIST_LOCATION}" var="Location">                                      
+                                        <option value="${Location.locationID}">${Location.locationName}</option>                                        
                                     </c:forEach>
                                 </select>
 
@@ -142,7 +110,7 @@
                             <br>
                             <div class="form-group font-weight-bold Detail-A">
                                 <div class="Detail-A"><label for="comment" >Detailed Description: </label></div>                            
-                                <textarea class="form-control Detail-A" rows="5" id="comment"></textarea>
+                                <textarea  minlength="10" maxlength="1000"  class="form-control Detail-A" rows="5" name="articleContent" id="comment"></textarea>
                                 <script>
                                     CKEDITOR.replace('comment');
                                 </script>
@@ -152,7 +120,7 @@
                                         class="fa-solid fa-image"></i> Picture </label>
                             </div>
                             <div class="input-group Detail-A " style="padding-bottom: 35px">
-                                <input type="file" class="form-control" name="photo" id="inputGroupFile02" placeholder="Enter photo">
+                                <input type="file" class="form-control" name="file" id="inputGroupFile02" placeholder="Enter photo">
                                 <label class="input-group-text" for="inputGroupFile02">Upload</label>
                             </div>   
 
@@ -170,7 +138,6 @@
         </div>
     </body>
     <%@include file="Components/footerComponents.jsp" %>
-
     <!-- jquery -->
     <script src="assets/js/jquery-1.11.3.min.js"></script>
     <!-- bootstrap -->
