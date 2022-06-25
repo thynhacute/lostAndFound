@@ -11,6 +11,7 @@ Version: 1.0
 # Base - Genral & Typography
 
 ----------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
 html {
     font-size: 14px;
     font-weight: 400;
@@ -2957,4 +2958,16 @@ label{
 
 .comment-widgets .comment-row:hover {
   background: rgba(0, 0, 0, 0.05)
+}
+
+/*------------*/
+
+.like_btn {
+    outline: none;
+    font-family: 'Open Sans', sans-serif;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    color: black;
+
 }

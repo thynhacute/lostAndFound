@@ -145,11 +145,14 @@
                         <div class="d-flex flex-column comment-section">
                             <div class="bg-white">
                                 <div class="d-flex flex-row fs-12">
-                                    <div class="like p-2 cursor" style="width: 4rem"><i class="fas fa-thumbs-up"></i><span
-                                            class="ml-1" >Like</span></div>
-                                    <div class="like p-2 cursor "><i class="fas fa-comment-dots"></i></i><span
-                                            class="ml-1" >Comment</span></div>
-                                    <div class="like p-2 cursor"><i class="fa fa-share"></i><span
+                                    <button class="like_btn" style="outline: none;">
+                                        <span id="icon"><i class="far fa-thumbs-up icon-2"></i></span>
+                                        <span id="count">0 </span>
+                                        <span id="like">Like </span>
+                                    </button>
+                                    <a style="text-decoration: none;" class="like text-dark p-2 cursor"><i  class="fas fa-comment-dots icon-2"></i><span
+                                            class="ml-1">Comment</span></a>
+                                    <div class="like p-2 cursor"><i class="fa fa-share icon-2"></i><span
                                             class="ml-1">Share</span></div>
                                 </div>
                             </div>
@@ -160,8 +163,8 @@
                                     <c:choose >
                                         <c:when test="${sessionScope.LOGIN_MEMBER == null}">
                                             <div class="d-flex flex-row align-items-start">
-                                                <img class="rounded-circle" src="http://phunuvietnam.mediacdn.vn/media/news/33abffcedac43a654ac7f501856bf700/anh-profile-tiet-lo-g-ve-ban-1.jpg" width="40">
-                                                <textarea class="form-control ml-1 shadow-none textarea" name="commentContent" ></textarea>
+                                                <img class="rounded-circle"  src="http://phunuvietnam.mediacdn.vn/media/news/33abffcedac43a654ac7f501856bf700/anh-profile-tiet-lo-g-ve-ban-1.jpg" width="40">
+                                                <textarea class="form-control ml-1 shadow-none textarea" id="comment"  name="commentContent" ></textarea>
                                             </div>
                                             <div class="mt-2 text-right">
                                                 <a class="btn btn-primary btn-sm shadow-none" href="login.jsp">
@@ -172,7 +175,7 @@
                                         <c:otherwise>
                                             <div class="d-flex flex-row align-items-start">
                                                 <img class="rounded-circle" src="${sessionScope.LOGIN_MEMBER.picture}" width="40">
-                                                <textarea class="form-control ml-1 shadow-none textarea" name="commentContent" ></textarea>
+                                                <textarea class="form-control ml-1 shadow-none textarea" id="comment"  name="commentContent" ></textarea>
                                             </div>
                                             <div class="mt-2 text-right">
                                                 <button class="btn btn-primary btn-sm shadow-none" type="submit">
@@ -234,6 +237,7 @@
         <script src="assets/js/sticker.js"></script>
         <!-- main js -->
         <script src="assets/js/main.js"></script>
+        <script src="assets/js/app.js"></script>
 
     </body>
 </html>
