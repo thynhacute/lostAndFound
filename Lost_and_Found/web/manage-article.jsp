@@ -107,48 +107,39 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>Article ID</th>
                                             <th>Article Content</th>
                                             <th>Image</th>
                                             <th>Time</th>
                                             <th>Location</th>
                                             <th>Member</th>
-                                            <th>Article Type</th>
                                             <th>Total Report</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Article ID</th>
                                             <th>Article Content</th>
                                             <th>Image</th>
                                             <th>Time</th>
                                             <th>Location</th>
                                             <th>Member</th>
-                                            <th>Article Type</th>
                                             <th>Total Report</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        
                                         <c:forEach items="${GET_LIST_ARTICLE_ACTIVE}" var = "A">
                                             <tr>
-                                                <td>${A.articleID}</td>
                                                 <td>${A.articleContent}</td>
                                                 <td><img src="${A.imgURL}" style="width: 230px"></td>
                                                 <td>${A.postTime}</td>
                                                 <td>${A.locationName}</td>
                                                 <td>${A.fullName}</td>
-                                                <td>${A.articleTypeName}</td>
                                                 <th>${A.totalReport}</th>
                                                 <td> 
                                                     <a href="DeleteArticleByAdminController?articleID=${A.articleID}" style="color: red;"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</a></td>
                                             </tr>
                                         </c:forEach>
-
-
                                     </tbody>
                                 </table>
                             </div>

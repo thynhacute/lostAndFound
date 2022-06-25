@@ -110,7 +110,6 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>Report ID</th>
                                             <th>Email Reported</th>
                                             <th>Report Content</th>
                                             <th>Article Content</th>
@@ -121,7 +120,6 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Report ID</th>
                                             <th>Email Reported</th>
                                             <th>Report Content</th>
                                             <th>Article Content</th>
@@ -134,7 +132,6 @@
                                      
                                         <c:forEach items="${GET_LIST_REPORT_BY_ARTICLE}" var = "A">
                                             <tr>
-                                                <td>${A.reportID}</td>
                                                 <td>${A.email}</td>
                                                 <td>${A.reportContent}</td>
                                                 <td>${A.articleContent}</td>
