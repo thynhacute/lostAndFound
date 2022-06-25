@@ -34,7 +34,7 @@ public class ReportController extends HttpServlet {
 
         try {
             ReportDAO dao = new ReportDAO();
-            ReportDTO report = new ReportDTO(articleID, memberID, reportContent, "");
+            ReportDTO report = new ReportDTO(0,articleID, memberID, reportContent, "");
             boolean checkCreate = dao.createReport(report);
             if (checkCreate) {
                 url = SUCCESS;

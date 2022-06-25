@@ -10,13 +10,15 @@ package report;
  * @author Owner
  */
 public class ReportDTO {
-
+    
+    private int reportID;
     private int articleID;
     private int memberID;
     private String reportContent;
     private String reportTime;
 
-    public ReportDTO(int articleID, int memberID, String reportContent, String reportTime) {
+    public ReportDTO(int reportID, int articleID, int memberID, String reportContent, String reportTime) {
+        this.reportID = reportID;
         this.articleID = articleID;
         this.memberID = memberID;
         this.reportContent = reportContent;
@@ -24,10 +26,19 @@ public class ReportDTO {
     }
 
     public ReportDTO() {
+        this.reportID = 0;
         this.articleID = 0;
         this.memberID = 0;
         this.reportContent = "";
         this.reportTime = "";
+    }
+
+    public int getReportID() {
+        return reportID;
+    }
+
+    public void setReportID(int reportID) {
+        this.reportID = reportID;
     }
 
     public int getArticleID() {
@@ -62,4 +73,5 @@ public class ReportDTO {
         this.reportTime = reportTime;
     }
 
+    
 }

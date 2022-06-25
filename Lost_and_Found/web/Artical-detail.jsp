@@ -85,62 +85,122 @@
                             <c:choose >
                                 <c:when test="${sessionScope.LOGIN_MEMBER == null}">
                                     <a class="text-danger mb-5" href="login.jsp" >
-                                <i class="far fa-flag mr-3"></i>Report</a>                                      
-                                </c:when>
-                                <c:otherwise>
+                                        <i class="far fa-flag mr-3"></i>Report</a>                                      
+                                    </c:when>
+                                    <c:otherwise>
                                     <a class="text-danger mb-5" data-toggle="modal" data-target="#modalVip">
-                                <i class="far fa-flag mr-3"></i>Report</a>
-                                </c:otherwise>                                  
-                            </c:choose>                                  
-                            <div class="single-product-form mt-5">
-                                <ul>
+                                        <i class="far fa-flag mr-3"></i>Report</a>
+                                    </c:otherwise>                                  
+                                </c:choose>                                  
+                            <div class="single-product-form ">
+                                <ul class="contact-a">
                                     <li>
                                         <a href="#" class="cart-btn"><i class="fas fa-address-book"></i>
                                             Contact</a>
                                         <ul class="sub-menu">
                                             <li> Member: <a href="#">${D.fullName} </a></li>
-
                                             <li><i class="fas fa-phone"></i>&nbsp<a href="#">Phone: ${D.phone} </a></li>
                                             <li><i class="fas fa-mail-bulk"></i>&nbsp<a href="#">Email: ${D.email}</a></li>
                                             <br>
                                         </ul>
                                     </li>
                                 </ul>
+                                <br>
+                                <br>
+                                <br>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="modalVip" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+
+                            <h3 class="text-center" id="exampleModalLabel">Report</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <form action="ReportController" method="POST" >
+                            <div class="modal-body">
+                                <p class="mb-1"><strong>Reason</strong></p>
+                                <textarea name="reportContent" class="w-100 p-2" rows="3" placeholder="Typing..."></textarea>
+                            </div>
+                            <input type="hidden" name="articleID" value="${D.articleID}" />
+                            <input type="hidden" name="memberID" value="${sessionScope.LOGIN_MEMBER.id}" />
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger text-light" >Send</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>	
+            <div class="container mt-5">
+                <div class="d-flex  row">
+                    <div class="col-md-12">
+                        <div class="d-flex flex-column comment-section">
+                            <div class="bg-white">
+                                <div class="d-flex flex-row fs-12">
+                                    <div class="like p-2 cursor" style="width: 4rem"><i class="fas fa-thumbs-up"></i><span
+                                            class="ml-1" >Like</span></div>
+                                    <div class="like p-2 cursor "><i class="fas fa-comment-dots"></i></i><span
+                                            class="ml-1" >Comment</span></div>
+                                    <div class="like p-2 cursor"><i class="fa fa-share"></i><span
+                                            class="ml-1">Share</span></div>
+                                </div>
+                            </div>
+                            <div class="bg-white p-2">
+                                <div class="d-flex flex-row align-items-start">
+                                    <img class="rounded-circle" src="assets/img/avaters/avatar1.png" width="40">
+                                    <textarea
+                                        class="form-control ml-1 shadow-none textarea"></textarea></div>
+                                <div class="mt-2 text-right"><button class="btn btn-primary btn-sm shadow-none"
+                                                                     type="button"><i class="fas fa-paper-plane"></i> &nbsp Post</button><button
+                                                                     class="btn btn-outline-primary btn-sm ml-1 shadow-none"
+                                                                     type="button">Cancel</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row d-flex ">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="comment-widgets">
+                                <!-- Comment Row -->
+                                <div class="d-flex flex-row comment-row m-t-0">
+                                    <div class="p-2"><img src="assets/img/avaters/avatar1.png" alt="user" width="50" class="rounded-circle"></div>
+                                    <div class="comment-text w-100">
+                                        <h6 class="font-medium">James Thomas</h6> <span class="m-b-15 d-block">This is awesome website. I would love to comeback again. </span>
+                                        <div class="comment-footer"> <span class="text-muted float-right">April 14, 2019</span></div>
+                                    </div>
+                                </div> <!-- Comment Row -->
+                                <div class="d-flex flex-row comment-row">
+                                    <div class="p-2"><img src="assets/img/avaters/avatar1.png" alt="user" width="50" class="rounded-circle"></div>
+                                    <div class="comment-text active w-100">
+                                        <h6 class="font-medium">Michael Hussey</h6> <span class="m-b-15 d-block">Thanks bbbootstrap.com for providing such useful snippets. </span>
+                                        <div class="comment-footer"> <span class="text-muted float-right">May 10, 2019</span></div>
+                                    </div>
+                                </div> <!-- Comment Row -->
+                                <div class="d-flex flex-row comment-row">
+                                    <div class="p-2"><img src="assets/img/avaters/avatar1.png" alt="user" width="50" class="rounded-circle"></div>
+                                    <div class="comment-text w-100">
+                                        <h6 class="font-medium">Johnathan Doeting</h6> <span class="m-b-15 d-block">Great industry leaders are not the real heroes of stock market. </span>
+                                        <div class="comment-footer"> <span class="text-muted float-right">August 1, 2019</span></div>
+                                    </div>
+                                </div>
+                            </div> <!-- Card -->
+                        </div>
+                    </div>
+                </div>
+            </div>   
         </div>
         <!-- end single product -->
 
-        <div class="modal fade" id="modalVip" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
 
-                    <div class="modal-header">
-
-                        <h3 class="text-center" id="exampleModalLabel">Report</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                    </div>
-                    <form action="ReportController" method="POST" >
-                        <div class="modal-body">
-                            <p class="mb-1"><strong>Reason</strong></p>
-                            <textarea name="reportContent" class="w-100 p-2" rows="3" placeholder="Typing..."></textarea>
-                        </div>
-                        <input type="hidden" name="articleID" value="${D.articleID}" />
-                        <input type="hidden" name="memberID" value="${sessionScope.LOGIN_MEMBER.id}" />
-
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-danger text-light" >Send</button>
-                        </div>
-                    </form>
-
-                </div>
-            </div>
-        </div>
 
 
         <%@include file="Components/footerComponents.jsp" %>

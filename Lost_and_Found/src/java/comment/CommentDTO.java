@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package comment;
 
 /**
@@ -11,12 +6,14 @@ package comment;
  */
 public class CommentDTO {
 
+    private int commentID;
     private int articleID;
     private int memberID;
     private String commentContent;
     private String commentTime;
 
-    public CommentDTO(int articleID, int memberID, String commentContent, String commentTime) {
+    public CommentDTO(int commentID, int articleID, int memberID, String commentContent, String commentTime) {
+        this.commentID = commentID;
         this.articleID = articleID;
         this.memberID = memberID;
         this.commentContent = commentContent;
@@ -24,10 +21,19 @@ public class CommentDTO {
     }
 
     public CommentDTO() {
+        this.commentID = 0;
         this.articleID = 0;
         this.memberID = 0;
         this.commentContent = "";
         this.commentTime = "";
+    }
+
+    public int getCommentID() {
+        return commentID;
+    }
+
+    public void setCommentID(int commentID) {
+        this.commentID = commentID;
     }
 
     public int getArticleID() {
