@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -54,15 +55,15 @@
                                 Home
                             </a>
                             <div class="sb-sidenav-menu-heading">Article</div>
-                            <a class="nav-link" href="manage-article.jsp">
+                            <a class="nav-link" href="SearchAdminController">
                                 <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
                                 Manager Article
                             </a>
-                            <a class="nav-link" href="manager-article-report.jsp">
+                            <a class="nav-link" href="ReportArticleController">
                                 <div class="sb-nav-link-icon"><i class="far fa-file-alt"></i></div>
                                 Manager Report
                             </a>
-                            <a class="nav-link" href="manager-article-band.jsp">
+                            <a class="nav-link" href="SearchAdminControllerBand">
                                 <div class="sb-nav-link-icon"><i class="far fa-newspaper"></i></div>
                                 Manage Band
                             </a>
@@ -128,7 +129,7 @@
                                     <tbody>
                                         <tr>
                                             <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
+                                            <td><img src="https://wellavn.com//uploads/2021/11/05/images/nhuom-toc-mau-do-tim/toc-mau-do-tim-nguyen-ban.jpg" alt="alt"/></td>
                                             <td>Edinburgh</td>
                                             <td>61</td>
                                             <td>2011/04/25</td>

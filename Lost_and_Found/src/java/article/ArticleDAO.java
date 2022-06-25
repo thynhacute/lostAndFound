@@ -16,7 +16,7 @@ import java.util.List;
 public class ArticleDAO {
 
     private static final String GET_LIST_ARTICLE = "SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName FROM Article A , Member M, ArticleType ART , ItemType I, Location L \n"
-            + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID";
+            + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID ";
     private static final String GET_LIST_LOST_ARTICLE = "SELECT TOP 3 A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName  FROM Article A , Member M, ArticleType ART , ItemType I, Location L \n"
             + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID  AND A.ArticleTypeID = '1'\n"
             + "ORDER BY A.PostTime DESC";
@@ -43,6 +43,157 @@ public class ArticleDAO {
     private static final String GET_ARTICLE_DETAIL = "SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName FROM Article A , Member M, ArticleType ART , ItemType I, Location L \n"
             + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID "
             + "AND A.ArticleID =?";
+
+    private static final String GET_LIST_ARTICLE_ACTIVE = "SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID,A.TotalReport, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName FROM Article A , Member M, ArticleType ART , ItemType I, Location L \n"
+            + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID AND A.ArticleStatus = 1 ";
+    private static final String GET_LIST_ARTICLE_BAND = "SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName FROM Article A , Member M, ArticleType ART , ItemType I, Location L \n"
+            + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID AND A.ArticleStatus = 0 ";
+
+    private static final String DELETE_ARTICLE = "UPDATE Article SET ArticleStatus = 0 WHERE ArticleID = ?";
+    private static final String ACTIVE_ARTICLE = "UPDATE Article SET ArticleStatus = 1 WHERE ArticleID = ?";
+
+    public boolean deleteArticle(String articleID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(DELETE_ARTICLE);
+                ptm.setString(1, articleID);
+                check = ptm.executeUpdate() > 0 ? true :false;
+            }
+            
+        } catch (Exception e) {
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+            return check;
+    }
+    public boolean activeArticle(String articleID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(ACTIVE_ARTICLE);
+                ptm.setString(1, articleID);
+                check = ptm.executeUpdate() > 0 ? true :false;
+            }
+            
+        } catch (Exception e) {
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+            return check;
+    }
+    
+    
+
+    public List<ArticleDTO> getListArticleByBand() throws SQLException {
+        List<ArticleDTO> listArticle = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(GET_LIST_ARTICLE_BAND);
+            rs = ptm.executeQuery();
+            while (rs.next()) {
+                int articleID = rs.getInt("ArticleID");
+                String articleContent = rs.getString("ArticleContent");
+                String imgURL = rs.getString("ImgURL");
+                String postTime = rs.getString("PostTime");
+                int locationID = rs.getInt("LocationID");
+                int memberID = rs.getInt("MemberID");
+                int articleTypeID = rs.getInt("ArticleTypeID");
+                int itemID = rs.getInt("ItemID");
+                String fullName = rs.getString("FullName");
+                String email = rs.getString("Email");
+                int phone = rs.getInt("Phone");
+                String picture = rs.getString("Picture");
+                String articleTypeName = rs.getString("ArticleTypeName");
+                String itemName = rs.getString("ItemName");
+                String locationName = rs.getString("LocationName");
+                listArticle.add(new ArticleDTO(articleID, articleContent, imgURL, postTime, locationID, memberID, articleTypeID, itemID, fullName, email, phone, picture, articleTypeName, itemName, locationName));
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listArticle;
+    }
+
+    public List<ArticleDTO> getListArticleByActive() throws SQLException {
+        List<ArticleDTO> listArticle = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBUtils.getConnection();
+            ptm = conn.prepareStatement(GET_LIST_ARTICLE_ACTIVE);
+            rs = ptm.executeQuery();
+            while (rs.next()) {
+                int articleID = rs.getInt("ArticleID");
+                String articleContent = rs.getString("ArticleContent");
+                String imgURL = rs.getString("ImgURL");
+                String postTime = rs.getString("PostTime");
+                int locationID = rs.getInt("LocationID");
+                int memberID = rs.getInt("MemberID");
+                int articleTypeID = rs.getInt("ArticleTypeID");
+                int itemID = rs.getInt("ItemID");
+                String fullName = rs.getString("FullName");
+                String email = rs.getString("Email");
+                int phone = rs.getInt("Phone");
+                String picture = rs.getString("Picture");
+                String articleTypeName = rs.getString("ArticleTypeName");
+                String itemName = rs.getString("ItemName");
+                String locationName = rs.getString("LocationName");
+                int totalReport = rs.getInt("TotalReport");
+                listArticle.add(new ArticleDTO(articleID, articleContent, imgURL, postTime, locationID, memberID, articleTypeID, itemID, fullName, email, phone, picture, articleTypeName, itemName, locationName,totalReport));
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listArticle;
+
+    }
 
     public List<ArticleDTO> getAllArticle() throws SQLException {
         List<ArticleDTO> listArticle = new ArrayList<>();
@@ -557,8 +708,8 @@ public class ArticleDAO {
                 String articleTypeName = rs.getString("ArticleTypeName");
                 String itemName = rs.getString("ItemName");
                 String locationName = rs.getString("LocationName");
-                
-                ArticleDTO article = new ArticleDTO(articleID, articleContent, imgURL, postTime, locationID, memberID, articleTypeID, itemID, fullName, email, phone, picture, articleTypeName, itemName, locationName);       
+
+                ArticleDTO article = new ArticleDTO(articleID, articleContent, imgURL, postTime, locationID, memberID, articleTypeID, itemID, fullName, email, phone, picture, articleTypeName, itemName, locationName);
                 return article;
             }
         } catch (Exception e) {

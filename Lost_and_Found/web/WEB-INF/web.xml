@@ -46,6 +46,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>admin.jsp</welcome-file>
+        <welcome-file>SearchAdminController</welcome-file>
     </welcome-file-list>
 </web-app>

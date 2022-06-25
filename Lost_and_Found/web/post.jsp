@@ -134,4 +134,49 @@
     <script src="assets/js/main.js"></script>
 
 </html>
+<table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>Article ID</th>
+                                            <th>Article Content</th>
+                                            <th>Image</th>
+                                            <th>Time</th>
+                                            <th>Location</th>
+                                            <th>Member</th>
+                                            <th>Article Type</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Article ID</th>
+                                            <th>Article Content</th>
+                                            <th>Image</th>
+                                            <th>Time</th>
+                                            <th>Location</th>
+                                            <th>Member</th>
+                                            <th>Article Type</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                   (<% List<ArticleDTO> listArtileByActive = (List<ArticleDTO>) session.getAttribute("GET_LIST_ARTICLE_ACTIVE");
+                                            if (listArtileByActive != null) {
+                                                if (listArtileByActive.size() > 0) {
+                                                    for (ArticleDTO listArticle : listArtileByActive) {
+                                        %>
 
+                                        <tr>
+                                            <td><%= listArticle.getArticleID()%></td>
+                                            <td><%= listArticle.getArticleContent()%></td>
+                                            <td><img src="<%= listArticle.getImgURL()%>" style="width: 230px"></td> 
+                                            <td><%= listArticle.getPostTime()%></td>
+                                            <td><%= listArticle.getLocationName()%></td>
+                                            <td><%= listArticle.getFullName()%></td>
+                                            <td><%= listArticle.getArticleTypeName()%></td>
+                                            <td> 
+                                                <a href="DeleteArticleByAdminController?articleID=<%= listArticle.getArticleID()%>" style="color: red;"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</a></td>
+                                        </tr>
+                                        <%                                                                        }
+                                                }
+                                            }
+                                        %>)
