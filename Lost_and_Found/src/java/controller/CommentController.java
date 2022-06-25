@@ -1,24 +1,24 @@
+package controller;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
-
+import comment.CommentDAO;
+import comment.CommentDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import report.ReportDAO;
-import report.ReportDTO;
 
 /**
  *
  * @author Owner
  */
-public class ReportController extends HttpServlet {
+public class CommentController extends HttpServlet {
 
     private static final String ERROR = "Artical-detail.jsp";
     private static final String SUCCESS = "DetailArticleController";
@@ -28,24 +28,25 @@ public class ReportController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");  // fornt Tiếng việt
         response.setCharacterEncoding("UTF-8"); //
-
         String url = ERROR;
+        
         int articleID = Integer.parseInt(request.getParameter("articleID"));
         int memberID = Integer.parseInt(request.getParameter("memberID"));
-        String reportContent = request.getParameter("reportContent");
-
+        String commentContent = request.getParameter("commentContent");
+        
         try {
-            ReportDAO dao = new ReportDAO();
-            ReportDTO report = new ReportDTO(0,articleID, memberID, reportContent, "");
-            boolean checkCreate = dao.createReport(report);
-            if (checkCreate) {
+            CommentDAO dao = new CommentDAO();
+            CommentDTO comment = new CommentDTO(0, articleID, memberID, commentContent, "","","");
+            boolean checkCreate = dao.createComment(comment);
+            if(checkCreate){
                 url = SUCCESS;
-            }
+            }        
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
+        }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
+        
 
     }
 
