@@ -153,7 +153,7 @@
                                             class="ml-1">Share</span></div>
                                 </div>
                             </div>
-                            <form action="CommentController" method="GET">
+                            <form action="CommentController" method="POST">
                                 <input type="hidden" name="articleID" value="${D.articleID}" />
                                 <input type="hidden" name="memberID" value="${sessionScope.LOGIN_MEMBER.id}" />
                                 <div class="bg-white p-2">
@@ -172,7 +172,7 @@
                                         <c:otherwise>
                                             <div class="d-flex flex-row align-items-start">
                                                 <img class="rounded-circle" src="${sessionScope.LOGIN_MEMBER.picture}" width="40">
-                                                <textarea class="form-control ml-1 shadow-none textarea" name="comment" ></textarea>
+                                                <textarea class="form-control ml-1 shadow-none textarea" name="commentContent" ></textarea>
                                             </div>
                                             <div class="mt-2 text-right">
                                                 <button class="btn btn-primary btn-sm shadow-none" type="submit">
