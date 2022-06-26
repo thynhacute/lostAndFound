@@ -41,7 +41,7 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         
                         <!-- <li><hr class="dropdown-divider" /></li> -->
-                        <li><a class="dropdown-item" href="MainController?action=Logout">Logout</a></li>
+                        <li><a class="dropdown-item" href="login.jsp">Logout</a></li>
                     </ul>
                 </li>
             </ul>
