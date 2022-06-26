@@ -10,12 +10,16 @@ package report;
  * @author Owner
  */
 public class ReportDTO {
-    
+
     private int reportID;
     private int articleID;
     private int memberID;
     private String reportContent;
     private String reportTime;
+    private String articleContent;
+    private String fullName;
+    private String email;
+    private int phone;
 
     public ReportDTO(int reportID, int articleID, int memberID, String reportContent, String reportTime) {
         this.reportID = reportID;
@@ -23,6 +27,17 @@ public class ReportDTO {
         this.memberID = memberID;
         this.reportContent = reportContent;
         this.reportTime = reportTime;
+}
+    // report article +>
+    public ReportDTO(int reportID, String reportContent, String articleContent, String reportTime, int articleID, int memberID, String fullName, String email) {
+        this.reportID = reportID;
+        this.reportContent = reportContent;
+        this.articleContent = articleContent;
+        this.reportTime = reportTime;
+        this.articleID = articleID;
+        this.memberID = memberID;
+        this.fullName = fullName;
+        this.email = email;
     }
 
     public ReportDTO() {
@@ -41,6 +56,14 @@ public class ReportDTO {
         this.reportID = reportID;
     }
 
+
+    public String getArticleContent() {
+        return articleContent;
+    }
+
+    public void setArticleContent(String articleContent) {
+        this.articleContent = articleContent;
+    }
     public int getArticleID() {
         return articleID;
     }
@@ -60,7 +83,7 @@ public class ReportDTO {
     public String getReportContent() {
         return reportContent;
     }
-
+    
     public void setReportContent(String reportContent) {
         this.reportContent = reportContent;
     }
@@ -73,5 +96,30 @@ public class ReportDTO {
         this.reportTime = reportTime;
     }
 
-    
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+
 }

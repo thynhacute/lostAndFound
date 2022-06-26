@@ -1,52 +1,45 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package controller;
 
 import article.ArticleDAO;
-import article.ArticleDTO;
-import comment.CommentDAO;
-import comment.CommentDTO;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Owner
+ * @author THAI
  */
-public class DetailArticleController extends HttpServlet {
+@WebServlet(name = "ActiveArticleByAdminController", urlPatterns = {"/ActiveArticleByAdminController"})
+public class ActiveArticleByAdminController extends HttpServlet {
 
-    private static final String ERROR = "Artical-detail.jsp";
-    private static final String SUCCESS = "Artical-detail.jsp";
+    private static final String ERROR = "SearchAdminControllerBand";
+    private static final String SUCCESS = "SearchAdminControllerBand";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        String articleID1 = request.getParameter("articleID");
-
         try {
+            String articleID = request.getParameter("articleID");
             ArticleDAO dao = new ArticleDAO();
-            ArticleDTO articleDetail = dao.getArticleByID(articleID1);
-            request.setAttribute("ARTICLE_DETAIL", articleDetail);
-
-            CommentDAO comment = new CommentDAO();
-            List<CommentDTO> listComments = comment.getListCommentsByArticleID(articleID1);
-            request.setAttribute("LIST_COMMENTS", listComments);
-
+            boolean check = dao.activeArticle(articleID);
+            if (check) {
+                url = SUCCESS;
+            }
         } catch (Exception e) {
+            log("Error at home" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

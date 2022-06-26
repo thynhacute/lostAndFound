@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -37,7 +39,7 @@
     <body>
 
         <%@include file="Components/navbarComponent.jsp" %>
-        
+
         <!-- breadcrumb-section -->
         <div class="breadcrumb-section breadcrumb-bg">
             <div class="container">
@@ -73,7 +75,7 @@
                                 </div>
                             </c:otherwise>
                         </c:choose>
-                    </div>
+                        </div>
                     <div class="col-md-7">
                         <div class="single-product-content">
                             <h2>${D.itemName}</h2>

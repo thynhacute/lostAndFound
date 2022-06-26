@@ -5,47 +5,33 @@
  */
 package controller;
 
-import article.ArticleDAO;
-import article.ArticleDTO;
-import comment.CommentDAO;
-import comment.CommentDTO;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import member.MemberDAO;
 
 /**
  *
- * @author Owner
+ * @author LEGION'
  */
-public class DetailArticleController extends HttpServlet {
-
-    private static final String ERROR = "Artical-detail.jsp";
-    private static final String SUCCESS = "Artical-detail.jsp";
+@WebServlet(name = "DeleteMemberByAdminController", urlPatterns = {"/DeleteMemberByAdminController"})
+public class DeleteMemberByAdminController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        String articleID1 = request.getParameter("articleID");
 
         try {
-            ArticleDAO dao = new ArticleDAO();
-            ArticleDTO articleDetail = dao.getArticleByID(articleID1);
-            request.setAttribute("ARTICLE_DETAIL", articleDetail);
-
-            CommentDAO comment = new CommentDAO();
-            List<CommentDTO> listComments = comment.getListCommentsByArticleID(articleID1);
-            request.setAttribute("LIST_COMMENTS", listComments);
-
+            String memberID = request.getParameter("memberID");
+            MemberDAO dao = new MemberDAO();
+            boolean check = dao.deleteMember(memberID);
         } catch (Exception e) {
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher("SearchMemberByAdminController").forward(request, response);
         }
     }
 
