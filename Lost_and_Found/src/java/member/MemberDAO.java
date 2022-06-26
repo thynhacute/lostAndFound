@@ -21,8 +21,8 @@ public class MemberDAO {
 
     private static final String CHECK_DUPLICATE = "SELECT  M.FullName FROM Member M\n"
             + "WHERE M.Email = ?";
-    private static final String GET_MEMBER_BY_EMAIL = "SELECT M.MemberID,  M.FullName, M.Email, M.Picture, M.Phone, M.ProfileInfo FROM Member M\n"
-            + "WHERE M.Email =?";
+    private static final String GET_MEMBER_BY_EMAIL = "SELECT M.MemberID,  M.FullName, M.Email, M.Picture, M.Phone, M.ProfileInfo, M.RoleID FROM Member M , Role R\n"
+            + "WHERE M.Email = ? AND R.RoleID=M.RoleID";
     private static final String CREATE_MEMBER = "INSERT INTO [dbo].[Member]\n"
             + "           ([FullName]\n"
             + "           ,[Email]\n"
@@ -83,8 +83,9 @@ public class MemberDAO {
                 String picture = rs.getString("Picture");
                 int phone = rs.getInt("Phone");
                 String profileInfo = rs.getString("ProfileInfo");
-                
-                MemberDTO member = new MemberDTO(memberID, email2, fullName, picture, phone, profileInfo, 2);
+                int roleID = rs.getInt("RoleID");
+
+                MemberDTO member = new MemberDTO(memberID, email2, fullName, picture, phone, profileInfo, roleID);
                 return member;
             }
         } catch (Exception e) {
@@ -128,6 +129,7 @@ public class MemberDAO {
         return check;
 
     }
+
     public List<MemberDTO> getListAllMemberByAdmin() throws SQLException {
         List<MemberDTO> listMember = new ArrayList<>();
         Connection conn = null;
