@@ -78,7 +78,7 @@
                     <div class="container-fluid px-4">                    
                         <div class="border-bottom">
                             <h6>Article Type</h6>
-                            <input type="text" name="" maxlength="50" value="${DAF.articleTypeName}">
+                            <p>${DAF.articleTypeName}</p>
                             <input name="id" type="hidden" value="${DAF.articleID}"/>
                         </div>
                     </div>
