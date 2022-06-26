@@ -14,10 +14,23 @@ public class MemberDTO {
     private int phone;
     private String profileInfo;
     private int roleID;
+    private int totalReport;
+    private String articleContent;
+    private String reportContent;
 
     public MemberDTO() {
     }
 
+    public MemberDTO(int id, String email, String fullName, String picture, int phone, String profileInfo, int roleID, int totalReport) {
+        this.id = id;
+        this.email = email;
+        this.fullName = fullName;
+        this.picture = picture;
+        this.phone = phone;
+        this.profileInfo = profileInfo;
+        this.roleID = roleID;
+        this.totalReport = totalReport;
+    }
     public MemberDTO(int id, String email, String fullName, String picture, int phone, String profileInfo, int roleID) {
         this.id = id;
         this.email = email;
@@ -28,6 +41,19 @@ public class MemberDTO {
         this.roleID = roleID;
     }
 
+
+        public MemberDTO(int id, String email, String fullName, String picture, int phone, String profileInfo, int roleID, int totalReport, String articleContent, String reportContent) {
+        this.id = id;
+        this.email = email;
+        this.fullName = fullName;
+        this.picture = picture;
+        this.phone = phone;
+        this.profileInfo = profileInfo;
+        this.roleID = roleID;
+        this.totalReport = totalReport;
+        this.articleContent = articleContent;
+        this.reportContent = reportContent;
+    }
     public int getId() {
         return id;
     }
@@ -83,4 +109,27 @@ public class MemberDTO {
     public void setRoleID(int roleID) {
         this.roleID = roleID;
     }
+    public int getTotalReport() {
+        return totalReport;
+    }
+    public void setTotalReport(int totalReport) {
+        this.totalReport = totalReport;
+    }
+
+    public String getArticleContent() {
+        return articleContent;
+    }
+
+    public void setArticleContent(String articleContent) {
+        this.articleContent = articleContent;
+    }
+
+    public String getReportContent() {
+        return reportContent;
+    }
+
+    public void setReportContent(String reportContent) {
+        this.reportContent = reportContent;
+    }
+
 }

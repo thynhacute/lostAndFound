@@ -96,7 +96,7 @@
                     <div class="container-fluid px-4">
                         <div class="border-bottom">
                             <h6>Email</h6>
-                            <h6>${L.email}</h6>
+                            <p>${L.email}</p>
                         </div>
                     </div>
                     <div class="container-fluid px-4">
@@ -106,7 +106,9 @@
                         </div>                        
                     </div>
                         <div style="text-align: center">
-                        <button type="submit" name="action" value="Update" class="btn btn-outline-dark">Chỉnh sửa</button>
+                        <button type="submit" name="action" value="Update" class="btn btn-outline-warning style-button">
+                            Chỉnh sửa
+                        </button>
                     </div>
                 </form>
             </main>

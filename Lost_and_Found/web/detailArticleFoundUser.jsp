@@ -85,13 +85,13 @@
                     <div class="container-fluid px-4">
                         <div class="border-bottom">
                             <h6>Picture</h6>                      
-                            <img src="${DAF.imgURL}" class="rounded-circle" style="width: 200px;"/>                   
+                            <img src="${DAF.imgURL}" class="rounded-circle" style="width: 100px;"/>                   
                         </div>
                     </div>     
                     <div class="container-fluid px-4">
                         <div class="border-bottom">
                             <h6>Location</h6>
-                            <select name="locationID">
+                            <select name="locationID" class="box">
                                 <option value="${DAF.locationName}">
                                     ${DAF.locationName}
                                 </option>
@@ -110,10 +110,10 @@
                         </div>
                     </div>
                     <div style="text-align: center">
-                        <button type="submit" value="Update" class="btn btn-outline-dark">
+                        <button type="submit" value="Update" class="btn btn-outline-warning style-button">
                             Chỉnh sửa
                         </button>                           
-                        <button type="submit" name="delete" value="Delete" class="btn btn-outline-dark">
+                        <button type="submit" name="delete" value="Delete" class="btn btn-outline-danger style-button">
                             Xóa bài
                         </button>
                     </div>

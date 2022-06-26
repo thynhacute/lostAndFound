@@ -67,7 +67,7 @@ public class UpdateFoundController extends HttpServlet {
                 int locationID = Integer.parseInt(request.getParameter("locationID"));
                 ArticleDTO articleDTO = new ArticleDTO(id, articleContent, locationID);
                 boolean check = articleDao.updateArticleUser(articleDTO, member.getId(), id);
-                url = DETAIL_PAGE;
+                url = LIST_ALL_FOUND;
             }
         } catch (Exception e) {
             log("Error at UpdateLostUserController: " + e.toString());

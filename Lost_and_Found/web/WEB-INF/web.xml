@@ -20,6 +20,22 @@
         <servlet-name>TypePostController</servlet-name>
         <servlet-class>controller.TypePostController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UploadPhotoController</servlet-name>
+        <servlet-class>controller.UploadPhotoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateController</servlet-name>
+        <servlet-class>controller.CreateController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReportController</servlet-name>
+        <servlet-class>controller.ReportController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CommentController</servlet-name>
+        <servlet-class>controller.CommentController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginGoogleServlet</servlet-name>
         <url-pattern>/LoginGoogleServlet</url-pattern>
@@ -39,6 +55,22 @@
     <servlet-mapping>
         <servlet-name>TypePostController</servlet-name>
         <url-pattern>/TypePostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadPhotoController</servlet-name>
+        <url-pattern>/UploadPhotoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateController</servlet-name>
+        <url-pattern>/CreateController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportController</servlet-name>
+        <url-pattern>/ReportController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CommentController</servlet-name>
+        <url-pattern>/CommentController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

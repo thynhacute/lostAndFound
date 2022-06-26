@@ -41,8 +41,10 @@ public class HomeController extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             ArticleTypeDAO dao = new ArticleTypeDAO();
+            
             ArticleDAO articleDao = new ArticleDAO();
             List<ArticleTypeDTO> listArticleType = dao.getListArticleType();
+            
             session.setAttribute("LIST_ARTICLE_TYPE", listArticleType);
             String searchByType = request.getParameter("searchByType");
             String searchByItem = request.getParameter("searchByItem");

@@ -17,7 +17,10 @@ public class LoginGoogleServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private static final String INDEX_PAGE = "PageController";
+    private static final String ADMIN_PAGE = "SearchAdminController";
     private static final String LOGIN = "login.jsp";
+    private static final String AD = "AD";
+    private static final String US = "US";
 
     public LoginGoogleServlet() {
         super();
@@ -43,8 +46,15 @@ public class LoginGoogleServlet extends HttpServlet {
                     boolean check = dao.checkDuplicate(member.getEmail());
                     if (check) {
                         member = dao.getMemberByEmail(member.getEmail());
+                        int roleID = member.getRoleID();
                         member.setPicture(googlePojo.getPicture());
-                        session.setAttribute("LOGIN_MEMBER", member);
+                        if (roleID == 1) {
+                            session.setAttribute("LOGIN_MEMBER", member);
+                            url = ADMIN_PAGE;
+                        } else { 
+                            session.setAttribute("LOGIN_MEMBER", member);
+                            url = INDEX_PAGE;
+                        }
                     } else {
                         dao.createMember(member);
                         session.setAttribute("LOGIN_MEMBER", member);

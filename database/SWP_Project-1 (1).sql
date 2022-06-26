@@ -51,6 +51,23 @@ CREATE TABLE Article(
 	ItemID int  NOT NULL FOREIGN KEY REFERENCES ItemType(ItemID),
 );
 
+<<<<<<< HEAD
+DROP TABLE Comment
+
+CREATE TABLE Comment(
+    CommentID int IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	ArticleID int  NOT NULL FOREIGN KEY REFERENCES Article(ArticleID),
+	MemberID INT  NOT NULL FOREIGN KEY REFERENCES Member(MemberID),	
+	CommentContent nvarchar(max) NOT NULL,
+	CommentTime DateTime NOT NULL,
+	CommentStatus BIT NOT NULL
+);
+
+DROP TABLE Report
+
+CREATE TABLE Report(
+    ReportID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+=======
 CREATE TABLE Comment(
 	ArticleID int  NOT NULL FOREIGN KEY REFERENCES Article(ArticleID),
 	MemberID INT  NOT NULL FOREIGN KEY REFERENCES Member(MemberID),
@@ -60,12 +77,18 @@ CREATE TABLE Comment(
 );
 
 CREATE TABLE Report(
+>>>>>>> 9920bab5285b91c6f0eeff0679dc15a0c9ad2886
 	ArticleID INT  NOT NULL FOREIGN KEY REFERENCES Article(ArticleID),
 	MemberID INT  NOT NULL FOREIGN KEY REFERENCES Member(MemberID),
 	ReportContent nvarchar(max) NOT NULL,
 	ReportTime DateTime NOT NULL,
+<<<<<<< HEAD
+	ReportStatus bit NOT NULL
+	
+=======
 	ReportStatus bit NOT NULL,
 	PRIMARY KEY (ArticleID, MemberID),
+>>>>>>> 9920bab5285b91c6f0eeff0679dc15a0c9ad2886
 );
 
 
@@ -85,9 +108,12 @@ SET IDENTITY_INSERT Member ON;
 INSERT [dbo].[Member] ( [FullName], [Email], [Picture], [Phone], [ProfileInfo], [RoleID], [MemberStatus]) 
 	VALUES ( N'NaaTy', N'thyhnse151101@fpt.edu.vn', N'https://i.pinimg.com/originals/30/1f/58/301f58a07b86756082b9f37fc908e3d7.jpg', 
 	'12345', N'cutexinkgai', '1', '1')
+<<<<<<< HEAD
+=======
 --INSERT [dbo].[Member] ([MemberID], [FullName], [Email], [Picture], [Phone], [ProfileInfo], [RoleID], [MemberStatus]) 
 --	VALUES ('2', N'Hana', N'hana@gmail.com', N'https://i.pinimg.com/originals/30/1f/58/301f58a07b86756082b9f37fc908e3d7.jpg', 
 --	'12345', N'cutexinkgai', '2', '1')
+>>>>>>> 9920bab5285b91c6f0eeff0679dc15a0c9ad2886
 SET IDENTITY_INSERT Member OFF;
 
 SET IDENTITY_INSERT ArticleType ON;
@@ -202,6 +228,29 @@ INSERT [dbo].[Article] ( [ArticleContent], [ImgURL], [PostTime], [ArticleStatus]
 	CAST(N'2022-07-16 22:22:22' AS DateTime), '1', '10','6', '1', '2')
 SET IDENTITY_INSERT Article OFF;
 
+<<<<<<< HEAD
+INSERT [dbo].[Comment] ([ArticleID], [MemberID], [CommentContent], [CommentTime],[CommentStatus])
+	VALUES ('1', '2', N'Mong chủ nhân sớm tìm được lại CCCD', CAST(N'2022-06-18 12:01:01' AS DateTime),1)
+INSERT [dbo].[Comment] ([ArticleID], [MemberID], [CommentContent], [CommentTime],[CommentStatus])
+	VALUES ('2', '3', N'Mong chủ nhân sớm tìm được lại Ví', CAST(N'2022-06-21 13:01:01' AS DateTime),1)
+INSERT [dbo].[Comment] ([ArticleID], [MemberID], [CommentContent], [CommentTime],[CommentStatus])
+	VALUES ('3', '4', N'Mong chủ nhân sớm tìm được lại Giấy phép lái xe',CAST(N'2022-07-12 02:02:02' AS DateTime),1)
+INSERT [dbo].[Comment] ([ArticleID], [MemberID], [CommentContent], [CommentTime],[CommentStatus])
+	VALUES ('4', '5', N'Mong chủ nhân sớm tìm được lại Giấy tờ', CAST(N'2022-07-12 03:03:04' AS DateTime),1)
+INSERT [dbo].[Comment] ([ArticleID], [MemberID], [CommentContent], [CommentTime],[CommentStatus])
+	VALUES ('5', '6', N'Mong chủ nhân sớm tìm được lại Ví', CAST(N'2022-07-13 06:02:02' AS DateTime),1)
+INSERT [dbo].[Comment] ([ArticleID], [MemberID], [CommentContent], [CommentTime],[CommentStatus])
+	VALUES ('6', '2', N'Mong chủ nhân sớm tìm được lại Giấy phép lái xe', CAST(N'2022-07-14 02:22:22' AS DateTime),1)
+INSERT [dbo].[Comment] ([ArticleID], [MemberID], [CommentContent], [CommentTime],[CommentStatus])
+	VALUES ('7', '3', N'Mong chủ nhân sớm tìm được lại CMND', CAST(N'2022-07-15 22:22:22' AS DateTime),1)
+INSERT [dbo].[Comment] ([ArticleID], [MemberID], [CommentContent], [CommentTime],[CommentStatus])
+	VALUES ('8', '4', N'Mong chủ nhân sớm tìm được lại Giấy tờ', CAST(N'2022-07-16 22:22:22' AS DateTime),1)
+INSERT [dbo].[Comment] ([ArticleID], [MemberID], [CommentContent], [CommentTime],[CommentStatus])
+	VALUES ('9', '5', N'Mong chủ nhân sớm tìm được lại Ví', CAST(N'2022-07-17 22:22:22' AS DateTime),1)
+INSERT [dbo].[Comment] ([ArticleID], [MemberID], [CommentContent], [CommentTime],[CommentStatus])
+	VALUES ('10', '6', N'Mong chủ nhân sớm tìm được lại Giấy phép lái xe', CAST(N'2022-07-18 22:22:22' AS DateTime),1)
+	SET IDENTITY_INSERT Comment OFF;
+=======
 INSERT [dbo].[Comment] ([ArticleID], [MemberID], [CommentContent], [CommentTime])
 	VALUES ('1', '2', N'Mong chủ nhân sớm tìm được lại CCCD', CAST(N'2022-06-18 12:01:01' AS DateTime))
 INSERT [dbo].[Comment] ([ArticleID], [MemberID], [CommentContent], [CommentTime])
@@ -222,6 +271,7 @@ INSERT [dbo].[Comment] ([ArticleID], [MemberID], [CommentContent], [CommentTime]
 	VALUES ('9', '5', N'Mong chủ nhân sớm tìm được lại Ví', CAST(N'2022-07-17 22:22:22' AS DateTime))
 INSERT [dbo].[Comment] ([ArticleID], [MemberID], [CommentContent], [CommentTime])
 	VALUES ('10', '6', N'Mong chủ nhân sớm tìm được lại Giấy phép lái xe', CAST(N'2022-07-18 22:22:22' AS DateTime))
+>>>>>>> 9920bab5285b91c6f0eeff0679dc15a0c9ad2886
 
 
 INSERT [dbo].[Report] ([ArticleID], [MemberID], [ReportContent], [ReportTime], [ReportStatus])
@@ -246,11 +296,14 @@ INSERT [dbo].[Blog] ([BlogID], [BlogName], [BlogContent], [MemberID])
 	VALUES ('5', N'Ăn gì để khắc phục chứng hay quên?', N'Long nhãn – Cải thiện chứng hay quên hiệu quả, Nhân sâm – Thực phẩm cải thiện chứng hay quên, Đông trùng hạ thảo', '1')
 SET IDENTITY_INSERT Blog OFF;
 
+<<<<<<< HEAD
+=======
 SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID, A.ItemID, 
 M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName 
 FROM Article A , Member M, ArticleType ART , ItemType I, Location L
             WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID 
 			AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID and A.ArticleTypeID = 1
+<<<<<<< HEAD
 select * from Member
 select * from Article
 SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID,
@@ -264,3 +317,6 @@ SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID,
                                     I.ItemName, L.LocationName FROM Article A , Member M, ArticleType ART , ItemType I, Location L
                                                  WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND
                                      			A.LocationID = L.LocationID AND A.MemberID = 2 AND A.ArticleID = 1
+=======
+>>>>>>> 9920bab5285b91c6f0eeff0679dc15a0c9ad2886
+>>>>>>> c4a3c142506ed7c6bed180d06f62381b5b6b7bdf

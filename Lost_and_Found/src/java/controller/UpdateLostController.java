@@ -30,7 +30,6 @@ public class UpdateLostController extends HttpServlet {
     private static final String DETAIL_PAGE = "detailArticleLostUser.jsp";
     private static final String ERROR = "error.jsp";
     private static final String LIST_ALL = "UserLostController";
-    private static final String UPDATE_LOST = "";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -68,7 +67,7 @@ public class UpdateLostController extends HttpServlet {
                 int locationID = Integer.parseInt(request.getParameter("locationID"));
                 ArticleDTO articleDTO = new ArticleDTO(id, articleContent, locationID);
                 boolean check = articleDao.updateArticleUser(articleDTO, member.getId(), id);
-                url = DETAIL_PAGE;
+                url = LIST_ALL;
             }
         } catch (Exception e) {
             log("Error at UpdateLostUserController: " + e.toString());
