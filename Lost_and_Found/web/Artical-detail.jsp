@@ -37,7 +37,7 @@
     <body>
 
         <%@include file="Components/navbarComponent.jsp" %>
-
+        
         <!-- breadcrumb-section -->
         <div class="breadcrumb-section breadcrumb-bg">
             <div class="container">

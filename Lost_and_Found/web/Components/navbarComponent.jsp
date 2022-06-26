@@ -42,11 +42,11 @@
                             </li>
                             <li><a href="#">FPTU's Map</a>
                                 <ul class="sub-menu">
-                                    <li><a href="#">G floor </a></li>
-                                    <li><a href="#">1st floor</a></li>
-                                    <li><a href="#">2nd floor</a></li>
-                                    <li><a href="#">3th floor</a></li>
-                                    <li><a href="#">4th floor</a></li>
+                                    <li><a data-toggle="modal" data-target="#exampleModal" >G floor </a></li>
+                                    <li><a data-toggle="modal" data-target="#exampleModal1">1st floor</a></li>
+                                    <li><a data-toggle="modal" data-target="#exampleModal2">2nd floor</a></li>
+                                    <li><a data-toggle="modal" data-target="#exampleModal3">3th floor</a></li>
+                                    <li><a data-toggle="modal" data-target="#exampleModal4">4th floor</a></li>
                                 </ul>
                             </li>
                             <li><a href="HomeController">Home</a>
@@ -110,5 +110,100 @@
 </div>
 <!-- end search area -->
 <!-- end nav -->
+
+<!--Map begin-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Floor G</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="assets/img/imga map/Gfloor.jpg" alt="">
+            </div>
+            <div class="modal-footer">
+                <p> Find your items  anywhere in FPT</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Floor 1</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="assets/img/imga map/1floor.jpg"/>               
+            </div>
+            <div class="modal-footer">
+                <p> Find your items  anywhere in FPT</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Floor 2</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="assets/img/imga map/2floor.jpg"/>               
+            </div>
+            <div class="modal-footer">
+                <p> Find your items  anywhere in FPT</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel3">Floor 3</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="assets/img/imga map/3floor.jpg"/>               
+            </div>
+            <div class="modal-footer">
+                <p> Find your items  anywhere in FPT</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel4">Floor 4</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="assets/img/imga map/4floor.jpg"/>               
+            </div>
+            <div class="modal-footer">
+                <p> Find your items  anywhere in FPT</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Map end-->
 
 
