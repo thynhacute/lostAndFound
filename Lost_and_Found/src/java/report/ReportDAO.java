@@ -26,37 +26,39 @@ public class ReportDAO {
     private static final String DELETE_REPORT_ARTICLE = "UPDATE Report SET ReportStatus = 0 WHERE ReportID = ?";
 
     private static final String TOTAL_ARTICLE_REPORT = "SELECT COUNT(ArticleID) AS [Total Report] FROM REPORT WHERE ArticleID = ? ";
+    
+    private static final String DELETE_COMMAND_REPORT_MEMBER = "UPDATE Report SET ReportStatus = 0 WHERE ReportID = ?";
 
-    public int toltalReport(int articleID) throws SQLException {
-        Connection conn = null;
-        PreparedStatement ptm = null;
-        ResultSet rs = null;
-        int id = 0;
-        try {
-            
-            conn = DBUtils.getConnection();
-            ptm = conn.prepareStatement(TOTAL_ARTICLE_REPORT);
-            ptm.setInt(1, articleID);
-            rs = ptm.executeQuery();
-            if(rs.next()){
-                id = rs.getInt("Total Report") ;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (ptm != null) {
-                ptm.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-        }
-        return id;
-    }
+//    public int toltalReport(int articleID) throws SQLException {
+//        Connection conn = null;
+//        PreparedStatement ptm = null;
+//        ResultSet rs = null;
+//        int id = 0;
+//        try {
+//            
+//            conn = DBUtils.getConnection();
+//            ptm = conn.prepareStatement(TOTAL_ARTICLE_REPORT);
+//            ptm.setInt(1, articleID);
+//            rs = ptm.executeQuery();
+//            if(rs.next()){
+//                id = rs.getInt("Total Report") ;
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (rs != null) {
+//                rs.close();
+//            }
+//            if (ptm != null) {
+//                ptm.close();
+//            }
+//            if (conn != null) {
+//                conn.close();
+//            }
+//        }
+//        return id;
+//    }
 
     public boolean deleteReportArticle(String reportID) throws SQLException {
         boolean check = false;
@@ -120,6 +122,29 @@ public class ReportDAO {
             }
         }
         return listReportArticle;
+    }
+      public boolean deleteCommandReportMember(String memberID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(DELETE_COMMAND_REPORT_MEMBER);
+                ptm.setString(1, memberID);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
     }
 
 }
