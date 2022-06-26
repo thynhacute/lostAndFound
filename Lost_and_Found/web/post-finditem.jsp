@@ -39,7 +39,6 @@
         <link rel="stylesheet" href="assets/css/responsive.css">
         <script src="https://cdn.ckeditor.com/4.19.0/basic/ckeditor.js"></script>
 
-
     </head>
 
     <body style="background-color: #f4f4f4">
