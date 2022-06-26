@@ -5,23 +5,26 @@
  */
 package controller;
 
-import article.ArticleDAO;
-import article.ArticleDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import member.MemberDAO;
+import member.MemberDTO;
 
 /**
  *
- * @author Owner
+ * @author Admin
  */
-public class TypePostController extends HttpServlet {
+@WebServlet(name = "UpdateController", urlPatterns = {"/UpdateController"})
+public class UpdateController extends HttpServlet {
 
-    private static final String ERROR = "post-finditem.jsp";
-    private static final String SUCCESS = "post-pickitem.jsp";
+    private static final String ERROR = "profileUser.jsp";
+    private static final String SUCCESS = "profileUser.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -29,15 +32,26 @@ public class TypePostController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         String url = ERROR;
-        String articleType = request.getParameter("articleTypeID");
         try {
-            if (articleType.equals("1")) {
-                url = ERROR;
-            } else {
-                url = SUCCESS;
+            String action = request.getParameter("action");
+            HttpSession session = request.getSession();
+            MemberDTO memberLogin = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
+            MemberDAO memberDao = new MemberDAO(); 
+            int id = memberLogin.getId();
+            String fullName = request.getParameter("fullName");
+            int phone = Integer.parseInt(request.getParameter("phone"));
+            String profileInfo = request.getParameter("profileInfo");           
+            MemberDTO member = new MemberDTO(id, memberLogin.getEmail(), fullName, memberLogin.getPicture(), phone, profileInfo, 0);
+            boolean check = memberDao.updateProfileUser(member);
+            if ("Update".equals(action)) {
+                if (check) {
+                    session.setAttribute("LOGIN_MEMBER", member);
+                    url = SUCCESS;
+                }
             }
+
         } catch (Exception e) {
-            log("Error at home" + e.toString());
+            log("Error at UpdateController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

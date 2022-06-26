@@ -251,3 +251,16 @@ M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.Loca
 FROM Article A , Member M, ArticleType ART , ItemType I, Location L
             WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID 
 			AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID and A.ArticleTypeID = 1
+select * from Member
+select * from Article
+SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID,
+                       A.ArticleTypeID, A.ItemID, ART.ArticleTypeName,
+                       I.ItemName, L.LocationName FROM Article A , Member M, ArticleType ART , ItemType I, Location L
+                                    WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND
+                        			A.LocationID = L.LocationID AND A.MemberID = 2 AND A.ArticleID = 1
+
+									SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.ArticleStatus,
+                                   A.ArticleTypeID, A.ItemID, ART.ArticleTypeName,
+                                    I.ItemName, L.LocationName FROM Article A , Member M, ArticleType ART , ItemType I, Location L
+                                                 WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND
+                                     			A.LocationID = L.LocationID AND A.MemberID = 2 AND A.ArticleID = 1

@@ -536,9 +536,11 @@ ul.navbar-nav li.nav-item a.nav-link, ul.navbar-nav li.nav-item.active a.nav-lin
 }
 
 ul.navbar-nav li.nav-item a.nav-link, ul.navbar-nav li.nav-item.active a.nav-link {
-    color: #fff;
+    color: #F28125;
     font-weight: 700;
+    font-size: 50px;
     margin-right: 14px;
+    font-family: serif;
 }
 
 a.navbar-brand img {
@@ -2783,7 +2785,7 @@ table.order-details tbody td {
     height: 3.2rem;
 }
 label{
-/*    color: #ea7f23;*/
+    /*    color: #ea7f23;*/
     font-size: 1.3rem;
 }
 .btn-search{
@@ -2841,4 +2843,13 @@ label{
 
 .modal__content h3 {
     text-align: center;
+}
+
+input {
+    border: none;
+    width: 90%;
+}
+
+input:focus{
+    outline: none;
 }

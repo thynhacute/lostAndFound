@@ -19,7 +19,7 @@ public class MemberDAO {
 
     private static final String CHECK_DUPLICATE = "SELECT  M.FullName FROM Member M\n"
             + "WHERE M.Email = ?";
-    private static final String GET_MEMBER_BY_EMAIL = "SELECT  M.FullName, M.Email, M.Picture, M.Phone, M.ProfileInfo FROM Member M\n"
+    private static final String GET_MEMBER_BY_EMAIL = "SELECT M.memberID, M.FullName, M.Email, M.Picture, M.Phone, M.ProfileInfo FROM Member M\n"
             + "WHERE M.Email =?";
 
     private static final String CREATE_MEMBER = "INSERT INTO [dbo].[Member]\n"
@@ -68,13 +68,13 @@ public class MemberDAO {
             ptm.setString(1, email);
             rs = ptm.executeQuery();
             while (rs.next()) {
+                int memberID = rs.getInt("MemberID");
                 String fullName = rs.getString("FullName");
                 String email2 = rs.getString("Email");
                 String picture = rs.getString("Picture");
                 int phone = rs.getInt("Phone");
                 String profileInfo = rs.getString("ProfileInfo");
-
-                MemberDTO member = new MemberDTO(0, email2, fullName, picture, phone, profileInfo, 2);
+                MemberDTO member = new MemberDTO(memberID, email2, fullName, picture, phone, profileInfo, 2);
 
                 return member;
 
@@ -121,4 +121,35 @@ public class MemberDAO {
 
     }
 
+    public boolean updateProfileUser(MemberDTO member) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+                try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " UPDATE member "
+                        + " SET fullName=?, picture=?, phone=?, profileInfo=? "
+                        + " WHERE memberID=? ";
+                ptm = conn.prepareStatement(sql);
+                ptm.setString(1, member.getFullName());
+                ptm.setString(2, member.getPicture());
+                ptm.setInt(3, member.getPhone());
+                ptm.setString(4, member.getProfileInfo());
+                ptm.setInt(5, member.getId());
+                check = ptm.executeUpdate() > 0;
+            }
+        } catch (Exception e) {
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+
+        }
+        return check;
+    }
+    
 }
