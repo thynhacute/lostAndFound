@@ -7,6 +7,11 @@ package controller;
 
 import article.ArticleDAO;
 import article.ArticleDTO;
+import comment.CommentDAO;
+import comment.CommentDTO;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -28,12 +33,18 @@ public class DetailArticleController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         String articleID1 = request.getParameter("articleID");
+
         try {
             ArticleDAO dao = new ArticleDAO();
-            ArticleDTO articleDetail = dao.getArticleByID(articleID1);         
+            ArticleDTO articleDetail = dao.getArticleByID(articleID1);
             request.setAttribute("ARTICLE_DETAIL", articleDetail);
+
+            CommentDAO comment = new CommentDAO();
+            List<CommentDTO> listComments = comment.getListCommentsByArticleID(articleID1);
+            request.setAttribute("LIST_COMMENTS", listComments);
+
         } catch (Exception e) {
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

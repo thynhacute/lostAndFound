@@ -26,6 +26,26 @@ public class ArticleDTO {
     private String articleTypeName;
     private String itemName;
     private String locationName;
+    private int totalReport;
+
+    public ArticleDTO(int articleID, String articleContent, String imgURL, String postTime, int locatioID, int memberID, int articleTypeID, int ItemID, String fullName, String email, int phone, String picture, String articleTypeName, String itemName, String locationName, int totalReport) {
+        this.articleID = articleID;
+        this.articleContent = articleContent;
+        this.imgURL = imgURL;
+        this.postTime = postTime;
+        this.locatioID = locatioID;
+        this.memberID = memberID;
+        this.articleTypeID = articleTypeID;
+        this.ItemID = ItemID;
+        this.fullName = fullName;
+        this.email = email;
+        this.phone = phone;
+        this.picture = picture;
+        this.articleTypeName = articleTypeName;
+        this.itemName = itemName;
+        this.locationName = locationName;
+        this.totalReport = totalReport;
+    }
 
     public ArticleDTO(int articleID, String articleContent, String imgURL, String postTime, int locatioID, int memberID, int articleTypeID, int ItemID, String fullName, String email, int phone, String picture, String articleTypeName, String itemName, String locationName) {
         this.articleID = articleID;
@@ -181,6 +201,15 @@ public class ArticleDTO {
 
     public void setLocationName(String locationName) {
         this.locationName = locationName;
+    }
+
+
+    public int getTotalReport() {
+        return totalReport;
+    }
+
+    public void setTotalReport(int totalReport) {
+        this.totalReport = totalReport;
     }
 
 }

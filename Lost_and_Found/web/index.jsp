@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <html lang="en">
 
     <head>
@@ -50,10 +51,17 @@
                                 <h1>Find your lost items anywhere in FPTU </h1>
                                 <div class="hero-btns">
                                     <a href="HomeController" class="boxed-btn">Find Items</a>
-                                    <a href="postNews.jsp" class="bordered-btn">Post News</a>
+                                    <c:choose >
+                                        <c:when test="${sessionScope.LOGIN_MEMBER == null}">
+                                            <a href="login.jsp" class="bordered-btn">Post News</a>                                         
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="post.jsp" class="bordered-btn">Post News</a>
+                                        </c:otherwise>                                  
+                                    </c:choose>                   
                                 </div>
                             </div>
-                        </div>
+                        </div>  
                     </div>
                 </div>
             </div>
@@ -118,11 +126,22 @@
                     <c:forEach items="${requestScope.LIST_LOST_ARTICLE}" var="L">
                         <div class=" col-lg-4 text-center strawberry">
                             <div class="single-product-item" style="height: 450px; width: 80%" >
-                                <div class="product-image">
-                                    <a href="DetailArticleController?articleID=${L.articleID}">
-                                        <img style="height: 150px;" src="${L.imgURL}" />
-                                    </a>
-                                </div>
+                                <c:choose>
+                                    <c:when test="${fn:contains(L.imgURL, 'https')}">
+                                        <div class="product-image">
+                                            <a href="DetailArticleController?articleID=${L.articleID}">
+                                                <img style="height: 150px;" src="${L.imgURL}" />
+                                            </a>
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="product-image">
+                                            <a href="DetailArticleController?articleID=${L.articleID}">
+                                                <img style="height: 150px;" src="./file_upload/${L.imgURL}" />
+                                            </a>
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>
                                 <h3>${L.itemName}</h3>
                                 <p class="product-price"><span>${L.phone}</span>${L.locationName} </p>
                                 <p>${L.fullName}</p>
@@ -148,9 +167,22 @@
                     <c:forEach items="${requestScope.LIST_PICKED_ARTICLE}" var="P">
                         <div class=" col-lg-4 text-center strawberry ">
                             <div class="single-product-item" style="height: 450px; width: 80%">
-                                <div class="product-image">
-                                    <a href="DetailArticleController?articleID=${P.articleID}"><img style="height: 150px;" src="${P.imgURL}" /></a>
-                                </div>
+                                <c:choose>
+                                    <c:when test="${fn:contains(P.imgURL, 'https')}">
+                                        <div class="product-image">
+                                            <a href="DetailArticleController?articleID=${P.articleID}">
+                                                <img style="height: 150px;" src="${P.imgURL}" />
+                                            </a>
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="product-image">
+                                            <a href="DetailArticleController?articleID=${P.articleID}">
+                                                <img style="height: 150px;" src="./file_upload/${P.imgURL}" />
+                                            </a>
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>
                                 <h3>${P.itemName}</h3>
                                 <p class="product-price"><span>${P.phone}</span>${P.locationName} </p>
                                 <p>${P.fullName}</p>
@@ -238,9 +270,6 @@
                 </div>
             </div>
             <!-- end latest news -->
-
-
-
             <!-- jquery -->
             <script src="assets/js/jquery-1.11.3.min.js"></script>
             <!-- bootstrap -->
@@ -263,5 +292,4 @@
             <script src="assets/js/main.js"></script>
             <%@include file="Components/footerComponents.jsp" %>
     </body>
-
 </html>

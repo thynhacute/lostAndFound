@@ -4,6 +4,7 @@
     Author     : Owner
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +52,11 @@
                                     </p>
                                 </div>
                                 <div class="form-group">
-                                    <p class="text-center">Please login with FPT mail  <a href="#" id="signup"> @fpt.edu.vn</a></p>
+                                    <p class="text-center">login with FPT mail  <a href="#" id="signup"> @fpt.edu.vn</a></p>
+                                    <c:if test="${sessionScope.LOGIN_MEMBER == null}">
+                                        <p class="text-center" >${requestScope.ERRORMESSAGE}</p>
+                                    </c:if>
+
                                 </div>
                             </form>
 

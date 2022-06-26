@@ -46,7 +46,7 @@
                     <img src="assets/img/logo2.png" alt="">
                 </div>
             </div>
-        </div>
+    </div>
     </div>
 </div>
 <!-- end footer -->
