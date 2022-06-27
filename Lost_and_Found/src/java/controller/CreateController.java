@@ -53,6 +53,10 @@ public class CreateController extends HttpServlet {
         int articleTypeID = Integer.parseInt(request.getParameter("articleTypeID"));
         int itemID = Integer.parseInt(request.getParameter("Items"));
         int locationID = Integer.parseInt(request.getParameter("Locations"));
+        if (itemID == 0 || locationID == 0) {
+            request.setAttribute("ERROR_MESSAGE", "");
+            url = ERROR;
+        }
         //xử lí upload
         PrintWriter out = response.getWriter();
         String applicationPath = request.getServletContext().getRealPath("").replace("build\\", ""); //set cái đường dẫn 
@@ -60,10 +64,7 @@ public class CreateController extends HttpServlet {
         File uploadDir = new File(basePath);
         InputStream inputStream = null;
         OutputStream outputStream = null;
-        if (itemID == 0 || locationID == 0) {
-            request.setAttribute("ERROR_MESSAGE", "");
-            url = ERROR;
-        }
+
         if (!uploadDir.exists()) {
             uploadDir.mkdir(); //hàm tự tạo mới 
         }

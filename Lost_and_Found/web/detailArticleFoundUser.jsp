@@ -95,7 +95,7 @@
                         <div class="border-bottom">
                             <h6>Location</h6>
                             <select name="locationID" class="box">
-                                <option value="${DAF.locationName}">
+                                <option value="${DAF.locationID}">
                                     ${DAF.locationName}
                                 </option>
                                 <c:forEach items="${sessionScope.LIST_LOCATION}" var="Location">
