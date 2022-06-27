@@ -37,8 +37,11 @@
         <link rel="stylesheet" href="assets/css/responsive.css">
 
     </head>
+    <c:if test="${sessionScope.LOGIN_MEMBER.roleID == 1}">
+        <c:redirect url="login.jsp"/>           
+    </c:if>  
 
-    <body >
+    <body >      
         <%@include file="Components/navbarComponent.jsp" %>
         <!-- hero area -->
         <div class="hero-area hero-bg">
@@ -331,5 +334,6 @@
             <script src="assets/js/main.js"></script>
             <script >$('#liveToast').toast('show');</script>
             <%@include file="Components/footerComponents.jsp" %>
+
     </body>
 </html>

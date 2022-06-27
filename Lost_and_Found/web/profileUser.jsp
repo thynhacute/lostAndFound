@@ -39,6 +39,9 @@
 
     </head>
     <body>
+        <c:if test="${sessionScope.LOGIN_MEMBER.roleID == 1}">
+            <c:redirect url="login.jsp"/>           
+        </c:if>  
         <%@include file="Components/navbarComponent.jsp" %>
         <div class="breadcrumb-section breadcrumb-bg">
             <div class="container">
@@ -105,7 +108,7 @@
                             <input name="phone" type="text" maxlength="50" value="${L.phone}">                           
                         </div>                        
                     </div>
-                        <div style="text-align: center">
+                    <div style="text-align: center">
                         <button type="submit" name="action" value="Update" class="btn btn-outline-warning style-button">
                             Chỉnh sửa
                         </button>

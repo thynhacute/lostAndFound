@@ -37,6 +37,10 @@
 
     </head>
     <body>
+
+        <c:if test="${sessionScope.LOGIN_MEMBER.roleID == 1}">
+            <c:redirect url="login.jsp"/>           
+        </c:if>  
         <%@include file="Components/navbarComponent.jsp" %>
         <div class="breadcrumb-section breadcrumb-bg">
             <div class="container">
@@ -95,10 +99,10 @@
                                 <option value="${DAL.locationName}">
                                     ${DAL.locationName}
                                 </option>
-                                    <c:forEach items="${sessionScope.LIST_LOCATION}" var="Location">
-                                        <c:if test="${Location.locationName ne DAL.locationName}">
-                                            <option value="${Location.locationID}">${Location.locationName}</option>
-                                        </c:if>
+                                <c:forEach items="${sessionScope.LIST_LOCATION}" var="Location">
+                                    <c:if test="${Location.locationName ne DAL.locationName}">
+                                        <option value="${Location.locationID}">${Location.locationName}</option>
+                                    </c:if>
                                 </c:forEach>
                             </select>
                         </div>

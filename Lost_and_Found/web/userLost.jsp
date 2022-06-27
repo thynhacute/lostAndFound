@@ -43,6 +43,10 @@
 
     <body>
 
+        <c:if test="${sessionScope.LOGIN_MEMBER.roleID == 1}">
+            <c:redirect url="login.jsp"/>           
+        </c:if>  
+
         <!--PreLoader-->
 
         <%@include file="Components/navbarComponent.jsp" %>

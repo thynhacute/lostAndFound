@@ -42,6 +42,9 @@
     </head>
 
     <body>
+        <c:if test="${sessionScope.LOGIN_MEMBER.roleID == 1}">
+            <c:redirect url="login.jsp"/>           
+        </c:if>  
 
         <!--PreLoader-->
 
@@ -90,16 +93,16 @@
                                     <c:forEach items="${requestScope.LIST_FOUND}" var="LF">
                                         <div class="col-md-4 text-center strawberry">
                                             <a href="UpdateFoundController?render&id=${LF.articleID}">
-                                            <div class="single-product-item">
-                                                <div class="product-image">
-                                                    <img style="height: 150px;"
-                                                                                       src="${LF.imgURL}"
-                                                                                       alt="">
+                                                <div class="single-product-item">
+                                                    <div class="product-image">
+                                                        <img style="height: 150px;"
+                                                             src="${LF.imgURL}"
+                                                             alt="">
+                                                    </div>
+                                                    <h3>${LF.itemName}</h3>
+                                                    <p class="product-price"><span>${LF.phone}</span> ${LF.locationName} </p>
+                                                    <p>${LF.fullName}</p>
                                                 </div>
-                                                <h3>${LF.itemName}</h3>
-                                                <p class="product-price"><span>${LF.phone}</span> ${LF.locationName} </p>
-                                                <p>${LF.fullName}</p>
-                                            </div>
                                             </a>
                                         </div>
                                     </c:forEach>

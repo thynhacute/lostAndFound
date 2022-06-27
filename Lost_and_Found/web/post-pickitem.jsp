@@ -43,6 +43,10 @@
     </head>
 
     <body style="background-color: #f4f4f4">
+
+        <c:if test="${sessionScope.LOGIN_MEMBER.roleID == 1}">
+            <c:redirect url="login.jsp"/>           
+        </c:if>  
         <%@include file="Components/navbarComponent.jsp" %>
         <!-- breadcrumb-section -->
         <div class="breadcrumb-section breadcrumb-bg">
