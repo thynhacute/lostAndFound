@@ -64,7 +64,6 @@ public class CreateController extends HttpServlet {
         File uploadDir = new File(basePath);
         InputStream inputStream = null;
         OutputStream outputStream = null;
-
         if (!uploadDir.exists()) {
             uploadDir.mkdir(); //hàm tự tạo mới 
         }
@@ -72,7 +71,7 @@ public class CreateController extends HttpServlet {
         String fileName = getFileName(fileUpload); //thực hiện ghi zô folder lưu zô db thì lưu cái fileName
         try {
             if (fileName.equals("")) {
-                fileName = "273446696_366979748282108_1704171107086216918_n.jpg";
+                fileName = "default.jpg";
             } else {
                 String save_path = basePath + fileName;
                 if ((fileName.endsWith(".png") || fileName.endsWith(".jpg"))) {
