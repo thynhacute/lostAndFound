@@ -13,6 +13,7 @@
         <!-- title -->
         <title>Artical detail</title>
 
+        
         <!-- favicon -->
         <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
         <!-- google font -->

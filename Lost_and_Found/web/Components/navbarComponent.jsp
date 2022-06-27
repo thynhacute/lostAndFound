@@ -75,6 +75,7 @@
                                         <ul class="sub-menu">
                                             <li> <a href="#"></a>${L.fullName}</li>
                                             <li> <a href="login.jsp">Logout</a></li>
+                                            <li><a href="profileUser.jsp">Profile</a></li>
                                         </ul>
                                     </c:if>                               
                                 </div>
