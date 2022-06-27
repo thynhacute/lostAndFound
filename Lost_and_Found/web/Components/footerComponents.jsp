@@ -56,7 +56,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-12">
-                <p>Copyrights &copy; 2019 - <a href="https://hcmuni.fpt.edu.vn/tuyen-sinh">FPT University</a>, All
+                <p>Copyrights &copy; 2012 - <a href="https://hcmuni.fpt.edu.vn/tuyen-sinh">FPT University</a>, All
                     Rights
                     Reserved.</p>
             </div>
