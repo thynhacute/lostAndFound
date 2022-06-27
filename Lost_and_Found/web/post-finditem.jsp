@@ -83,7 +83,7 @@
                                     Type Item</label>
                                 <div>                                   
                                     <select name="Items" class="box-1">
-                                        <option value=""></option>
+                                        <option value="0"></option>
                                         <c:forEach items="${requestScope.LIST_ITEM}" var="Item">                                            
                                             <option value="${Item.itemID}"> ${Item.itemName}</option>                                            
                                         </c:forEach>
@@ -97,7 +97,7 @@
                                 <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A"> <i
                                         class="fa-solid fa-location-pin"></i> &nbsp Location</label> 
                                 <select name="Locations"class="box-1">
-                                    <option value="" ></option>
+                                    <option value="0" ></option>
                                     <c:forEach items="${requestScope.LIST_LOCATION}" var="Location">                                      
                                         <option value="${Location.locationID}">${Location.locationName}</option>                                        
                                     </c:forEach>
@@ -122,12 +122,12 @@
                                 <input type="file" class="form-control" name="file" id="inputGroupFile02" placeholder="Enter photo">
                                 <label class="input-group-text" for="inputGroupFile02">Upload</label>
                                 <div>
-                                <c:if test="${requestScope.ERROR_UPLOAD != null}">
-                                    
+                                    <c:if test="${requestScope.ERROR_UPLOAD != null}">
+
                                         <p> &nbsp &nbsp ${requestScope.ERROR_UPLOAD}</p>
-                                    
-                                </c:if>
-                                        </div>
+
+                                    </c:if>
+                                </div>
                             </div>
 
 
@@ -143,6 +143,25 @@
                 </form>  
             </div>
         </div>
+        <c:if test="${requestScope.ERROR_MESSAGE != null}">
+            <div class="toast-container" aria-atomic="true" style="  position: absolute; min-height: 5px;">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" data-delay="3500"
+                     style="position: fixed; bottom: 10px; right: 15px;">
+                    <div class="toast-header">
+                        <img src="assets/img/logoteam/logoteam.png" width="6%" class="rounded me-2" alt="">
+                        <strong style="color: #e88123" class="mr-auto">Notification</strong>
+                        <small> &nbsp &nbsp Now</small>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">&nbsp &nbsp &nbsp &times;</span>
+                        </button>
+                    </div>
+                    <div class="toast-body">
+                        <p>sessionScope.LOGIN_MEMBER.fullName</p>
+                        <p> Please Choice Type Item AND Location</p>
+                    </div>
+                </div>
+            </div>
+        </c:if>   
     </body>
     <%@include file="Components/footerComponents.jsp" %>
     <!-- jquery -->
@@ -165,7 +184,6 @@
     <script src="assets/js/sticker.js"></script>
     <!-- main js -->
     <script src="assets/js/main.js"></script>
-    <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>
-
-
+    <script >$('#liveToast').toast('show');</script>
+    <script src="https://cdn.ckeditor.com/4.19.0/standard/ckeditor.js"></script>    
 </html>

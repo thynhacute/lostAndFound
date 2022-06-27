@@ -13,7 +13,7 @@
         <!-- title -->
         <title>Artical detail</title>
 
-        
+
         <!-- favicon -->
         <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
         <!-- google font -->
@@ -76,7 +76,7 @@
                                 </div>
                             </c:otherwise>
                         </c:choose>
-                        </div>
+                    </div>
                     <div class="col-md-7">
                         <div class="single-product-content">
                             <h2>${D.itemName}</h2>
@@ -178,7 +178,7 @@
                                         <c:otherwise>
                                             <div class="d-flex flex-row align-items-start">
                                                 <img class="rounded-circle" src="${sessionScope.LOGIN_MEMBER.picture}" width="40">
-                                                <textarea class="form-control ml-1 shadow-none textarea" id="comment"  name="commentContent" ></textarea>
+                                                <textarea class="form-control ml-1 shadow-none textarea" id="comment" required="" placeholder="Typing..." name="commentContent" ></textarea>
                                             </div>
                                             <div class="mt-2 text-right">
                                                 <button class="btn btn-primary btn-sm shadow-none" type="submit">
@@ -214,10 +214,24 @@
             </div>   
         </div>
         <!-- end single product -->
-
-
-
-
+        <c:if test="${requestScope.SUCCESS_MESSAGE != null}">
+            <div class="toast-container" aria-atomic="true" style="  position: relative; min-height: 20px;">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" data-delay="2000"
+                     style="position: fixed; bottom:  10px; right: 15px;">
+                    <div class="toast-header">
+                        <img src="assets/img/logoteam/logoteam.png" width="6%" class="rounded me-2" alt="">
+                        <strong style="color: #e88123"  class="mr-auto">Notification</strong>
+                        <small> &nbsp &nbsp Now</small>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">&nbsp &nbsp &nbsp &times;</span>
+                        </button>
+                    </div>
+                    <div class="toast-body">
+                        <p>comment success</p>
+                    </div>
+                </div>
+            </div>
+        </c:if>  
         <%@include file="Components/footerComponents.jsp" %>
 
         <!-- jquery -->
@@ -241,6 +255,7 @@
         <!-- main js -->
         <script src="assets/js/main.js"></script>
         <script src="assets/js/app.js"></script>
+        <script >$('#liveToast').toast('show');</script>
 
     </body>
 </html>

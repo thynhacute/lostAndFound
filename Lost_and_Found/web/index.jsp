@@ -38,7 +38,7 @@
 
     </head>
 
-    <body>
+    <body >
         <%@include file="Components/navbarComponent.jsp" %>
         <!-- hero area -->
         <div class="hero-area hero-bg">
@@ -269,6 +269,45 @@
                     </div>
                 </div>
             </div>
+
+            <c:if test="${requestScope.SUCCESS_MESSAGE != null}">
+                <div class="toast-container" aria-atomic="true" style="  position: absolute; min-height: 5px;">
+                    <div id="liveToast" class="toast" role="alert" aria-live="assertive" data-delay="2000"
+                         style="position: fixed; bottom: 10px; right: 15px;">
+                        <div class="toast-header">
+                            <img src="assets/img/logoteam/logoteam.png" width="6%" class="rounded me-2" alt="">
+                            <strong style="color: #e88123"  class="mr-auto">Notification</strong>
+                            <small> &nbsp &nbsp Now</small>
+                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                <span aria-hidden="true">&nbsp &nbsp &nbsp &times;</span>
+                            </button>
+                        </div>
+                        <div class="toast-body">
+                            Hello, ${sessionScope.LOGIN_MEMBER.fullName}
+                        </div>
+                    </div>
+                </div>
+            </c:if>
+
+            <c:if test="${requestScope.SUCCESS_CREATE_MESSAGE != null}">
+                <div class="toast-container" aria-atomic="true" style="  position: absolute; min-height: 5px;">
+                    <div id="liveToast" class="toast" role="alert" aria-live="assertive" data-delay="3500"
+                         style="position: fixed; bottom: 10px; right: 15px;">
+                        <div class="toast-header">
+                            <img src="assets/img/logoteam/logoteam.png" width="6%" class="rounded me-2" alt="">
+                            <strong style="color: #e88123" class="mr-auto">Notification</strong>
+                            <small> &nbsp &nbsp Now</small>
+                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                <span aria-hidden="true">&nbsp &nbsp &nbsp &times;</span>
+                            </button>
+                        </div>
+                        <div class="toast-body">
+                            <p>sessionScope.LOGIN_MEMBER.fullName</p>
+                            <p> Post article success</p>
+                        </div>
+                    </div>
+                </div>
+            </c:if> 
             <!-- end latest news -->
             <!-- jquery -->
             <script src="assets/js/jquery-1.11.3.min.js"></script>
@@ -290,6 +329,7 @@
             <script src="assets/js/sticker.js"></script>
             <!-- main js -->
             <script src="assets/js/main.js"></script>
+            <script >$('#liveToast').toast('show');</script>
             <%@include file="Components/footerComponents.jsp" %>
     </body>
 </html>

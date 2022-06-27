@@ -40,6 +40,7 @@ public class CommentController extends HttpServlet {
             boolean checkCreate = dao.createComment(comment);
             if(checkCreate){
                 url = SUCCESS;
+                request.setAttribute("SUCCESS_MESSAGE", "");
             }        
         } catch (Exception e) {
             e.printStackTrace();

@@ -42,6 +42,7 @@ public class DetailArticleController extends HttpServlet {
             CommentDAO comment = new CommentDAO();
             List<CommentDTO> listComments = comment.getListCommentsByArticleID(articleID1);
             request.setAttribute("LIST_COMMENTS", listComments);
+            
 
         } catch (Exception e) {
         } finally {
