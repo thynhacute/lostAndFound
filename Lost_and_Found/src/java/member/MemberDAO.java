@@ -292,4 +292,36 @@ public class MemberDAO {
         }
         return listMember;
     }
+
+    public boolean updateProfileUser(MemberDTO member) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " UPDATE member "
+                        + " SET fullName=?, picture=?, phone=?, profileInfo=? "
+                        + " WHERE memberID=? ";
+                ptm = conn.prepareStatement(sql);
+                ptm.setString(1, member.getFullName());
+                ptm.setString(2, member.getPicture());
+                ptm.setInt(3, member.getPhone());
+                ptm.setString(4, member.getProfileInfo());
+                ptm.setInt(5, member.getId());
+                check = ptm.executeUpdate() > 0;
+            }
+        } catch (Exception e) {
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+
+        }
+        return check;
+    }
+
 }

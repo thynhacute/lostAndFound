@@ -7,28 +7,26 @@ package controller;
 
 import article.ArticleDAO;
 import article.ArticleDTO;
-import item.ItemDAO;
-import item.ItemDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import location.LocationDAO;
-import location.LocationDTO;
+import javax.servlet.http.HttpSession;
+import member.MemberDTO;
 
 /**
  *
- * @author Owner
+ * @author Admin
  */
-public class TypePostController extends HttpServlet {
+@WebServlet(name = "UserFoundController", urlPatterns = {"/UserFoundController"})
+public class UserFoundController extends HttpServlet {
 
-    private static final String ERROR = "post-finditem.jsp";
-    private static final String SUCCESS = "post-pickitem.jsp";
+    private static final String ERROR = "userFound.jsp";
+    private static final String SUCCESS = "userFound.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -36,22 +34,15 @@ public class TypePostController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         String url = ERROR;
-        String articleType = request.getParameter("articleTypeID");
         try {
-            ItemDAO itemDao = new ItemDAO();
-            List<ItemDTO> listItem = itemDao.getListItem();
-            request.setAttribute("LIST_ITEM", listItem);
-
-            LocationDAO locationDao = new LocationDAO();
-            List<LocationDTO> listLocation = locationDao.getListLocation();
-            request.setAttribute("LIST_LOCATION", listLocation);
-                  
-            if (articleType.equals("1")) {
-                url = ERROR;
-            } else {
-                url = SUCCESS;}
+            HttpSession session = request.getSession();
+            MemberDTO member = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
+            ArticleDAO articleDaoFound = new ArticleDAO();
+            List<ArticleDTO> articleFound = articleDaoFound.getListArticleFoundByMember(member.getId());
+            url = SUCCESS;
+            request.setAttribute("LIST_FOUND", articleFound);
         } catch (Exception e) {
-            log("Error at home" + e.toString());
+            log("Error at UserFoundController" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
