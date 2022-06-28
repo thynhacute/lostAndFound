@@ -78,8 +78,8 @@
                 <br>
                 <c:set value="${requestScope.DETAIL_ARTICLE_LOST}" var="DAL"/>
                 <div class="container">
-                    <form action="UpdateLostController" method="POST">   
-                        <input type="hidden" name="Update" value="" enctype="multipart/form-data">
+                    <form action="UpdateLostController" method="POST" enctype="multipart/form-data">   
+                        <input type="hidden" name="Update" value="">
                         <div class="container-fluid px-4">                    
                             <div class="border-bottom">
                                 <h6>Article Type</h6>

@@ -125,7 +125,7 @@
                             </div>
                         </div>
                         <div style="text-align: center">
-                            <button type="submit" value="Update" class="btn btn-outline-warning style-button">
+                            <button type="submit" name="action" value="Update" class="btn btn-outline-warning style-button">
                                 Chỉnh sửa
                             </button>                           
                             <button type="submit" name="delete" value="Delete" class="btn btn-outline-danger style-button">
