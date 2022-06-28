@@ -78,8 +78,8 @@
                 <br>
                 <c:set value="${requestScope.DETAIL_ARTICLE_LOST}" var="DAL"/>
                 <div class="container">
-                    <form action="UpdateLostController" method="POST">   
-                        <input type="hidden" name="Update" value="" enctype="multipart/form-data">
+                    <form action="UpdateLostController" method="POST" enctype="multipart/form-data">   
+                        <input type="hidden" name="Update" value="">
                         <div class="container-fluid px-4">                    
                             <div class="border-bottom">
                                 <h6>Article Type</h6>
@@ -110,14 +110,14 @@
                         </div>
                         <div class="container-fluid px-4">
                             <div class="border-bottom">
-                                <h6>Ảnh</h6>    
+                                <h6 class="mt-4">Picture</h6>    
                                 <c:set var="img" value="${DAL.imgURL}"/>
                                 <c:choose>
                                     <c:when test="${fn:contains(img, 'https://')}">
-                                        <img src="${DAL.imgURL}" class="rounded-circle" style="width: 100px;"/>
+                                        <img src="${DAL.imgURL}" style="width: 100px;"/>
                                     </c:when>
                                     <c:otherwise>
-                                        <img src="file_upload/${DAL.imgURL}" class="rounded-circle" style="width: 100px;"/>
+                                        <img src="file_upload/${DAL.imgURL}" style="width: 100px;"/>
                                     </c:otherwise>
                                 </c:choose>
                                 <input type="hidden" name="imgURL" value="${DAL.imgURL}"/>
@@ -126,7 +126,7 @@
                         </div>     
                         <div class="container-fluid px-4">
                             <div class="border-bottom">
-                                <h6>Location</h6>
+                                <h6 class="mt-4">Location</h6>
                                 <select name="locationID" class="box">
                                     <option value="${DAL.locationID}">
                                         ${DAL.locationName}
@@ -141,14 +141,14 @@
                     </div>
                     <div class="container-fluid px-4">
                         <div class="border-bottom">
-                                <h6>Nội dung</h6>
+                                <h6 class="mt-4">Content</h6>
                                 <textarea id="editor" name="articleContent">${DAL.articleContent}</textarea>
 <!--                                <input type="text" name="articleContent" value="${DAL.articleContent}">-->
                             </div>
                         </div>
                         <div style="text-align: center">
                             <button type="submit" name="action" value="Update" class="btn btn-outline-warning style-button">
-                                Chỉnh sửa
+                                Edit
                             </button>                           
                             <button type="submit" name="delete" value="Delete" class="btn btn-outline-danger style-button">
                                 Delete
