@@ -89,10 +89,10 @@
                 <div class="product-section mt-150 mb-150">
                     <div class="container">
                         <div class="row product-lists">
-                            <div class="col-md-9">
-                                <div class="row">
+                            <div class="col-md-12">
+                                <div class="row justify-content-between">
                                     <c:forEach items="${requestScope.LIST_FOUND}" var="LF">
-                                        <div class="col-md-4 text-center strawberry">
+                                        <div class="col-md-3 text-center strawberry">
                                             <a href="UpdateFoundController?render&id=${LF.articleID}">
                                                 <div class="single-product-item">
                                                     <div class="product-image">
@@ -111,7 +111,7 @@
                                                         </c:choose>
                                                     </div>
                                                     <h3>${LF.itemName}</h3>
-                                                    <p class="product-price"><span>${LF.phone}</span> ${LF.locationName} </p>
+                                                    <p class="product-price"><span>0${LF.phone}</span> ${LF.locationName} </p>
                                                     <p>${LF.fullName}</p>
                                                 </div>
                                             </a>
