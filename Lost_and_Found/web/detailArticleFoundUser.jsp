@@ -89,23 +89,23 @@
                         </div>
                         <div class="container-fluid px-4">
                             <div class="border-bottom">
-                                <h6>Picture</h6>  
+                                <h6 class="mt-4">Picture</h6>  
                                 <c:set var="img" value="${DAF.imgURL}"/>
                                 <c:choose>
                                     <c:when test="${fn:contains(img, 'https://')}">
-                                        <img src="${DAF.imgURL}" class="rounded-circle" style="width: 100px;"/>
+                                        <img src="${DAF.imgURL}" class="rounded-circle" style="width: 20%;"/>
                                     </c:when>
                                     <c:otherwise>
-                                        <img src="file_upload/${DAF.imgURL}" class="rounded-circle" style="width: 100px;"/>
+                                        <img src="file_upload/${DAF.imgURL}" style="width: 20%;"/>
                                     </c:otherwise>
-                                </c:choose>
-                                <input type="hidden" name="imgURL" value="${DAF.imgURL}"/>
-                                <input type="file" name="file"/>
+                                </c:choose>                                     
+                                        <p class="mt-4"><input type="hidden" name="imgURL" value="${DAF.imgURL}"/>
+                                    <input type="file" name="file"/></p>
                             </div>
                         </div>     
                         <div class="container-fluid px-4">
                             <div class="border-bottom">
-                                <h6>Location</h6>
+                                <h6 class="mt-4">Location</h6>
                                 <select name="locationID" class="box">
                                     <option value="${DAF.locationID}">
                                         ${DAF.locationName}
@@ -116,22 +116,22 @@
                                         </c:if>
                                     </c:forEach>
                                 </select>
-                    </div>
-                    <div class="container-fluid px-4">
-                        <div class="border-bottom">
-                                <h6>Nội dung</h6>
-                                <textarea id="editor" name="articleContent">${DAF.articleContent}</textarea>
-<!--                                <input type="text" name="articleContent" maxlength="50" value="${DAF.articleContent}">-->
                             </div>
-                        </div>
-                        <div style="text-align: center">
-                            <button type="submit" name="action" value="Update" class="btn btn-outline-warning style-button">
-                                Chỉnh sửa
-                            </button>                           
-                            <button type="submit" name="delete" value="Delete" class="btn btn-outline-danger style-button">
-                                Xóa bài
-                            </button>
-                        </div>               
+                            <div class="container-fluid px-4">
+                                <div class="border-bottom">
+                                    <h6 class="mt-4">Content</h6>
+                                    <textarea id="editor" name="articleContent">${DAF.articleContent}</textarea>
+    <!--                                <input type="text" name="articleContent" maxlength="50" value="${DAF.articleContent}">-->
+                                </div>
+                            </div>
+                            <div style="text-align: center">
+                                <button type="submit" name="action" value="Update" class="btn btn-outline-warning style-button">
+                                    Edit
+                                </button>                           
+                                <button type="submit" name="delete" value="Delete" class="btn btn-outline-danger style-button">
+                                    Delete
+                                </button>
+                            </div>               
                     </form>
                 </div>
             </main>
