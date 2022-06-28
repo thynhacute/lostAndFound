@@ -950,17 +950,18 @@ public class ArticleDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = " UPDATE [dbo].[Article]\n"
-                        + "   SET [ArticleContent] = ?,\n"
-                        + "      [LocationID] = ?\n"
-                        + " WHERE MemberID = ? AND ArticleID = ? ";
+                String sql = "UPDATE Article\n"
+                        + "SET ArticleContent = ?, LocationID = ?, ImgURL = ?\n"
+                        + "WHERE MemberID = ? AND ArticleID = ?";
                 ptm = conn.prepareStatement(sql);
                 String articleContent = article.getArticleContent();
                 int locationID = article.getLocationID();
+                String imgURL = article.getImgURL();
                 ptm.setString(1, articleContent);
                 ptm.setInt(2, locationID);
-                ptm.setInt(3, memberID);
-                ptm.setInt(4, articleID);
+                ptm.setString(3, imgURL);
+                ptm.setInt(4, memberID);
+                ptm.setInt(5, articleID);
                 check = ptm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
 <html lang="en">
 
     <head>
@@ -98,9 +100,19 @@
                                             <a href="UpdateLostController?render&id=${LL.articleID}">
                                                 <div class="single-product-item">
                                                     <div class="product-image">
-                                                        <img style="height: 150px;"
-                                                             src="${LL.imgURL}"
-                                                             alt="">
+                                                        <c:set var="img" value="${LL.imgURL}"/>
+                                                        <c:choose>
+                                                            <c:when test="${fn:contains(img, 'https://')}">
+                                                                <img style="height: 150px;"
+                                                                     src="${LL.imgURL}"
+                                                                     alt="">
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <img style="height: 150px;"
+                                                                     src="file_upload/${LL.imgURL}"
+                                                                     alt="">
+                                                            </c:otherwise>
+                                                        </c:choose>
                                                     </div>
                                                     <h3>${LL.itemName}</h3>
                                                     <p class="product-price"><span>${LL.phone}</span> ${LL.locationName} </p>
