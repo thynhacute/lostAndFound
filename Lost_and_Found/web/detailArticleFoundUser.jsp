@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <html lang="en">
 
     <head>
@@ -34,6 +35,7 @@
         <link rel="stylesheet" href="assets/css/main.css">
         <!-- responsive -->
         <link rel="stylesheet" href="assets/css/responsive.css">
+        <script src="//cdn.ckeditor.com/4.19.0/basic/ckeditor.js"></script>
 
     </head>
     <body>
@@ -51,8 +53,7 @@
             </div>
         </div>
         <div id="layoutSidenav_content">
-
-            <main>
+            <main>               
                 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f5f5f5;">
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="navbarNav">
@@ -73,57 +74,73 @@
                 <br>
                 <br>
                 <c:set value="${requestScope.DETAIL_ARTICLE_FOUND}" var="DAF"/>
-                <form action="UpdateFoundController" method="POST">  
-                    <input type="hidden" name="Update" value="">
-                    <div class="container-fluid px-4">                    
-                        <div class="border-bottom">
-                            <h6>Article Type</h6>
-                            <p>${DAF.articleTypeName}</p>
-                            <input name="id" type="hidden" value="${DAF.articleID}"/>
+                <div class="container">
+                    <form action="UpdateFoundController" method="POST" enctype="multipart/form-data">  
+                        <input type="hidden" name="Update" value="">
+                        <div class="container-fluid px-4">                    
+                            <div class="border-bottom">
+                                <h6>Article Type</h6>
+                                <p>${DAF.articleTypeName}</p>
+                                <input name="id" type="hidden" value="${DAF.articleID}"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="container-fluid px-4">
-                        <div class="border-bottom">
-                            <h6>Picture</h6>                      
-                            <img src="${DAF.imgURL}" class="rounded-circle" style="width: 100px;"/>                   
-                        </div>
-                    </div>     
-                    <div class="container-fluid px-4">
-                        <div class="border-bottom">
-                            <h6>Location</h6>
-                            <select name="locationID" class="box">
-                                <option value="${DAF.locationName}">
-                                    ${DAF.locationName}
-                                </option>
+                        <div class="container-fluid px-4">
+                            <div class="border-bottom">
+                                <h6>Picture</h6>  
+                                <c:set var="img" value="${DAF.imgURL}"/>
+                                <c:choose>
+                                    <c:when test="${fn:contains(img, 'https://')}">
+                                        <img src="${DAF.imgURL}" class="rounded-circle" style="width: 100px;"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="file_upload/${DAF.imgURL}" class="rounded-circle" style="width: 100px;"/>
+                                    </c:otherwise>
+                                </c:choose>
+                                <input type="hidden" name="imgURL" value="${DAF.imgURL}"/>
+                                <input type="file" name="file"/>
+                            </div>
+                        </div>     
+                        <div class="container-fluid px-4">
+                            <div class="border-bottom">
+                                <h6>Location</h6>
+                                <select name="locationID" class="box">
+                                    <option value="${DAF.locationID}">
+                                        ${DAF.locationName}
+                                    </option>
                                     <c:forEach items="${sessionScope.LIST_LOCATION}" var="Location">
                                         <c:if test="${Location.locationName ne DAF.locationName}">
                                             <option value="${Location.locationID}">${Location.locationName}</option>
                                         </c:if>
-                                </c:forEach>
-                            </select>
+                                    </c:forEach>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="container-fluid px-4">                    
-                        <div class="border-bottom">
-                            <h6>Nội dung</h6>
-                            <input type="text" name="articleContent" maxlength="50" value="${DAF.articleContent}">
+                        <div class="container-fluid px-4">                    
+                            <div class="border-bottom">
+                                <h6>Nội dung</h6>
+                                <textarea id="editor" name="articleContent">${DAF.articleContent}</textarea>
+<!--                                <input type="text" name="articleContent" maxlength="50" value="${DAF.articleContent}">-->
+                            </div>
                         </div>
-                    </div>
-                    <div style="text-align: center">
-                        <button type="submit" value="Update" class="btn btn-outline-warning style-button">
-                            Chỉnh sửa
-                        </button>                           
-                        <button type="submit" name="delete" value="Delete" class="btn btn-outline-danger style-button">
-                            Xóa bài
-                        </button>
-                    </div>
-                </form>
+                        <div style="text-align: center">
+                            <button type="submit" value="Update" class="btn btn-outline-warning style-button">
+                                Chỉnh sửa
+                            </button>                           
+                            <button type="submit" name="delete" value="Delete" class="btn btn-outline-danger style-button">
+                                Xóa bài
+                            </button>
+                        </div>               
+                    </form>
+                </div>
             </main>
         </div>
         <br>
         <%@include file="Components/footerComponents.jsp" %>
         <!-- jquery -->
         <script src="assets/js/jquery-1.11.3.min.js"></script>
+        <script>
+            CKEDITOR.replace('editor');
+        </script>
         <!-- bootstrap -->
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <!-- count down -->

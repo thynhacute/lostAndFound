@@ -65,6 +65,13 @@ public class ArticleDTO {
         this.locationName = locationName;
     }
 
+    public ArticleDTO(int articleID, String articleContent, int locationID, String imgURL) {
+        this.articleID = articleID;
+        this.articleContent = articleContent;
+        this.locationID = locationID;
+        this.imgURL = imgURL;
+    }
+    
     public ArticleDTO(int articleID, String articleContent, int locationID) {
         this.articleID = articleID;
         this.articleContent = articleContent;

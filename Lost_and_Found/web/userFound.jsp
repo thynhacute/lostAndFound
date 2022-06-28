@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <html lang="en">
 
     <head>
@@ -90,16 +91,27 @@
                                     <c:forEach items="${requestScope.LIST_FOUND}" var="LF">
                                         <div class="col-md-4 text-center strawberry">
                                             <a href="UpdateFoundController?render&id=${LF.articleID}">
-                                            <div class="single-product-item">
-                                                <div class="product-image">
-                                                    <img style="height: 150px;"
-                                                                                       src="${LF.imgURL}"
-                                                                                       alt="">
+                                                <div class="single-product-item">
+                                                    <div class="product-image">
+                                                        <c:set var="img" value="${LF.imgURL}"/>
+                                                        <c:choose>
+                                                            <c:when test="${fn:contains(img, 'https://')}">
+                                                                <img style="height: 150px;"
+                                                                     src="${LF.imgURL}"
+                                                                     alt="">
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <img style="height: 150px;"
+                                                                     src="file_upload/${LF.imgURL}"
+                                                                     alt="">
+                                                            </c:otherwise>
+                                                        </c:choose>
+
+                                                    </div>
+                                                    <h3>${LF.itemName}</h3>
+                                                    <p class="product-price"><span>${LF.phone}</span> ${LF.locationName} </p>
+                                                    <p>${LF.fullName}</p>
                                                 </div>
-                                                <h3>${LF.itemName}</h3>
-                                                <p class="product-price"><span>${LF.phone}</span> ${LF.locationName} </p>
-                                                <p>${LF.fullName}</p>
-                                            </div>
                                             </a>
                                         </div>
                                     </c:forEach>
