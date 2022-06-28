@@ -85,31 +85,31 @@
                     </div>
                     <div class="container-fluid px-4">
                         <div class="border-bottom">
-                            <h6>Avatar</h6>                      
+                            <h6 class="mt-4">Avatar</h6>                      
                             <img src="${L.picture}" class="rounded-circle" style="width: 100px;" alt="Avatar"/>                   
                         </div>
                     </div>     
                     <div class="container-fluid px-4">
                         <div class="border-bottom">
-                            <h6>Profile Info</h6>
+                            <h6 class="mt-4">Profile Info</h6>
                             <input name="profileInfo" type="text" maxlength="50" value="${L.profileInfo}">
                         </div>
                     </div>    
                     <div class="container-fluid px-4">
                         <div class="border-bottom">
-                            <h6>Email</h6>
+                            <h6 class="mt-4">Email</h6>
                             <p>${L.email}</p>
                         </div>
                     </div>
                     <div class="container-fluid px-4">
                         <div class="border-bottom">
-                            <h6>Phone</h6>
-                            <input name="phone" type="text" maxlength="50" value="${L.phone}">                           
+                            <h6 class="mt-4">Phone</h6>
+                            <input name="phone" type="text" maxlength="50" value="0${L.phone}">                           
                         </div>                        
                     </div>
                     <div style="text-align: center">
                         <button type="submit" name="action" value="Update" class="btn btn-outline-warning style-button">
-                            Chỉnh sửa
+                            Update
                         </button>
                     </div>
                 </form>

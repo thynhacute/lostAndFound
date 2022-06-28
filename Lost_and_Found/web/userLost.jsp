@@ -93,10 +93,10 @@
                 <div class="product-section mt-150 mb-150">
                     <div class="container">
                         <div class="row product-lists">
-                            <div class="col-md-9">
+                            <div class="col-md-12">
                                 <div class="row">
                                     <c:forEach items="${requestScope.LIST_LOST}" var="LL">
-                                        <div class="col-md-4 text-center strawberry">
+                                        <div class="col-md-3 text-center strawberry">
                                             <a href="UpdateLostController?render&id=${LL.articleID}">
                                                 <div class="single-product-item">
                                                     <div class="product-image">
@@ -115,7 +115,7 @@
                                                         </c:choose>
                                                     </div>
                                                     <h3>${LL.itemName}</h3>
-                                                    <p class="product-price"><span>${LL.phone}</span> ${LL.locationName} </p>
+                                                    <p class="product-price"><span>0${LL.phone}</span> ${LL.locationName} </p>
                                                     <p>${LL.fullName}</p>
                                                 </div>
                                             </a>
