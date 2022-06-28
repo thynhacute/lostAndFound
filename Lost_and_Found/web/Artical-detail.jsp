@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <html lang="en">
@@ -38,7 +38,9 @@
 
     </head>
     <body>
-
+        <c:if test="${sessionScope.LOGIN_MEMBER.roleID == 1}">
+            <c:redirect url="login.jsp"/>           
+        </c:if>  
         <%@include file="Components/navbarComponent.jsp" %>
 
         <!-- breadcrumb-section -->
@@ -133,6 +135,7 @@
                                 <textarea name="reportContent" class="w-100 p-2" rows="3" placeholder="Typing..."></textarea>
                             </div>
                             <input type="hidden" name="articleID" value="${D.articleID}" />
+                            <input type="hidden" name="articleMemberID" value="${D.memberID}" />
                             <input type="hidden" name="memberID" value="${sessionScope.LOGIN_MEMBER.id}" />
 
                             <div class="modal-footer">
@@ -216,8 +219,8 @@
         <!-- end single product -->
         <c:if test="${requestScope.SUCCESS_MESSAGE != null}">
             <div class="toast-container" aria-atomic="true" style="  position: relative; min-height: 20px;">
-                <div id="liveToast" class="toast" role="alert" aria-live="assertive" data-delay="2000"
-                     style="position: fixed; bottom:  10px; right: 15px;">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" data-delay="4000"
+                     style="position: fixed; bottom: 20px; right: 15px;">
                     <div class="toast-header">
                         <img src="assets/img/logoteam/logoteam.png" width="6%" class="rounded me-2" alt="">
                         <strong style="color: #e88123"  class="mr-auto">Notification</strong>
@@ -227,11 +230,50 @@
                         </button>
                     </div>
                     <div class="toast-body">
-                        <p>comment success</p>
+                        <p>Comment Success</p>
                     </div>
                 </div>
             </div>
         </c:if>  
+        <c:if test="${requestScope.SUCCESS_MESSAGE_REPORT != null}">
+            <div class="toast-container" aria-atomic="true" style="  position: relative; min-height: 20px;">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" data-delay="4000"
+                     style="position: fixed; bottom: 20px; right: 15px;">
+                    <div class="toast-header">
+                        <img src="assets/img/logoteam/logoteam.png" width="6%" class="rounded me-2" alt="">
+                        <strong style="color: #e88123"  class="mr-auto">Notification</strong>
+                        <small> &nbsp &nbsp Now</small>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">&nbsp &nbsp &nbsp &times;</span>
+                        </button>
+                    </div>
+                    <div class="toast-body">
+                        <p>You have successfully report ${D.fullName} post</p>
+                    </div>
+                </div>
+            </div>
+        </c:if>  
+        
+        <c:if test="${requestScope.ERORR_MESSAGE_REPORT != null}">
+            <div class="toast-container" aria-atomic="true" style="  position: relative; min-height: 20px;">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" data-delay="4000"
+                     style="position: fixed; bottom: 20px; right: 15px;">
+                    <div class="toast-header">
+                        <img src="assets/img/logoteam/logoteam.png" width="6%" class="rounded me-2" alt="">
+                        <strong style="color: #e88123"  class="mr-auto">Notification</strong>
+                        <small> &nbsp &nbsp Now</small>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">&nbsp &nbsp &nbsp &times;</span>
+                        </button>
+                    </div>
+                    <div class="toast-body">
+                        <p>${sessionScope.LOGIN_MEMBER.fullName}</p>
+                        <p>You can not report your Article </p>
+                    </div>
+                </div>
+            </div>
+        </c:if> 
+          
         <%@include file="Components/footerComponents.jsp" %>
 
         <!-- jquery -->

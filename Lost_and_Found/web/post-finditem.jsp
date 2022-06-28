@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <%@page contentType="text/html"  pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
     <head>
@@ -42,6 +42,10 @@
     </head>
 
     <body style="background-color: #f4f4f4">
+        <c:if test="${sessionScope.LOGIN_MEMBER.roleID == 1}">
+            <c:redirect url="login.jsp"/>           
+        </c:if>  
+
         <%@include file="Components/navbarComponent.jsp" %>
         <!-- breadcrumb-section -->
         <div class="breadcrumb-section breadcrumb-bg">
@@ -146,7 +150,7 @@
         <c:if test="${requestScope.ERROR_MESSAGE != null}">
             <div class="toast-container" aria-atomic="true" style="  position: absolute; min-height: 5px;">
                 <div id="liveToast" class="toast" role="alert" aria-live="assertive" data-delay="3500"
-                     style="position: fixed; bottom: 10px; right: 15px;">
+                     style="position: fixed; bottom: 20px; right: 15px;">
                     <div class="toast-header">
                         <img src="assets/img/logoteam/logoteam.png" width="6%" class="rounded me-2" alt="">
                         <strong style="color: #e88123" class="mr-auto">Notification</strong>
@@ -156,7 +160,7 @@
                         </button>
                     </div>
                     <div class="toast-body">
-                        <p>sessionScope.LOGIN_MEMBER.fullName</p>
+                        <p>${sessionScope.LOGIN_MEMBER.fullName}</p>
                         <p> Please Choice Type Item AND Location</p>
                     </div>
                 </div>

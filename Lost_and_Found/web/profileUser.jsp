@@ -39,6 +39,9 @@
 
     </head>
     <body>
+        <c:if test="${sessionScope.LOGIN_MEMBER.roleID == 1}">
+            <c:redirect url="login.jsp"/>           
+        </c:if>  
         <%@include file="Components/navbarComponent.jsp" %>
         <div class="breadcrumb-section breadcrumb-bg">
             <div class="row">

@@ -39,6 +39,9 @@
 
     </head>
     <body>
+        <c:if test="${sessionScope.LOGIN_MEMBER.roleID == 1}">
+            <c:redirect url="login.jsp"/>           
+        </c:if>  
         <%@include file="Components/navbarComponent.jsp" %>
         <div class="breadcrumb-section breadcrumb-bg">
             <div class="container">
@@ -113,10 +116,9 @@
                                         </c:if>
                                     </c:forEach>
                                 </select>
-                            </div>
-                        </div>
-                        <div class="container-fluid px-4">                    
-                            <div class="border-bottom">
+                    </div>
+                    <div class="container-fluid px-4">
+                        <div class="border-bottom">
                                 <h6>Nội dung</h6>
                                 <textarea id="editor" name="articleContent">${DAF.articleContent}</textarea>
 <!--                                <input type="text" name="articleContent" maxlength="50" value="${DAF.articleContent}">-->

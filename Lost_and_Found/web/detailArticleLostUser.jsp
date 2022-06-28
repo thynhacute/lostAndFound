@@ -38,6 +38,10 @@
         <script src="//cdn.ckeditor.com/4.19.0/basic/ckeditor.js"></script>
     </head>
     <body>
+
+        <c:if test="${sessionScope.LOGIN_MEMBER.roleID == 1}">
+            <c:redirect url="login.jsp"/>           
+        </c:if>  
         <%@include file="Components/navbarComponent.jsp" %>
         <div class="breadcrumb-section breadcrumb-bg">
             <div class="container">
@@ -113,9 +117,9 @@
                                     </c:forEach>
                                 </select>
                             </div>
-                        </div>
-                        <div class="container-fluid px-4">                    
-                            <div class="border-bottom">
+                    </div>
+                    <div class="container-fluid px-4">
+                        <div class="border-bottom">
                                 <h6>Nội dung</h6>
                                 <textarea id="editor" name="articleContent">${DAL.articleContent}</textarea>
 <!--                                <input type="text" name="articleContent" value="${DAL.articleContent}">-->

@@ -17,6 +17,9 @@
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
+        <c:if test="${sessionScope.LOGIN_MEMBER.roleID != 1}">
+            <c:redirect url="login.jsp"/>           
+        </c:if> 
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a href="admin.jsp">

@@ -11,6 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import member.MemberDTO;
 import report.ReportDAO;
 import report.ReportDTO;
 
@@ -20,7 +22,7 @@ import report.ReportDTO;
  */
 public class ReportController extends HttpServlet {
 
-    private static final String ERROR = "Artical-detail.jsp";
+    private static final String ERROR = "DetailArticleController";
     private static final String SUCCESS = "DetailArticleController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -32,15 +34,25 @@ public class ReportController extends HttpServlet {
         String url = ERROR;
         int articleID = Integer.parseInt(request.getParameter("articleID"));
         int memberID = Integer.parseInt(request.getParameter("memberID"));
+        int articleMemberID = Integer.parseInt(request.getParameter("articleMemberID"));
         String reportContent = request.getParameter("reportContent");
+//        HttpSession session = request.getSession();
+//        MemberDTO member = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
 
         try {
-            ReportDAO dao = new ReportDAO();
-            ReportDTO report = new ReportDTO(0,articleID, memberID, reportContent, "");
-            boolean checkCreate = dao.createReport(report);
-            if (checkCreate) {
-                url = SUCCESS;
+            if (memberID != articleMemberID) {
+                ReportDAO dao = new ReportDAO();
+                ReportDTO report = new ReportDTO(0, articleID, memberID, reportContent, "");
+                boolean checkCreate = dao.createReport(report);
+                if (checkCreate) {
+                    url = SUCCESS;
+                    request.setAttribute("SUCCESS_MESSAGE_REPORT", dao);
+                }
+            } else {
+                url = ERROR;
+                request.setAttribute("ERORR_MESSAGE_REPORT", "");
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

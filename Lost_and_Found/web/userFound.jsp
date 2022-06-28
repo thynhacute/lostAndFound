@@ -43,6 +43,9 @@
     </head>
 
     <body>
+        <c:if test="${sessionScope.LOGIN_MEMBER.roleID == 1}">
+            <c:redirect url="login.jsp"/>           
+        </c:if>  
 
         <!--PreLoader-->
 
@@ -106,7 +109,6 @@
                                                                      alt="">
                                                             </c:otherwise>
                                                         </c:choose>
-
                                                     </div>
                                                     <h3>${LF.itemName}</h3>
                                                     <p class="product-price"><span>${LF.phone}</span> ${LF.locationName} </p>
