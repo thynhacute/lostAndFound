@@ -35,6 +35,7 @@
         <link rel="stylesheet" href="assets/css/main.css">
         <!-- responsive -->
         <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="post/css/style.css">
         <script src="//cdn.ckeditor.com/4.19.0/basic/ckeditor.js"></script>
 
     </head>
@@ -57,7 +58,7 @@
         </div>
         <div id="layoutSidenav_content">
             <main>               
-                <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f5f5f5;">
+                <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav">
@@ -74,87 +75,74 @@
                         </div>
                     </div>
                 </nav>
-                <br>
-                <br>
-                <c:set value="${requestScope.DETAIL_ARTICLE_FOUND}" var="DAF"/>
-                <div class="container">
-                    <form action="UpdateFoundController" method="POST" enctype="multipart/form-data">  
-                        <input type="hidden" name="Update" value="">
-                        <div class="container-fluid px-4">                    
-                            <div class="border-bottom">
-                                <h6>Article Type</h6>
-                                <p>${DAF.articleTypeName}</p>
-                                <input name="id" type="hidden" value="${DAF.articleID}"/>
+                <c:set value="${requestScope.DETAIL_ARTICLE_FOUND}" var="DAF"/>               
+                <form action="UpdateFoundController" method="POST" enctype="multipart/form-data"> 
+                    <div class="list-section pt-80 pb-80">
+                        <div id="layoutSidenav_content">
+                            <main>
+                                <div class="t1 mt-5" style="text-align: center;">                                       
+                                    <input type="hidden" name="Update" value="">
+                                    <h2>${DAF.articleTypeName}</h2>
+                                    <input name="id" type="hidden" value="${DAF.articleID}"/>
+                                </div>
+                            </main>  
+                        </div>
+                        <div class="container-all mt-5">
+                            <div class="user-card-full">
+                                <div class="user-card-use">
+                                    <div class="pf-body Detail-A">
+                                        <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A">Location</label>
+                                        <div class="border-bottom">
+                                            <select name="locationID" class="box">
+                                                <option value="${DAF.locationID}">
+                                                    ${DAF.locationName}
+                                                </option>
+                                                <c:forEach items="${sessionScope.LIST_LOCATION}" var="Location">
+                                                    <c:if test="${Location.locationName ne DAF.locationName}">
+                                                        <option value="${Location.locationID}">${Location.locationName}</option>
+                                                    </c:if>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="pf-body Detail-A">
+                                        <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A">Picture</label>
+                                        <div class="border-bottom Detail-B"> 
+                                            <c:set var="img" value="${DAF.imgURL}"/>
+                                            <c:choose>
+                                                <c:when test="${fn:contains(img, 'https://')}">
+                                                    <img src="${DAF.imgURL}" class="rounded-circle" style="width: 20%;"/>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <img src="file_upload/${DAF.imgURL}" style="width: 20%;"/>
+                                                </c:otherwise>
+                                            </c:choose>                                     
+                                            <p class="mt-4"><input type="hidden" name="imgURL" value="${DAF.imgURL}"/>
+                                                <input type="file" name="file"/></p>
+                                        </div>
+                                    </div>    
+                                    <div class="pf-body Detail-A">
+                                        <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A">Content</label>
+                                        <div class="Detail-B">
+                                            <textarea id="editor" name="articleContent">${DAF.articleContent}</textarea>                            
+                                        </div>
+                                    </div>
+                                    <div class="pf-body Detail-A" style="text-align: center" >
+                                        <div style="text-align: center">
+                                            <button type="submit" name="action" value="Update" class="btn btn-outline-warning style-button">
+                                                Edit
+                                            </button>                           
+                                            <button type="submit" name="delete" value="Delete" class="btn btn-outline-danger style-button">
+                                                Done
+                                            </button>
+                                        </div>     
+                                    </div>
+                                    <br>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="container-fluid px-4">
-                        <div class="border-bottom">
-                            <h6>Picture</h6>                      
-                            <img src="${DAF.imgURL}" class="rounded-circle" style="width: 100px;"/>                   
-                        </div>
-                    </div>     
-                    <div class="container-fluid px-4">
-                        <div class="border-bottom">
-                            <h6>Location</h6>
-                            <select name="locationID" class="box">
-                                <option value="${DAF.locationID}">
-                                    ${DAF.locationName}
-                                </option>
-                                <c:forEach items="${sessionScope.LIST_LOCATION}" var="Location">
-                                    <c:if test="${Location.locationName ne DAF.locationName}">
-                                        <option value="${Location.locationID}">${Location.locationName}</option>
-                                    </c:if>
-                                </c:forEach>
-                            </select>
-                        </div>
-                        <div class="container-fluid px-4">
-                            <div class="border-bottom">
-                                <h6 class="mt-4">Picture</h6>  
-                                <c:set var="img" value="${DAF.imgURL}"/>
-                                <c:choose>
-                                    <c:when test="${fn:contains(img, 'https://')}">
-                                        <img src="${DAF.imgURL}" class="rounded-circle" style="width: 20%;"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <img src="file_upload/${DAF.imgURL}" style="width: 20%;"/>
-                                    </c:otherwise>
-                                </c:choose>                                     
-                                        <p class="mt-4"><input type="hidden" name="imgURL" value="${DAF.imgURL}"/>
-                                    <input type="file" name="file"/></p>
-                            </div>
-                        </div>     
-                        <div class="container-fluid px-4">
-                            <div class="border-bottom">
-                                <h6 class="mt-4">Location</h6>
-                                <select name="locationID" class="box">
-                                    <option value="${DAF.locationID}">
-                                        ${DAF.locationName}
-                                    </option>
-                                    <c:forEach items="${sessionScope.LIST_LOCATION}" var="Location">
-                                        <c:if test="${Location.locationName ne DAF.locationName}">
-                                            <option value="${Location.locationID}">${Location.locationName}</option>
-                                        </c:if>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                            <div class="container-fluid px-4">
-                                <div class="border-bottom">
-                                    <h6 class="mt-4">Content</h6>
-                                    <textarea id="editor" name="articleContent">${DAF.articleContent}</textarea>
-    <!--                                <input type="text" name="articleContent" maxlength="50" value="${DAF.articleContent}">-->
-                                </div>
-                            </div>
-                            <div style="text-align: center">
-                                <button type="submit" name="action" value="Update" class="btn btn-outline-warning style-button">
-                                    Edit
-                                </button>                           
-                                <button type="submit" name="delete" value="Delete" class="btn btn-outline-danger style-button">
-                                    Delete
-                                </button>
-                            </div>               
-                    </form>
-                </div>
             </main>
         </div>
         <br>

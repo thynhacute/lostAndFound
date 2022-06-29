@@ -36,6 +36,7 @@
         <link rel="stylesheet" href="assets/css/main.css">
         <!-- responsive -->
         <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="post/css/style.css">
 
     </head>
     <body>
@@ -56,7 +57,7 @@
     </div>
     <div id="layoutSidenav_content">
         <main>
-            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f5f5f5;">
+            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
@@ -73,50 +74,63 @@
                     </div>
                 </div>
             </nav>
-            <br>
-            <br>
-            <div class="container">
-                <form action="UpdateController" method="POST">
-                    <div class="container-fluid px-4">                    
-                        <div class="border-bottom">
-                            <h6>Họ tên</h6>
-                            <input type="text" name="fullName" maxlength="50" value="${L.fullName}">
+            <div class="list-section pt-80 pb-80">
+                <div id="layoutSidenav_content">
+                    <main>
+                        <div class="t1 mt-5" style="text-align: center;">
+                            <h2>Account details</h2>
+                        </div>
+                    </main>
+                </div>
+                <div class="container-all mt-5">
+                    <div class="user-card-full">
+                        <div class="user-card-use">
+                            <form action="UpdateController" method="POST">
+                                <div class="pf-body Detail-A">
+                                    <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A"> Full Name</label>
+                                    <div class="border-bottom Detail-B">                                
+                                        <input type="text" name="fullName" maxlength="50" value="${L.fullName}">
+                                    </div>
+                                </div>
+                                <div class="pf-body Detail-A"> 
+                                    <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A"> Avatar</label>
+                                    <div class="border-bottom Detail-B">                    
+                                        <img src="${L.picture}" class="rounded-circle" style="width: 100px;" alt="Avatar"/>                   
+                                    </div>
+                                </div>     
+                                <div class="pf-body Detail-A">
+                                    <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A"> Profile Information</label>
+                                    <div class="border-bottom Detail-B">
+                                        <input name="profileInfo" type="text" maxlength="50" value="${L.profileInfo}">
+                                    </div>
+                                </div>    
+                                <div class="pf-body Detail-A">
+                                    <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A"> Email</label>
+                                    <div class="border-bottom Detail-B">
+                                        <p>${L.email}</p>
+                                    </div>
+                                </div>
+                                <div class="pf-body Detail-A">
+                                    <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A"> Phone</label>
+                                    <div class="border-bottom Detail-B">
+                                        <span>+84 </span>
+                                        <input maxlength="9" minlength="9" name="phone" type="text" maxlength="50" value="${L.phone}">                           
+                                    </div>                        
+                                </div>
+                                    <div style="text-align: center" class="pf-body Detail-A">
+                                    <button type="submit" name="action" value="Update" class="btn btn-outline-warning style-button">
+                                        Update
+                                    </button>
+                                </div>
+                                    <br>
+                            </form>
                         </div>
                     </div>
-                    <div class="container-fluid px-4">
-                        <div class="border-bottom">
-                            <h6 class="mt-4">Avatar</h6>                      
-                            <img src="${L.picture}" class="rounded-circle" style="width: 100px;" alt="Avatar"/>                   
-                        </div>
-                    </div>     
-                    <div class="container-fluid px-4">
-                        <div class="border-bottom">
-                            <h6 class="mt-4">Profile Info</h6>
-                            <input name="profileInfo" type="text" maxlength="50" value="${L.profileInfo}">
-                        </div>
-                    </div>    
-                    <div class="container-fluid px-4">
-                        <div class="border-bottom">
-                            <h6 class="mt-4">Email</h6>
-                            <p>${L.email}</p>
-                        </div>
-                    </div>
-                    <div class="container-fluid px-4">
-                        <div class="border-bottom">
-                            <h6 class="mt-4">Phone</h6>
-                            <input name="phone" type="text" maxlength="50" value="0${L.phone}">                           
-                        </div>                        
-                    </div>
-                    <div style="text-align: center">
-                        <button type="submit" name="action" value="Update" class="btn btn-outline-warning style-button">
-                            Update
-                        </button>
-                    </div>
-                </form>
+
+                </div>
             </div>
         </main>
     </div>
-    <br>
     <!-- end logo carousel -->
 
     <!-- footer -->

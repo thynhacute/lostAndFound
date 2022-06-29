@@ -90,7 +90,7 @@
                     <div class="container">
                         <div class="row product-lists">
                             <div class="col-md-12">
-                                <div class="row justify-content-between">
+                                <div class="row justify-conten">
                                     <c:forEach items="${requestScope.LIST_FOUND}" var="LF">
                                         <div class="col-md-3 text-center strawberry">
                                             <a href="UpdateFoundController?render&id=${LF.articleID}">

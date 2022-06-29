@@ -40,6 +40,8 @@
         <link rel="stylesheet" href="assets/css/main.css">
         <!-- responsive -->
         <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="post/css/style.css">
+
 
     </head>
 
@@ -66,9 +68,6 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
-                <!--                <div class="container-fluid px-4">
-                                    <h5 class="mt-4 border-bottom">Thông tin cá nhân</h5>
-                                </div>-->
                 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f5f5f5;">
                     <div class="container-fluid">
 

@@ -35,6 +35,7 @@
         <link rel="stylesheet" href="assets/css/main.css">
         <!-- responsive -->
         <link rel="stylesheet" href="assets/css/responsive.css">
+        <link rel="stylesheet" href="post/css/style.css">
         <script src="//cdn.ckeditor.com/4.19.0/basic/ckeditor.js"></script>
     </head>
     <body>
@@ -57,7 +58,7 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
-                <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f5f5f5;">
+                <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav">
@@ -74,88 +75,72 @@
                         </div>
                     </div>
                 </nav>
-                <br>
-                <br>
                 <c:set value="${requestScope.DETAIL_ARTICLE_LOST}" var="DAL"/>
-                <div class="container">
-                    <form action="UpdateLostController" method="POST" enctype="multipart/form-data">   
-                        <input type="hidden" name="Update" value="">
-                        <div class="container-fluid px-4">                    
-                            <div class="border-bottom">
-                                <h6>Article Type</h6>
-                                <p>${DAL.articleTypeName}</p>
-                                <input name="id" type="hidden" value="${DAL.articleID}"/>
+                <form action="UpdateLostController" method="POST" enctype="multipart/form-data">   
+                    <div class="list-section pt-80 pb-80">
+                        <div id="layoutSidenav_content">
+                            <main>
+                                <div class="t1 mt-5" style="text-align: center;">
+                                    <input type="hidden" name="Update" value="">
+                                    <h2>${DAL.articleTypeName}</h2>
+                                    <input name="id" type="hidden" value="${DAL.articleID}"/>
+                                </div>
+                            </main>  
+                        </div>
+                        <div class="container-all mt-5">
+                            <div class="user-card-full">
+                                <div class="user-card-use">
+                                    <div class="pf-body Detail-A">
+                                        <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A">Location</label>
+                                        <div class="border-bottom Detail-B ">
+                                            <select name="locationID" class="box">
+                                                <option value="${DAL.locationID}">
+                                                    ${DAL.locationName}
+                                                </option>
+                                                <c:forEach items="${sessionScope.LIST_LOCATION}" var="Location">
+                                                    <c:if test="${Location.locationName ne DAL.locationName}">
+                                                        <option value="${Location.locationID}">${Location.locationName}</option>
+                                                    </c:if>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="pf-body Detail-A">
+                                        <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A">Picture</label>
+                                        <div class="border-bottom Detail-B">   
+                                            <c:set var="img" value="${DAL.imgURL}"/>
+                                            <c:choose>
+                                                <c:when test="${fn:contains(img, 'https://')}">
+                                                    <img src="${DAL.imgURL}" style="width: 100px;"/>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <img src="file_upload/${DAL.imgURL}" style="width: 100px;"/>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <input type="hidden" name="imgURL" value="${DAL.imgURL}"/>
+                                            <div class="pf-body Detail-B"> <input type="file" name="file"/>  </div>                                                    
+                                        </div>
+                                    </div >     
+                                    <div class="pf-body Detail-A">
+                                        <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A">Content</label>
+                                        <div class="Detail-B">    
+                                            <textarea id="editor" name="articleContent">${DAL.articleContent}</textarea>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: center"  class="pf-body Detail-A">
+                                        <button type="submit" name="action" value="Update" class="btn btn-outline-warning style-button">
+                                            Edit
+                                        </button>                           
+                                        <button type="submit" name="delete" value="Delete" class="btn btn-outline-danger style-button">
+                                            Done
+                                        </button>
+                                    </div>
+                                        <br>
+                                    </form>
+                                </div>                                  
                             </div>
                         </div>
                     </div>
-                    <div class="container-fluid px-4">
-                        <div class="border-bottom">
-                            <h6>Ảnh</h6>                      
-                            <img src="${DAL.imgURL}" class="rounded-circle" style="width: 100px;"/>                   
-                        </div>
-                    </div>     
-                    <div class="container-fluid px-4">
-                        <div class="border-bottom">
-                            <h6>Location</h6>
-                            <select name="locationID" class="box">
-                                <option value="${DAL.locationID}">
-                                    ${DAL.locationName}
-                                </option>
-                                <c:forEach items="${sessionScope.LIST_LOCATION}" var="Location">
-                                    <c:if test="${Location.locationName ne DAL.locationName}">
-                                        <option value="${Location.locationID}">${Location.locationName}</option>
-                                    </c:if>
-                                </c:forEach>
-                            </select>
-                        </div>
-                        <div class="container-fluid px-4">
-                            <div class="border-bottom">
-                                <h6 class="mt-4">Picture</h6>    
-                                <c:set var="img" value="${DAL.imgURL}"/>
-                                <c:choose>
-                                    <c:when test="${fn:contains(img, 'https://')}">
-                                        <img src="${DAL.imgURL}" style="width: 100px;"/>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <img src="file_upload/${DAL.imgURL}" style="width: 100px;"/>
-                                    </c:otherwise>
-                                </c:choose>
-                                <input type="hidden" name="imgURL" value="${DAL.imgURL}"/>
-                                <input type="file" name="file"/>           
-                            </div>
-                        </div>     
-                        <div class="container-fluid px-4">
-                            <div class="border-bottom">
-                                <h6 class="mt-4">Location</h6>
-                                <select name="locationID" class="box">
-                                    <option value="${DAL.locationID}">
-                                        ${DAL.locationName}
-                                    </option>
-                                    <c:forEach items="${sessionScope.LIST_LOCATION}" var="Location">
-                                        <c:if test="${Location.locationName ne DAL.locationName}">
-                                            <option value="${Location.locationID}">${Location.locationName}</option>
-                                        </c:if>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                    </div>
-                    <div class="container-fluid px-4">
-                        <div class="border-bottom">
-                                <h6 class="mt-4">Content</h6>
-                                <textarea id="editor" name="articleContent">${DAL.articleContent}</textarea>
-<!--                                <input type="text" name="articleContent" value="${DAL.articleContent}">-->
-                            </div>
-                        </div>
-                        <div style="text-align: center">
-                            <button type="submit" name="action" value="Update" class="btn btn-outline-warning style-button">
-                                Edit
-                            </button>                           
-                            <button type="submit" name="delete" value="Delete" class="btn btn-outline-danger style-button">
-                                Delete
-                            </button>
-                        </div>
-                    </form>
-                </div>
             </main>
         </div>
         <br>
