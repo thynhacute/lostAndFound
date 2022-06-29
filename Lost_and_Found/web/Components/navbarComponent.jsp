@@ -57,7 +57,7 @@
                                 <li><a href="post.jsp">Post Article</a></li>
                                 </c:if>
                             <li>
-                                <div class="header-icons">                                   
+                                <div class="header-icons">  
                                     <c:if test="${sessionScope.LOGIN_MEMBER == null }" >
                                         <a  href="login.jsp"> Login</a>  
                                     </c:if>

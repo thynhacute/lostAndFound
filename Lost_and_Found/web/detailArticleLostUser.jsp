@@ -50,7 +50,7 @@
                     <div class="col-lg-8 offset-lg-2 text-center">
                         <div class="breadcrumb-text">
                             <p>FPT University</p>
-                            <h1>Detail</h1>
+                            <h1>Lost Article Detail</h1>
                         </div>
                     </div>
                 </div>                    
@@ -58,18 +58,18 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
-                <nav class="navbar navbar-expand-lg navbar-light" style="background-color: white;">
+                <nav class="navbar navbar-expand-lg" style="background-color: white;">
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="UserLostController">Lost</a>
+                                    <a class="nav-link" aria-current="page" href="UserLostController"><i class="fas fa-box"></i>&nbsp;&nbsp;Lost Articles</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="profileUser.jsp">Profile</a>
+                                    <a class="nav-link" href="profileUser.jsp"><i class="fas fa-address-card"></i>&nbsp;&nbsp;Account Details</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="UserFoundController">Found</a>
+                                    <a class="nav-link" href="UserFoundController"><i class="fas fa-hand-holding"></i>&nbsp;&nbsp;Found Articles</a>
                                 </li>
                             </ul>
                         </div>
@@ -129,13 +129,13 @@
                                     </div>
                                     <div style="text-align: center"  class="pf-body Detail-A">
                                         <button type="submit" name="action" value="Update" class="btn btn-outline-warning style-button">
-                                            Edit
+                                            <i class="fas fa-edit"></i> Edit
                                         </button>                           
                                         <button type="submit" name="delete" value="Delete" class="btn btn-outline-danger style-button">
-                                            Done
+                                            <i class="fas fa-check-circle"></i> Done
                                         </button>
                                     </div>
-                                        <br>
+                                    <br>
                                     </form>
                                 </div>                                  
                             </div>
