@@ -30,7 +30,6 @@ public class HomeController extends HttpServlet {
 
     private static final String ERROR = "Home.jsp";
     private static final String SUCCESS = "Home.jsp";
-    
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -41,10 +40,10 @@ public class HomeController extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             ArticleTypeDAO dao = new ArticleTypeDAO();
-            
+
             ArticleDAO articleDao = new ArticleDAO();
             List<ArticleTypeDTO> listArticleType = dao.getListArticleType();
-            
+
             session.setAttribute("LIST_ARTICLE_TYPE", listArticleType);
             String searchByType = request.getParameter("searchByType");
             String searchByItem = request.getParameter("searchByItem");
@@ -53,6 +52,12 @@ public class HomeController extends HttpServlet {
             if (searchByLocation == null && searchByItem == null && searchByType == null) {
                 listArticles = articleDao.getAllArticle();
                 request.setAttribute("LIST_ARTICLE", listArticles);
+            } else if (searchByLocation == null && searchByItem != null && searchByType == null) {
+                if (searchByItem.equals("all")) {
+                    listArticles = articleDao.getAllArticle();
+                } else {
+                    listArticles = articleDao.getListArticleByItemType(searchByItem);
+                }
             } else if (searchByLocation != "" && searchByItem == "" && searchByType == "") {
                 if (searchByLocation.equals("all")) {
                     listArticles = articleDao.getAllArticle();
@@ -106,7 +111,7 @@ public class HomeController extends HttpServlet {
             LocationDAO locationDao = new LocationDAO();
             List<LocationDTO> listLocation = locationDao.getListLocation();
             session.setAttribute("LIST_LOCATION", listLocation);
-            
+
             ItemDAO itemDao = new ItemDAO();
             List<ItemDTO> listItem = itemDao.getListItem();
             session.setAttribute("LIST_ITEM", listItem);

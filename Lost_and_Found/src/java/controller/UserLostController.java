@@ -5,60 +5,47 @@
  */
 package controller;
 
+import article.ArticleDAO;
+import article.ArticleDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import member.MemberDTO;
-import report.ReportDAO;
-import report.ReportDTO;
 
 /**
  *
- * @author Owner
+ * @author Admin
  */
-public class ReportController extends HttpServlet {
+@WebServlet(name = "UserLostController", urlPatterns = {"/UserLostController"})
+public class UserLostController extends HttpServlet {
 
-    private static final String ERROR = "DetailArticleController";
-    private static final String SUCCESS = "DetailArticleController";
+    private static final String ERROR = "userLost.jsp";
+    private static final String SUCCESS = "userLost.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");  // fornt Tiếng việt
-        response.setCharacterEncoding("UTF-8"); //
-
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String url = ERROR;
-        int articleID = Integer.parseInt(request.getParameter("articleID"));
-        int memberID = Integer.parseInt(request.getParameter("memberID"));
-        int articleMemberID = Integer.parseInt(request.getParameter("articleMemberID"));
-        String reportContent = request.getParameter("reportContent");
-//        HttpSession session = request.getSession();
-//        MemberDTO member = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
-
         try {
-            if (memberID != articleMemberID) {
-                ReportDAO dao = new ReportDAO();
-                ReportDTO report = new ReportDTO(0, articleID, memberID, reportContent, "");
-                boolean checkCreate = dao.createReport(report);
-                if (checkCreate) {
-                    url = SUCCESS;
-                    request.setAttribute("SUCCESS_MESSAGE_REPORT", dao);
-                }
-            } else {
-                url = ERROR;
-                request.setAttribute("ERORR_MESSAGE_REPORT", "");
-            }
-
+            HttpSession session = request.getSession();
+            MemberDTO member = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
+            ArticleDAO articleDaoFound = new ArticleDAO();
+            List<ArticleDTO> articleFound = articleDaoFound.getListArticleLostByMember(member.getId());
+            url = SUCCESS;
+            request.setAttribute("LIST_LOST", articleFound);
         } catch (Exception e) {
-            e.printStackTrace();
+            log("Error at UserLostController" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

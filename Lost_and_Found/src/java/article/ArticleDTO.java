@@ -15,7 +15,7 @@ public class ArticleDTO {
     private String articleContent;
     private String imgURL;
     private String postTime;
-    private int locatioID;
+    private int locationID;
     private int memberID;
     private int articleTypeID;
     private int ItemID;
@@ -28,12 +28,12 @@ public class ArticleDTO {
     private String locationName;
     private int totalReport;
 
-    public ArticleDTO(int articleID, String articleContent, String imgURL, String postTime, int locatioID, int memberID, int articleTypeID, int ItemID, String fullName, String email, int phone, String picture, String articleTypeName, String itemName, String locationName, int totalReport) {
+    public ArticleDTO(int articleID, String articleContent, String imgURL, String postTime, int locationID, int memberID, int articleTypeID, int ItemID, String fullName, String email, int phone, String picture, String articleTypeName, String itemName, String locationName, int totalReport) {
         this.articleID = articleID;
         this.articleContent = articleContent;
         this.imgURL = imgURL;
         this.postTime = postTime;
-        this.locatioID = locatioID;
+        this.locationID = locationID;
         this.memberID = memberID;
         this.articleTypeID = articleTypeID;
         this.ItemID = ItemID;
@@ -47,12 +47,12 @@ public class ArticleDTO {
         this.totalReport = totalReport;
     }
 
-    public ArticleDTO(int articleID, String articleContent, String imgURL, String postTime, int locatioID, int memberID, int articleTypeID, int ItemID, String fullName, String email, int phone, String picture, String articleTypeName, String itemName, String locationName) {
+    public ArticleDTO(int articleID, String articleContent, String imgURL, String postTime, int locationID, int memberID, int articleTypeID, int ItemID, String fullName, String email, int phone, String picture, String articleTypeName, String itemName, String locationName) {
         this.articleID = articleID;
         this.articleContent = articleContent;
         this.imgURL = imgURL;
         this.postTime = postTime;
-        this.locatioID = locatioID;
+        this.locationID = locationID;
         this.memberID = memberID;
         this.articleTypeID = articleTypeID;
         this.ItemID = ItemID;
@@ -65,22 +65,17 @@ public class ArticleDTO {
         this.locationName = locationName;
     }
 
-    public ArticleDTO() {
-        this.articleID = 0;
-        this.articleContent = "";
-        this.imgURL = "";
-        this.postTime = "";
-        this.locatioID = 0;
-        this.memberID = 0;
-        this.articleTypeID = 0;
-        this.ItemID = 0;
-        this.fullName = "";
-        this.email = "";
-        this.phone = 0;
-        this.picture = "";
-        this.articleTypeName = "";
-        this.itemName = "";
-        this.locationName = "";
+    public ArticleDTO(int articleID, String articleContent, int locationID, String imgURL) {
+        this.articleID = articleID;
+        this.articleContent = articleContent;
+        this.locationID = locationID;
+        this.imgURL = imgURL;
+    }
+    
+    public ArticleDTO(int articleID, String articleContent, int locationID) {
+        this.articleID = articleID;
+        this.articleContent = articleContent;
+        this.locationID = locationID;
     }
 
     public int getArticleID() {
@@ -115,12 +110,12 @@ public class ArticleDTO {
         this.postTime = postTime;
     }
 
-    public int getLocatioID() {
-        return locatioID;
+    public int getLocationID() {
+        return locationID;
     }
 
-    public void setLocatioID(int locatioID) {
-        this.locatioID = locatioID;
+    public void setLocationID(int locationID) {
+        this.locationID = locationID;
     }
 
     public int getMemberID() {

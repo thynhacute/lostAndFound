@@ -13,15 +13,12 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <!------ Include the above in your HEAD tag ---------->
-
-        <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
-        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-              integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <!--        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+                <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+                <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+                      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+              integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
         <link rel="stylesheet" href="assets/css/login.css">
         <title>Document</title>
     </head>
@@ -53,18 +50,43 @@
                                 </div>
                                 <div class="form-group">
                                     <p class="text-center">login with FPT mail  <a href="#" id="signup"> @fpt.edu.vn</a></p>
-                                    <c:if test="${sessionScope.LOGIN_MEMBER == null}">
-                                        <p class="text-center" >${requestScope.ERRORMESSAGE}</p>
-                                    </c:if>
 
                                 </div>
                             </form>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <c:if test="${requestScope.ERROR_LOGGIN_MESSAGE != null}">
+            <div class="toast-container" aria-atomic="true" style="  position: absolute; min-height: 5px;">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" data-delay="3500"
+                     style="position: fixed; bottom: 10px; right: 15px;">
+                    <div class="toast-header">
+                        <img src="assets/img/logoteam/logoteam.png" width="6%" class="rounded me-2" alt="">
+                        <strong style="color: #e88123" class="mr-auto">Notification</strong>
+                        <small> &nbsp &nbsp Now</small>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">&nbsp &nbsp &nbsp &times;</span>
+                        </button>
+                    </div>
+                    <div class="toast-body">
+                        <p>sessionScope.LOGIN_MEMBER.fullName</p>
+                        <p> Please Choice Type Item AND Location</p>
+                    </div>
+                </div>
+            </div>
+        </c:if>
     </body>
+    <script >$('#liveToast').toast('dispose');</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+    crossorigin="anonymous"></script>
 
+    <!--    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>-->
 </html>

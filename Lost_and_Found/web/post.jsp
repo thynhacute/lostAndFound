@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -44,12 +44,15 @@
         <link rel="stylesheet" href="assets/css/main.css">
         <!-- responsive -->
         <link rel="stylesheet" href="assets/css/responsive.css">
-
         <link rel="stylesheet" href="post/css/style.css">
         <title>Post</title>
 
     </head>
     <body>
+
+        <c:if test="${sessionScope.LOGIN_MEMBER.roleID == 1}">
+            <c:redirect url="login.jsp"/>           
+        </c:if>  
         <%@include file="Components/navbarComponent.jsp" %>
         <!-- breadcrumb-section -->
         <div class="breadcrumb-section breadcrumb-bg">
@@ -100,7 +103,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <%@include file="Components/footerComponents.jsp" %>
     </body>

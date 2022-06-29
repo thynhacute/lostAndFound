@@ -51,6 +51,9 @@
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <body class="sb-nav-fixed">
+        <c:if test="${sessionScope.LOGIN_MEMBER.roleID != 1}">
+            <c:redirect url="login.jsp"/>           
+        </c:if> 
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a href="admin.jsp">

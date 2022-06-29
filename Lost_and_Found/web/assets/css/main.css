@@ -152,7 +152,7 @@ p {
     letter-spacing: 0.1px;
     line-height: 1.8;
     color: #051922;
-    margin: 0 0 1.25rem 0;
+/*    margin: 0 0 1.25rem 0;*/
 }
 
 p:last-child {
@@ -537,9 +537,11 @@ ul.navbar-nav li.nav-item a.nav-link, ul.navbar-nav li.nav-item.active a.nav-lin
 }
 
 ul.navbar-nav li.nav-item a.nav-link, ul.navbar-nav li.nav-item.active a.nav-link {
-    color: #fff;
+    color: #F28125;
     font-weight: 700;
+    font-size: 50px;
     margin-right: 14px;
+    font-family: sans-serif;
 }
 
 a.navbar-brand img {
@@ -2461,7 +2463,7 @@ a.cart-btn i {
 }
 
 p.single-product-pricing span {
-    font-size: 18px;
+    font-size: 19px;
     display: block;
     opacity: 0.8;
     margin-bottom: 10px;
@@ -2475,7 +2477,7 @@ p.single-product-pricing span {
 }
 
 .single-product-content p.single-product-pricing {
-    font-size: 32px;
+    font-size: 22px;
     font-weight: 700;
     margin-bottom: 10px;
     color: #051922;
@@ -2790,7 +2792,7 @@ table.order-details tbody td {
     height: 3.2rem;
 }
 label{
-/*    color: #ea7f23;*/
+    /*    color: #ea7f23;*/
     font-size: 1.3rem;
 }
 .btn-search{
@@ -2853,6 +2855,16 @@ label{
 
 .modal__content h3 {
     text-align: center;
+}
+
+
+input {
+    border: none;
+    width: 90%;
+}
+
+input:focus{
+    outline: none;
 }
 
 .fs-12 {
@@ -2970,4 +2982,12 @@ label{
     cursor: pointer;
     color: black;
 
+}
+
+.style-button{
+    border-radius: 50px;
+    border: 2px solid #E0731A;
+    color: #fd7e14;
+    font-size: 25px;
+    margin-top: 2rem;
 }

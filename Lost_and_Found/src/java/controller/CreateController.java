@@ -38,6 +38,7 @@ public class CreateController extends HttpServlet {
         }
         return null;
     }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -52,7 +53,10 @@ public class CreateController extends HttpServlet {
         int articleTypeID = Integer.parseInt(request.getParameter("articleTypeID"));
         int itemID = Integer.parseInt(request.getParameter("Items"));
         int locationID = Integer.parseInt(request.getParameter("Locations"));
-
+        if (itemID == 0 || locationID == 0) {
+            request.setAttribute("ERROR_MESSAGE", "");
+            url = ERROR;
+        }
         //xử lí upload
         PrintWriter out = response.getWriter();
         String applicationPath = request.getServletContext().getRealPath("").replace("build\\", ""); //set cái đường dẫn 
@@ -67,7 +71,7 @@ public class CreateController extends HttpServlet {
         String fileName = getFileName(fileUpload); //thực hiện ghi zô folder lưu zô db thì lưu cái fileName
         try {
             if (fileName.equals("")) {
-                fileName = "273446696_366979748282108_1704171107086216918_n.jpg";
+                fileName = "default.jpg";
             } else {
                 String save_path = basePath + fileName;
                 if ((fileName.endsWith(".png") || fileName.endsWith(".jpg"))) {
@@ -89,6 +93,7 @@ public class CreateController extends HttpServlet {
             boolean checkCreate = dao.createArticle(article);
             if (checkCreate) {
                 url = SUCCESS;
+                request.setAttribute("SUCCESS_CREATE_MESSAGE", article);
             }
 
         } catch (Exception e) {
