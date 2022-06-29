@@ -16,28 +16,28 @@ import java.util.List;
 public class ArticleDAO {
 
     private static final String GET_LIST_ARTICLE = "SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName FROM Article A , Member M, ArticleType ART , ItemType I, Location L \n"
-            + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID";
+            + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID AND A.ArticleStatus = 1";
     private static final String GET_LIST_LOST_ARTICLE = "SELECT TOP 3 A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName  FROM Article A , Member M, ArticleType ART , ItemType I, Location L \n"
-            + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID  AND A.ArticleTypeID = '1'\n"
+            + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID  AND A.ArticleStatus = 1 AND A.ArticleTypeID = '1'\n"
             + "ORDER BY A.PostTime DESC";
     private static final String GET_LIST_PICKED_ARTICLE = "SELECT TOP 3 A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName  FROM Article A , Member M, ArticleType ART , ItemType I, Location L \n"
-            + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID  AND A.ArticleTypeID = '2'\n"
+            + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID  AND A.ArticleTypeID = '2'  AND A.ArticleStatus = 1\n"
             + "ORDER BY A.PostTime DESC";
     private static final String GET_LIST_ARTICLE_BY_ARTYPE_ITEMTYPE = "SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName \n"
             + "FROM Article A , Member M, ArticleType ART , ItemType I, Location L \n"
-            + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID\n"
+            + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID AND A.ArticleStatus = 1 \n"
             + "AND ART.ArticleTypeID = (SELECT ArticleTypeID FROM ArticleType WHERE ArticleTypeName = ?) AND I.ItemID = (SELECT ItemID FROM ItemType WHERE ItemName = ?) ";
     private static final String GET_LIST_ARTICLE_BY_ARTYPE_LOCATION = "SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName \n"
             + "FROM Article A , Member M, ArticleType ART , ItemType I, Location L \n"
-            + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID\n"
+            + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID AND A.ArticleStatus = 1\n"
             + "AND ART.ArticleTypeID = (SELECT ArticleTypeID FROM ArticleType WHERE ArticleTypeName = ?) AND L.locationID = (SELECT LocationID FROM Location WHERE LocationName = ?)";
     private static final String GET_LIST_ARTICLE_BY_ITEMTYPE_LOCATION = "SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName \n"
             + "FROM Article A , Member M, ArticleType ART , ItemType I, Location L \n"
-            + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID\n"
+            + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID AND A.ArticleStatus = 1\n"
             + "AND I.ItemID = (SELECT ItemID FROM ItemType WHERE ItemName = ?) AND L.LocationID = (SELECT LocationID FROM Location WHERE LocationName = ?)";
     private static final String GET_LIST_ARTICLE_BY_ARTYPE_ITEMTYPE_LOCATION = "SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName \n"
             + "FROM Article A , Member M, ArticleType ART , ItemType I, Location L \n"
-            + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID\n"
+            + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID AND A.ArticleStatus = 1\n"
             + "AND ART.ArticleTypeID = (SELECT ArticleTypeID FROM ArticleType WHERE ArticleTypeName = ?) "
             + "AND I.ItemID = (SELECT ItemID FROM ItemType WHERE ItemName = ?) AND L.LocationID = (SELECT LocationID FROM Location WHERE LocationName = ?)";
     private static final String GET_ARTICLE_DETAIL = "SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName FROM Article A , Member M, ArticleType ART , ItemType I, Location L \n"
@@ -344,7 +344,7 @@ public class ArticleDAO {
                 String sql = "SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, \n"
                         + "A.MemberID, A.ArticleTypeID, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, \n"
                         + "I.ItemName, L.LocationName FROM Article A , Member M, ArticleType ART , ItemType I, Location L\n"
-                        + "            WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND\n"
+                        + "            WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.ArticleStatus = 1 AND\n"
                         + "			A.LocationID = L.LocationID AND A.ArticleTypeID = (SELECT ArticleTypeID FROM ArticleType WHERE ArticleTypeName = ?) ";
                 ptm = conn.prepareStatement(sql);
                 ptm.setString(1, searchByType);
@@ -395,7 +395,7 @@ public class ArticleDAO {
                 String sql = "SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, \n"
                         + "A.MemberID, A.ArticleTypeID, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, \n"
                         + "I.ItemName, L.LocationName FROM Article A , Member M, ArticleType ART , ItemType I, Location L\n"
-                        + "            WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND\n"
+                        + "            WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.ArticleStatus = 1 AND\n"
                         + "			A.LocationID = L.LocationID AND L.LocationID = (SELECT LocationID FROM Location WHERE LocationName = ?) ";
                 ptm = conn.prepareStatement(sql);
                 ptm.setString(1, searchByLocation);
@@ -446,7 +446,7 @@ public class ArticleDAO {
                 String sql = "SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, \n"
                         + "A.MemberID, A.ArticleTypeID, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, \n"
                         + "I.ItemName, L.LocationName FROM Article A , Member M, ArticleType ART , ItemType I, Location L\n"
-                        + "            WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND\n"
+                        + "            WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.ArticleStatus = 1 AND\n"
                         + "			A.LocationID = L.LocationID AND A.ItemID = (SELECT ItemID FROM ItemType WHERE ItemName = ?) ";
                 ptm = conn.prepareStatement(sql);
                 ptm.setString(1, searchByItem);

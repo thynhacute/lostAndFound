@@ -152,7 +152,7 @@ p {
     letter-spacing: 0.1px;
     line-height: 1.8;
     color: #051922;
-    margin: 0 0 1.25rem 0;
+/*    margin: 0 0 1.25rem 0;*/
 }
 
 p:last-child {
@@ -2463,7 +2463,7 @@ a.cart-btn i {
 }
 
 p.single-product-pricing span {
-    font-size: 18px;
+    font-size: 19px;
     display: block;
     opacity: 0.8;
     margin-bottom: 10px;
@@ -2477,7 +2477,7 @@ p.single-product-pricing span {
 }
 
 .single-product-content p.single-product-pricing {
-    font-size: 32px;
+    font-size: 22px;
     font-weight: 700;
     margin-bottom: 10px;
     color: #051922;

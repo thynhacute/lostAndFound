@@ -80,13 +80,11 @@
                         </c:choose>
                     </div>
                     <div class="col-md-7">
-                        <div class="single-product-content">
-                            <h2>${D.itemName}</h2>
+                        <div class="single-product-content">                            
+                            <p class="single-product-pricing"><h3>${D.itemName} &nbsp / &nbsp ${D.articleTypeName} </h3></p>
                             <p class="single-product-pricing">Location:<span>${D.locationName}</span></p>
                             <p class="single-product-pricing">Description: <span>${D.articleContent}.</span></p>
-                            <p class="col-12"><strong>Post Time: </strong>${D.postTime}</p>
-                            <p class="col-12"><strong>${D.articleTypeName}</strong></p>
-
+                            <p class="col-12" style="padding-left: 0; margin-bottom: 10px" ><strong>Post Time: </strong>${D.postTime}</p>
                             <c:choose >
                                 <c:when test="${sessionScope.LOGIN_MEMBER == null}">
                                     <a class="text-danger mb-5" href="login.jsp" >
@@ -253,7 +251,7 @@
                 </div>
             </div>
         </c:if>  
-        
+
         <c:if test="${requestScope.ERORR_MESSAGE_REPORT != null}">
             <div class="toast-container" aria-atomic="true" style="  position: relative; min-height: 20px;">
                 <div id="liveToast" class="toast" role="alert" aria-live="assertive" data-delay="4000"
@@ -273,7 +271,7 @@
                 </div>
             </div>
         </c:if> 
-          
+
         <%@include file="Components/footerComponents.jsp" %>
 
         <!-- jquery -->

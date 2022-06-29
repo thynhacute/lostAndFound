@@ -44,7 +44,6 @@
         <link rel="stylesheet" href="assets/css/main.css">
         <!-- responsive -->
         <link rel="stylesheet" href="assets/css/responsive.css">
-
         <link rel="stylesheet" href="post/css/style.css">
         <title>Post</title>
 
@@ -104,7 +103,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <%@include file="Components/footerComponents.jsp" %>
     </body>

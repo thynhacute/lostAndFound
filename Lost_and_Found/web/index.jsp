@@ -11,7 +11,26 @@
         <meta name="description"
               content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
+
+        <link
+            href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+            rel="stylesheet"
+            id="bootstrap-css"
+            />
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+            />
+        <link rel="stylesheet" href="css/bootstrap-social.css" />
+        <link rel="stylesheet" href="./post/image/style.css" />
         <!-- title -->
+
         <title>Page</title>
 
         <!-- favicon -->
@@ -35,7 +54,7 @@
         <link rel="stylesheet" href="assets/css/main.css">
         <!-- responsive -->
         <link rel="stylesheet" href="assets/css/responsive.css">
-
+        <link rel="stylesheet" href="post/css/style.css">
     </head>
     <c:if test="${sessionScope.LOGIN_MEMBER.roleID == 1}">
         <c:redirect url="login.jsp"/>           
@@ -71,52 +90,200 @@
         </div>
         <!-- end hero area -->
 
-        <!-- features list section -->
-        <div class="list-section pt-80 pb-80">
-            <div class="container">
-
+        <!-- post new articles -->
+        <!--        <div class="list-section pt-80 pb-80">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                <div class="list-box d-flex align-items-center">
+                                    <div class="list-icon">
+                                        <i class="fas fa-shipping-fast"></i>
+                                    </div>
+                                    <div class="content">
+                                        <h3>Flash & safe</h3>
+                                        <p>help you find items quickly</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                <div class="list-box d-flex align-items-center">
+                                    <div class="list-icon">
+                                        <i class="fas fa-phone-volume"></i>
+                                    </div>
+                                    <div class="content">
+                                        <h3>24/7 Support</h3>
+                                        <p>Get support all day</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="list-box d-flex justify-content-start align-items-center">
+                                    <div class="list-icon">
+                                        <i class="fas fa-sync"></i>
+                                    </div>
+                                    <div class="content">
+                                        <h3>Blog</h3>
+                                        <p>The secret to finding lost items</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>-->
+        <div class="product-section pt-80 pb-100" style="background: #e7e7e7fa ;">
+            <div class="container">       
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="section-title">
+                        <h3><span class="orange-text"> Post </span> New Articles</h3>
+                    </div>
+                </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                        <div class="list-box d-flex align-items-center">
-                            <div class="list-icon">
-                                <i class="fas fa-shipping-fast"></i>
-                            </div>
-                            <div class="content">
-                                <h3>Flash & safe</h3>
-                                <p>help you find items quickly</p>
-                            </div>
+                    <div class="button-card"  >
+                        <div>
+                            <c:choose >
+                                <c:when test="${sessionScope.LOGIN_MEMBER == null}">
+                                    <a href="login.jsp">
+                                        <div class="card-2">
+                                            <div class="imgBox">
+                                                <img src="./post/image/dothatlac.jpg" alt="" />
+                                            </div>
+                                            <div class="content">
+                                                <div class="details">
+                                                    <h2>Lost Item</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>                                        
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="TypePostController?articleTypeID=1">
+                                        <div class="card-2">
+                                            <div class="imgBox">
+                                                <img src="./post/image/dothatlac.jpg" alt="" />
+                                            </div>
+                                            <div class="content">
+                                                <div class="details">
+                                                    <h2>Lost Item</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </c:otherwise>                                  
+                            </c:choose>    
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-                        <div class="list-box d-flex align-items-center">
-                            <div class="list-icon">
-                                <i class="fas fa-phone-volume"></i>
-                            </div>
-                            <div class="content">
-                                <h3>24/7 Support</h3>
-                                <p>Get support all day</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="list-box d-flex justify-content-start align-items-center">
-                            <div class="list-icon">
-                                <i class="fas fa-sync"></i>
-                            </div>
-                            <div class="content">
-                                <h3>Blog</h3>
-                                <p>The secret to finding lost items</p>
-                            </div>
+                        <div>
+                            <c:choose >
+                                <c:when test="${sessionScope.LOGIN_MEMBER == null}">
+                                    <a href="login.jsp">
+                                        <div class="card-2">
+                                            <div class="imgBox">
+                                                <img src="./post/image/donhatduoc.jpg" alt="" />
+                                            </div>
+                                            <div class="content">
+                                                <div class="details">
+                                                    <h2>Picked Item</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>                                       
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="TypePostController?articleTypeID=2">
+                                        <div class="card-2">
+                                            <div class="imgBox">
+                                                <img src="./post/image/donhatduoc.jpg" alt="" />
+                                            </div>
+                                            <div class="content">
+                                                <div class="details">
+                                                    <h2>Picked Item</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </c:otherwise>                                  
+                            </c:choose> 
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-        <!-- end features list section -->
+        <!-- end post new articles -->
+
+        <!-- quick search new articles -->
+        <div class="product-section pt-80 pb-100" style="background: #f8f8f8fa;">
+            <div class="container">       
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="section-title">
+                        <h3><span class="orange-text"> Quick  </span> Search</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="button-card " style="margin-left: 0;" >
+                        <div ">                                                      
+                            <a href="HomeController?searchByItem=Ví/Bóp">
+                                <div class="card-2" style=" width: 156px;">
+                                    <div class="imgBox">
+                                        <img src="./post/image/vi_bop.jpg" alt="" />
+                                    </div>
+                                    <div class="content">
+                                        <div class="details">
+                                            <h2>Ví/Bóp</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>                                                                                         
+                        </div>
+                        <div>                             
+                            <a href="HomeController?searchByItem=Giấy tờ">
+                                <div class="card-2" style=" width: 156px;">
+                                    <div class="imgBox">
+                                        <img src="./post/image/giay_to.jpg" alt="" />
+                                    </div>
+                                    <div class="content">
+                                        <div class="details">
+                                            <h2>Giấy Tờ</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a> 
+                        </div>
+                        <div >
+                            <a href="HomeController?searchByItem=CCCD/CMND">
+                                <div class="card-2" style=" width: 156px;">
+                                    <div class="imgBox">
+                                        <img src="./post/image/CCCD.jpg" alt="" />
+                                    </div>
+                                    <div class="content">
+                                        <div class="details">
+                                            <h2>CCCD/CMND</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div >
+                            <a href="HomeController?searchByItem=Giấy phép lái xe">
+                                <div class="card-2" style=" width: 156px;">
+                                    <div class="imgBox">
+                                        <img src="./post/image/giay_lai_xe.jpg" alt="" />
+                                    </div>
+                                    <div class="content">
+                                        <div class="details">
+                                            <h5>Giấy phép lái xe</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end quick search new articles -->
 
         <!-- product Lost section -->
-        <div class="product-section mt-150 mb-150">
+        <div class="product-section pt-80 pb-80">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2 text-center">
@@ -157,7 +324,7 @@
         <!-- end product 1 section -->
 
         <!-- product picked up section -->
-        <div class="product-section mt-150 mb-150">
+        <div class="product-section pt-80 pb-80">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2 text-center">
@@ -197,82 +364,6 @@
             <!-- end product 2 section -->
 
             <!-- latest news -->
-            <div class="latest-news pt-150 pb-150">
-                <div class="container">
-
-                    <div class="row">
-                        <div class="col-lg-8 offset-lg-2 text-center">
-                            <div class="section-title">
-                                <h3><span class="orange-text">Our</span> Blog</h3>
-                                <p>Guide to finding lost items.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-latest-news">
-                                <a href="blog-detail.jsp">
-                                    <div class="latest-news-bg news-bg-1"></div>
-                                </a>
-                                <div class="news-text-box">
-                                    <h3><a href="blog-detail.jsp">You will vainly look for fruit on it in autumn.</a></h3>
-                                    <p class="blog-meta">
-                                        <span class="author"><i class="fas fa-user"></i> Admin</span>
-                                        <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                                    </p>
-                                    <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi.
-                                        Praesent vitae mattis nunc, egestas viverra eros.</p>
-                                    <a href="blog-detail.jsp" class="read-more-btn">read more <i
-                                            class="fas fa-angle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-latest-news">
-                                <a href="blog-detail.jsp">
-                                    <div class="latest-news-bg news-bg-2"></div>
-                                </a>
-                                <div class="news-text-box">
-                                    <h3><a href="blog-detail.jsp">A man's worth has its season, like tomato.</a></h3>
-                                    <p class="blog-meta">
-                                        <span class="author"><i class="fas fa-user"></i> Admin</span>
-                                        <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                                    </p>
-                                    <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi.
-                                        Praesent vitae mattis nunc, egestas viverra eros.</p>
-                                    <a href="blog-detail.jsp" class="read-more-btn">read more <i
-                                            class="fas fa-angle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
-                            <div class="single-latest-news">
-                                <a href="blog-detail.jsp">
-                                    <div class="latest-news-bg news-bg-3"></div>
-                                </a>
-                                <div class="news-text-box">
-                                    <h3><a href="blog-detail.jsp">Good thoughts bear good fresh juicy fruit.</a></h3>
-                                    <p class="blog-meta">
-                                        <span class="author"><i class="fas fa-user"></i> Admin</span>
-                                        <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                                    </p>
-                                    <p class="excerpt">Vivamus lacus enim, pulvinar vel nulla sed, scelerisque rhoncus nisi.
-                                        Praesent vitae mattis nunc, egestas viverra eros.</p>
-                                    <a href="blog-detail.jsp" class="read-more-btn">read more <i
-                                            class="fas fa-angle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <a href="blog.jsp" class="boxed-btn">More News</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <c:if test="${requestScope.SUCCESS_MESSAGE != null}">
                 <div class="toast-container" aria-atomic="true" style="  position: absolute; min-height: 5px;">
                     <div id="liveToast" class="toast" role="alert" aria-live="assertive" data-delay="4000"
