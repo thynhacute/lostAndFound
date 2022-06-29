@@ -38,6 +38,8 @@ public class ReportController extends HttpServlet {
         int articleMemberID = Integer.parseInt(request.getParameter("articleMemberID"));
         String reportContent = request.getParameter("reportContent");
         String email = request.getParameter("email");
+        String fullName = request.getParameter("fullName");
+        String articleContent = request.getParameter("articleContent");
 
         try {
             if (memberID != articleMemberID) {
@@ -47,7 +49,7 @@ public class ReportController extends HttpServlet {
                 if (checkCreate) {
                     url = SUCCESS;
                     request.setAttribute("SUCCESS_MESSAGE_REPORT", dao);
-                    JavaMailUtil.sendMail(email);
+                    JavaMailUtil.sendMail(email, reportContent,fullName,articleContent);
                 }
             } else {
                 url = ERROR;
