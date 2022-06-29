@@ -49,22 +49,16 @@
                                     <li><a data-toggle="modal" data-target="#exampleModal4">4th floor</a></li>
                                 </ul>
                             </li>
-                            <li><a href="HomeController">Find Items</a>
-<!--                                <ul class="sub-menu">
-                                    <li><a href="HomeController">Home</a></li>
-                                    <c:if test="${sessionScope.LOGIN_MEMBER == null }" >
-                                    <li><a href="login.jsp">Post New</a></li>
-                                    </c:if>
-                                    <c:if test="${sessionScope.LOGIN_MEMBER != null }" >
-                                    <li><a href="post.jsp">Post New</a></li>
-                                    </c:if>
-                                </ul>-->
-                            </li>
-
+                            <li><a href="HomeController">Find Items</a></li>
+                                <c:if test="${sessionScope.LOGIN_MEMBER == null }" >
+                                <li><a href="login.jsp">Post Article</a></li>
+                                </c:if>
+                                <c:if test="${sessionScope.LOGIN_MEMBER != null }" >
+                                <li><a href="post.jsp">Post Article</a></li>
+                                </c:if>
                             <li>
-                                
                                 <div class="header-icons">                                   
-                                        <c:if test="${sessionScope.LOGIN_MEMBER == null }" >
+                                    <c:if test="${sessionScope.LOGIN_MEMBER == null }" >
                                         <a  href="login.jsp"> Login</a>  
                                     </c:if>
                                     <c:if test="${sessionScope.LOGIN_MEMBER != null }">
