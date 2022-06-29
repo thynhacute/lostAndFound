@@ -75,10 +75,10 @@
                                     <a href="HomeController" class="boxed-btn">Find Items</a>
                                     <c:choose >
                                         <c:when test="${sessionScope.LOGIN_MEMBER == null}">
-                                            <a href="login.jsp" class="bordered-btn">Post News</a>                                         
+                                            <a href="login.jsp" class="bordered-btn">Post Articles</a>                                         
                                         </c:when>
                                         <c:otherwise>
-                                            <a href="post.jsp" class="bordered-btn">Post News</a>
+                                            <a href="post.jsp" class="bordered-btn">Post Articles</a>
                                         </c:otherwise>                                  
                                     </c:choose>                   
                                 </div>

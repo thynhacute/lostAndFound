@@ -142,7 +142,7 @@
                         <button style="width: 700px" type="submit" class="btn btn-success">Submit</button>                
                     </div>
                     <div class="col-lg-8 Detail-A " style="margin-left: 239px;" >              
-                        <a style="width: 700px" href="post.jsp" class="btn btn-outline-danger">Cancle</a>                              
+                        <a style="width: 700px" href="post.jsp" class="btn btn-outline-danger">Cancel</a>                              
                     </div>
                 </form>  
             </div>
