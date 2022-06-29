@@ -16,7 +16,7 @@ import member.MemberDTO;
 public class LoginGoogleServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static final String INDEX_PAGE = "PageController";
+    private static final String INDEX_PAGE = "HomeController";
     private static final String ADMIN_PAGE = "SearchAdminController";
     private static final String LOGIN = "login.jsp";
     private static final String AD = "AD";

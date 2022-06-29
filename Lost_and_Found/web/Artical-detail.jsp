@@ -133,6 +133,7 @@
                                 <textarea name="reportContent" class="w-100 p-2" rows="3" placeholder="Typing..."></textarea>
                             </div>
                             <input type="hidden" name="articleID" value="${D.articleID}" />
+                            <input type="hidden" name="email" value="${D.email}" />
                             <input type="hidden" name="articleMemberID" value="${D.memberID}" />
                             <input type="hidden" name="memberID" value="${sessionScope.LOGIN_MEMBER.id}" />
 

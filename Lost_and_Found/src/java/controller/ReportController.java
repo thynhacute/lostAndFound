@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javatutorials.javamail.JavaMailUtil;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,8 +37,7 @@ public class ReportController extends HttpServlet {
         int memberID = Integer.parseInt(request.getParameter("memberID"));
         int articleMemberID = Integer.parseInt(request.getParameter("articleMemberID"));
         String reportContent = request.getParameter("reportContent");
-//        HttpSession session = request.getSession();
-//        MemberDTO member = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
+        String email = request.getParameter("email");
 
         try {
             if (memberID != articleMemberID) {
@@ -47,6 +47,7 @@ public class ReportController extends HttpServlet {
                 if (checkCreate) {
                     url = SUCCESS;
                     request.setAttribute("SUCCESS_MESSAGE_REPORT", dao);
+                    JavaMailUtil.sendMail(email);
                 }
             } else {
                 url = ERROR;
