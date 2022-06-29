@@ -6,43 +6,35 @@
 package controller;
 
 import article.ArticleDAO;
-import article.ArticleDTO;
-import comment.CommentDAO;
-import comment.CommentDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Owner
+ * @author LEGION'
  */
-public class DetailArticleController extends HttpServlet {
+@WebServlet(name = "LikeArticleController", urlPatterns = {"/LikeArticleController"})
+public class LikeArticleController extends HttpServlet {
 
-    private static final String ERROR = "Artical-detail.jsp";
-    private static final String SUCCESS = "Artical-detail.jsp";
-
+    private static final String ERROR = "DetailArticleController";
+    private static final String SUCCESS = "DetailArticleController";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        String articleID1 = request.getParameter("articleID");
-
         try {
+            int articleID = Integer.parseInt(request.getParameter("articleID"));
             ArticleDAO dao = new ArticleDAO();
-            ArticleDTO articleDetail = dao.getArticleByID(articleID1);
-            request.setAttribute("ARTICLE_DETAIL", articleDetail);
-
-            CommentDAO comment = new CommentDAO();
-            List<CommentDTO> listComments = comment.getListCommentsByArticleID(articleID1);
-            request.setAttribute("LIST_COMMENTS", listComments);
+            boolean check = dao.likeArticle(articleID);
+            if (check){
+                 url = SUCCESS;
+            }
         } catch (Exception e) {
+            log("Error at home" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

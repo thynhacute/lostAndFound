@@ -152,11 +152,27 @@
                         <div class="d-flex flex-column comment-section">
                             <div class="bg-white">
                                 <div class="d-flex flex-row fs-12">
-                                    <button class="like_btn" style="outline: none;">
-                                        <span id="icon"><i class="far fa-thumbs-up icon-2"></i></span>
-                                        <span id="count">0 </span>
-                                        <span id="like">Like </span>
-                                    </button>
+                                    <c:choose >
+                                        <c:when test="${sessionScope.LOGIN_MEMBER == null}">
+                                            <button type="submit" name="action" value="Like" class="like_btn" style="outline: none;">
+                                                <a class="text-danger mb-5" href="login.jsp" >
+                                                <span id="icon"><i class="far fa-thumbs-up icon-2"></i></span>
+                                                <span id="count">${D.totalLike}</span>
+                                                <span id="like">Like</span>
+                                                </a>
+                                            </button>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <button type="submit" name="action" value="Like" class="like_btn" style="outline: none;">
+                                                <a href="LikeArticleController?articleID=${D.articleID}">
+                                                    <span id="icon"><i class="far fa-thumbs-up icon-2"></i></span>
+                                                    <span id="count">${D.totalLike}</span>
+                                                    <span id="like">Like
+                                                    </span>
+                                                </a>
+                                            </button>
+                                        </c:otherwise>
+                                    </c:choose>
                                     <a style="text-decoration: none;" class="like text-dark p-2 cursor"><i  class="fas fa-comment-dots icon-2"></i><span
                                             class="ml-1">Comment</span></a>
                                     <div class="like p-2 cursor"><i class="fa fa-share icon-2"></i><span
