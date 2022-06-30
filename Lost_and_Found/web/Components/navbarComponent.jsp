@@ -14,6 +14,7 @@
         <div class="circle"></div>
     </div>
 </div>
+
 <!--PreLoader Ends-->
 <!-- header -->
 <div class="top-header-area" id="sticker">
@@ -56,12 +57,38 @@
                                 <c:if test="${sessionScope.LOGIN_MEMBER != null }" >
                                 <li><a href="post.jsp">Post Article</a></li>
                                 </c:if>
-                            <li>
-                                <div class="header-icons">  
-                                    <c:if test="${sessionScope.LOGIN_MEMBER == null }" >
-                                        <a  href="login.jsp"> Login</a>  
-                                    </c:if>
-                                    <c:if test="${sessionScope.LOGIN_MEMBER != null }">
+                                <c:if test="${sessionScope.LOGIN_MEMBER != null }" >
+                                <li class="dropdown" style="transform: translateX(180px);
+                                    font-size: 20px;
+                                    color: white;"> 
+
+<!--                                 
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li> <a href="#"></a>${L.fullName}</li>
+                                        <li> <a href="login.jsp">Logout</a></li>
+                                        <li><a href="profileUser.jsp">Profile</a></li>
+                                    </ul>-->
+                                  
+                                        <button onclick="hamDropdown()" class="nut_dropdown"> 
+                                            <i class="fas fa-bell"></i>
+                                                <span class="caret"></span></button>
+                                        <ul class="noidung_dropdown">
+                                            <div>HTML</div>
+                                        </ul>
+                                  
+
+                                </li>
+                            </c:if>
+                            <c:if test="${sessionScope.LOGIN_MEMBER == null }" >
+                                <li>
+
+                                    <a  href="login.jsp"> Login</a>  
+
+                                </li>
+                            </c:if>
+                            <c:if test="${sessionScope.LOGIN_MEMBER != null }" >
+                                <li style="transform: translateY(4px);">
+                                    <c:if test="${sessionScope.LOGIN_MEMBER != null }"> 
                                         <img src="${L.picture}"
                                              class="rounded-circle" style="width: 40px;" alt="Avatar" />
                                         <ul class="sub-menu">
@@ -69,9 +96,11 @@
                                             <li> <a href="login.jsp">Logout</a></li>
                                             <li><a href="profileUser.jsp">Profile</a></li>
                                         </ul>
-                                    </c:if>                               
-                                </div>
-                            </li>
+                                    </c:if>
+                                </li>
+                            </c:if>
+
+
                         </ul>
                     </nav>
                     <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
@@ -86,6 +115,7 @@
 <!-- end nav -->
 
 <!--Map begin-->
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -159,6 +189,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">

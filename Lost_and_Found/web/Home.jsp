@@ -35,7 +35,6 @@
         <link rel="stylesheet" href="assets/css/main.css">
         <!-- responsive -->
         <link rel="stylesheet" href="assets/css/responsive.css">
-
     </head>
     <body>
         <c:if test="${sessionScope.LOGIN_MEMBER.roleID == 1}">
@@ -57,6 +56,14 @@
         </div>
         <!-- end breadcrumb section -->
         <!-- products -->
+        <div class="dropdown">
+  <button onclick="hamDropdown()" class="nut_dropdown">Dropdown</button>
+  <div class="noidung_dropdown">
+    <a href="#">Đường Dẫn 1</a>
+    <a href="#">Đường Dẫn 2</a>
+    <a href="#">Đường Dẫn 3</a>
+  </div>
+</div>
         <div class="product-section mt-150 mb-150">
             <div class="container">               
                 <div class="row product-lists">
@@ -97,7 +104,6 @@
                                     </select>
                                     <!--SEARCH BY TYPE END HERE-->
                                     <br>
-
                                     <!--SEARCH BY ITEMS START HERE-->
                                     <label for="">Type Items</label>
                                     <c:set var="searchByItem" value="${param.searchByItem}"/>
@@ -124,8 +130,6 @@
                                         </c:forEach>
                                     </select>
                                     <!--SEARCH BY ITEMS START HERE-->
-
-
                                     <br>
 
                                     <!--SEARCH BY LOCATION START HERE-->
@@ -229,7 +233,6 @@
         <!-- end logo carousel -->
 
         <%@include file="Components/footerComponents.jsp" %>
-
         <!-- jquery -->
         <script src="assets/js/jquery-1.11.3.min.js"></script>
         <!-- bootstrap -->
