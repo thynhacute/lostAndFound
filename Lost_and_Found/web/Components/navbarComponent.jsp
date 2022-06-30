@@ -51,10 +51,10 @@
                             </li>
                             <li><a href="HomeController">Find Items</a></li>
                                 <c:if test="${sessionScope.LOGIN_MEMBER == null }" >
-                                <li><a href="login.jsp">Post Article</a></li>
+                                <li><a href="login.jsp">Post Articles</a></li>
                                 </c:if>
                                 <c:if test="${sessionScope.LOGIN_MEMBER != null }" >
-                                <li><a href="post.jsp">Post Article</a></li>
+                                <li><a href="post.jsp">Post Articles</a></li>
                                 </c:if>
                             <li>
                                 <div class="header-icons">                                   
