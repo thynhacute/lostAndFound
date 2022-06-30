@@ -61,7 +61,7 @@ public class NotificationDAO {
                         + "INNER JOIN Member M ON M.MemberID = N.SensorID WHERE N.MemberID = ?";
                 ptm = conn.prepareStatement(sql);
                 rs = ptm.executeQuery();
-                                while (rs.next()) {
+                while (rs.next()) {
                     int notificationID = rs.getInt("notificationID");
                     String content = rs.getString("content");
                     int memberID = rs.getInt("memberID");
