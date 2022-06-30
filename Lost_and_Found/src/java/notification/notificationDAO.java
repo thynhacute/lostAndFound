@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import member.MemberDTO;
 
 /**
  *
@@ -48,7 +49,7 @@ public class NotificationDAO {
         return check;
     }
 
-    public List<NotificationDTO> getListNotificationComment() throws SQLException {
+    public List<NotificationDTO> getListNotificationComment(int id) throws SQLException {
         List<NotificationDTO> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -60,6 +61,7 @@ public class NotificationDAO {
                         + "FROM Notification N\n"
                         + "INNER JOIN Member M ON M.MemberID = N.SensorID WHERE N.MemberID = ?";
                 ptm = conn.prepareStatement(sql);
+                ptm.setInt(1, id);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     int notificationID = rs.getInt("notificationID");
