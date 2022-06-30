@@ -73,7 +73,11 @@
                                             <i class="fas fa-bell"></i>
                                                 <span class="caret"></span></button>
                                         <ul class="noidung_dropdown">
-                                            <div>HTML</div>
+                                            <div>
+                                                <c:forEach items="${sessionScope.LIST_NOTIFICATION_COMMENT}" var="LNC">
+                                                    
+                                                </c:forEach>
+                                            </div>
                                         </ul>
                                   
 
