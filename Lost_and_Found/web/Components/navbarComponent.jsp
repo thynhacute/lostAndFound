@@ -32,7 +32,7 @@
                     <c:set value="${sessionScope.LOGIN_MEMBER}" var="L"/>
                     <nav class="main-menu">
                         <ul>
-                            <li class="current-list-item"><a href="PageController">Page</a>
+                            <li class="current-list-item"><a href="PageController">Page</a>                                
                             </li>
                             <li><a href="blog.jsp">Blog</a>
                                 <ul class="sub-menu">
