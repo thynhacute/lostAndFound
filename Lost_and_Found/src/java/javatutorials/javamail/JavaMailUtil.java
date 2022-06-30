@@ -25,9 +25,11 @@ public class JavaMailUtil {
             message.setSubject(" Warning Email !!!  ");
             String htmlCode = "<h1 style=\"color: orange;\"> Lost and Found  </h1> \n "
                     + "<h2>Hi, " + fullName + " </h2>\n"
-                    + "<h4> We received one report request from another person and  reporting about : "+ "<h3>" + articleContent + "</h3>" +" </h4> \n"
+                    + "<h4> We received one report request from another person and  reporting about : " + "<h3>" + articleContent + "</h3>" + " </h4> \n"
                     + "<h4> This is the content of your post report : " + "<h3>" + reportContent + "</h3>" + "</h4> \n"
-                    + "<h4> please check your article again and any questions or complaints regarding for account deactivation, please reply to this email for consideration ! </h4>";
+                    + "<h4>  If your post gets more than 5 reports then we have to delete your post </h4> \n"
+                    + "<h4> please check your article again and any questions or complaints regarding for account deactivation, please reply to this email for consideration ! </h4>"             
+                    + "<h4>  synqse151029@fpt.edu.vn </h4> \n";;
             message.setContent(htmlCode, "text/html");
             return message;
         } catch (Exception ex) {
@@ -53,15 +55,14 @@ public class JavaMailUtil {
             }
         });
 
-        Message message = prepareMessage(session, myAccountEmail, recepient, reportContent ,fullName ,articleContent);
+        Message message = prepareMessage(session, myAccountEmail, recepient, reportContent, fullName, articleContent);
         Transport.send(message);
         System.out.println("Message sent Successfuly ");
 
     }
 //------------------------------------------------------ end warning mail
-    
-    
-        private static Message prepareMessageBan(Session session, String myAccountEmail, String recepient, String fullName) {
+
+    private static Message prepareMessageBan(Session session, String myAccountEmail, String recepient, String fullName) {
 
         try {
             Message message = new MimeMessage(session);
@@ -72,12 +73,12 @@ public class JavaMailUtil {
                     + "<h2>Hi, " + fullName + " </h2>\n"
                     + "<h3> we received many complaints from other users after review we have decided to temporarily lock your account </h3> \n"
                     + "<h4> the following are possible reasons : </h4> \n"
-                    + "<h5> - Using nudity or pornography. </h5> \n" 
-                    + "<h5> - Using language that incites hatred or intimidation. Or attack a specific person or organization directly. </h5> \n" 
-                    + "<h5> - Using unsafe content or harm yourself.  </h5> \n" 
-                    + "<h5> - Using fake or impersonated accounts.  </h5> \n" 
-                    + "<h5> - Stealing trademarks, copyrights, intellectual property rights.  </h5> \n" 
-                    + "<h5> - Spam. </h5> \n" 
+                    + "<h5> - Using nudity or pornography. </h5> \n"
+                    + "<h5> - Using language that incites hatred or intimidation. Or attack a specific person or organization directly. </h5> \n"
+                    + "<h5> - Using unsafe content or harm yourself.  </h5> \n"
+                    + "<h5> - Using fake or impersonated accounts.  </h5> \n"
+                    + "<h5> - Stealing trademarks, copyrights, intellectual property rights.  </h5> \n"
+                    + "<h5> - Spam. </h5> \n"
                     + "<h4>  Any questions or complaints regarding for account deactivation, please reply to this email for consideration ! </h4> \n"
                     + "<h4>  synqse151029@fpt.edu.vn </h4> \n";
             message.setContent(htmlCode, "text/html");
@@ -110,10 +111,9 @@ public class JavaMailUtil {
         System.out.println("Message sent Successfuly ");
 
     }
-    
+
 //    ---------------------------------- end send mail BAN of admin
-    
-     private static Message prepareMessageActive(Session session, String myAccountEmail, String recepient, String fullName) {
+    private static Message prepareMessageActive(Session session, String myAccountEmail, String recepient, String fullName) {
 
         try {
             Message message = new MimeMessage(session);
