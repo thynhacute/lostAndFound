@@ -171,7 +171,7 @@
                                                     <td>${member.profileInfo}</td>                                                        
                                                     <td>${member.roleID}</td>
                                                     <td>${member.totalReport}</td>
-                                                    <td><a href="DeleteMemberByAdminController?memberID=${member.id}" style="color: red;"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</a></td>
+                                                    <td><a href="DeleteMemberByAdminController?memberID=${member.id}&email=${member.email}&fullName=${member.fullName}" style="color: red;"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</a></td>
                                                 </tr>
                                                 </c:forEach>
                                             </tbody>

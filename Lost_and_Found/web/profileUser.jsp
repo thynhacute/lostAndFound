@@ -61,13 +61,13 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="UserLostController"><i class="fas fa-box"></i>&nbsp;&nbsp;Lost Articles</a>
+                                <a class="nav-link  " aria-current="page" href="UserLostController"><i class="fas fa-box"></i>&nbsp;&nbsp;Lost Articles</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="profileUser.jsp"><i class="fas fa-address-card"></i>&nbsp;&nbsp;Account Details</a>
+                                <a class="nav-link  " href="profileUser.jsp"><i class="fas fa-address-card"></i>&nbsp;&nbsp;Account Details</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="UserFoundController"><i class="fas fa-hand-holding"></i>&nbsp;&nbsp;Found Articles</a>
+                                <a class="nav-link  " href="UserFoundController"><i class="fas fa-hand-holding"></i>&nbsp;&nbsp;Found Articles</a>
                             </li>
                         </ul>
                     </div>

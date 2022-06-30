@@ -129,7 +129,7 @@
                                             <td>${member.phone}</td>                                                                                                             
                                             <td>${member.profileInfo}</td>                                                        
                                             <td>${member.roleID}</td>
-                                            <td><a href="ActiveMemberByAdminController?memberID=${member.id}" style="color: blue;"> <i class="fa-solid fa-unlock" aria-hidden="true"></i> Active</a></td>
+                                            <td><a href="ActiveMemberByAdminController?memberID=${member.id}&email=${member.email}&fullName=${member.fullName}" style="color: blue;"> <i class="fa-solid fa-unlock" aria-hidden="true"></i> Active</a></td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
