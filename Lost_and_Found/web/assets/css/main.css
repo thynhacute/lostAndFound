@@ -537,11 +537,15 @@ ul.navbar-nav li.nav-item a.nav-link, ul.navbar-nav li.nav-item.active a.nav-lin
 }
 
 ul.navbar-nav li.nav-item a.nav-link, ul.navbar-nav li.nav-item.active a.nav-link {
-    color: #F28125;
     font-weight: 700;
-    font-size: 50px;
-    margin-right: 14px;
+    font-size: 20px;
+    margin-right: 50px;
+    margin-left: 50px;
     font-family: sans-serif;
+}
+
+ul.navbar-nav li.nav-item a.nav-link:hover{
+    color: orange;
 }
 
 a.navbar-brand img {
@@ -2988,6 +2992,5 @@ input:focus{
     border-radius: 50px;
     border: 2px solid #E0731A;
     color: #fd7e14;
-    font-size: 25px;
     margin-top: 2rem;
 }
