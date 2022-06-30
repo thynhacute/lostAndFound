@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import member.MemberDAO;
+import member.MemberDTO;
 import notification.NotificationDAO;
 import notification.NotificationDTO;
 
@@ -29,11 +31,14 @@ public class PageController extends HttpServlet {
         String url = ERROR;
         try {
             HttpSession session = request.getSession();
+            MemberDTO memberLogin = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
+            MemberDAO memberDao = new MemberDAO();
+
             List<ArticleDTO> listLostArticles = new ArticleDAO().getLostArticles();
             request.setAttribute("LIST_LOST_ARTICLE", listLostArticles);
             List<ArticleDTO> listPickedArticles = new ArticleDAO().getPickedArticles();
             request.setAttribute("LIST_PICKED_ARTICLE", listPickedArticles);
-            List<NotificationDTO> listNotification = new NotificationDAO().getListNotificationComment();
+            List<NotificationDTO> listNotification = new NotificationDAO().getListNotificationComment(memberLogin.getId());
             session.setAttribute("LIST_NOTIFICATION_COMMENT", listNotification);
             url = SUCCESS;
         } catch (Exception e) {
