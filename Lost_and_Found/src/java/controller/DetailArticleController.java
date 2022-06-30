@@ -33,12 +33,10 @@ public class DetailArticleController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         String articleID1 = request.getParameter("articleID");
-
         try {
             ArticleDAO dao = new ArticleDAO();
             ArticleDTO articleDetail = dao.getArticleByID(articleID1);
             request.setAttribute("ARTICLE_DETAIL", articleDetail);
-
             CommentDAO comment = new CommentDAO();
             List<CommentDTO> listComments = comment.getListCommentsByArticleID(articleID1);
             request.setAttribute("LIST_COMMENTS", listComments);

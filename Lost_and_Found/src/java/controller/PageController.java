@@ -14,6 +14,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import notification.NotificationDAO;
+import notification.NotificationDTO;
 
 public class PageController extends HttpServlet {
 
@@ -25,10 +28,13 @@ public class PageController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+            HttpSession session = request.getSession();
             List<ArticleDTO> listLostArticles = new ArticleDAO().getLostArticles();
             request.setAttribute("LIST_LOST_ARTICLE", listLostArticles);
             List<ArticleDTO> listPickedArticles = new ArticleDAO().getPickedArticles();
             request.setAttribute("LIST_PICKED_ARTICLE", listPickedArticles);
+            List<NotificationDTO> listNotification = new NotificationDAO().getListNotificationComment();
+            session.setAttribute("LIST_NOTIFICATION_COMMENT", listNotification);
             url = SUCCESS;
         } catch (Exception e) {
             log("Error at PageController" + e.toString());

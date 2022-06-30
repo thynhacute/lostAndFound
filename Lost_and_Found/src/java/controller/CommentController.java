@@ -28,12 +28,10 @@ public class CommentController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");  // fornt Tiếng việt
         response.setCharacterEncoding("UTF-8"); //
-        String url = ERROR;
-        
+        String url = ERROR;        
         int articleID = Integer.parseInt(request.getParameter("articleID"));
         int memberID = Integer.parseInt(request.getParameter("memberID"));
         String commentContent = request.getParameter("commentContent");
-        
         try {
             CommentDAO dao = new CommentDAO();
             CommentDTO comment = new CommentDTO(0, articleID, memberID, commentContent, "","","");

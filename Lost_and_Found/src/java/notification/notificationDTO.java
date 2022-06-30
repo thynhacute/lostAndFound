@@ -1,16 +1,18 @@
 package notification;
 
-public class notificationDTO {
+public class NotificationDTO {
     private int notificationID;
     private String content;
-    private int MemberID;
-    private int SensorID;
-
-    public notificationDTO(int notificationID, String content, int MemberID, int SensorID) {
+    private int memberID;
+    private int sensorID;
+    private String fullName;
+    
+    public NotificationDTO(int notificationID, String content, int memberID, int sensorID, String fullName) {
         this.notificationID = notificationID;
         this.content = content;
-        this.MemberID = MemberID;
-        this.SensorID = SensorID;
+        this.memberID = memberID;
+        this.sensorID = sensorID;
+        this.fullName = fullName;
     }
 
     public int getNotificationID() {
@@ -30,19 +32,27 @@ public class notificationDTO {
     }
 
     public int getMemberID() {
-        return MemberID;
+        return memberID;
     }
 
-    public void setMemberID(int MemberID) {
-        this.MemberID = MemberID;
+    public void setMemberID(int memberID) {
+        this.memberID = memberID;
     }
 
     public int getSensorID() {
-        return SensorID;
+        return sensorID;
     }
 
-    public void setSensorID(int SensorID) {
-        this.SensorID = SensorID;
+    public void setSensorID(int sensorID) {
+        this.sensorID = sensorID;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
     
     
