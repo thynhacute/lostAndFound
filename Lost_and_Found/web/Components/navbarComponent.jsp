@@ -61,26 +61,21 @@
                                 <li class="dropdown" style="transform: translateX(180px);
                                     font-size: 20px;
                                     color: white;"> 
-
-                                    <!--                                 
-                                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                                            <li> <a href="#"></a>${L.fullName}</li>
-                                                                            <li> <a href="login.jsp">Logout</a></li>
-                                                                            <li><a href="profileUser.jsp">Profile</a></li>
-                                                                        </ul>-->
-
                                     <button onclick="hamDropdown()" class="nut_dropdown"> 
                                         <i class="fas fa-bell"></i>
                                         <span class="caret"></span></button>
                                     <ul class="noidung_dropdown">
                                         <div>
-                                                <c:forEach items="${sessionScope.LIST_NOTIFICATION_COMMENT}" var="LNC">
-                                                    <p>${LNC.fullName} <span>${LNC.content}</span></p>
-                                                </c:forEach>
+                                            <c:forEach items="${sessionScope.LIST_NOTIFICATION}" var="LNC">
+                                                <p>${LNC.fullName} <span>${LNC.content}</span></p>
+                                            </c:forEach>
                                         </div>
+<!--                                        <div>
+                                            <c:forEach items="${sessionScope.LIST_NOTIFICATION_ARTICLE_FIND}" var="LNAF">
+                                                <p>${LNAF.fullName} <span>${LNAF.content}</span></p>
+                                            </c:forEach>
+                                        </div>-->
                                     </ul>
-
-
                                 </li>
                             </c:if>
                             <c:if test="${sessionScope.LOGIN_MEMBER == null }" >

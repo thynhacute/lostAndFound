@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import static jdk.nashorn.internal.objects.NativeError.getFileName;
 import member.MemberDTO;
+import notification.NotificationDAO;
+import notification.NotificationDTO;
 
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024 * 10,
@@ -47,8 +50,8 @@ public class CreateController extends HttpServlet {
         String url = ERROR;
         HttpSession session = request.getSession();
         MemberDTO member = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
-        int memberID = member.getId();
 
+        int memberID = member.getId();
         String aricleContent = request.getParameter("articleContent");
         int articleTypeID = Integer.parseInt(request.getParameter("articleTypeID"));
         int itemID = Integer.parseInt(request.getParameter("Items"));
@@ -92,10 +95,40 @@ public class CreateController extends HttpServlet {
             ArticleDTO article = new ArticleDTO(0, aricleContent, fileName, "", locationID, memberID, articleTypeID, itemID, "", "", 0, "", "", "", "");
             boolean checkCreate = dao.createArticle(article);
             if (checkCreate) {
-                url = SUCCESS;
                 request.setAttribute("SUCCESS_CREATE_MESSAGE", article);
+                url = SUCCESS;
             }
-
+            if (articleTypeID == 1) {
+                List<ArticleDTO> listNotiArticlefind = new ArticleDAO().getArticlebyArticleTypeLocationItems(itemID, locationID);
+                for (ArticleDTO listArticle : listNotiArticlefind) {
+                    String fullName = listArticle.getFullName();
+                    int articleID = listArticle.getArticleID();
+                    int sensorID = listArticle.getMemberID();
+                    NotificationDAO notiDAO = new NotificationDAO();
+                    //sensor thằng có items mình cần
+                    // memberID là mình login zô
+                    NotificationDTO noti = new NotificationDTO(0, "might be in the middle of an item you lost", memberID, sensorID, fullName);
+                    boolean checkCreateNoti = notiDAO.NotificationArticle(noti);
+                    if (checkCreateNoti) {
+                        request.setAttribute("LIST_NOTI_ARTICLE_FIND", listNotiArticlefind);
+                        url = SUCCESS;
+                    }
+                }
+            } else {
+                List<ArticleDTO> listNotiArticleLost = new ArticleDAO().getArticlebyArticleTypeLocationItems2(itemID, locationID);
+                for (ArticleDTO listArticle : listNotiArticleLost) {
+                    String fullName = listArticle.getFullName();
+                    int articleID = listArticle.getArticleID();
+                    int sensorID = listArticle.getMemberID();
+                    NotificationDAO notiDAO = new NotificationDAO();
+                    NotificationDTO noti = new NotificationDTO(0, "can may be found the map that you are picked", memberID, sensorID, fullName);
+                    boolean checkCreateNoti = notiDAO.NotificationArticle(noti);
+                    if (checkCreateNoti) {
+                        request.setAttribute("LIST_NOTI_ARTICLE_Lost", listNotiArticleLost);
+                        url = SUCCESS;
+                    }
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
