@@ -12,7 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import like.LikeDAO;
+import member.MemberDTO;
 
 /**
  *
@@ -26,24 +28,28 @@ public class LikeArticleController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
         String url = ERROR;
         boolean liked = false;
-        boolean check1 = false;
+        boolean checkLiked = false;
+        boolean checkTotalLiked = false;
         try {
+            MemberDTO member = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
             int articleID = Integer.parseInt(request.getParameter("articleID"));
             ArticleDAO dao = new ArticleDAO();
-            boolean check = dao.likeArticle(articleID);
             LikeDAO dao1 = new LikeDAO();
-            liked = dao1.getStatusLikeArticle(articleID);
+            liked = dao1.getStatusLikeArticle(articleID, member.getId());
             if (liked) {
                 //Unlike if liked
-               check1 = dao1.setStatusUnlikeArticle(articleID);
+               checkTotalLiked = dao.unlikeArticle(articleID);
+               checkLiked = dao1.setStatusUnlikeArticle(articleID, member.getId());
             } else {
                 //else Like article
-                check1 = dao1.setStatusLikeArticle(articleID);
+                checkTotalLiked = dao.likeArticle(articleID);
+                checkLiked = dao1.setStatusLikeArticle(articleID, member.getId());
             }
-            if (check){
-                if(check1){
+            if (checkLiked && checkTotalLiked){
+                if(checkLiked){
                  url = SUCCESS;
                 }
             }

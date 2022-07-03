@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import like.LikeDAO;
+import member.MemberDTO;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -26,11 +28,13 @@ public class SetStatusUnlikeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
         String url = ERROR;
         try {
+            MemberDTO member = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
             int articleID = Integer.parseInt(request.getParameter("articleID"));
             LikeDAO dao = new LikeDAO();
-            boolean check = dao.setStatusUnlikeArticle(articleID);
+            boolean check = dao.setStatusUnlikeArticle(articleID, member.getId());
             if (check){
                  url = SUCCESS;
             }

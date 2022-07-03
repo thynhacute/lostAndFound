@@ -30,6 +30,7 @@ public class LikeDAO {
             if (conn != null) {
                 String sql = " SELECT ArticleID, MemberID, LikeStatus FROM Like WHERE ArticleID = ?";
                 ptm = conn.prepareStatement(sql);
+                ptm.setString(1, articleID1);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     int articleID = rs.getInt("ArticleID");
@@ -54,19 +55,23 @@ public class LikeDAO {
     }
     
     // return true if article is liked by memberID
-    public boolean getStatusLikeArticle(int articleID) throws SQLException {
-        boolean check = false;
+    public boolean getStatusLikeArticle(int articleID, int memberId) throws SQLException {
+        boolean liked = false;
         Connection conn = null;
         PreparedStatement ptm = null;
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "SELECT like "
-                        + "WHERE articleID=? AND memberID=? likeStatus = 1";
+                String sql = "SELECT [LikeID]" +
+                            "FROM [Like]" +
+                            "WHERE ArticleID = ? AND MemberID = ? AND LikeStatus = 1";
                 ptm = conn.prepareStatement(sql);
                 ptm.setInt(1, articleID);
+                ptm.setInt(2, memberId);
                 ResultSet rs = ptm.executeQuery();
-                check = rs.next() == false; //Check if result set is empty
+                if (rs.next() == true) { //Check if result set is not empty
+                    liked = true;
+                }
             }
         } catch (Exception e) {
         } finally {
@@ -78,21 +83,30 @@ public class LikeDAO {
             }
 
         }
-        return check;
+        return liked;
     }
     
-    public boolean setStatusLikeArticle(int articleID) throws SQLException {
+    public boolean setStatusLikeArticle(int articleID, int memberId) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "UPDATE like "
-                        + "SET likeStatus = 1"
-                        + "WHERE articleID=? AND memberID=?";
+                String sql = "BEGIN TRANSACTION\n" +
+                            "UPDATE [Like]\n" +
+                            "  SET likeStatus = 1 WHERE articleID = ? AND memberID = ?\n" +
+                            "IF @@ROWCOUNT = 0\n" +
+                            "BEGIN\n" +
+                            "  INSERT INTO [Like](ArticleID, MemberID, LikeStatus)\n" +
+                            "  VALUES (?, ?, 1)\n" +
+                            "END\n" +
+                            "COMMIT TRANSACTION";
                 ptm = conn.prepareStatement(sql);
                 ptm.setInt(1, articleID);
+                ptm.setInt(2, memberId);
+                ptm.setInt(3, articleID);
+                ptm.setInt(4, memberId);
                 check = ptm.executeUpdate() > 0;
             }
         } catch (Exception e) {
@@ -107,18 +121,19 @@ public class LikeDAO {
         }
         return check;
     }
-    public boolean setStatusUnlikeArticle(int articleID) throws SQLException {
+    public boolean setStatusUnlikeArticle(int articleID, int memberId) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "UPDATE like "
-                        + "SET likeStatus = 0"
-                        + "WHERE articleID=? AND memberID=?";
+                String sql = "UPDATE [Like]" +
+                            "SET LikeStatus = 0 " +
+                            "WHERE ArticleID = ? AND MemberID = ?";
                 ptm = conn.prepareStatement(sql);
                 ptm.setInt(1, articleID);
+                ptm.setInt(2, memberId);
                 check = ptm.executeUpdate() > 0;
             }
         } catch (Exception e) {
