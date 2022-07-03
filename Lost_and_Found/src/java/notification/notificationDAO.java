@@ -27,14 +27,12 @@ public class NotificationDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "INSERT INTO notification(NotificationID, content, memberID, SensorID, NotificationStatus)\n"
-                        + "VALUES(?, ?, ?, ?, 1)";
+                String sql = "INSERT INTO notification(content, memberID, SensorID, NotificationStatus)\n"
+                        + "VALUES(?, ?, ?, 1)";
                 ptm = conn.prepareStatement(sql);
-
-                ptm.setInt(1, notification.getNotificationID());
-                ptm.setString(2, notification.getContent());
-                ptm.setInt(3, notification.getMemberID());
-                ptm.setInt(4, notification.getSensorID());
+                ptm.setString(1, notification.getContent());
+                ptm.setInt(2, notification.getMemberID());
+                ptm.setInt(3, notification.getSensorID());
                 check = ptm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {
@@ -63,7 +61,7 @@ public class NotificationDAO {
                 ptm = conn.prepareStatement(sql);
                 ptm.setInt(1, id);
                 rs = ptm.executeQuery();
-                                while (rs.next()) {
+                while (rs.next()) {
                     int notificationID = rs.getInt("notificationID");
                     String content = rs.getString("content");
                     int memberID = rs.getInt("memberID");

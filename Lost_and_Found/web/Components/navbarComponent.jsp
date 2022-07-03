@@ -69,14 +69,14 @@
                                                                             <li><a href="profileUser.jsp">Profile</a></li>
                                                                         </ul>-->
 
-                                    <button onclick="hamDropdown()" class="nut_dropdown"> 
+                                    <button onclick="hamDropdown()" class="nut_dropdown" style="background-color: transparent; border: none"> 
                                         <i class="fas fa-bell"></i>
                                         <span class="caret"></span></button>
                                     <ul class="noidung_dropdown">
                                         <div>
-                                                <c:forEach items="${sessionScope.LIST_NOTIFICATION_COMMENT}" var="LNC">
-                                                    <p>${LNC.fullName} <span>${LNC.content}</span></p>
-                                                </c:forEach>
+                                            <c:forEach items="${sessionScope.LIST_NOTIFICATION_COMMENT}" var="LNC">
+                                                <p>${LNC.fullName} <span>${LNC.content}</span></p>
+                                            </c:forEach>
                                         </div>
                                     </ul>
 

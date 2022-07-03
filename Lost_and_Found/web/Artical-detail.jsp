@@ -165,7 +165,7 @@
                             </div>
                             <form action="CommentController" method="POST">
                                 <input type="hidden" name="articleID" value="${D.articleID}" />
-                                <input type="hidden" name="memberID" value="${sessionScope.LOGIN_MEMBER.id}" />
+                                <input type="hidden" name="memberID" value="${D.memberID}"/>
                                 <div class="bg-white p-2">
                                     <c:choose >
                                         <c:when test="${sessionScope.LOGIN_MEMBER == null}">

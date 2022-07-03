@@ -5,6 +5,7 @@ package controller;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import article.ArticleDTO;
 import comment.CommentDAO;
 import comment.CommentDTO;
 import java.io.IOException;
@@ -13,6 +14,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import member.MemberDAO;
+import member.MemberDTO;
+import notification.NotificationDAO;
+import notification.NotificationDTO;
 
 /**
  *
@@ -22,30 +28,42 @@ public class CommentController extends HttpServlet {
 
     private static final String ERROR = "Artical-detail.jsp";
     private static final String SUCCESS = "DetailArticleController";
-
+    private static final String NOTICOMMENTS = "PageController";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");  // fornt Tiếng việt
         response.setCharacterEncoding("UTF-8"); //
-        String url = ERROR;        
-        int articleID = Integer.parseInt(request.getParameter("articleID"));
-        int memberID = Integer.parseInt(request.getParameter("memberID"));
-        String commentContent = request.getParameter("commentContent");
+        String url = ERROR;
+       
+        
         try {
+             int articleID = Integer.parseInt(request.getParameter("articleID"));
+        int memberID = Integer.parseInt(request.getParameter("memberID"));
+        String commentContent = request.getParameter("commentContent");  
+        HttpSession session = request.getSession();
+        MemberDTO memberLogin = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
+        String fullName = memberLogin.getFullName();
+            NotificationDAO notiDao = new NotificationDAO();
             CommentDAO dao = new CommentDAO();
-            CommentDTO comment = new CommentDTO(0, articleID, memberID, commentContent, "","","");
+            CommentDTO comment = new CommentDTO(0, articleID, memberLogin.getId(), commentContent, "", "", "");           
+            NotificationDTO noti = new NotificationDTO(0, "đã comment bài viết của bạn", memberID, memberLogin.getId() , fullName);
+            boolean checkNotiComments = notiDao.NotificationComments(noti);
             boolean checkCreate = dao.createComment(comment);
-            if(checkCreate){
+            if (checkNotiComments){
+                url = NOTICOMMENTS;
+                request.setAttribute("NOTI_COMMENT", noti);
+            }
+            if (checkCreate) {
                 url = SUCCESS;
                 request.setAttribute("SUCCESS_MESSAGE", "");
-            }        
+            }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
-        
 
     }
 
