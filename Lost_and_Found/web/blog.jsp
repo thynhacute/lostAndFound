@@ -1,6 +1,10 @@
+<%@page import="blog.BlogDTO"%>
+<%@page import="blog.BlogDAO"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -60,90 +64,21 @@
         <div class="latest-news mt-150 mb-150">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-latest-news">
-                            <a href="blog-detail.jsp"><div class="latest-news-bg news-bg-1"></div></a>
-                            <div class="news-text-box">
-                                <h3><a href="blog-detail.jsp">You will vainly look for fruit on it in autumn.</a></h3>
-                                <p class="blog-meta">
-                                    <span class="author"><i class="fas fa-user"></i> Admin</span>
-                                    <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                                </p>
-                                <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
-                                <a href="blog-detail.jsp" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                    <c:forEach var="blog" items="${GET_LIST_BLOG}">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-latest-news">
+                                <a href="DetailBlogController?blogID=${blog.blogID}"><div class="latest-news-bg news-bg-1"></div></a>
+                                <div class="news-text-box">
+                                    <h3><a href="DetailBlogController?blogID=${blog.blogID}">${blog.blogName}</a></h3>
+                                    <p class="blog-meta">
+                                        <span class="author"><i class="fas fa-user"></i>Admin</span>
+                                    </p>
+                                    <p class="excerpt">${blog.blogContent}</p>
+                                    <a href="DetailBlogController?blogID=${blog.blogID}" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>                   
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-latest-news">
-                            <a href="blog-detail.jsp"><div class="latest-news-bg news-bg-2"></div></a>
-                            <div class="news-text-box">
-                                <h3><a href="blog-detail.jsp">A man's worth has its season, like tomato.</a></h3>
-                                <p class="blog-meta">
-                                    <span class="author"><i class="fas fa-user"></i> Admin</span>
-                                    <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                                </p>
-                                <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
-                                <a href="blog-detail.jsp" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-latest-news">
-                            <a href="blog-detail.jsp"><div class="latest-news-bg news-bg-3"></div></a>
-                            <div class="news-text-box">
-                                <h3><a href="blog-detail.jsp">Good thoughts bear good fresh juicy fruit.</a></h3>
-                                <p class="blog-meta">
-                                    <span class="author"><i class="fas fa-user"></i> Admin</span>
-                                    <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                                </p>
-                                <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
-                                <a href="blog-detail.jsp" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-latest-news">
-                            <a href="blog-detail.jsp"><div class="latest-news-bg news-bg-4"></div></a>
-                            <div class="news-text-box">
-                                <h3><a href="blog-detail.jsp">Fall in love with the fresh orange</a></h3>
-                                <p class="blog-meta">
-                                    <span class="author"><i class="fas fa-user"></i> Admin</span>
-                                    <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                                </p>
-                                <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
-                                <a href="blog-detail.jsp" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-latest-news">
-                            <a href="blog-detail.jsp"><div class="latest-news-bg news-bg-5"></div></a>
-                            <div class="news-text-box">
-                                <h3><a href="blog-detail.jsp">Why the berries always look delecious</a></h3>
-                                <p class="blog-meta">
-                                    <span class="author"><i class="fas fa-user"></i> Admin</span>
-                                    <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                                </p>
-                                <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
-                                <a href="blog-detail.jsp" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-latest-news">
-                            <a href="blog-detail.jsp"><div class="latest-news-bg news-bg-6"></div></a>
-                            <div class="news-text-box">
-                                <h3><a href="blog-detail.jsp">Love for fruits are genuine of John Doe</a></h3>
-                                <p class="blog-meta">
-                                    <span class="author"><i class="fas fa-user"></i> Admin</span>
-                                    <span class="date"><i class="fas fa-calendar"></i> 27 December, 2018</span>
-                                </p>
-                                <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
-                                <a href="blog-detail.jsp" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>

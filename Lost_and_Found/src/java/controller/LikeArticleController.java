@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import like.LikeDAO;
 
 /**
  *
@@ -30,8 +31,12 @@ public class LikeArticleController extends HttpServlet {
             int articleID = Integer.parseInt(request.getParameter("articleID"));
             ArticleDAO dao = new ArticleDAO();
             boolean check = dao.likeArticle(articleID);
+            LikeDAO dao1 = new LikeDAO();
+            boolean check1 = dao1.setStatusLikeArticle(articleID);
             if (check){
+                if(check1){
                  url = SUCCESS;
+                }
             }
         } catch (Exception e) {
             log("Error at home" + e.toString());

@@ -987,7 +987,33 @@ public class ArticleDAO {
             if (conn != null) {
                 String sql = " UPDATE article "
                         + " SET totalLike = totalLike + 1"
-                        + " WHERE articleID=? ";
+                        + " WHERE articleID=?";
+                ptm = conn.prepareStatement(sql);
+                ptm.setInt(1, articleID);
+                check = ptm.executeUpdate() > 0;
+            }
+        } catch (Exception e) {
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+
+        }
+        return check;
+    }
+    public boolean unlikeArticle(int articleID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " UPDATE article "
+                        + " SET totalLike = totalLike - 1"
+                        + " WHERE articleID=?";
                 ptm = conn.prepareStatement(sql);
                 ptm.setInt(1, articleID);
                 check = ptm.executeUpdate() > 0;

@@ -18,6 +18,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import like.LikeDAO;
+import like.LikeDTO;
 
 /**
  *
@@ -42,6 +44,11 @@ public class DetailArticleController extends HttpServlet {
             CommentDAO comment = new CommentDAO();
             List<CommentDTO> listComments = comment.getListCommentsByArticleID(articleID1);
             request.setAttribute("LIST_COMMENTS", listComments);
+            
+            LikeDAO like = new LikeDAO();
+            List<LikeDTO> listLikes = like.getListLike(articleID1);
+            request.setAttribute("LIST_LIKE", listLikes);
+            
         } catch (Exception e) {
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

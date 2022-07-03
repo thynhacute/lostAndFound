@@ -1,7 +1,10 @@
+<%@page import="like.LikeDTO"%>
 <!DOCTYPE html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false"%>
 
 <html lang="en">
     <head>
@@ -146,6 +149,8 @@
                     </div>
                 </div>
             </div>	
+
+
             <div class="container mt-5">
                 <div class="d-flex  row">
                     <div class="col-md-12">
@@ -156,9 +161,9 @@
                                         <c:when test="${sessionScope.LOGIN_MEMBER == null}">
                                             <button type="submit" name="action" value="Like" class="like_btn" style="outline: none;">
                                                 <a class="text-danger mb-5" href="login.jsp" >
-                                                <span id="icon"><i class="far fa-thumbs-up icon-2"></i></span>
-                                                <span id="count">${D.totalLike}</span>
-                                                <span id="like">Like</span>
+                                                    <span id="icon"><i class="far fa-thumbs-up icon-2"></i></span>
+                                                    <span id="count">${D.totalLike}</span>
+                                                    <span id="like">Like</span>
                                                 </a>
                                             </button>
                                         </c:when>
@@ -231,7 +236,8 @@
                         </div>
                     </div>
                 </div>
-            </div>   
+            </div>  
+
         </div>
         <!-- end single product -->
         <c:if test="${requestScope.SUCCESS_MESSAGE != null}">

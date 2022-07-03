@@ -34,11 +34,11 @@
                         <ul>
                             <li class="current-list-item"><a href="PageController">Page</a>
                             </li>
-                            <li><a href="blog.jsp">Blog</a>
-                                <ul class="sub-menu">
+                            <li><a href="BlogController">Blog</a>
+<!--                                <ul class="sub-menu">
                                     <li><a href="blog.jsp">Blog</a></li>
                                     <li><a href="blog-detail.jsp">Blog Detail</a></li>
-                                </ul>
+                                </ul>-->
                             </li>
                             <li><a href="#">FPTU's Map</a>
                                 <ul class="sub-menu">
