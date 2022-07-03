@@ -27,12 +27,21 @@ public class LikeArticleController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
+        boolean liked = false;
+        boolean check1 = false;
         try {
             int articleID = Integer.parseInt(request.getParameter("articleID"));
             ArticleDAO dao = new ArticleDAO();
             boolean check = dao.likeArticle(articleID);
             LikeDAO dao1 = new LikeDAO();
-            boolean check1 = dao1.setStatusLikeArticle(articleID);
+            liked = dao1.getStatusLikeArticle(articleID);
+            if (liked) {
+                //Unlike if liked
+               check1 = dao1.setStatusUnlikeArticle(articleID);
+            } else {
+                //else Like article
+                check1 = dao1.setStatusLikeArticle(articleID);
+            }
             if (check){
                 if(check1){
                  url = SUCCESS;

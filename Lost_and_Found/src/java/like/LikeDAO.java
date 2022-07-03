@@ -53,6 +53,34 @@ public class LikeDAO {
         return list;
     }
     
+    // return true if article is liked by memberID
+    public boolean getStatusLikeArticle(int articleID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = "SELECT like "
+                        + "WHERE articleID=? AND memberID=? likeStatus = 1";
+                ptm = conn.prepareStatement(sql);
+                ptm.setInt(1, articleID);
+                ResultSet rs = ptm.executeQuery();
+                check = rs.next() == false; //Check if result set is empty
+            }
+        } catch (Exception e) {
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+
+        }
+        return check;
+    }
+    
     public boolean setStatusLikeArticle(int articleID) throws SQLException {
         boolean check = false;
         Connection conn = null;
