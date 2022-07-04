@@ -41,26 +41,6 @@
         <servlet-class>controller.LikeArticleController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LikeActionController</servlet-name>
-        <servlet-class>controller.LikeActionController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UnlikeArticleController</servlet-name>
-        <servlet-class>controller.UnlikeArticleController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SetStatusLikeController</servlet-name>
-        <servlet-class>controller.SetStatusLikeController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SetStatusUnlikeController</servlet-name>
-        <servlet-class>controller.SetStatusUnlikeController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CreateStatusLikeController</servlet-name>
-        <servlet-class>controller.CreateStatusLikeController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>BlogController</servlet-name>
         <servlet-class>controller.BlogController</servlet-class>
     </servlet>
@@ -107,26 +87,6 @@
     <servlet-mapping>
         <servlet-name>LikeArticleController</servlet-name>
         <url-pattern>/LikeArticleController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LikeActionController</servlet-name>
-        <url-pattern>/LikeActionController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UnlikeArticleController</servlet-name>
-        <url-pattern>/UnlikeArticleController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SetStatusLikeController</servlet-name>
-        <url-pattern>/SetStatusLikeController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SetStatusUnlikeController</servlet-name>
-        <url-pattern>/SetStatusUnlikeController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CreateStatusLikeController</servlet-name>
-        <url-pattern>/CreateStatusLikeController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>BlogController</servlet-name>
