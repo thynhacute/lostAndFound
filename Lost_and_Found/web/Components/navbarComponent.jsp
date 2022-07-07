@@ -14,6 +14,7 @@
         <div class="circle"></div>
     </div>
 </div>
+
 <!--PreLoader Ends-->
 <!-- header -->
 <div class="top-header-area" id="sticker">
@@ -32,7 +33,7 @@
                     <c:set value="${sessionScope.LOGIN_MEMBER}" var="L"/>
                     <nav class="main-menu">
                         <ul>
-                            <li class="current-list-item"><a href="PageController">Page</a>
+                            <li class="current-list-item"><a href="PageController">Page</a>                                
                             </li>
                             <li><a href="blog.jsp">Blog</a>
                                 <ul class="sub-menu">
@@ -51,17 +52,37 @@
                             </li>
                             <li><a href="HomeController">Find Items</a></li>
                                 <c:if test="${sessionScope.LOGIN_MEMBER == null }" >
-                                <li><a href="login.jsp">Post Article</a></li>
+                                <li><a href="login.jsp">Post Articles</a></li>
                                 </c:if>
                                 <c:if test="${sessionScope.LOGIN_MEMBER != null }" >
-                                <li><a href="post.jsp">Post Article</a></li>
+                                <li><a href="post.jsp">Post Articles</a></li>
                                 </c:if>
-                            <li>
-                                <div class="header-icons">                                   
-                                    <c:if test="${sessionScope.LOGIN_MEMBER == null }" >
-                                        <a  href="login.jsp"> Login</a>  
-                                    </c:if>
-                                    <c:if test="${sessionScope.LOGIN_MEMBER != null }">
+                                <c:if test="${sessionScope.LOGIN_MEMBER != null }" >
+                                <li class="dropdown" style="transform: translateX(180px);
+                                    font-size: 20px;
+                                    color: white;"> 
+                                    <button onclick="hamDropdown()" class="nut_dropdown"> 
+                                        <i class="fas fa-bell"></i>
+                                        <span class="caret"></span></button>
+                                    <ul class="noidung_dropdown">
+                                        <div>
+                                            <c:forEach items="${sessionScope.LIST_NOTIFICATION}" var="LNC">
+                                                <p>${LNC.fullName} <span>${LNC.content}</span></p>
+                                            </c:forEach>
+                                        </div>
+                                    </ul>
+                                </li>
+                            </c:if>
+                            <c:if test="${sessionScope.LOGIN_MEMBER == null }" >
+                                <li>
+
+                                    <a  href="login.jsp"> Login</a>  
+
+                                </li>
+                            </c:if>
+                            <c:if test="${sessionScope.LOGIN_MEMBER != null }" >
+                                <li style="transform: translateY(4px);">
+                                    <c:if test="${sessionScope.LOGIN_MEMBER != null }"> 
                                         <img src="${L.picture}"
                                              class="rounded-circle" style="width: 40px;" alt="Avatar" />
                                         <ul class="sub-menu">
@@ -69,9 +90,11 @@
                                             <li> <a href="login.jsp">Logout</a></li>
                                             <li><a href="profileUser.jsp">Profile</a></li>
                                         </ul>
-                                    </c:if>                               
-                                </div>
-                            </li>
+                                    </c:if>
+                                </li>
+                            </c:if>
+
+
                         </ul>
                     </nav>
                     <a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
@@ -86,6 +109,7 @@
 <!-- end nav -->
 
 <!--Map begin-->
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -159,6 +183,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">

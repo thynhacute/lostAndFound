@@ -14,6 +14,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import member.MemberDAO;
+import member.MemberDTO;
+import notification.NotificationDAO;
+import notification.NotificationDTO;
 
 public class PageController extends HttpServlet {
 
@@ -24,7 +29,19 @@ public class PageController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
+        HttpSession session = request.getSession();
+        MemberDTO memberLogin = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
+
         try {
+            if (memberLogin != null) {
+//                int memberID = memberLogin.getId();
+//                MemberDAO memberDao = new MemberDAO();
+                List<NotificationDTO> listNotification = new NotificationDAO().getListNotificationComment(memberLogin.getId());
+                session.setAttribute("LIST_NOTIFICATION", listNotification);
+//                List<NotificationDTO> listNotificationArticleFind = new NotificationDAO().getListNotificationArticleFind(memberID);
+//                session.setAttribute("LIST_NOTIFICATION", listNotificationArticleFind);
+                url = SUCCESS;
+            } 
             List<ArticleDTO> listLostArticles = new ArticleDAO().getLostArticles();
             request.setAttribute("LIST_LOST_ARTICLE", listLostArticles);
             List<ArticleDTO> listPickedArticles = new ArticleDAO().getPickedArticles();

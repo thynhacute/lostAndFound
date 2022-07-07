@@ -104,7 +104,7 @@ public class UpdateFoundController extends HttpServlet {
                         }
                     }
                 }
-                if (newImgURL == null) {
+                if (newImgURL.isEmpty()) {
                     newImgURL = imgURL;
                 }
                 ArticleDTO articleDTO = new ArticleDTO(id, articleContent, locationID, newImgURL);
