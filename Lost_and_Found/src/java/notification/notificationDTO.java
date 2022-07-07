@@ -5,14 +5,18 @@ public class NotificationDTO {
     private String content;
     private int memberID;
     private int sensorID;
+    private int articleID;
     private String fullName;
+    private String picture;
     
-    public NotificationDTO(int notificationID, String content, int memberID, int sensorID, String fullName) {
+    public NotificationDTO(int notificationID, String content, int memberID, int sensorID, int articleID, String fullName, String picture) {
         this.notificationID = notificationID;
         this.content = content;
         this.memberID = memberID;
         this.sensorID = sensorID;
+        this.articleID = articleID;
         this.fullName = fullName;
+        this.picture = picture;
     }
 
     public int getNotificationID() {
@@ -25,6 +29,22 @@ public class NotificationDTO {
 
     public String getContent() {
         return content;
+    }
+
+    public int getArticleID() {
+        return articleID;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public void setArticleID(int articleID) {
+        this.articleID = articleID;
     }
 
     public void setContent(String content) {

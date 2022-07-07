@@ -56,14 +56,6 @@
         </div>
         <!-- end breadcrumb section -->
         <!-- products -->
-        <div class="dropdown">
-  <button onclick="hamDropdown()" class="nut_dropdown">Dropdown</button>
-  <div class="noidung_dropdown">
-    <a href="#">Đường Dẫn 1</a>
-    <a href="#">Đường Dẫn 2</a>
-    <a href="#">Đường Dẫn 3</a>
-  </div>
-</div>
         <div class="product-section mt-150 mb-150">
             <div class="container">               
                 <div class="row product-lists">

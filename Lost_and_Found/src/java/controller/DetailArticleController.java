@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import notification.NotificationDAO;
 
 /**
  *
@@ -40,9 +41,14 @@ public class DetailArticleController extends HttpServlet {
             CommentDAO comment = new CommentDAO();
             List<CommentDTO> listComments = comment.getListCommentsByArticleID(articleID1);
             request.setAttribute("LIST_COMMENTS", listComments);
-            
-
+//            NotificationDAO notiDao = new NotificationDAO();
+//            boolean check = notiDao.getSeenNoti(articleID1);
+//            if (check) {
+//                url = SUCCESS;
+//            }
+            url = SUCCESS;
         } catch (Exception e) {
+            log("Error at DetailArticleController" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

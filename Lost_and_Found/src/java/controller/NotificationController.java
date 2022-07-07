@@ -1,16 +1,19 @@
-package controller;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package controller;
+
+import article.ArticleDAO;
 import article.ArticleDTO;
 import comment.CommentDAO;
 import comment.CommentDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,51 +25,45 @@ import notification.NotificationDTO;
 
 /**
  *
- * @author Owner
+ * @author Admin
  */
-public class CommentController extends HttpServlet {
+@WebServlet(name = "NotificationController", urlPatterns = {"/NotificationController"})
+public class NotificationController extends HttpServlet {
 
     private static final String ERROR = "Artical-detail.jsp";
-    private static final String SUCCESS = "DetailArticleController";
-    private static final String NOTICOMMENTS = "PageController";
+    private static final String SUCCESS = "Artical-detail.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");  // fornt Tiếng việt
-        response.setCharacterEncoding("UTF-8"); //
         String url = ERROR;
-
+        String articleID1 = request.getParameter("articleID");
         try {
-            int articleID = Integer.parseInt(request.getParameter("articleID"));
-            int memberID = Integer.parseInt(request.getParameter("memberID"));
-            String commentContent = request.getParameter("commentContent");
             HttpSession session = request.getSession();
             MemberDTO memberLogin = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
-            String fullName = memberLogin.getFullName();
-            int sensorID = memberLogin.getId();
-            CommentDAO dao = new CommentDAO();
-            CommentDTO comment = new CommentDTO(0, articleID, sensorID, commentContent, "", "", "");
+            int memberID = memberLogin.getId();
+            MemberDAO memberDao = new MemberDAO();
+            ArticleDAO dao = new ArticleDAO();
+            ArticleDTO articleDetail = dao.getArticleByID(articleID1);
+            request.setAttribute("ARTICLE_DETAIL", articleDetail);
+            CommentDAO comment = new CommentDAO();
+            List<CommentDTO> listComments = comment.getListCommentsByArticleID(articleID1);
+            request.setAttribute("LIST_COMMENTS", listComments);
             NotificationDAO notiDao = new NotificationDAO();
-            boolean checkCreate = dao.createComment(comment);           
-            if (sensorID != memberID) {
-                NotificationDTO noti = new NotificationDTO(0, "đã comment bài viết của bạn", memberID, sensorID, articleID, fullName, memberLogin.getPicture());
-                boolean checkNotiComments = notiDao.NotificationComments(noti);
-                if (checkNotiComments) {
-                    url = NOTICOMMENTS;
-                    request.setAttribute("NOTI_COMMENT", noti);
-                }
-            }
-            if (checkCreate) {
+            boolean check = notiDao.getSeenNoti(articleID1);
+            if (check) {
+                List<NotificationDTO> listNotification = new NotificationDAO().getListNotification(memberLogin.getId());
+                session.setAttribute("LIST_NOTIFICATION", listNotification);
+                List<NotificationDTO> listNotificationSeen = new NotificationDAO().getListSeenNoti(memberLogin.getId());
+                session.setAttribute("LIST_NOTIFICATION_SEEN", listNotificationSeen);
                 url = SUCCESS;
-                request.setAttribute("SUCCESS_MESSAGE", "");
             }
+            url = SUCCESS;
         } catch (Exception e) {
-            e.printStackTrace();
+            log("Error at DetailArticleController" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

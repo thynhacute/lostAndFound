@@ -51,7 +51,7 @@ CREATE TABLE Article(
 	ItemID int  NOT NULL FOREIGN KEY REFERENCES ItemType(ItemID),
 );
 
-<<<<<<< HEAD
+
 DROP TABLE Comment
 
 CREATE TABLE Comment(
@@ -67,28 +67,11 @@ DROP TABLE Report
 
 CREATE TABLE Report(
     ReportID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-=======
-CREATE TABLE Comment(
-	ArticleID int  NOT NULL FOREIGN KEY REFERENCES Article(ArticleID),
-	MemberID INT  NOT NULL FOREIGN KEY REFERENCES Member(MemberID),
-	PRIMARY KEY (ArticleID, MemberID),
-	CommentContent nvarchar(max) NOT NULL,
-	CommentTime DateTime NOT NULL
-);
-
-CREATE TABLE Report(
->>>>>>> 9920bab5285b91c6f0eeff0679dc15a0c9ad2886
 	ArticleID INT  NOT NULL FOREIGN KEY REFERENCES Article(ArticleID),
 	MemberID INT  NOT NULL FOREIGN KEY REFERENCES Member(MemberID),
 	ReportContent nvarchar(max) NOT NULL,
 	ReportTime DateTime NOT NULL,
-<<<<<<< HEAD
 	ReportStatus bit NOT NULL
-	
-=======
-	ReportStatus bit NOT NULL,
-	PRIMARY KEY (ArticleID, MemberID),
->>>>>>> 9920bab5285b91c6f0eeff0679dc15a0c9ad2886
 );
 
 
@@ -98,6 +81,15 @@ BlogName nvarchar (100) NOT NULL,
 BlogContent nvarchar(max),
 MemberID INT  FOREIGN KEY REFERENCES Member(MemberID)
 );
+ DROP TABLE Notification
+CREATE TABLE [dbo].[Notification](
+	[NotificationID] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	[content] [nvarchar](50) NULL,
+	[MemberID] [int] FOREIGN KEY REFERENCES Member(MemberID) NOT NULL,
+	[SensorID] [int] NOT NULL,
+	[NotificationStatus] [bit] NOT NULL
+);
+
 
 SET IDENTITY_INSERT Role ON;
 INSERT Role(RoleID, RoleName) VALUES('1', N'Admin')
@@ -108,12 +100,6 @@ SET IDENTITY_INSERT Member ON;
 INSERT [dbo].[Member] ( [FullName], [Email], [Picture], [Phone], [ProfileInfo], [RoleID], [MemberStatus]) 
 	VALUES ( N'NaaTy', N'thyhnse151101@fpt.edu.vn', N'https://i.pinimg.com/originals/30/1f/58/301f58a07b86756082b9f37fc908e3d7.jpg', 
 	'12345', N'cutexinkgai', '1', '1')
-<<<<<<< HEAD
-=======
---INSERT [dbo].[Member] ([MemberID], [FullName], [Email], [Picture], [Phone], [ProfileInfo], [RoleID], [MemberStatus]) 
---	VALUES ('2', N'Hana', N'hana@gmail.com', N'https://i.pinimg.com/originals/30/1f/58/301f58a07b86756082b9f37fc908e3d7.jpg', 
---	'12345', N'cutexinkgai', '2', '1')
->>>>>>> 9920bab5285b91c6f0eeff0679dc15a0c9ad2886
 SET IDENTITY_INSERT Member OFF;
 
 SET IDENTITY_INSERT ArticleType ON;

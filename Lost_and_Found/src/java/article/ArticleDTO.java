@@ -27,6 +27,7 @@ public class ArticleDTO {
     private String itemName;
     private String locationName;
     private int totalReport;
+    private int totalLike;
 
     public ArticleDTO(int articleID, String articleContent, String imgURL, String postTime, int locationID, int memberID, int articleTypeID, int ItemID, String fullName, String email, int phone, String picture, String articleTypeName, String itemName, String locationName, int totalReport) {
         this.articleID = articleID;

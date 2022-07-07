@@ -33,7 +33,7 @@
                     <c:set value="${sessionScope.LOGIN_MEMBER}" var="L"/>
                     <nav class="main-menu">
                         <ul>
-                            <li class="current-list-item"><a href="PageController">Page</a>
+                            <li class="current-list-item"><a href="PageController">Page</a>                                
                             </li>
                             <li><a href="blog.jsp">Blog</a>
                                 <ul class="sub-menu">
@@ -57,37 +57,60 @@
                                 <c:if test="${sessionScope.LOGIN_MEMBER != null }" >
                                 <li><a href="post.jsp">Post Articles</a></li>
                                 </c:if>
-                                <c:if test="${sessionScope.LOGIN_MEMBER != null }" >
+                                <c:if test="${sessionScope.LOGIN_MEMBER != null }" >                               
                                 <li class="dropdown" style="transform: translateX(180px);
                                     font-size: 20px;
                                     color: white;"> 
-
                                     <!--                                 
                                                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                                             <li> <a href="#"></a>${L.fullName}</li>
                                                                             <li> <a href="login.jsp">Logout</a></li>
                                                                             <li><a href="profileUser.jsp">Profile</a></li>
                                                                         </ul>-->
-
+                                    <c:if test="${sessionScope.LIST_NOTIFICATION.size() > 0}">
+                                        <div class="size-noti">${sessionScope.LIST_NOTIFICATION.size()}</div>
+                                    </c:if>
                                     <button onclick="hamDropdown()" class="nut_dropdown" style="background-color: transparent; border: none"> 
                                         <i class="fas fa-bell"></i>
                                         <span class="caret"></span></button>
                                     <ul class="noidung_dropdown">
                                         <div>
-                                            <c:forEach items="${sessionScope.LIST_NOTIFICATION_COMMENT}" var="LNC">
-                                                <p>${LNC.fullName} <span>${LNC.content}</span></p>
+                                            <p class="noidung_dropdown_content">News</p>
+                                            <c:forEach items="${sessionScope.LIST_NOTIFICATION}" var="LN">
+                                                <a href="NotificationController?articleID=${LN.articleID}">
+                                                    <div>
+                                                        <div class="notification">
+                                                            <img width="50px" height="50px" src="${LN.picture}">                                                    
+                                                            <p><b>${LN.fullName}</b> ${LN.content}</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
                                             </c:forEach>
                                         </div>
+                                        <div>
+                                            <p class="noidung_dropdown_content">Read</p>
+                                            <c:forEach items="${sessionScope.LIST_NOTIFICATION_SEEN}" var="LNS">
+                                                <a href="NotificationController?articleID=${LNS.articleID}">
+                                                    <div>
+                                                        <div class="notification">
+                                                            <img width="50px" height="50px" src="${LNS.picture}">                                                    
+                                                            <p><b>${LNS.fullName}</b> ${LNS.content}</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </c:forEach>
+                                        </div>
+                                        <!--                                        <div>
+                                        <c:forEach items="${sessionScope.LIST_NOTIFICATION_ARTICLE_FIND}" var="LNAF">
+                                            <p>${LNAF.fullName} <span>${LNAF.content}</span></p>
+                                        </c:forEach>
+                                    </div>-->
                                     </ul>
-
-
                                 </li>
                             </c:if>
                             <c:if test="${sessionScope.LOGIN_MEMBER == null }" >
                                 <li>
-
                                     <a  href="login.jsp"> Login</a>  
-
                                 </li>
                             </c:if>
                             <c:if test="${sessionScope.LOGIN_MEMBER != null }" >
@@ -97,8 +120,8 @@
                                              class="rounded-circle" style="width: 40px;" alt="Avatar" />
                                         <ul class="sub-menu">
                                             <li> <a href="#"></a>${L.fullName}</li>
-                                            <li> <a href="login.jsp">Logout</a></li>
                                             <li><a href="profileUser.jsp">Profile</a></li>
+                                            <li> <a href="login.jsp">Logout</a></li>
                                         </ul>
                                     </c:if>
                                 </li>
