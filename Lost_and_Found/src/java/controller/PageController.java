@@ -29,21 +29,23 @@ public class PageController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        try {
-            HttpSession session = request.getSession();
-            MemberDTO memberLogin = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
-            int memberID = memberLogin.getId();
-            MemberDAO memberDao = new MemberDAO();
+        HttpSession session = request.getSession();
+        MemberDTO memberLogin = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
 
+        try {
+            if (memberLogin != null) {
+//                int memberID = memberLogin.getId();
+//                MemberDAO memberDao = new MemberDAO();
+                List<NotificationDTO> listNotification = new NotificationDAO().getListNotificationComment(memberLogin.getId());
+                session.setAttribute("LIST_NOTIFICATION", listNotification);
+//                List<NotificationDTO> listNotificationArticleFind = new NotificationDAO().getListNotificationArticleFind(memberID);
+//                session.setAttribute("LIST_NOTIFICATION", listNotificationArticleFind);
+                url = SUCCESS;
+            } 
             List<ArticleDTO> listLostArticles = new ArticleDAO().getLostArticles();
             request.setAttribute("LIST_LOST_ARTICLE", listLostArticles);
             List<ArticleDTO> listPickedArticles = new ArticleDAO().getPickedArticles();
             request.setAttribute("LIST_PICKED_ARTICLE", listPickedArticles);
-            List<NotificationDTO> listNotification = new NotificationDAO().getListNotificationComment(memberLogin.getId());
-            session.setAttribute("LIST_NOTIFICATION", listNotification);
-//            
-//            List<NotificationDTO> listNotificationArticleFind = new NotificationDAO().getListNotificationArticleFind(memberID);
-//            session.setAttribute("LIST_NOTIFICATION_ARTICLE_FIND", listNotificationArticleFind);
             url = SUCCESS;
         } catch (Exception e) {
             log("Error at PageController" + e.toString());

@@ -109,10 +109,10 @@ public class CreateController extends HttpServlet {
                     // memberID là mình login zô
                     NotificationDTO noti = new NotificationDTO(0, "might be in the middle of an item you lost", memberID, sensorID, fullName);
                     boolean checkCreateNoti = notiDAO.NotificationArticle(noti);
-                    if (checkCreateNoti) {
-                        request.setAttribute("LIST_NOTI_ARTICLE_FIND", listNotiArticlefind);
-                        url = SUCCESS;
-                    }
+//                    if (checkCreateNoti) {
+//                        request.setAttribute("LIST_NOTI_ARTICLE_FIND", listNotiArticlefind);
+//                        url = SUCCESS;
+//                    }
                 }
             } else {
                 List<ArticleDTO> listNotiArticleLost = new ArticleDAO().getArticlebyArticleTypeLocationItems2(itemID, locationID);
@@ -123,10 +123,10 @@ public class CreateController extends HttpServlet {
                     NotificationDAO notiDAO = new NotificationDAO();
                     NotificationDTO noti = new NotificationDTO(0, "can may be found the map that you are picked", memberID, sensorID, fullName);
                     boolean checkCreateNoti = notiDAO.NotificationArticle(noti);
-                    if (checkCreateNoti) {
-                        request.setAttribute("LIST_NOTI_ARTICLE_Lost", listNotiArticleLost);
-                        url = SUCCESS;
-                    }
+//                    if (checkCreateNoti) {
+//                        request.setAttribute("LIST_NOTI_ARTICLE_Lost", listNotiArticleLost);
+//                        url = SUCCESS;
+//                    }
                 }
             }
         } catch (Exception e) {

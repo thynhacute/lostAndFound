@@ -70,11 +70,6 @@
                                                 <p>${LNC.fullName} <span>${LNC.content}</span></p>
                                             </c:forEach>
                                         </div>
-<!--                                        <div>
-                                            <c:forEach items="${sessionScope.LIST_NOTIFICATION_ARTICLE_FIND}" var="LNAF">
-                                                <p>${LNAF.fullName} <span>${LNAF.content}</span></p>
-                                            </c:forEach>
-                                        </div>-->
                                     </ul>
                                 </li>
                             </c:if>
