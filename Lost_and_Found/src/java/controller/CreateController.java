@@ -111,10 +111,9 @@ public class CreateController extends HttpServlet {
                     if (sensorID != memberID) {
                         NotificationDTO noti = new NotificationDTO(0, "might be in the middle of an item you lost", memberID, sensorID, articleID, fullName, picture);
                         boolean checkCreateNoti = notiDAO.NotificationArticle(noti);
-                        if (checkCreateNoti) {
-                            request.setAttribute("LIST_NOTI_ARTICLE_FIND", listNotiArticlefind);
+                        NotificationDTO noti2 = new NotificationDTO(0, "can may be found the map that you are picked", sensorID, memberID, articleID, fullName, picture);
+                        boolean checkCreateNoti2 = notiDAO.NotificationArticle(noti2);
                             url = SUCCESS;
-                        }
                     }
                 }
             } else {
@@ -128,10 +127,9 @@ public class CreateController extends HttpServlet {
                     if (sensorID != memberID) {
                         NotificationDTO noti = new NotificationDTO(0, "can may be found the map that you are picked", memberID, sensorID, articleID, fullName, picture);
                         boolean checkCreateNoti = notiDAO.NotificationArticle(noti);
-                        if (checkCreateNoti) {
-                            request.setAttribute("LIST_NOTI_ARTICLE_Lost", listNotiArticleLost);
+                        NotificationDTO noti2 = new NotificationDTO(0, "might be in the middle of an item you lost", sensorID, memberID, articleID, fullName, picture);
+                        boolean checkCreateNoti2 = notiDAO.NotificationArticle(noti2);
                             url = SUCCESS;
-                        }
                     }
                 }
             }

@@ -34,15 +34,15 @@
                 </div>
             </form> -->
             <!-- Navbar-->
-             
+            <c:set value="${sessionScope.LOGIN_MEMBER}" var="L"/>
             <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i >
-                                        <span>admins </span>
-                                        <i class="ti-angle-down"></i>
-                    </i></a>
+                            <span>${L.fullName} </span>
+                            <i class="ti-angle-down"></i>
+                        </i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        
+
                         <!-- <li><hr class="dropdown-divider" /></li> -->
                         <li><a class="dropdown-item" href="login.jsp">Logout</a></li>
                     </ul>
@@ -54,39 +54,64 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                           <div class="sb-sidenav-menu-heading">HOME</div>
+                            <div class="sb-sidenav-menu-heading">HOME</div>
                             <a class="nav-link" href="SearchAdminController">
                                 <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                                 Home
                             </a>
-                            <div class="sb-sidenav-menu-heading">Article</div>
-                            <a class="nav-link" href="SearchAdminController">
-                                <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
-                                Manager Article
-                            </a>
-                            <a class="nav-link" href="ReportArticleController">
-                                <div class="sb-nav-link-icon"><i class="far fa-file-alt"></i></div>
-                                Manager Report
-                            </a>
-                            <a class="nav-link" href="SearchAdminControllerBand">
-                                <div class="sb-nav-link-icon"><i class="far fa-newspaper"></i></div>
-                                Manage Band
-                            </a>
-                            <div class="sb-sidenav-menu-heading">Users</div>
+                            <div class="box">
+                                <div class="box-sm red"></div>
+                                <div class="box-sm orange"></div>
+                                <div class="box-sm yellow "></div>
+                                <div class="box-sm green "></div>
+                                <div class="box-sm blue "></div>
+                                <div class="box-sm purple"></div>
+                            </div>
+                            <div class="sb-sidenav-menu-heading">MANAGER</div>
                             <a class="nav-link" href="SearchMemberByAdminController">
                                 <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
                                 Manager User
                             </a>
+                            <a class="nav-link" href="SearchAdminController">
+                                <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
+                                Manager Article
+                            </a>
+                            <div class="box">
+                                <div class="box-sm red"></div>
+                                <div class="box-sm orange"></div>
+                                <div class="box-sm yellow "></div>
+                                <div class="box-sm green "></div>
+                                <div class="box-sm blue "></div>
+                                <div class="box-sm purple"></div>
+                            </div>
+                            <div class="sb-sidenav-menu-heading">MANAGER REPORT</div>
                             <a class="nav-link" href="ReportMemberController">
                                 <div class="sb-nav-link-icon"><i class="far fa-file-alt"></i></div>
-                                Manager Report
+                                User Report
                             </a>
+                            <a class="nav-link" href="ReportArticleController">
+                                <div class="sb-nav-link-icon"><i class="far fa-file-alt"></i></div>
+                                Article Report
+                            </a>
+                            <div class="box">
+                                <div class="box-sm red"></div>
+                                <div class="box-sm orange"></div>
+                                <div class="box-sm yellow "></div>
+                                <div class="box-sm green "></div>
+                                <div class="box-sm blue "></div>
+                                <div class="box-sm purple"></div>
+                            </div>
+                            <div class="sb-sidenav-menu-heading">MANAGER BAND</div>
                             <a class="nav-link" href="SearchBandMemberByAdminController">
                                 <div class="sb-nav-link-icon"><i class="far fa-newspaper"></i></div>
-                                Manage Band
+                                User Band
+                            </a>
+                            <a class="nav-link" href="SearchAdminControllerBand">
+                                <div class="sb-nav-link-icon"><i class="far fa-newspaper"></i></div>
+                                Article Band
                             </a>
                         </div>
-                        
+
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
@@ -101,9 +126,9 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active"></li>
                         </ol>
-                        
-                        
-                        
+
+
+
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -112,41 +137,41 @@
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
-                                            <tr>
-                                                <th>Article Content</th>
-                                                <th>Image</th>
-                                                <th>Time</th>
-                                                <th>Location</th>
-                                                <th>Member</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Article Content</th>
-                                                <th>Image</th>
-                                                <th>Time</th>
-                                                <th>Location</th>
-                                                <th>Member</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                       
-                                         <c:forEach items="${GET_LIST_ARTICLE_BAND}" var = "A">
+                                        <tr>
+                                            <th>Article Content</th>
+                                            <th>Image</th>
+                                            <th>Time</th>
+                                            <th>Location</th>
+                                            <th>Member</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Article Content</th>
+                                            <th>Image</th>
+                                            <th>Time</th>
+                                            <th>Location</th>
+                                            <th>Member</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+
+                                        <c:forEach items="${GET_LIST_ARTICLE_BAND}" var = "A">
                                             <tr>
                                                 <td>${A.articleContent}</td>
                                                 <td><img src="${A.imgURL}" style="width: 230px"></td>
                                                 <td>${A.postTime}</td>
                                                 <td>${A.locationName}</td>
                                                 <td>${A.fullName}</td>
-                                                
+
                                                 <td> 
                                                     <a href="ActiveArticleByAdminController?articleID=${A.articleID}" style="color: blue;"> <i class="fa-solid fa-unlock" aria-hidden="true"></i> Active</a></td>
                                             </tr>
                                         </c:forEach>
 
-                                        </tbody>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -157,12 +182,12 @@
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted"></div>
                             <div>
-                                
+
                             </div>
                         </div>
                     </div>
                 </footer>
-                
+
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

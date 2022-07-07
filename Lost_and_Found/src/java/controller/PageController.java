@@ -39,11 +39,11 @@ public class PageController extends HttpServlet {
                 session.setAttribute("LIST_NOTIFICATION", listNotification);
                 List<NotificationDTO> listNotificationSeen = new NotificationDAO().getListSeenNoti(memberLogin.getId());
                 session.setAttribute("LIST_NOTIFICATION_SEEN", listNotificationSeen);
+                List<ArticleDTO> listLostArticles = new ArticleDAO().getLostArticles();
+                request.setAttribute("LIST_LOST_ARTICLE", listLostArticles);
+                List<ArticleDTO> listPickedArticles = new ArticleDAO().getPickedArticles();
+                request.setAttribute("LIST_PICKED_ARTICLE", listPickedArticles);
             }
-            List<ArticleDTO> listLostArticles = new ArticleDAO().getLostArticles();
-            request.setAttribute("LIST_LOST_ARTICLE", listLostArticles);
-            List<ArticleDTO> listPickedArticles = new ArticleDAO().getPickedArticles();
-            request.setAttribute("LIST_PICKED_ARTICLE", listPickedArticles);
 //            List<NotificationDTO> listNotification = new NotificationDAO().getListNotification(memberLogin.getId());
 //            session.setAttribute("LIST_NOTIFICATION", listNotification);
 //            List<NotificationDTO> listNotificationSeen = new NotificationDAO().getListSeenNoti(memberLogin.getId());

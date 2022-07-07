@@ -36,6 +36,18 @@
         <servlet-name>CommentController</servlet-name>
         <servlet-class>controller.CommentController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LikeArticleController</servlet-name>
+        <servlet-class>controller.LikeArticleController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BlogController</servlet-name>
+        <servlet-class>controller.BlogController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetailBlogController</servlet-name>
+        <servlet-class>controller.DetailBlogController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginGoogleServlet</servlet-name>
         <url-pattern>/LoginGoogleServlet</url-pattern>
@@ -71,6 +83,18 @@
     <servlet-mapping>
         <servlet-name>CommentController</servlet-name>
         <url-pattern>/CommentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LikeArticleController</servlet-name>
+        <url-pattern>/LikeArticleController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BlogController</servlet-name>
+        <url-pattern>/BlogController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailBlogController</servlet-name>
+        <url-pattern>/DetailBlogController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

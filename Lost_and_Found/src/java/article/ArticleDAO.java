@@ -40,7 +40,7 @@ public class ArticleDAO {
             + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID AND A.ArticleStatus = 1\n"
             + "AND ART.ArticleTypeID = (SELECT ArticleTypeID FROM ArticleType WHERE ArticleTypeName = ?) "
             + "AND I.ItemID = (SELECT ItemID FROM ItemType WHERE ItemName = ?) AND L.LocationID = (SELECT LocationID FROM Location WHERE LocationName = ?)";
-    private static final String GET_ARTICLE_DETAIL = "SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName FROM Article A , Member M, ArticleType ART , ItemType I, Location L \n"
+    private static final String GET_ARTICLE_DETAIL = "SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName,A.TotalReport, A.TotalLike FROM Article A , Member M, ArticleType ART , ItemType I, Location L \n"
             + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID "
             + "AND A.ArticleID =?";
     private static final String CREATE_ARTICLE = "INSERT INTO Article( ArticleContent,ImgURL,ArticleTypeID,ItemID,LocationID,MemberID,ArticleStatus)\n"
@@ -714,8 +714,10 @@ public class ArticleDAO {
                 String articleTypeName = rs.getString("ArticleTypeName");
                 String itemName = rs.getString("ItemName");
                 String locationName = rs.getString("LocationName");
+                int totalReport = rs.getInt("totalReport");
+                int totalLike = rs.getInt("TotalLike");
 
-                ArticleDTO article = new ArticleDTO(articleID, articleContent, imgURL, postTime, locationID, memberID, articleTypeID, itemID, fullName, email, phone, picture, articleTypeName, itemName, locationName);
+                ArticleDTO article = new ArticleDTO(articleID, articleContent, imgURL, postTime, locationID, memberID, articleTypeID, itemID, fullName, email, phone, picture, articleTypeName, itemName, locationName, totalReport, totalLike);
                 return article;
             }
         } catch (Exception e) {
@@ -1024,6 +1026,33 @@ public class ArticleDAO {
         return list;
     }
 
+    public boolean likeArticle(int articleID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " UPDATE article "
+                        + " SET totalLike = totalLike + 1"
+                        + " WHERE articleID=?";
+                ptm = conn.prepareStatement(sql);
+                ptm.setInt(1, articleID);
+                check = ptm.executeUpdate() > 0;
+            }
+        } catch (Exception e) {
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+
+        }
+        return check;
+    }
+
     public List<ArticleDTO> getArticlebyArticleTypeLocationItems2(int itemID, int locationID) throws SQLException {
         List<ArticleDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -1064,5 +1093,32 @@ public class ArticleDAO {
         }
 
         return list;
+    }
+
+    public boolean unlikeArticle(int articleID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " UPDATE article "
+                        + " SET totalLike = totalLike - 1"
+                        + " WHERE articleID=?";
+                ptm = conn.prepareStatement(sql);
+                ptm.setInt(1, articleID);
+                check = ptm.executeUpdate() > 0;
+            }
+        } catch (Exception e) {
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+
+        }
+        return check;
     }
 }
