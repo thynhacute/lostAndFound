@@ -65,8 +65,10 @@
                     <div class="col-lg-12">
                         <div class="single-article-section">
                             <div class="single-article-text">
-                                <div class="single-artcile-bg"></div>
                                 <c:set value="${requestScope.BLOG_DETAIL}" var="D"/>
+                                <div class="single-artcile-bg">
+                                    <img src="${D.blogImage}">
+                                </div>
                                 <p class="blog-meta">
                                     <span class="author"><i class="fas fa-user"></i> ${D.memberID}</span>
                                 </p>

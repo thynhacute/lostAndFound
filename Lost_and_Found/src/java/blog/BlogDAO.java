@@ -19,8 +19,8 @@ import java.util.List;
  */
 public class BlogDAO {
 
-    private static final String GET_LIST_BLOG = "SELECT BlogID, BlogName, BlogContent, MemberID FROM Blog WHERE MemberID = 1";
-    private static final String GET_BLOG_DETAIL = "SELECT BlogID, BlogName, BlogContent, MemberID FROM Blog\n"
+    private static final String GET_LIST_BLOG = "SELECT BlogID, BlogImage, BlogName, BlogContent, MemberID FROM Blog WHERE MemberID = 1";
+    private static final String GET_BLOG_DETAIL = "SELECT BlogID, BlogImage, BlogName, BlogContent, MemberID FROM Blog\n"
             + "WHERE BlogID =?";
 
     public List<BlogDTO> getListBlog() throws SQLException {
@@ -35,10 +35,11 @@ public class BlogDAO {
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     int blogID = rs.getInt("BlogID");
+                    String blogImage = rs.getString("BlogImage");
                     String blogName = rs.getString("BlogName");
                     String blogContent = rs.getString("BlogContent");
                     int memberID = rs.getInt("MemberID");
-                    listBlog.add(new BlogDTO(blogID, blogName, blogContent, memberID));
+                    listBlog.add(new BlogDTO(blogID, blogImage, blogName, blogContent, memberID));
                 }
             }
         } catch (Exception e) {
@@ -68,10 +69,11 @@ public class BlogDAO {
             rs = ptm.executeQuery();
             while (rs.next()) {
                 int blogID = rs.getInt("BlogID");
+                String blogImage = rs.getString("BlogImage");
                 String blogName = rs.getString("BlogName");
                 String blogContent = rs.getString("BlogContent");
                 int memberID = rs.getInt("MemberID");
-                BlogDTO blog = new BlogDTO(blogID, blogName, blogContent, memberID);
+                BlogDTO blog = new BlogDTO(blogID, blogImage, blogName, blogContent, memberID);
                 return blog;
             }
         } catch (Exception e) {

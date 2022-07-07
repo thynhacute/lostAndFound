@@ -67,7 +67,11 @@
                     <c:forEach var="blog" items="${GET_LIST_BLOG}">
                         <div class="col-lg-4 col-md-6">
                             <div class="single-latest-news">
-                                <a href="DetailBlogController?blogID=${blog.blogID}"><div class="latest-news-bg news-bg-1"></div></a>
+                                <a href="DetailBlogController?blogID=${blog.blogID}">
+                                    <div class="latest-news-bg news-bg-1">
+                                        <img src="${blog.blogImage}">
+                                    </div>
+                                </a>
                                 <div class="news-text-box">
                                     <h3><a href="DetailBlogController?blogID=${blog.blogID}">${blog.blogName}</a></h3>
                                     <p class="blog-meta">

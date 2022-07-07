@@ -1592,7 +1592,7 @@ div.owl-controls, .owl-controls div {
 # News Styles
 
 ----------------------------------------------------------------------------- */
-.news-bg-1 {
+/*.news-bg-1 {
     background-image: url(../img/latest-news/news-bg-1.jpg);
 }
 
@@ -1614,7 +1614,7 @@ div.owl-controls, .owl-controls div {
 
 .news-bg-6 {
     background-image: url(../img/latest-news/news-bg-6.jpg);
-}
+}*/
 
 .latest-news-bg {
     height: 200px;
