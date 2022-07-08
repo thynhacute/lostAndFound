@@ -18,6 +18,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import notification.NotificationDAO;
+import like.LikeDAO;
+import like.LikeDTO;
 
 /**
  *
@@ -33,17 +36,25 @@ public class DetailArticleController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         String articleID1 = request.getParameter("articleID");
-
         try {
             ArticleDAO dao = new ArticleDAO();
             ArticleDTO articleDetail = dao.getArticleByID(articleID1);
             request.setAttribute("ARTICLE_DETAIL", articleDetail);
-
             CommentDAO comment = new CommentDAO();
             List<CommentDTO> listComments = comment.getListCommentsByArticleID(articleID1);
             request.setAttribute("LIST_COMMENTS", listComments);
+            LikeDAO like = new LikeDAO();
+            List<LikeDTO> listLikes = like.getListLike(articleID1);
+            request.setAttribute("LIST_LIKE", listLikes);
 
+//            NotificationDAO notiDao = new NotificationDAO();
+//            boolean check = notiDao.getSeenNoti(articleID1);
+//            if (check) {
+//                url = SUCCESS;
+//            }
+            url = SUCCESS;
         } catch (Exception e) {
+            log("Error at DetailArticleController" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
