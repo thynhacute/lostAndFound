@@ -43,8 +43,8 @@ public class ArticleDAO {
     private static final String GET_ARTICLE_DETAIL = "SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName,A.TotalReport, A.TotalLike FROM Article A , Member M, ArticleType ART , ItemType I, Location L \n"
             + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID "
             + "AND A.ArticleID =?";
-    private static final String CREATE_ARTICLE = "INSERT INTO Article( ArticleContent,ImgURL,ArticleTypeID,ItemID,LocationID,MemberID,ArticleStatus)\n"
-            + "VALUES(?,?,?,?,?,?,1)";
+    private static final String CREATE_ARTICLE = "INSERT INTO Article( ArticleContent,ImgURL,ArticleTypeID,ItemID,LocationID,MemberID,ArticleStatus,TotalReport,TotalLike)\n"
+            + "VALUES(?,?,?,?,?,?,1,0,0)";
 
     private static final String GET_LIST_ARTICLE_ACTIVE = "SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID,A.TotalReport, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName FROM Article A , Member M, ArticleType ART , ItemType I, Location L \n"
             + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID AND A.ArticleStatus = 1 ";

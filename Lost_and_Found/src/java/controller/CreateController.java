@@ -92,7 +92,7 @@ public class CreateController extends HttpServlet {
                 }
             }
             ArticleDAO dao = new ArticleDAO();
-            ArticleDTO article = new ArticleDTO(0, aricleContent, fileName, "", locationID, memberID, articleTypeID, itemID, "", "", 0, "", "", "", "");
+            ArticleDTO article = new ArticleDTO(0, aricleContent, fileName, "", locationID, memberID, articleTypeID, itemID, "", "", 0, "", "", "", "",0);
             boolean checkCreate = dao.createArticle(article);
             if (checkCreate) {
                 request.setAttribute("SUCCESS_CREATE_MESSAGE", article);
