@@ -53,6 +53,7 @@ public class LoginGoogleServlet extends HttpServlet {
                             url = ADMIN_PAGE;
                         } else { 
                             session.setAttribute("LOGIN_MEMBER", member);
+                            request.setAttribute("SUCCESS_MESSAGE", member);
                             url = INDEX_PAGE;
                         }
                     } else {
@@ -61,7 +62,7 @@ public class LoginGoogleServlet extends HttpServlet {
                     }
                 } else {
                     url = LOGIN;
-                    request.setAttribute("ERRORMESSAGE", "Please use mail had @fpt.edu.vn ");
+                    request.setAttribute("ERROR_LOGGIN_MESSAGE", "");
                 }
             }
         } catch (Exception e) {

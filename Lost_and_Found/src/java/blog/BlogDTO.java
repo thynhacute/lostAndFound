@@ -11,6 +11,7 @@ package blog;
  */
 public class BlogDTO {
     private int blogID;
+    private String blogImage;
     private String blogName;
     private String blogContent;
     private int memberID;
@@ -22,6 +23,23 @@ public class BlogDTO {
         this.memberID = memberID;
     }
 
+    public BlogDTO(int blogID, String blogImage, String blogName, String blogContent, int memberID) {
+        this.blogID = blogID;
+        this.blogImage = blogImage;
+        this.blogName = blogName;
+        this.blogContent = blogContent;
+        this.memberID = memberID;
+    }
+
+    public String getBlogImage() {
+        return blogImage;
+    }
+
+    public void setBlogImage(String blogImage) {
+        this.blogImage = blogImage;
+    }
+
+    
     public BlogDTO() {
         this.blogID = 0;
         this.blogName = "";
@@ -59,10 +77,5 @@ public class BlogDTO {
 
     public void setMemberID(int memberID) {
         this.memberID = memberID;
-    }
-    
-    
-    
-    
-    
+    }  
 }
