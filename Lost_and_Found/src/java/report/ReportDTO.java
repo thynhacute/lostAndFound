@@ -20,7 +20,8 @@ public class ReportDTO {
     private String fullName;
     private String email;
     private int phone;
-
+    private int memberIDArticle;
+    
     public ReportDTO(int reportID, int articleID, int memberID, String reportContent, String reportTime) {
         this.reportID = reportID;
         this.articleID = articleID;
@@ -28,6 +29,9 @@ public class ReportDTO {
         this.reportContent = reportContent;
         this.reportTime = reportTime;
 }
+
+    
+
     // report article +>
     public ReportDTO(int reportID, String reportContent, String articleContent, String reportTime, int articleID, int memberID, String fullName, String email) {
         this.reportID = reportID;
@@ -46,6 +50,19 @@ public class ReportDTO {
         this.memberID = 0;
         this.reportContent = "";
         this.reportTime = "";
+    }
+
+
+      public ReportDTO(int reportID, String reportContent, String articleContent, String reportTime, int articleID, int memberID, String fullName, String email,int memberIDArticle) {
+        this.reportID = reportID;
+        this.reportContent = reportContent;
+        this.articleContent = articleContent;
+        this.reportTime = reportTime;
+        this.articleID = articleID;
+        this.memberID = memberID;
+        this.fullName = fullName;
+        this.email = email;
+        this.memberIDArticle = memberIDArticle;
     }
 
     public int getReportID() {
@@ -121,5 +138,14 @@ public class ReportDTO {
         this.phone = phone;
     }
 
+
+    public int getMemberIDArticle() {
+        return memberIDArticle;
+    }
+
+    public void setMemberIDArticle(int memberIDArticle) {
+        this.memberIDArticle = memberIDArticle;
+    }
+    
 
 }

@@ -40,6 +40,10 @@ public class MemberDAO {
     private static final String GET_LIST_REPORT_MEMBER = "SELECT M.MemberID, A.ArticleContent, R.ReportContent, N.FullName, M.Email, M.Picture, M.Phone, M.ProfileInfo, M.RoleID, M.TotalReport \n"
             + "FROM Member M, Member N, Report R, Article A WHERE R.ArticleID = A.ArticleID AND A.MemberID = M.MemberID AND R.MemberID = N.MemberID AND R.ReportStatus = 1";
 
+    private static final String UPDATE_TOTAL_REPORT_MEMBER = "UPDATE Member SET TotalReport = TotalReport +1 WHERE MemberID = ?";
+
+    private static final String UPDATE_DELETE_TOTAL_REPORT_MEMBER = "UPDATE Member SET TotalReport = TotalReport -1 WHERE MemberID = ?";
+
     public boolean checkDuplicate(String email) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -323,5 +327,55 @@ public class MemberDAO {
         }
         return check;
     }
+
+
+    public boolean updateTotalReportMember(int memberID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UPDATE_TOTAL_REPORT_MEMBER);
+                ptm.setInt(1, memberID);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+
+        } catch (Exception e) {
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public boolean updateDeleteTotalReportMember(int memberIDArticle) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UPDATE_DELETE_TOTAL_REPORT_MEMBER);
+                ptm.setInt(1, memberIDArticle);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+
+        } catch (Exception e) {
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
 
 }

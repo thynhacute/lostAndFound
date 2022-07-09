@@ -1,8 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="member.MemberDTO"%>
-<%@page import="java.util.List"%>
+<%@page import="report.ReportDTO"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -23,7 +22,9 @@
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a href="admin.jsp">
-                <img class="img-fluid fpt-uni-logo" src="manage-article/assets/img/logo-fpt-certificate.png" style="width: 80%;" alt="Theme-Logo" />
+                <div class="logo-img">
+                    <img class="img-fluid fpt-uni-logo" src="assets/img/logoteam/logoteam.png" style="width: 80%;" alt="Theme-Logo" />
+                </div>
             </a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
@@ -39,7 +40,9 @@
             <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i >
-                            <span>${L.fullName} </span>
+
+                            <span>${L.fullName}</span>
+
                             <i class="ti-angle-down"></i>
                         </i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -56,7 +59,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">HOME</div>
-                            <a class="nav-link" href="SearchAdminController">
+                            <a class="nav-link" href="admin.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                                 Home
                             </a>
@@ -76,6 +79,10 @@
                             <a class="nav-link" href="SearchAdminController">
                                 <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
                                 Manager Article
+                            </a>
+                            <a class="nav-link" href="SearchArticleSuccessAdmin">
+                                <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
+                                Manager Article Success
                             </a>
                             <div class="box">
                                 <div class="box-sm red"></div>
@@ -102,14 +109,14 @@
                                 <div class="box-sm blue "></div>
                                 <div class="box-sm purple"></div>
                             </div>
-                            <div class="sb-sidenav-menu-heading">MANAGER BAND</div>
+                            <div class="sb-sidenav-menu-heading">MANAGER BAN</div>
                             <a class="nav-link" href="SearchBandMemberByAdminController">
                                 <div class="sb-nav-link-icon"><i class="far fa-newspaper"></i></div>
-                                User Band
+                                User Ban
                             </a>
                             <a class="nav-link" href="SearchAdminControllerBand">
                                 <div class="sb-nav-link-icon"><i class="far fa-newspaper"></i></div>
-                                Article Band
+                                Article Ban
                             </a>
                         </div>
 
@@ -123,38 +130,58 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Manage</h1>
+                        <h1 class="mt-4">Manage Article</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Manage</li>
+                            <li class="breadcrumb-item active">Manage </li>
                         </ol>
+
+
+
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Manage Users
+                                Manage User
                             </div>
-                            <div class="card-body"><div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="student" role="tabpanel"
-                                         aria-labelledby="student-tab">
-                                        <table id="datatablesSimple">
-                                            <thead>
-                                                <tr>
-                                                    <th>Email</th>                                                   
-                                                    <th>Total Report</th>
-                                                    <th>DeleteCommand</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:forEach var="member" items="${GET_LIST_REPORT_MEMBER}" varStatus="counter">
-                                                    <tr>   
-                                                        <td>${member.email}</td>                                                             
-                                                        <td>${member.totalReport}</td>                                                             
-                                                        <td><a href="DeleteCommandReportMemberController?reportID=${counter.count}" style="color: red;"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</a></td>
-                                                    </tr>
-                                                </c:forEach>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>Email</th>
+                                            <th>TotalReport</th>
+                                            <th>Delete</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach var="member" items="${GET_LIST_MEMBER_BY_ADMIN}" varStatus="counting">
+                                            <tr>                                               
+                                                <td>${member.email}</td>  
+                                                <td>${member.totalReport}</td>
+                                                <td>
+                                                    <button  class="btn" data-bs-toggle="modal" data-bs-target="#noteModal${counting.count}" style="color: red;"><i class="fa fa-trash" aria-hidden="true"></i>
+                                                        Ban
+                                                    </button>
+                                                    <div class="modal fade" id="noteModal${counting.count}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Do you want ban the email : ${member.email} ?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+                                                                    <a href="DeleteMemberByAdminController2?memberID=${member.id}" type="button" class="btn btn-primary"> <i  aria-hidden="true"></i> YES</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -172,6 +199,54 @@
 
             </div>
         </div>
+        <style>
+            .box {
+                display: flex;
+                width: 100%;
+                height: 3px;
+                margin: 5px 0px 5px 0px;
+            }
+
+            .box-sm {
+                height: 3px;
+                margin: 0;
+                flex-grow: 1;
+                transition: all .8s ease-in-out;
+                cursor: pointer;
+            }
+            .red {
+                background-color: #FF5852;
+            }
+
+            .orange {
+                background-color: #FF9000;
+            }
+
+            .yellow {
+                background-color: #FFD300;
+            }
+
+            .green {
+                background-color: #3DCD49;
+            }
+
+            .blue {
+                background-color: #0089D7;
+            }
+
+            .purple {
+                background-color: #9E44C4;
+            }
+            .box-sm:hover {
+                flex-grow: 12;
+            }
+            .logo-img{
+                width: 100px;
+                height: 100px;
+                margin-left: 85px;
+                margin-right: 45px;
+            }
+        </style>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="manage-article/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>

@@ -21,8 +21,8 @@
         </c:if> 
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a href="admin.jsp">
-                <img class="img-fluid fpt-uni-logo" src="manage-article/assets/img/logo-fpt-certificate.png" style="width: 80%;" alt="Theme-Logo" />
+            <a class="logo-img" href="admin.jsp">
+                <img class="img-fluid fpt-uni-logo" src="assets/img/logoteam/logoteam.png" style="width: 80%;" alt="Theme-Logo" />
             </a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
@@ -38,7 +38,9 @@
             <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i >
-                            <span>${L.fullName} </span>
+
+                            <span>${L.fullName}</span>
+
                             <i class="ti-angle-down"></i>
                         </i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -55,7 +57,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">HOME</div>
-                            <a class="nav-link" href="SearchAdminController">
+                            <a class="nav-link" href="admin.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                                 Home
                             </a>
@@ -75,6 +77,10 @@
                             <a class="nav-link" href="SearchAdminController">
                                 <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
                                 Manager Article
+                            </a>
+                            <a class="nav-link" href="SearchArticleSuccessAdmin">
+                                <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
+                                Manager Article Success
                             </a>
                             <div class="box">
                                 <div class="box-sm red"></div>
@@ -101,14 +107,14 @@
                                 <div class="box-sm blue "></div>
                                 <div class="box-sm purple"></div>
                             </div>
-                            <div class="sb-sidenav-menu-heading">MANAGER BAND</div>
+                            <div class="sb-sidenav-menu-heading">MANAGER BAN</div>
                             <a class="nav-link" href="SearchBandMemberByAdminController">
                                 <div class="sb-nav-link-icon"><i class="far fa-newspaper"></i></div>
-                                User Band
+                                User Ban
                             </a>
                             <a class="nav-link" href="SearchAdminControllerBand">
                                 <div class="sb-nav-link-icon"><i class="far fa-newspaper"></i></div>
-                                Article Band
+                                Article Ban
                             </a>
                         </div>
 
@@ -157,8 +163,8 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                     
-                                        <c:forEach items="${GET_LIST_REPORT_BY_ARTICLE}" var = "A">
+
+                                        <c:forEach items="${GET_LIST_REPORT_BY_ARTICLE}" var = "A" varStatus="counting">
                                             <tr>
                                                 <td>${A.email}</td>
                                                 <td>${A.reportContent}</td>
@@ -166,7 +172,29 @@
                                                 <td>${A.reportTime}</td>
                                                 <td>${A.fullName}</td>
                                                 <td> 
-                                                    <a href="DeleteReportArticleController?reportID=${A.reportID}" style="color: red;"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</a></td>
+
+                                                    <button  class="btn" data-bs-toggle="modal" data-bs-target="#noteModal${counting.count}" style="color: red;"><i class="fa fa-trash" aria-hidden="true"></i>
+                                                        Delete
+                                                    </button>
+                                                    <div id="noteModal${counting.count}" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Do you want delete the report: ${A.articleContent} about email ${A.email}
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+                                                                    <a  href="DeleteReportArticleController?reportID=${A.reportID}&articleID=${A.articleID}&memberIDArticle=${A.memberIDArticle} " type="button" class="btn btn-primary"> <i  aria-hidden="true"></i> YES</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
                                             </tr>
                                         </c:forEach>
 
@@ -189,6 +217,54 @@
 
             </div>
         </div>
+        <style>
+            .box {
+                display: flex;
+                width: 100%;
+                height: 3px;
+                margin: 5px 0px 5px 0px;
+            }
+
+            .box-sm {
+                height: 3px;
+                margin: 0;
+                flex-grow: 1;
+                transition: all .8s ease-in-out;
+                cursor: pointer;
+            }
+            .red {
+                background-color: #FF5852;
+            }
+
+            .orange {
+                background-color: #FF9000;
+            }
+
+            .yellow {
+                background-color: #FFD300;
+            }
+
+            .green {
+                background-color: #3DCD49;
+            }
+
+            .blue {
+                background-color: #0089D7;
+            }
+
+            .purple {
+                background-color: #9E44C4;
+            }
+            .box-sm:hover {
+                flex-grow: 12;
+            }
+            .logo-img{
+                width: 100px;
+                height: 100px;
+                margin-left: 85px;
+                margin-right: 45px;
+            }
+        </style>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="manage-article/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>

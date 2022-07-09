@@ -1,45 +1,36 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import member.MemberDAO;
-import member.MemberDTO;
 
 /**
  *
- * @author LEGION'
+ * @author THAI
  */
-@WebServlet(name = "ReportMemberController", urlPatterns = {"/ReportMemberController"})
-public class ReportMemberController extends HttpServlet {
+@WebServlet(name = "DeleteMemberByAdminController2", urlPatterns = {"/DeleteMemberByAdminController2"})
+public class DeleteMemberByAdminController2 extends HttpServlet {
 
-    private static final String ERROR = "manage-user-report.jsp";
-    private static final String SUCCESS = "manage-user-report.jsp";
-
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
         try {
+            String memberID = request.getParameter("memberID");
             MemberDAO dao = new MemberDAO();
-            List<MemberDTO> listMembers = dao.getListAllMemberByAdmin();
-            request.setAttribute("GET_LIST_MEMBER_BY_ADMIN", listMembers);
-
-            url = SUCCESS;
+            boolean check = dao.deleteMember(memberID);
         } catch (Exception e) {
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
-
+            request.getRequestDispatcher("ReportMemberController").forward(request, response);
         }
     }
 

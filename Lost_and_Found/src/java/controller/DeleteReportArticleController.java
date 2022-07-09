@@ -4,6 +4,7 @@
  */
 package controller;
 
+import article.ArticleDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -11,6 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import member.MemberDAO;
+
 import report.ReportDAO;
 
 /**
@@ -20,7 +24,6 @@ import report.ReportDAO;
 @WebServlet(name = "DeleteReportArticleController", urlPatterns = {"/DeleteReportArticleController"})
 public class DeleteReportArticleController extends HttpServlet {
 
-  
     private static final String ERROR = "ReportArticleController";
     private static final String SUCCESS = "ReportArticleController";
 
@@ -32,8 +35,18 @@ public class DeleteReportArticleController extends HttpServlet {
             String reportID = request.getParameter("reportID");
             ReportDAO dao = new ReportDAO();
             boolean check = dao.deleteReportArticle(reportID);
-            if (check){
-                 url = SUCCESS;
+            if (check) {
+                String articleID = request.getParameter("articleID");
+                int memberIDArticle = Integer.parseInt(request.getParameter("memberIDArticle"));
+                ArticleDAO daoa = new ArticleDAO();
+                MemberDAO daom = new MemberDAO();
+
+                boolean checkDeleteTotalReport = daoa.deleteTotalReportArticle(articleID);
+                boolean checkDeleteReport = dao.deleteReportArticle(reportID);
+                boolean checkDeleteReportAdmin = daom.updateDeleteTotalReportMember(memberIDArticle);
+                if (checkDeleteReport && checkDeleteTotalReport && checkDeleteReportAdmin) {
+                    url = SUCCESS;
+                }
             }
         } catch (Exception e) {
             log("Error at home" + e.toString());

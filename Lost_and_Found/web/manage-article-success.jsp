@@ -1,10 +1,13 @@
-<%@page import="java.util.List"%>
-<%@page import="article.ArticleDTO"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List" %>
+<%@page import="article.ArticleDTO" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html lang="en">
+    <c:if test="${sessionScope.LOGIN_MEMBER.roleID != 1}">
+        <c:redirect url="login.jsp"/>           
+    </c:if> 
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,33 +15,37 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
+              rel="stylesheet" />
         <link href="manage-article/css/styles.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
+        crossorigin="anonymous"></script>
     </head>
+
     <body class="sb-nav-fixed">
-        <c:if test="${sessionScope.LOGIN_MEMBER.roleID != 1}">
-            <c:redirect url="login.jsp"/>           
-        </c:if> 
+
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="logo-img" href="admin.jsp">
-                <img class="img-fluid fpt-uni-logo" src="assets/img/logoteam/logoteam.png" style="width: 80%;" alt="Theme-Logo" />
+                <img class="img-fluid fpt-uni-logo" src="assets/img/logoteam/logoteam.png"
+                     style="width: 80%;" alt="Theme-Logo" />
             </a>
             <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle"
+                    href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-                </div>
-            </form> -->
+<form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+    <div class="input-group">
+        <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+        <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+    </div>
+</form> -->
             <!-- Navbar-->
-            <c:set value="${sessionScope.LOGIN_MEMBER}" var="L"/>
+            <c:set value="${sessionScope.LOGIN_MEMBER}" var="L" />
             <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i >
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false"><i>
 
                             <span>${L.fullName}</span>
 
@@ -133,13 +140,10 @@
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active"></li>
                         </ol>
-
-
-
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Manage Article Ban
+                                Manage Article
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -150,6 +154,7 @@
                                             <th>Time</th>
                                             <th>Location</th>
                                             <th>Member</th>
+                                            <th>Total Report</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -160,12 +165,12 @@
                                             <th>Time</th>
                                             <th>Location</th>
                                             <th>Member</th>
+                                            <th>Total Report</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-
-                                        <c:forEach items="${GET_LIST_ARTICLE_BAND}" var = "A" varStatus="counting">
+                                        <c:forEach items="${GET_LIST_ARTICLE_SUCCESS}" var="A" varStatus="counting">
                                             <tr>
                                                 <td>${A.articleContent}</td>
                                                 <td>
@@ -186,9 +191,10 @@
                                                 <td>${A.postTime}</td>
                                                 <td>${A.locationName}</td>
                                                 <td>${A.fullName}</td>
+                                                <th>${A.totalReport}</th>
                                                 <td>
-                                                    <button data-bs-toggle="modal" data-bs-target="#noteModal${counting.count}" class="btn" style="color: blue;"> <i class="fa-solid fa-unlock"  aria-hidden="true"></i>
-                                                        Unblock
+                                                    <button data-bs-toggle="modal" data-bs-target="#noteModal${counting.count}" class="btn" style="color: blue;"><i class="fa-solid fa-unlock" aria-hidden="true"></i>
+                                                        Active
                                                     </button>
                                                     <div id="noteModal${counting.count}" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog">
@@ -198,7 +204,7 @@
                                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    Do you want unblock the article : ${A.articleContent} ?
+                                                                    Do you want active the article : ${A.articleContent} ?
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
@@ -210,9 +216,10 @@
                                                 </td>
                                             </tr>
                                         </c:forEach>
-
                                     </tbody>
                                 </table>
+
+
                             </div>
                         </div>
                     </div>
@@ -245,6 +252,7 @@
                 transition: all .8s ease-in-out;
                 cursor: pointer;
             }
+
             .red {
                 background-color: #FF5852;
             }
@@ -268,22 +276,28 @@
             .purple {
                 background-color: #9E44C4;
             }
+
             .box-sm:hover {
                 flex-grow: 12;
             }
-            .logo-img{
+
+            .logo-img {
                 width: 100px;
                 height: 100px;
                 margin-left: 85px;
                 margin-right: 45px;
             }
         </style>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
         <script src="manage-article/js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+        crossorigin="anonymous"></script>
         <script src="manage-article/assets/demo/chart-area-demo.js"></script>
         <script src="manage-article/assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
+        crossorigin="anonymous"></script>
         <script src="manage-article/js/datatables-simple-demo.js"></script>
     </body>
+
 </html>

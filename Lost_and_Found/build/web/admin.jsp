@@ -1,9 +1,10 @@
-<%@page import="java.util.List"%>
-<%@page import="article.ArticleDTO"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List" %>
+<%@page import="article.ArticleDTO" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,41 +12,48 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
+              rel="stylesheet" />
         <link href="manage-article/css/styles.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
+        crossorigin="anonymous"></script>
     </head>
-    <body class="sb-nav-fixed">
 
+    <body class="sb-nav-fixed">
         <c:if test="${sessionScope.LOGIN_MEMBER.roleID != 1}">
-            <c:redirect url="login.jsp"/>           
-        </c:if> 
+            <c:redirect url="login.jsp" />
+        </c:if>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a href="admin.jsp">
-                <img class="img-fluid fpt-uni-logo" src="manage-article/assets/img/logo-fpt-certificate.png" style="width: 80%;" alt="Theme-Logo" />
+            <a class="logo-img" href="admin.jsp">
+                <img class="img-fluid fpt-uni-logo" src="assets/img/logoteam/logoteam.png"
+                     style="width: 80%;" alt="Theme-Logo" />
             </a>
             <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle"
+                    href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-                </div>
-            </form> -->
+<form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+    <div class="input-group">
+        <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+        <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+    </div>
+</form> -->
             <!-- Navbar-->
-            <c:set value="${sessionScope.LOGIN_MEMBER}" var="L"/>
+            <c:set value="${sessionScope.LOGIN_MEMBER}" var="L" />
             <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i >
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false"><i>
+
                             <span>${L.fullName}</span>
+
                             <i class="ti-angle-down"></i>
                         </i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
                         <!-- <li><hr class="dropdown-divider" /></li> -->
-                        <li><a class="dropdown-item" href="MainController?action=Logout">Logout</a></li>
+                        <li><a class="dropdown-item" href="login.jsp">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -56,7 +64,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">HOME</div>
-                            <a class="nav-link" href="SearchAdminController">
+                            <a class="nav-link" href="admin.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                                 Home
                             </a>
@@ -76,6 +84,10 @@
                             <a class="nav-link" href="SearchAdminController">
                                 <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
                                 Manager Article
+                            </a>
+                            <a class="nav-link" href="SearchArticleSuccessAdmin">
+                                <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
+                                Manager Article Success
                             </a>
                             <div class="box">
                                 <div class="box-sm red"></div>
@@ -102,14 +114,14 @@
                                 <div class="box-sm blue "></div>
                                 <div class="box-sm purple"></div>
                             </div>
-                            <div class="sb-sidenav-menu-heading">MANAGER BAND</div>
+                            <div class="sb-sidenav-menu-heading">MANAGER BAN</div>
                             <a class="nav-link" href="SearchBandMemberByAdminController">
                                 <div class="sb-nav-link-icon"><i class="far fa-newspaper"></i></div>
-                                User Band
+                                User Ban
                             </a>
                             <a class="nav-link" href="SearchAdminControllerBand">
                                 <div class="sb-nav-link-icon"><i class="far fa-newspaper"></i></div>
-                                Article Band
+                                Article Ban
                             </a>
                         </div>
 
@@ -123,57 +135,75 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">ADMIN</h1>
+                        <h1 class="mt-4">Dashboard</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active"></li>
+                            <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body">Primary Card</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">Warning Card</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body">Success Card</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body">Danger Card</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                Manage Article
+                                <i class="fas fa-chart-area me-1"></i>
+                                Chart Article
                             </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>Article Content</th>
-                                            <th>Image</th>
-                                            <th>Time</th>
-                                            <th>Location</th>
-                                            <th>Member</th>
-                                            <th>Total Report</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Article Content</th>
-                                            <th>Image</th>
-                                            <th>Time</th>
-                                            <th>Location</th>
-                                            <th>Member</th>
-                                            <th>Total Report</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
+                            <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                        </div>
+                        <div class="row">
 
-                                        <c:forEach items="${GET_LIST_ARTICLE_ACTIVE}" var = "A">
-                                            <tr>
-                                                <td>${A.articleContent}</td>
-                                                <td><img src="${A.imgURL}" style="width: 230px"></td>
-                                                <td>${A.postTime}</td>
-                                                <td>${A.locationName}</td>
-                                                <td>${A.fullName}</td>
-                                                <th>${A.totalReport}</th>
-                                                <td> 
-                                                    <a href="DeleteArticleByAdminController?articleID=${A.articleID}" style="color: red;"> <i class="fa fa-trash" aria-hidden="true"></i> Delete</a></td>
-                                            </tr>
-                                        </c:forEach>
-
-
-                                    </tbody>
-                                </table>
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-bar me-1"></i>
+                                        Chart Fined Item
+                                    </div>
+                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-pie me-1"></i>
+                                        Chart Of Lost And Found Article
+                                    </div>
+                                    <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -181,22 +211,80 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted"></div>
+                            <div class="text-muted">Copyright &copy; Your Website 2022</div>
                             <div>
-
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
                             </div>
                         </div>
                     </div>
                 </footer>
-
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="manage-job/js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="manage-job/assets/demo/chart-area-demo.js"></script>
-        <script src="manage-job/assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="manage-job/js/datatables-simple-demo.js"></script>
+        <style>
+            .box {
+                display: flex;
+                width: 100%;
+                height: 3px;
+                margin: 5px 0px 5px 0px;
+            }
+
+            .box-sm {
+                height: 3px;
+                margin: 0;
+                flex-grow: 1;
+                transition: all .8s ease-in-out;
+                cursor: pointer;
+            }
+
+            .red {
+                background-color: #FF5852;
+            }
+
+            .orange {
+                background-color: #FF9000;
+            }
+
+            .yellow {
+                background-color: #FFD300;
+            }
+
+            .green {
+                background-color: #3DCD49;
+            }
+
+            .blue {
+                background-color: #0089D7;
+            }
+
+            .purple {
+                background-color: #9E44C4;
+            }
+
+            .box-sm:hover {
+                flex-grow: 12;
+            }
+
+            .logo-img {
+                width: 100px;
+                height: 100px;
+                margin-left: 85px;
+                margin-right: 45px;
+            }
+        </style>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+        <script src="manage-article/js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+        crossorigin="anonymous"></script>
+        <script src="manage-article/assets/demo/chart-area-demo.js"></script>
+        <script src="manage-article/assets/demo/chart-bar-demo.js"></script>
+        <script src="manage-article/assets/demo/chart-pie-demo.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
+        crossorigin="anonymous"></script>
+        <script src="manage-article/js/datatables-simple-demo.js"></script>
     </body>
+
 </html>

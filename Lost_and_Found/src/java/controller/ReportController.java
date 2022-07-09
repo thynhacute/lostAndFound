@@ -5,6 +5,7 @@
  */
 package controller;
 
+import article.ArticleDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javatutorials.javamail.JavaMailUtil;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import member.MemberDAO;
 import member.MemberDTO;
 import report.ReportDAO;
 import report.ReportDTO;
@@ -41,6 +43,8 @@ public class ReportController extends HttpServlet {
         String fullName = request.getParameter("fullName");
         String articleContent = request.getParameter("articleContent");
 
+        ArticleDAO daoa = new ArticleDAO();
+        MemberDAO daom = new MemberDAO();
         try {
             if (memberID != articleMemberID) {
                 ReportDAO dao = new ReportDAO();
@@ -49,13 +53,20 @@ public class ReportController extends HttpServlet {
                 if (checkCreate) {
                     url = SUCCESS;
                     request.setAttribute("SUCCESS_MESSAGE_REPORT", dao);
-                    JavaMailUtil.sendMail(email, reportContent,fullName,articleContent);
+                    JavaMailUtil.sendMail(email, reportContent, fullName, articleContent);
+                    boolean checkUpdateTotalArticleReport = daoa.updateTotalReportArticle(articleID);
+                    boolean checkUpdateTotalMemberReport = daom.updateTotalReportMember(articleMemberID);
+                    if (checkCreate && checkUpdateTotalArticleReport && checkUpdateTotalMemberReport) {
+                        url = SUCCESS;
+                        request.setAttribute("SUCCESS_MESSAGE_REPORT", dao);
+                        JavaMailUtil.sendMail(email, reportContent, fullName, articleContent);
+                    }
+                } else {
+                    url = ERROR;
+                    request.setAttribute("ERORR_MESSAGE_REPORT", "");
                 }
-            } else {
-                url = ERROR;
-                request.setAttribute("ERORR_MESSAGE_REPORT", "");
-            }
 
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
