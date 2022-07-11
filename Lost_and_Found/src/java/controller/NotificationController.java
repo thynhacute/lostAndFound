@@ -32,13 +32,15 @@ public class NotificationController extends HttpServlet {
 
     private static final String ERROR = "Artical-detail.jsp";
     private static final String SUCCESS = "Artical-detail.jsp";
-
+    private static final String PAGE = "PageController";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         String articleID1 = request.getParameter("articleID");
         try {
+            String action = request.getParameter("action");
             HttpSession session = request.getSession();
             MemberDTO memberLogin = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
             int memberID = memberLogin.getId();
@@ -59,6 +61,14 @@ public class NotificationController extends HttpServlet {
                 url = SUCCESS;
             }
             url = SUCCESS;
+            if (action.equals("NotificationSeenAll")) {
+                notiDao.getSeenNotiAll(memberID);
+                List<NotificationDTO> listNotification = new NotificationDAO().getListNotification(memberLogin.getId());
+                session.setAttribute("LIST_NOTIFICATION", listNotification);
+                List<NotificationDTO> listNotificationSeen = new NotificationDAO().getListSeenNoti(memberLogin.getId());
+                session.setAttribute("LIST_NOTIFICATION_SEEN", listNotificationSeen);
+                url = PAGE;
+            }
         } catch (Exception e) {
             log("Error at DetailArticleController" + e.toString());
         } finally {

@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import like.LikeDAO;
 import member.MemberDTO;
+import notification.NotificationDAO;
+import notification.NotificationDTO;
 
 /**
  *
@@ -25,6 +27,7 @@ public class LikeArticleController extends HttpServlet {
 
     private static final String ERROR = "DetailArticleController";
     private static final String SUCCESS = "DetailArticleController";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -36,21 +39,30 @@ public class LikeArticleController extends HttpServlet {
         try {
             MemberDTO member = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
             int articleID = Integer.parseInt(request.getParameter("articleID"));
+            int memberID = Integer.parseInt(request.getParameter("memberID"));
+            String fullName = member.getFullName();
+            int sensorID = member.getId();
             ArticleDAO dao = new ArticleDAO();
             LikeDAO dao1 = new LikeDAO();
             liked = dao1.getStatusLikeArticle(articleID, member.getId());
             if (liked) {
                 //Unlike if liked
-               checkTotalLiked = dao.unlikeArticle(articleID);
-               checkLiked = dao1.setStatusUnlikeArticle(articleID, member.getId());
+                checkTotalLiked = dao.unlikeArticle(articleID);
+                checkLiked = dao1.setStatusUnlikeArticle(articleID, member.getId());
             } else {
                 //else Like article
                 checkTotalLiked = dao.likeArticle(articleID);
                 checkLiked = dao1.setStatusLikeArticle(articleID, member.getId());
+                NotificationDAO notiDao = new NotificationDAO();
+                int count = notiDao.checkCount(sensorID, articleID);
+                if (sensorID != memberID && count < 1) {
+                    NotificationDTO noti = new NotificationDTO(0, "đã thích bài viết của bạn", memberID, sensorID, articleID, fullName, member.getPicture());
+                    boolean checkNotiComments = notiDao.NotificationComments(noti);
+                }
             }
-            if (checkLiked && checkTotalLiked){
-                if(checkLiked){
-                 url = SUCCESS;
+            if (checkLiked && checkTotalLiked) {
+                if (checkLiked) {
+                    url = SUCCESS;
                 }
             }
         } catch (Exception e) {

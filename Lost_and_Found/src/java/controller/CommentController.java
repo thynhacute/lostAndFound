@@ -38,17 +38,17 @@ public class CommentController extends HttpServlet {
         String url = ERROR;
 
         try {
+            HttpSession session = request.getSession();
+            MemberDTO memberLogin = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
             int articleID = Integer.parseInt(request.getParameter("articleID"));
             int memberID = Integer.parseInt(request.getParameter("memberID"));
             String commentContent = request.getParameter("commentContent");
-            HttpSession session = request.getSession();
-            MemberDTO memberLogin = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
             String fullName = memberLogin.getFullName();
             int sensorID = memberLogin.getId();
             CommentDAO dao = new CommentDAO();
             CommentDTO comment = new CommentDTO(0, articleID, sensorID, commentContent, "", "", "");
             NotificationDAO notiDao = new NotificationDAO();
-            boolean checkCreate = dao.createComment(comment);           
+            boolean checkCreate = dao.createComment(comment);
             if (sensorID != memberID) {
                 NotificationDTO noti = new NotificationDTO(0, "đã comment bài viết của bạn", memberID, sensorID, articleID, fullName, memberLogin.getPicture());
                 boolean checkNotiComments = notiDao.NotificationComments(noti);
