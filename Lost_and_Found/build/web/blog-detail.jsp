@@ -70,7 +70,7 @@
                                     <img src="${D.blogImage}">
                                 </div>
                                 <p class="blog-meta">
-                                    <span class="author"><i class="fas fa-user"></i> ${D.memberID}</span>
+                                    <span class="author"><i class="fas fa-user"></i> ${D.fullName}</span>
                                 </p>
                                 <h2>${D.blogName}</h2>
                                 <p>${D.blogContent}</p>
