@@ -158,7 +158,6 @@ public class NotificationDAO {
 //        return list;
 //
 //    }
-
     public boolean getSeenNoti(String articleID1) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -172,6 +171,37 @@ public class NotificationDAO {
             if (conn != null) {
                 ptm = conn.prepareStatement(sql);
                 ptm.setString(1, articleID1);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public boolean getSeenNotiAll(int memberID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        String sql = "UPDATE [dbo].[Notification]\n"
+                + "   SET [NotificationStatus] = 0\n"
+                + " WHERE memberID = ?";
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(sql);
+                ptm.setInt(1, memberID);
                 check = ptm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {
@@ -229,5 +259,37 @@ public class NotificationDAO {
         }
         return list;
     }
-    
+
+    public int checkCount(int memberID, int articleID) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        int count = 0;
+        String sql = "SELECT count(*) as total_like from [dbo].[Like] WHERE MemberID = ? AND ArticleID = ?";
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(sql);
+                ptm.setInt(1, memberID);
+                ptm.setInt(2, articleID);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    count = rs.getInt("total_like");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return count;
+    }
 }

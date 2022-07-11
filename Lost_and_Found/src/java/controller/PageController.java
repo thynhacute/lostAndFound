@@ -39,7 +39,6 @@ public class PageController extends HttpServlet {
                 session.setAttribute("LIST_NOTIFICATION", listNotification);
                 List<NotificationDTO> listNotificationSeen = new NotificationDAO().getListSeenNoti(memberLogin.getId());
                 session.setAttribute("LIST_NOTIFICATION_SEEN", listNotificationSeen);
-
             }
             List<ArticleDTO> listLostArticles = new ArticleDAO().getLostArticles();
             request.setAttribute("LIST_LOST_ARTICLE", listLostArticles);

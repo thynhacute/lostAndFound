@@ -169,7 +169,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <button type="submit" name="action" value="Like" class="like_btn" style="outline: none;">
-                                                <a href="LikeArticleController?articleID=${D.articleID}">
+                                                <a href="LikeArticleController?articleID=${D.articleID}&memberID=${D.memberID}">
                                                     <span id="icon"><i class="far fa-thumbs-up icon-2"></i></span>
                                                     <span id="count">${D.totalLike}</span>
                                                     <span id="like">Like

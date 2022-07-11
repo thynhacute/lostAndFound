@@ -36,10 +36,10 @@
                             <li class="current-list-item"><a href="PageController">Page</a>                                
                             </li>
                             <li><a href="BlogController">Blog</a>
-<!--                                <ul class="sub-menu">
-                                    <li><a href="blog.jsp">Blog</a></li>
-                                    <li><a href="blog-detail.jsp">Blog Detail</a></li>
-                                </ul>-->
+                                <!--                                <ul class="sub-menu">
+                                                                    <li><a href="blog.jsp">Blog</a></li>
+                                                                    <li><a href="blog-detail.jsp">Blog Detail</a></li>
+                                                                </ul>-->
                             </li>
                             <li><a href="#">FPTU's Map</a>
                                 <ul class="sub-menu">
@@ -70,25 +70,40 @@
                                     <c:if test="${sessionScope.LIST_NOTIFICATION.size() > 0}">
                                         <div class="size-noti">${sessionScope.LIST_NOTIFICATION.size()}</div>
                                     </c:if>
-                                    <button onclick="hamDropdown()" class="nut_dropdown" style="background-color: transparent; border: none"> 
+                                    <button onclick="hamDropdown()" class="nut_dropdown" style="background-color: transparent; border: none; outline: none"> 
                                         <i class="fas fa-bell"></i>
                                         <span class="caret"></span></button>
                                     <ul class="noidung_dropdown">
                                         <div>
-                                            <p class="noidung_dropdown_content">News</p>
-                                            <c:forEach items="${sessionScope.LIST_NOTIFICATION}" var="LN">
-                                                <a href="NotificationController?articleID=${LN.articleID}">
-                                                    <div>
-                                                        <div class="notification">
-                                                            <img width="50px" height="50px" src="${LN.picture}">                                                    
-                                                            <p><b>${LN.fullName}</b> ${LN.content}</p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </c:forEach>
+                                            <div class="row">
+                                                <p class="title-noti col-9">Thông báo</p>
+                                                <form action="NotificationController" method="POST">
+                                                    <button class="tick col-3" type="submit" name="action" value="NotificationSeenAll" style="background-color: transparent;
+                                                            border: none;
+                                                            outline: none;
+                                                            text-align: center">
+                                                        <i class="fas fa-check"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                            <c:if test="${sessionScope.LIST_NOTIFICATION.size() > 0}">
+                                                <p class="noidung_dropdown_content"><b>News</b></p>
+                                                <div  style="border-bottom: dashed">
+                                                    <c:forEach items="${sessionScope.LIST_NOTIFICATION}" var="LN">
+                                                        <a href="NotificationController?articleID=${LN.articleID}">
+                                                            <div>
+                                                                <div class="notification">
+                                                                    <img width="50px" height="50px" src="${LN.picture}">                                                    
+                                                                    <p><b>${LN.fullName}</b> ${LN.content}</p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </c:forEach>
+                                                </div>
+                                            </c:if>
                                         </div>
                                         <div>
-                                            <p class="noidung_dropdown_content">Read</p>
+                                            <p class="noidung_dropdown_content"><b>Read</b></p>
                                             <c:forEach items="${sessionScope.LIST_NOTIFICATION_SEEN}" var="LNS">
                                                 <a href="NotificationController?articleID=${LNS.articleID}">
                                                     <div>
