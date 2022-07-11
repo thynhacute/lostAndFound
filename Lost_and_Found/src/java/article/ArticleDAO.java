@@ -65,7 +65,44 @@ public class ArticleDAO {
     private static final String GET_LIST_ARTICLE_SUCCESS = "SELECT A.ArticleID,  A.ArticleContent, A.ImgURL, A.PostTime, A.LocationID, A.MemberID, A.ArticleTypeID,A.TotalReport, A.ItemID, M.FullName, M.Email, M.Phone, M.Picture, ART.ArticleTypeName, I.ItemName, L.LocationName FROM Article A , Member M, ArticleType ART , ItemType I, Location L \n"
             + "WHERE A.MemberID=M.MemberID AND A.ArticleTypeID = ART.ArticleTypeID AND A.ItemID = I.ItemID AND A.LocationID = L.LocationID AND A.ArticleStatus is NULL ";
 
-    public boolean deleteArticle(String articleID) throws SQLException {
+    
+      private static final String GET_TOTAL_REPORT = "select TotalReport  from Article where ArticleID = ? ";
+
+    
+    public int getCountReport(int articleID) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        int count = 0;
+        
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+            ptm = conn.prepareStatement(GET_TOTAL_REPORT);
+            ptm.setInt(1, articleID);
+            rs = ptm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt("TotalReport");
+            }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return count;
+    }
+    public boolean deleteArticle(int articleID) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -73,7 +110,7 @@ public class ArticleDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(DELETE_ARTICLE);
-                ptm.setString(1, articleID);
+                ptm.setInt(1, articleID);
                 check = ptm.executeUpdate() > 0 ? true : false;
             }
 
