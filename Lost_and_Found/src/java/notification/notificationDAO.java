@@ -118,7 +118,6 @@ public class NotificationDAO {
         return check;
     }
 
-
     public boolean getSeenNoti(String articleID1) throws SQLException {
         boolean check = false;
         Connection conn = null;
