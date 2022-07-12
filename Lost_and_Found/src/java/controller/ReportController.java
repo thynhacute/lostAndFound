@@ -60,6 +60,7 @@ public class ReportController extends HttpServlet {
                     int countReport = daoa.getCountReport(articleID);
                             if(countReport >= 5) {
                                daoa.deleteArticle(articleID);
+                               JavaMailUtil.sendMail(email, reportContent, fullName, articleContent);
                             }
                     if (checkCreate && checkUpdateTotalArticleReport && checkUpdateTotalMemberReport) {
                         url = SUCCESS;
