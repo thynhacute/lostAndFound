@@ -15,6 +15,7 @@ public class BlogDTO {
     private String blogName;
     private String blogContent;
     private int memberID;
+    private String fullName;
 
     public BlogDTO(int blogID, String blogName, String blogContent, int memberID) {
         this.blogID = blogID;
@@ -30,6 +31,16 @@ public class BlogDTO {
         this.blogContent = blogContent;
         this.memberID = memberID;
     }
+
+    public BlogDTO(int blogID, String blogImage, String blogName, String blogContent, int memberID, String fullName) {
+        this.blogID = blogID;
+        this.blogImage = blogImage;
+        this.blogName = blogName;
+        this.blogContent = blogContent;
+        this.memberID = memberID;
+        this.fullName = fullName;
+    }
+    
 
     public String getBlogImage() {
         return blogImage;
@@ -78,4 +89,14 @@ public class BlogDTO {
     public void setMemberID(int memberID) {
         this.memberID = memberID;
     }  
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+    
+    
 }

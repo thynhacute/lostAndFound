@@ -20,8 +20,8 @@ import java.util.List;
 public class BlogDAO {
 
     private static final String GET_LIST_BLOG = "SELECT BlogID, BlogImage, BlogName, BlogContent, MemberID FROM Blog WHERE MemberID = 1";
-    private static final String GET_BLOG_DETAIL = "SELECT BlogID, BlogImage, BlogName, BlogContent, MemberID FROM Blog\n"
-            + "WHERE BlogID =?";
+    private static final String GET_BLOG_DETAIL = "SELECT B.BlogID, B.BlogImage, B.BlogName, B.BlogContent, B.MemberID, M.FullName FROM Blog B, Member M \n"
+            + "WHERE B.MemberID = M.MemberID AND B.BlogID =?";
 
     public List<BlogDTO> getListBlog() throws SQLException {
         List<BlogDTO> listBlog = new ArrayList<>();
@@ -73,7 +73,8 @@ public class BlogDAO {
                 String blogName = rs.getString("BlogName");
                 String blogContent = rs.getString("BlogContent");
                 int memberID = rs.getInt("MemberID");
-                BlogDTO blog = new BlogDTO(blogID, blogImage, blogName, blogContent, memberID);
+                String fullName = rs.getString("FullName");
+                BlogDTO blog = new BlogDTO(blogID, blogImage, blogName, blogContent, memberID, fullName);
                 return blog;
             }
         } catch (Exception e) {
