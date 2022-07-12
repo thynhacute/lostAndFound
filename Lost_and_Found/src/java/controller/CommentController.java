@@ -50,7 +50,7 @@ public class CommentController extends HttpServlet {
             NotificationDAO notiDao = new NotificationDAO();
             boolean checkCreate = dao.createComment(comment);
             if (sensorID != memberID) {
-                NotificationDTO noti = new NotificationDTO(0, "đã comment bài viết của bạn", memberID, sensorID, articleID, fullName, memberLogin.getPicture());
+                NotificationDTO noti = new NotificationDTO(0, "commented on your post", memberID, sensorID, articleID, fullName, memberLogin.getPicture());
                 boolean checkNotiComments = notiDao.NotificationComments(noti);
                 if (checkNotiComments) {
                     url = NOTICOMMENTS;

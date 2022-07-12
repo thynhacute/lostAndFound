@@ -4,6 +4,20 @@
     Author     : Owner
 --%>
 
+<style>
+    Nguyên Vũ
+    ::-webkit-scrollbar{
+        width: 10px;
+    }
+    ::-webkit-scrollbar-track{
+        box-shadow: inset 0 0 10px #0000004c;
+    }
+    ::-webkit-scrollbar-thumb{
+        border-radius: 5px;
+        background-color: #ee8138;
+    }
+</style>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -75,20 +89,31 @@
                                         <span class="caret"></span></button>
                                     <ul class="noidung_dropdown">
                                         <div>
-                                            <div class="row">
-                                                <p class="title-noti col-9">Thông báo</p>
-                                                <form action="NotificationController" method="POST">
-                                                    <button class="tick col-3" type="submit" name="action" value="NotificationSeenAll" style="background-color: transparent;
-                                                            border: none;
-                                                            outline: none;
-                                                            text-align: center">
-                                                        <i class="fas fa-check"></i>
-                                                    </button>
-                                                </form>
+                                            <div>
+                                                <p class="title-noti text-center mt-3">Notification</p>
+                                                <!--                                                <form class="col-3" action="NotificationController" method="POST">
+                                                                                                    <button class="tick" type="submit" name="action" value="NotificationSeenAll" style="background-color: red;
+                                                                                                            border: none;
+                                                                                                            outline: none;
+                                                                                                            text-align: center">
+                                                                                                        <i class="fas fa-check"></i>
+                                                                                                    </button>
+                                                                                                </form>-->
                                             </div>
                                             <c:if test="${sessionScope.LIST_NOTIFICATION.size() > 0}">
-                                                <p class="noidung_dropdown_content"><b>News</b></p>
-                                                <div  style="border-bottom: dashed">
+                                                <div class="row justify-content-between my-2">
+                                                    <p class="noidung_dropdown_content col-5 align-self-center">Latest</p>
+                                                    <form class="col-3 align-self-center" action="NotificationController" method="POST">
+                                                        <button class="tick mt-0 px-2" type="submit" name="action" value="NotificationSeenAll" style="background-color: transparent;
+                                                                border: 1px solid #ee8138;
+                                                                outline: none;
+                                                                border-radius: 8px;
+                                                                cursor: pointer">
+                                                            <i class="fas fa-check" style="color: #ee8138"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <div>
                                                     <c:forEach items="${sessionScope.LIST_NOTIFICATION}" var="LN">
                                                         <a href="NotificationController?articleID=${LN.articleID}">
                                                             <div>
@@ -100,10 +125,12 @@
                                                         </a>
                                                     </c:forEach>
                                                 </div>
+
+                                                <hr/>
                                             </c:if>
                                         </div>
                                         <div>
-                                            <p class="noidung_dropdown_content"><b>Read</b></p>
+                                            <p class="noidung_dropdown_content text-left ml-4">Read</p>
                                             <c:forEach items="${sessionScope.LIST_NOTIFICATION_SEEN}" var="LNS">
                                                 <a href="NotificationController?articleID=${LNS.articleID}">
                                                     <div>

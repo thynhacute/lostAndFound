@@ -49,7 +49,10 @@
                                     </p>
                                 </div>
                                 <div class="form-group">
-                                    <p class="text-center">login with FPT mail  <a href="#" id="signup"> @fpt.edu.vn</a></p>
+                                    <p class="text-center">login with FPT mail  <a href="#" id="signup"> @fpt.edu.vn</a></p><br>
+                                    <c:if test="${requestScope.ERROR_MESSAGE_ACC_BAN != null}">
+                                        <p class="text-center" style="color: red; ">${requestScope.ERROR_MESSAGE_ACC_BAN}</p>
+                                    </c:if>
 
                                 </div>
                             </form>
@@ -59,7 +62,7 @@
             </div>
         </div>
         <c:if test="${requestScope.ERROR_LOGGIN_MESSAGE != null}">
-            <div class="toast-container" aria-atomic="true" style="  position: absolute; min-height: 5px;">
+<!--            <div class="toast-container" aria-atomic="true" style="  position: absolute; min-height: 5px;">
                 <div id="liveToast" class="toast" role="alert" aria-live="assertive" data-delay="3500"
                      style="position: fixed; bottom: 10px; right: 15px;">
                     <div class="toast-header">
@@ -75,7 +78,7 @@
                         <p> Please Choice Type Item AND Location</p>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </c:if>
     </body>
     <script >$('#liveToast').toast('dispose');</script>

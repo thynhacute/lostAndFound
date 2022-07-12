@@ -1097,6 +1097,12 @@ a.video-play-btn:hover {
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s;
+    width: 350px;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .single-latest-news:hover .latest-news-bg {
@@ -1622,31 +1628,15 @@ div.owl-controls, .owl-controls div {
 # News Styles
 
 ----------------------------------------------------------------------------- */
-/*.news-bg-1 {
-    background-image: url(../img/latest-news/news-bg-1.jpg);
-}
 
-.news-bg-2 {
-    background-image: url(../img/latest-news/news-bg-2.jpg);
-}
 
-.news-bg-3 {
-    background-image: url(../img/latest-news/news-bg-3.jpg);
+.latest-news .container .row .col-lg-4 .single-latest-news .latest-news-bg img{
+    width: 350px;
+    height: 200px;
 }
-
-.news-bg-4 {
-    background-image: url(../img/latest-news/news-bg-4.jpg);
-}
-
-.news-bg-5 {
-    background-image: url(../img/latest-news/news-bg-5.jpg);
-}
-
-.news-bg-6 {
-    background-image: url(../img/latest-news/news-bg-6.jpg);
-}*/
 
 .latest-news-bg {
+    width: 350px;
     height: 200px;
     background-size: cover;
     background-position: center;
@@ -1684,6 +1674,7 @@ p.blog-meta span i {
 p.excerpt {
     line-height: 1.8;
     color: #555;
+    height: 126px;
 }
 
 .latest-news a.boxed-btn {
@@ -1694,6 +1685,7 @@ p.excerpt {
     padding: 25px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    height: 340px;
 }
 
 .single-latest-news {
@@ -3092,8 +3084,8 @@ input:focus{
 
 .noidung_dropdown_content{
     text-align: center;
-    font-family: serif;
-    font-size: 20px;
+    font-family: sans-serif;
+    font-size: 17px;
     margin-bottom: 0px;
 }
 
@@ -3114,11 +3106,15 @@ input:focus{
 .title-noti{
     text-align: left;
     font-size: 30px;
-    font-family: serif;
+    font-family: sans-serif;
     font-weight: bold;
     margin-left: 1rem;
 }
 
-.tick{
-    margin-top: 1rem;
+.mt-150 .container .row .col-lg-12 .single-article-section .single-article-text .single-artcile-bg img{
+    width: 1110px;
+    height: 650px;
+}
+.mt-150 .container .row .col-lg-12 .single-article-section .single-article-text .single-artcile-bg{
+    margin-bottom: 210px;
 }

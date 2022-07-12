@@ -19,10 +19,10 @@ import java.util.List;
  */
 public class MemberDAO {
 
-    private static final String CHECK_DUPLICATE = "SELECT  M.FullName FROM Member M\n"
+    private static final String CHECK_DUPLICATE = "SELECT  M.FullName FROM Member M \n"
             + "WHERE M.Email = ?";
     private static final String GET_MEMBER_BY_EMAIL = "SELECT M.MemberID, M.FullName, M.Email, M.Picture, M.Phone, M.ProfileInfo, M.RoleID FROM Member M , Role R\n"
-            + "WHERE M.Email = ? AND R.RoleID=M.RoleID";
+            + "WHERE M.Email = ? AND R.RoleID=M.RoleID AND M.MemberStatus=1";
     private static final String CREATE_MEMBER = "INSERT INTO [dbo].[Member]\n"
             + "           ([FullName]\n"
             + "           ,[Email]\n"

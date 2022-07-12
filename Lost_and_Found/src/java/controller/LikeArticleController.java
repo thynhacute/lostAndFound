@@ -53,7 +53,7 @@ public class LikeArticleController extends HttpServlet {
                 NotificationDAO notiDao = new NotificationDAO();
                 int count = notiDao.checkCount(sensorID, articleID);
                 if (sensorID != memberID && count == 0) {
-                    NotificationDTO noti = new NotificationDTO(0, "đã thích bài viết của bạn", memberID, sensorID, articleID, fullName, member.getPicture());
+                    NotificationDTO noti = new NotificationDTO(0, "liked your post", memberID, sensorID, articleID, fullName, member.getPicture());
                     boolean checkNotiComments = notiDao.NotificationComments(noti);
                 }
                 //else Like article

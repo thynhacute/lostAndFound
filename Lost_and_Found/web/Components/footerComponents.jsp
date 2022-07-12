@@ -31,11 +31,11 @@
 
             <div class="col-lg-3 col-md-6">
                 <div class="footer-box get-in-touch">
-                    <h2 class="widget-title">Contract</h2>
+                    <h2 class="widget-title">Contact</h2>
                     <ul>
                         <li> <span style="color: #f6740a;">Email:</span> daihoc.hcm@fpt.edu.vn</li>
                         <li><span style="color: #f6740a;">Email:</span> hcmuni.fpt.edu.vn</li>
-                        <li><span style="color: #f6740a;">Contract:</span>028 7300 5588</li>
+                        <li><span style="color: #f6740a;">Phone: </span>028 7300 5588</li>
                     </ul>
                 </div>
             </div>

@@ -58,8 +58,9 @@ public class ReportController extends HttpServlet {
                     boolean checkUpdateTotalMemberReport = daom.updateTotalReportMember(articleMemberID);
 //                    khi ma report thi tao dao dem thg user no co may report  
                     int countReport = daoa.getCountReport(articleID);
-                            if(countReport >= 20) {
+                            if(countReport >= 5) {
                                daoa.deleteArticle(articleID);
+                               JavaMailUtil.sendMail(email, reportContent, fullName, articleContent);
                             }
                     if (checkCreate && checkUpdateTotalArticleReport && checkUpdateTotalMemberReport) {
                         url = SUCCESS;
