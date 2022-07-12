@@ -175,7 +175,7 @@
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
-                                                                    <a href="ActiveMemberByAdminController?memberID=${member.id}" type="button" class="btn btn-primary"> <i  aria-hidden="true"></i> YES</a>
+                                                                    <a href="ActiveMemberByAdminController?memberID=${member.id}&email=${member.email}&fullName=${member.fullName}" type="button" class="btn btn-primary"> <i  aria-hidden="true"></i> YES</a>
                                                                 </div>
                                                             </div>
                                                         </div>
