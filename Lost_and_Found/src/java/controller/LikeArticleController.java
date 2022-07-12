@@ -50,15 +50,16 @@ public class LikeArticleController extends HttpServlet {
                 checkTotalLiked = dao.unlikeArticle(articleID);
                 checkLiked = dao1.setStatusUnlikeArticle(articleID, member.getId());
             } else {
-                //else Like article
-                checkTotalLiked = dao.likeArticle(articleID);
-                checkLiked = dao1.setStatusLikeArticle(articleID, member.getId());
                 NotificationDAO notiDao = new NotificationDAO();
                 int count = notiDao.checkCount(sensorID, articleID);
-                if (sensorID != memberID && count < 1) {
+                if (sensorID != memberID && count == 0) {
                     NotificationDTO noti = new NotificationDTO(0, "đã thích bài viết của bạn", memberID, sensorID, articleID, fullName, member.getPicture());
                     boolean checkNotiComments = notiDao.NotificationComments(noti);
                 }
+                //else Like article
+                checkTotalLiked = dao.likeArticle(articleID);
+                checkLiked = dao1.setStatusLikeArticle(articleID, member.getId());
+
             }
             if (checkLiked && checkTotalLiked) {
                 if (checkLiked) {

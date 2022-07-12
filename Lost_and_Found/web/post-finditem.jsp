@@ -64,7 +64,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="t1 mt-5 ">
-                        <h2>Your listing detail 1</h2>
+                        <h2>POST LOST-ITEM FORM</h2>
                     </div>
                 </main>
             </div>
@@ -83,11 +83,11 @@
 
                             <!--SEARCH BY ITEMS START HERE-->
                             <div class="pf-body Detail-A">                            
-                                <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A">
-                                    Type Item</label>
+                                <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A"><i class="fas fa-list"></i>
+                                    &nbsp Type Item</label>
                                 <div>                                   
                                     <select name="Items" class="box-1">
-                                        <option value="0"></option>
+                                        <option value="0">Choose item type</option>
                                         <c:forEach items="${requestScope.LIST_ITEM}" var="Item">                                            
                                             <option value="${Item.itemID}"> ${Item.itemName}</option>                                            
                                         </c:forEach>
@@ -101,7 +101,7 @@
                                 <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A"> <i
                                         class="fa-solid fa-location-pin"></i> &nbsp Location</label> 
                                 <select name="Locations"class="box-1">
-                                    <option value="0" ></option>
+                                    <option value="0">Choose location</option>
                                     <c:forEach items="${requestScope.LIST_LOCATION}" var="Location">                                      
                                         <option value="${Location.locationID}">${Location.locationName}</option>                                        
                                     </c:forEach>
@@ -124,7 +124,6 @@
                             </div>
                             <div class="input-group Detail-A " style="padding-bottom: 35px">
                                 <input type="file" class="form-control" name="file" id="inputGroupFile02" placeholder="Enter photo">
-                                <label class="input-group-text" for="inputGroupFile02">Upload</label>
                                 <div>
                                     <c:if test="${requestScope.ERROR_UPLOAD != null}">
 

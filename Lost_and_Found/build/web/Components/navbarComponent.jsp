@@ -134,9 +134,9 @@
                                         <img src="${L.picture}"
                                              class="rounded-circle" style="width: 40px;" alt="Avatar" />
                                         <ul class="sub-menu">
-                                            <li> <a href="#"></a>${L.fullName}</li>
+                                            <li><a href="profileUser.jsp">${L.fullName}</a></li>
                                             <li><a href="profileUser.jsp">Profile</a></li>
-                                            <li> <a href="login.jsp">Logout</a></li>
+                                            <li><a href="login.jsp">Logout</a></li>
                                         </ul>
                                     </c:if>
                                 </li>

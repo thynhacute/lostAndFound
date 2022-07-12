@@ -86,31 +86,31 @@
                         <div class="user-card-use">
                             <form action="UpdateController" method="POST">
                                 <div class="pf-body Detail-A">
-                                    <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A"> Full Name</label>
+                                    <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A">Full Name</label>
                                     <div class="border-bottom Detail-B">                                
                                         <input type="text" name="fullName" maxlength="50" value="${L.fullName}">
                                     </div>
                                 </div>
                                 <div class="pf-body Detail-A"> 
-                                    <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A"> Avatar</label>
+                                    <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A">Avatar</label>
                                     <div class="border-bottom Detail-B">                    
                                         <img src="${L.picture}" class="rounded-circle" style="width: 100px;" alt="Avatar"/>                   
                                     </div>
                                 </div>     
                                 <div class="pf-body Detail-A">
-                                    <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A"> Profile Information</label>
+                                    <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A">Bio</label>
                                     <div class="border-bottom Detail-B">
                                         <input name="profileInfo" type="text" maxlength="50" value="${L.profileInfo}">
                                     </div>
                                 </div>    
                                 <div class="pf-body Detail-A">
-                                    <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A"> Email</label>
+                                    <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A">Email</label>
                                     <div class="border-bottom Detail-B">
                                         <p>${L.email}</p>
                                     </div>
                                 </div>
                                 <div class="pf-body Detail-A">
-                                    <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A"> Phone</label>
+                                    <label for="exampleFormControlInput1" class="form-label font-weight-bold Detail-A">Phone</label>
                                     <div class="border-bottom Detail-B">
                                         <span>+84 </span>
                                         <input maxlength="9" minlength="9" name="phone" type="text" maxlength="50" value="${L.phone}">                           

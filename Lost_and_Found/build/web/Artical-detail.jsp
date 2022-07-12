@@ -14,7 +14,7 @@
         <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
         <!-- title -->
-        <title>Artical detail</title>
+        <title>Article Detail</title>
 
 
         <!-- favicon -->
@@ -53,7 +53,7 @@
                     <div class="col-lg-8 offset-lg-2 text-center">
                         <div class="breadcrumb-text">
                             <p>FPT University</p>
-                            <h1>Artical detail</h1>
+                            <h1>Article Detail</h1>
                         </div>
                     </div>
                 </div>
