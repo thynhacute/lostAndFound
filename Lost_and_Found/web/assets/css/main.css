@@ -3085,7 +3085,7 @@ input:focus{
 .noidung_dropdown_content{
     text-align: center;
     font-family: serif;
-    font-size: 20px;
+    font-size: 17px;
     margin-bottom: 0px;
 }
 
@@ -3111,9 +3111,6 @@ input:focus{
     margin-left: 1rem;
 }
 
-.tick{
-    margin-top: 1rem;
-}
 .mt-150 .container .row .col-lg-12 .single-article-section .single-article-text .single-artcile-bg img{
     width: 1110px;
     height: 650px;

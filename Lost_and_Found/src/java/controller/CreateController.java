@@ -109,9 +109,9 @@ public class CreateController extends HttpServlet {
                     //sensor thằng có items mình cần
                     // memberID là mình login zô
                     if (sensorID != memberID) {
-                        NotificationDTO noti = new NotificationDTO(0, "might be in the middle of an item you lost", memberID, sensorID, articleID, fullName, picture);
+                        NotificationDTO noti = new NotificationDTO(0, "might be holding an item you just lost", memberID, sensorID, articleID, fullName, picture);
                         boolean checkCreateNoti = notiDAO.NotificationArticle(noti);
-                        NotificationDTO noti2 = new NotificationDTO(0, "can may be found the map that you are picked", sensorID, memberID, articleID, fullName, picture);
+                        NotificationDTO noti2 = new NotificationDTO(0, "can may be found the item that you are picked", sensorID, memberID, articleID, fullName, picture);
                         boolean checkCreateNoti2 = notiDAO.NotificationArticle(noti2);
                             url = SUCCESS;
                     }
@@ -125,9 +125,9 @@ public class CreateController extends HttpServlet {
                     String picture = listArticle.getPicture();
                     NotificationDAO notiDAO = new NotificationDAO();
                     if (sensorID != memberID) {
-                        NotificationDTO noti = new NotificationDTO(0, "can may be found the map that you are picked", memberID, sensorID, articleID, fullName, picture);
+                        NotificationDTO noti = new NotificationDTO(0, "can may be found the item that you are picked", memberID, sensorID, articleID, fullName, picture);
                         boolean checkCreateNoti = notiDAO.NotificationArticle(noti);
-                        NotificationDTO noti2 = new NotificationDTO(0, "might be in the middle of an item you lost", sensorID, memberID, articleID, fullName, picture);
+                        NotificationDTO noti2 = new NotificationDTO(0, "might be holding an item you just lost", sensorID, memberID, articleID, fullName, picture);
                         boolean checkCreateNoti2 = notiDAO.NotificationArticle(noti2);
                             url = SUCCESS;
                     }
