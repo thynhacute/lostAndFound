@@ -5,42 +5,42 @@ Chart.defaults.global.defaultFontColor = '#292b2c';
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
 var myLineChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ["January", "February", "March", "April", "May", "June", "July", ],
-    datasets: [{
-      label: "Revenue",
-      backgroundColor: "rgba(2,117,216,1)",
-      borderColor: "rgba(2,117,216,1)",
-      data: [5, 20, 40, 50, 100, 200,120],
-    }],
-  },
-  options: {
-    scales: {
-      xAxes: [{
-        time: {
-          unit: 'month'
-        },
-        gridLines: {
-          display: false
-        },
-        ticks: {
-          maxTicksLimit: 12
-        }
-      }],
-      yAxes: [{
-        ticks: {
-          min: 0,
-          max: 2000,
-          maxTicksLimit: 20
-        },
-        gridLines: {
-          display: true
-        }
-      }],
+    type: 'bar',
+    data: {
+        labels: ["January", "February", "March", "April", "May", "June", "July", ],
+        datasets: [{
+                label: "Revenue",
+                backgroundColor: "rgba(2,117,216,1)",
+                borderColor: "rgba(2,117,216,1)",
+                data: [5, 20, 40, 50, 100, 200, 120],
+            }],
     },
-    legend: {
-      display: false
+    options: {
+        scales: {
+            xAxes: [{
+                    time: {
+                        unit: 'month'
+                    },
+                    gridLines: {
+                        display: false
+                    },
+                    ticks: {
+                        maxTicksLimit: 12
+                    }
+                }],
+            yAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: 2000,
+                        maxTicksLimit: 20
+                    },
+                    gridLines: {
+                        display: true
+                    }
+                }],
+        },
+        legend: {
+            display: false
+        }
     }
-  }
 });
