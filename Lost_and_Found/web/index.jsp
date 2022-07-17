@@ -91,7 +91,7 @@
         <!-- end hero area -->
 
         <!-- post new articles -->
-       
+
         <div class="product-section pt-80 pb-100" style="background: #e7e7e7fa ;">
             <div class="container">       
                 <div class="col-lg-8 offset-lg-2 text-center">
@@ -323,49 +323,88 @@
                 </div>
             </div>
         </div>
-            <!-- end product 2 section -->
+        <!-- end product 2 section -->
 
-            <!-- latest news -->
-            <c:if test="${requestScope.SUCCESS_MESSAGE != null}">
-                <div class="toast-container" aria-atomic="true" style="  position: absolute; min-height: 5px;">
-                    <div id="liveToast" class="toast" role="alert" aria-live="assertive" data-delay="4000"
-                         style="position: fixed; bottom: 20px; right: 15px;">
-                        <div class="toast-header">
-                            <img src="assets/img/logoteam/logoteam.png" width="6%" class="rounded me-2" alt="">
-                            <strong style="color: #e88123"  class="mr-auto">Notification</strong>
-                            <small> &nbsp &nbsp Now</small>
-                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                                <span aria-hidden="true">&nbsp &nbsp &nbsp &times;</span>
-                            </button>
-                        </div>
-                        <div class="toast-body">
-                            <p>Hello, ${sessionScope.LOGIN_MEMBER.fullName}</p>
-                            <p>welcome to Lost and Found </p>
+        <div class="product-section pt-80 pb-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2 text-center">
+                        <div class="section-title">
+                            <h3><span class="orange-text"> TOP </span> likes Articles</h3>
                         </div>
                     </div>
+                </div>                                
+                <div class="row">
+                    <c:forEach items="${requestScope.LIST_TOP_LIKES_ARTICLE}" var="LTLA">
+                        <div class=" col-lg-4 text-center strawberry">
+                            <div class="single-product-item" style="height: 450px; width: 80%" >
+                                <c:choose>
+                                    <c:when test="${fn:contains(LTLA.imgURL, 'https')}">
+                                        <div class="product-image">
+                                            <a href="DetailArticleController?articleID=${LTLA.articleID}">
+                                                <img style="height: 150px;" src="${LTLA.imgURL}" />
+                                            </a>
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="product-image">
+                                            <a href="DetailArticleController?articleID=${LTLA.articleID}">
+                                                <img style="height: 150px;" src="./file_upload/${LTLA.imgURL}" />
+                                            </a>
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>
+                                <h3>${LTLA.itemName}</h3>
+                                <p class="product-price"><span>${LTLA.phone}</span>${LTLA.locationName} </p>
+                                <p>${LTLA.fullName}</p>
+                            </div>
+                        </div>     
+                    </c:forEach>
                 </div>
-            </c:if>
+            </div>
+        </div>
 
-            <c:if test="${requestScope.SUCCESS_CREATE_MESSAGE != null}">
-                <div class="toast-container" aria-atomic="true" style="  position: absolute; min-height: 5px;">
-                    <div id="liveToast" class="toast" role="alert" aria-live="assertive" data-delay="3500"
-                         style="position: fixed; bottom: 20px; right: 15px;">
-                        <div class="toast-header">
-                            <img src="assets/img/logoteam/logoteam.png" width="6%" class="rounded me-2" alt="">
-                            <strong style="color: #e88123" class="mr-auto">Notification</strong>
-                            <small> &nbsp &nbsp Now</small>
-                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                                <span aria-hidden="true">&nbsp &nbsp &nbsp &times;</span>
-                            </button>
-                        </div>
-                        <div class="toast-body">
-                            <p>${sessionScope.LOGIN_MEMBER.fullName}</p>
-                            <p> Post article success</p>
-                        </div>
+        <!-- latest news -->
+        <c:if test="${requestScope.SUCCESS_MESSAGE != null}">
+            <div class="toast-container" aria-atomic="true" style="  position: absolute; min-height: 5px;">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" data-delay="4000"
+                     style="position: fixed; bottom: 20px; right: 15px;">
+                    <div class="toast-header">
+                        <img src="assets/img/logoteam/logoteam.png" width="6%" class="rounded me-2" alt="">
+                        <strong style="color: #e88123"  class="mr-auto">Notification</strong>
+                        <small> &nbsp &nbsp Now</small>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">&nbsp &nbsp &nbsp &times;</span>
+                        </button>
+                    </div>
+                    <div class="toast-body">
+                        <p>Hello, ${sessionScope.LOGIN_MEMBER.fullName}</p>
+                        <p>welcome to Lost and Found </p>
                     </div>
                 </div>
-            </c:if> 
-            <%@include file="Components/footerComponents.jsp" %>
+            </div>
+        </c:if>
+
+        <c:if test="${requestScope.SUCCESS_CREATE_MESSAGE != null}">
+            <div class="toast-container" aria-atomic="true" style="  position: absolute; min-height: 5px;">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" data-delay="3500"
+                     style="position: fixed; bottom: 20px; right: 15px;">
+                    <div class="toast-header">
+                        <img src="assets/img/logoteam/logoteam.png" width="6%" class="rounded me-2" alt="">
+                        <strong style="color: #e88123" class="mr-auto">Notification</strong>
+                        <small> &nbsp &nbsp Now</small>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">&nbsp &nbsp &nbsp &times;</span>
+                        </button>
+                    </div>
+                    <div class="toast-body">
+                        <p>${sessionScope.LOGIN_MEMBER.fullName}</p>
+                        <p> Post article success</p>
+                    </div>
+                </div>
+            </div>
+        </c:if> 
+        <%@include file="Components/footerComponents.jsp" %>
     </body>
     <!-- end latest news -->
     <!-- jquery -->
