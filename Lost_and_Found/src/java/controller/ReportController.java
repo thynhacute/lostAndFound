@@ -25,7 +25,7 @@ import report.ReportDTO;
  */
 public class ReportController extends HttpServlet {
 
-    private static final String ERROR = "DetailArticleController";
+    private static final String ERROR = "PageController";
     private static final String SUCCESS = "DetailArticleController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -51,22 +51,28 @@ public class ReportController extends HttpServlet {
                 ReportDTO report = new ReportDTO(0, articleID, memberID, reportContent, "");
                 boolean checkCreate = dao.createReport(report);
                 if (checkCreate) {
-                    url = SUCCESS;
                     request.setAttribute("SUCCESS_MESSAGE_REPORT", dao);
                     JavaMailUtil.sendMail(email, reportContent, fullName, articleContent);
                     boolean checkUpdateTotalArticleReport = daoa.updateTotalReportArticle(articleID);
                     boolean checkUpdateTotalMemberReport = daom.updateTotalReportMember(articleMemberID);
 //                    khi ma report thi tao dao dem thg user no co may report  
                     int countReport = daoa.getCountReport(articleID);
-                            if(countReport >= 5) {
-                               daoa.deleteArticle(articleID);
-                               JavaMailUtil.sendMail(email, reportContent, fullName, articleContent);
-                            }
-                    if (checkCreate && checkUpdateTotalArticleReport && checkUpdateTotalMemberReport) {
+                    int countReportMember = daom.getCountReport(articleMemberID);
+                    if (countReport >= 5) {
+                        daoa.deleteArticle(articleID);
+                        url = ERROR;
+//                        JavaMailUtil.sendMail(email, reportContent, fullName, articleContent);
+                    } else if (countReportMember >= 10) {
+                        daom.deleteMember(articleMemberID);
+                        JavaMailUtil.sendMailBanMember(email, fullName);
+                        url = ERROR;
+                    } else {
                         url = SUCCESS;
-                        request.setAttribute("SUCCESS_MESSAGE_REPORT", dao);
-                        JavaMailUtil.sendMail(email, reportContent, fullName, articleContent);
                     }
+//                    if (checkCreate && checkUpdateTotalArticleReport && checkUpdateTotalMemberReport) {
+//                        url = SUCCESS;
+//                        request.setAttribute("SUCCESS_MESSAGE_REPORT", dao);
+//                    }
                 } else {
                     url = ERROR;
                     request.setAttribute("ERORR_MESSAGE_REPORT", "");

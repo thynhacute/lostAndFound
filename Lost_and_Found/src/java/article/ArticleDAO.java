@@ -293,7 +293,7 @@ public class ArticleDAO {
         return listArticle;
 
     }
-    
+
     public List<ArticleDTO> getTopLikesArticle() throws SQLException {
         List<ArticleDTO> listArticles = new ArrayList<>();
         Connection conn = null;

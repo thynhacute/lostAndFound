@@ -29,7 +29,8 @@ public class DeleteMemberByAdminController extends HttpServlet {
         String fullName = request.getParameter("fullName");
 
         try {
-            String memberID = request.getParameter("memberID");
+//            String memberID = request.getParameter("memberID");
+            int memberID = Integer.parseInt(request.getParameter("memberID"));
             MemberDAO dao = new MemberDAO();
             boolean check = dao.deleteMember(memberID);
             JavaMailUtil.sendMailBanMember(email,fullName);

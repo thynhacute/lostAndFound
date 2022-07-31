@@ -3,14 +3,14 @@ Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSyste
 Chart.defaults.global.defaultFontColor = '#292b2c';
 
 // Pie Chart Example
-var ctx = document.getElementById("myPieChart");
+var ctx = document.getElementById("myPieChartAccount");
 var myPieChart = new Chart(ctx, {
   type: 'pie',
   data: {
-    labels: ["Article Lost", "Article Find"],
+    labels: ["Active Account", "Account Band", "Inactive account"],
     datasets: [{
-      data: [500, 600],
-      backgroundColor: ['#007bff', '#dc3545'],
+      data: [100, 5, 50],
+      backgroundColor: ['#007bff', '#dc3545','#FFFF00'],
     }],
   },
 });

@@ -44,6 +44,7 @@ public class MemberDAO {
 
     private static final String UPDATE_DELETE_TOTAL_REPORT_MEMBER = "UPDATE Member SET TotalReport = TotalReport -1 WHERE MemberID = ?";
 
+    private static final String GET_TOTAL_REPORT = "select TotalReport from Member Where MemberID = ?";
     public boolean checkDuplicate(String email) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -209,7 +210,9 @@ public class MemberDAO {
         return listMember;
     }
 
-    public boolean deleteMember(String memberID) throws SQLException {
+
+    public boolean deleteMember(int memberID) throws SQLException {
+
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -217,7 +220,7 @@ public class MemberDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(DELETE_MEMBER);
-                ptm.setString(1, memberID);
+                ptm.setInt(1, memberID);
                 check = ptm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {
@@ -377,5 +380,38 @@ public class MemberDAO {
         return check;
     }
 
+    public int getCountReport(int memberID) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        int count = 0;
+        
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+            ptm = conn.prepareStatement(GET_TOTAL_REPORT);
+            ptm.setInt(1, memberID);
+            rs = ptm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt("TotalReport");
+            }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return count;
+    }
 
 }

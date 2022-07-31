@@ -135,43 +135,46 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
+                        <h1 class="mt-4"><i class="fa-solid fa-house"></i>  Dashboard</h1>
+
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Primary Card</div>
+                                    <div class="card-body"><i class="fa-solid fa-user"></i> New Account Week</div>
+                                    <div class="card-body"> Increase 10%  <i class="fa-solid fa-chart-line"></i></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="small text-white stretched-link" href="SearchMemberByAdminController">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Warning Card</div>
+                                    <div class="card-body"><i class="fa-solid fa-newspaper"></i> New Article Week</div>
+                                    <div class="card-body"> Increase 30%  <i class="fa-solid fa-chart-line"></i></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="small text-white stretched-link" href="SearchAdminController">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Success Card</div>
+                                    <div class="card-body"><i class="fa-solid fa-clipboard-check"></i> Article Success Week</div>
+                                    <div class="card-body"> Increase 50%  <i class="fa-solid fa-chart-line"></i></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="small text-white stretched-link" href="SearchArticleSuccessAdmin">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Danger Card</div>
+                                    <div class="card-body"><i class="fa-solid fa-ban"></i> Article Band Week</div>
+                                    <div class="card-body"> Reduce 10%  <i class="fa-solid fa-arrow-trend-down"></i></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">View Details</a>
+                                        <a class="small text-white stretched-link" href="SearchAdminControllerBand">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -186,12 +189,11 @@
                             <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                         </div>
                         <div class="row">
-
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-bar me-1"></i>
-                                        Chart Fined Item
+                                        Chart Finded Item
                                     </div>
                                     <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
                                 </div>
@@ -205,8 +207,27 @@
                                     <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
                                 </div>
                             </div>
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-pie me-1"></i>
+                                        Chart Of Lost And Found Article
+                                    </div>
+                                    <div class="card-body"><canvas id="myPieChartAccount" width="100%" height="50"></canvas></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-bar me-1"></i>
+                                        Chart Account 
+                                    </div>
+                                    <div class="card-body"><canvas id="barChartHeadcount" width="100%" height="50"></canvas></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
@@ -281,10 +302,13 @@
         <script src="manage-article/assets/demo/chart-area-demo.js"></script>
         <script src="manage-article/assets/demo/chart-bar-demo.js"></script>
         <script src="manage-article/assets/demo/chart-pie-demo.js"></script>
-
+        <script src="manage-article/assets/demo/chart-bar-mix-demo.js"></script>
+        <script src="manage-article/assets/demo/chart-pie-account.js"></script>
+        <script src="manage-article/assets/demo/chart-bar-account.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
         crossorigin="anonymous"></script>
         <script src="manage-article/js/datatables-simple-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>        
     </body>
 
 </html>

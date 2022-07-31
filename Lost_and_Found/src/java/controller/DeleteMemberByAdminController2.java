@@ -25,7 +25,10 @@ public class DeleteMemberByAdminController2 extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            String memberID = request.getParameter("memberID");
+//            String memberID = request.getParameter("memberID");
+
+            int memberID = Integer.parseInt(request.getParameter("memberID"));
+
             MemberDAO dao = new MemberDAO();
             boolean check = dao.deleteMember(memberID);
         } catch (Exception e) {
