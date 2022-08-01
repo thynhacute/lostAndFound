@@ -105,7 +105,7 @@
                                             Contact</a>
                                         <ul class="sub-menu">
                                             <li> Member: <a href="#">${D.fullName} </a></li>
-                                            <li><i class="fas fa-phone"></i>&nbsp<a href="#">Phone: ${D.phone} </a></li>
+                                            <li><i class="fas fa-phone"></i>&nbsp<a href="#">Phone: (+84) ${D.phone} </a></li>
                                             <li><i class="fas fa-mail-bulk"></i>&nbsp<a href="#">Email: ${D.email}</a></li>
                                             <br>
                                         </ul>
@@ -180,8 +180,6 @@
                                     </c:choose>
                                     <a style="text-decoration: none;" class="like text-dark p-2 cursor"><i  class="fas fa-comment-dots icon-2"></i><span
                                             class="ml-1">Comment</span></a>
-                                    <div class="like p-2 cursor"><i class="fa fa-share icon-2"></i><span
-                                            class="ml-1">Share</span></div>
                                 </div>
                             </div>
                             <form action="CommentController" method="POST">

@@ -184,7 +184,7 @@
                                                 </c:choose>
                                         </div>
                                         <h3>${A.itemName}</h3>
-                                        <p class="product-price"><span>${A.phone}</span> ${A.locationName} </p>
+                                        <p class="product-price"><span>(+84) ${A.phone}</span> ${A.locationName} </p>
                                         <p>${A.fullName}</p>
                                     </div>
                                 </div>

@@ -74,7 +74,7 @@ public class CreateController extends HttpServlet {
         String fileName = getFileName(fileUpload); //thực hiện ghi zô folder lưu zô db thì lưu cái fileName
         try {
             if (fileName.equals("")) {
-                fileName = "default.jpg";
+                fileName = "no_image.jpg";
             } else {
                 String save_path = basePath + fileName;
                 if ((fileName.endsWith(".png") || fileName.endsWith(".jpg"))) {

@@ -274,7 +274,7 @@
                                     </c:otherwise>
                                 </c:choose>
                                 <h3>${L.itemName}</h3>
-                                <p class="product-price"><span>${L.phone}</span>${L.locationName} </p>
+                                <p class="product-price"><span>(+84) ${L.phone}</span>${L.locationName} </p>
                                 <p>${L.fullName}</p>
                             </div>
                         </div>     
@@ -315,7 +315,7 @@
                                     </c:otherwise>
                                 </c:choose>
                                 <h3>${P.itemName}</h3>
-                                <p class="product-price"><span>${P.phone}</span>${P.locationName} </p>
+                                <p class="product-price"><span>(+84) ${P.phone}</span>${P.locationName} </p>
                                 <p>${P.fullName}</p>
                             </div>
                         </div>
@@ -355,7 +355,7 @@
                                     </c:otherwise>
                                 </c:choose>
                                 <h3>${LTLA.itemName}</h3>
-                                <p class="product-price"><span>${LTLA.phone}</span>${LTLA.locationName} </p>
+                                <p class="product-price"><span>(+84) ${LTLA.phone}</span>${LTLA.locationName} </p>
                                 <p>${LTLA.fullName}</p>
                             </div>
                         </div>     
