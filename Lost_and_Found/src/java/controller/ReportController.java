@@ -67,10 +67,10 @@ public class ReportController extends HttpServlet {
                         daoa.deleteArticle(articleID);
                         url = ERROR;
 //                        JavaMailUtil.sendMail(email, reportContent, fullName, articleContent);
-                    }else{
+                    } else {
                         url = SUCCESS;
                     }
-                    
+
 //                    if (checkCreate && checkUpdateTotalArticleReport && checkUpdateTotalMemberReport) {
 //                        url = SUCCESS;
 //                        request.setAttribute("SUCCESS_MESSAGE_REPORT", dao);

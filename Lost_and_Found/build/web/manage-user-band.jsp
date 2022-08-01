@@ -131,13 +131,16 @@
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Manage User</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Manage User Ban</li>
+                            <li class="breadcrumb-item active"> </li>
                         </ol>
+
+
+
                         <div class="card mb-4">
-<!--                            <div class="card-header">
+                            <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                Manage 
-                            </div>-->
+                                Manage User band
+                            </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
