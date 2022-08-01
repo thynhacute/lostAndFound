@@ -50,11 +50,11 @@ public class DeleteReportArticleController extends HttpServlet {
                 if (countReport < 5) {
                     daoa.activeArticle(articleID);
                     url = ERROR;
-                } 
+                }
                 if (countReportMember < 10) {
                     daom.activeMember(memberIDArticle);
                     url = ERROR;
-                } 
+                }
                 if (checkDeleteReport && checkDeleteTotalReport && checkDeleteReportAdmin) {
                     url = SUCCESS;
                 }
