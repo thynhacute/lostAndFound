@@ -58,17 +58,19 @@ public class ReportController extends HttpServlet {
 //                    khi ma report thi tao dao dem thg user no co may report  
                     int countReport = daoa.getCountReport(articleID);
                     int countReportMember = daom.getCountReport(articleMemberID);
+                    if (countReportMember >= 10) {
+                        daom.deleteMember(articleMemberID);
+                        JavaMailUtil.sendMailBanMember(email, fullName);
+//                        url = SUCCESS;
+                    }
                     if (countReport >= 5) {
                         daoa.deleteArticle(articleID);
                         url = ERROR;
 //                        JavaMailUtil.sendMail(email, reportContent, fullName, articleContent);
-                    } else if (countReportMember >= 10) {
-                        daom.deleteMember(articleMemberID);
-                        JavaMailUtil.sendMailBanMember(email, fullName);
-                        url = ERROR;
-                    } else {
+                    }else{
                         url = SUCCESS;
                     }
+                    
 //                    if (checkCreate && checkUpdateTotalArticleReport && checkUpdateTotalMemberReport) {
 //                        url = SUCCESS;
 //                        request.setAttribute("SUCCESS_MESSAGE_REPORT", dao);
