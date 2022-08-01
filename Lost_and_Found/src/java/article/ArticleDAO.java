@@ -129,7 +129,7 @@ public class ArticleDAO {
         return check;
     }
 
-    public boolean activeArticle(String articleID) throws SQLException {
+    public boolean activeArticle(int articleID) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -137,7 +137,7 @@ public class ArticleDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(ACTIVE_ARTICLE);
-                ptm.setString(1, articleID);
+                ptm.setInt(1, articleID);
                 check = ptm.executeUpdate() > 0 ? true : false;
             }
 
@@ -1239,7 +1239,7 @@ public class ArticleDAO {
         return check;
     }
 
-    public boolean deleteTotalReportArticle(String articleID) throws SQLException {
+    public boolean deleteTotalReportArticle(int articleID) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -1247,7 +1247,7 @@ public class ArticleDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(DELETE_TOTAL_REPORT_ARTICLE);
-                ptm.setString(1, articleID);
+                ptm.setInt(1, articleID);
                 check = ptm.executeUpdate() > 0 ? true : false;
             }
 

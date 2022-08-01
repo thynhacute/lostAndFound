@@ -236,7 +236,7 @@ public class MemberDAO {
         return check;
     }
 
-    public boolean activeMember(String memberID) throws SQLException {
+    public boolean activeMember(int memberID) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -244,7 +244,7 @@ public class MemberDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(ACTIVE_MEMBER);
-                ptm.setString(1, memberID);
+                ptm.setInt(1, memberID);
                 check = ptm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {

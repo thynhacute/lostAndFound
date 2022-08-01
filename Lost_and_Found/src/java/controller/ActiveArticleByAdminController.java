@@ -28,7 +28,7 @@ public class ActiveArticleByAdminController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String articleID = request.getParameter("articleID");
+            int articleID = Integer.parseInt(request.getParameter("articleID"));
             ArticleDAO dao = new ArticleDAO();
             boolean check = dao.activeArticle(articleID);
             if (check) {
