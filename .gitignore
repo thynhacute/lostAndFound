@@ -1,14 +1,6 @@
-# Created by https://www.toptal.com/developers/gitignore/api/netbeans
-# Edit at https://www.toptal.com/developers/gitignore?templates=netbeans
-
-### NetBeans ###
-**/nbproject/private/
-**/nbproject/Makefile-*.mk
-**/nbproject/Package-*.bash
-build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
-
-# End of https://www.toptal.com/developers/gitignore/api/netbeans
+/Lost_and_Found/dist/
+<<<<<<< HEAD
+=======
+/Lost_and_Found/nbproject/private/
+/Lost_and_Found/build/
+>>>>>>> af5e75c0c80346fb8e8da41630f6070fab982002

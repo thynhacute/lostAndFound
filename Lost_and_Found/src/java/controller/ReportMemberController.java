@@ -32,9 +32,9 @@ public class ReportMemberController extends HttpServlet {
         String url = ERROR;
         try {
             MemberDAO dao = new MemberDAO();
-            List<MemberDTO> listMembers = dao.getListReportMemberByAdmin();
+            List<MemberDTO> listMembers = dao.getListAllMemberByAdmin();
+            request.setAttribute("GET_LIST_MEMBER_BY_ADMIN", listMembers);
 
-            request.setAttribute("GET_LIST_REPORT_MEMBER", listMembers);
             url = SUCCESS;
         } catch (Exception e) {
         } finally {

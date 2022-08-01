@@ -22,7 +22,7 @@ public class ReportDAO {
 
     private static final String CREATE_REPORT = "INSERT INTO Report(ArticleID, MemberID,ReportContent,ReportStatus)\n"
             + "VALUES(?,?,?,1)";
-    private static final String ARTICLE_REPORT = "select R.ReportID,R.ReportContent,R.ReportTime, R.ArticleID,R.MemberID, A.ArticleContent,A.MemberID, M.FullName, B.Email\n"
+    private static final String ARTICLE_REPORT = "select R.ReportID,R.ReportContent,R.ReportTime, R.ArticleID,R.MemberID, A.ArticleContent,A.MemberID as MemberIDArticle, M.FullName, B.Email\n"
             + "from Report R, Article A, Member M , Member B\n"
             + "Where R.ArticleID = A.ArticleID AND R.MemberID = M.MemberID AND A.MemberID = B.MemberID AND R.ReportStatus = 1";
     private static final String DELETE_REPORT_ARTICLE = "UPDATE Report SET ReportStatus = 0 WHERE ReportID = ?";
@@ -98,8 +98,9 @@ public class ReportDAO {
                 int memberID = rs.getInt("MemberID");
                 String fullName = rs.getString("FullName");
                 String email = rs.getString("Email");
+                int memberIDArticle = rs.getInt("MemberIDArticle");
 
-                listReportArticle.add(new ReportDTO(reportID, reportContent, articleContent, reportTime, articleID, memberID, fullName, email));
+                listReportArticle.add(new ReportDTO(reportID, reportContent, articleContent, reportTime, articleID, memberID, fullName, email, memberIDArticle));
 
             }
 

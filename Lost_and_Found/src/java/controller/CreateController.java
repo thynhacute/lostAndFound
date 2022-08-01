@@ -74,7 +74,7 @@ public class CreateController extends HttpServlet {
         String fileName = getFileName(fileUpload); //thực hiện ghi zô folder lưu zô db thì lưu cái fileName
         try {
             if (fileName.equals("")) {
-                fileName = "default.jpg";
+                fileName = "no_image.jpg";
             } else {
                 String save_path = basePath + fileName;
                 if ((fileName.endsWith(".png") || fileName.endsWith(".jpg"))) {
@@ -92,7 +92,7 @@ public class CreateController extends HttpServlet {
                 }
             }
             ArticleDAO dao = new ArticleDAO();
-            ArticleDTO article = new ArticleDTO(0, aricleContent, fileName, "", locationID, memberID, articleTypeID, itemID, "", "", 0, "", "", "", "");
+            ArticleDTO article = new ArticleDTO(0, aricleContent, fileName, "", locationID, memberID, articleTypeID, itemID, "", "", 0, "", "", "", "",0);
             boolean checkCreate = dao.createArticle(article);
             if (checkCreate) {
                 request.setAttribute("SUCCESS_CREATE_MESSAGE", article);
@@ -104,15 +104,17 @@ public class CreateController extends HttpServlet {
                     String fullName = listArticle.getFullName();
                     int articleID = listArticle.getArticleID();
                     int sensorID = listArticle.getMemberID();
+                    String picture = listArticle.getPicture();
                     NotificationDAO notiDAO = new NotificationDAO();
                     //sensor thằng có items mình cần
                     // memberID là mình login zô
-                    NotificationDTO noti = new NotificationDTO(0, "might be in the middle of an item you lost", memberID, sensorID, fullName);
-                    boolean checkCreateNoti = notiDAO.NotificationArticle(noti);
-//                    if (checkCreateNoti) {
-//                        request.setAttribute("LIST_NOTI_ARTICLE_FIND", listNotiArticlefind);
-//                        url = SUCCESS;
-//                    }
+                    if (sensorID != memberID) {
+                        NotificationDTO noti = new NotificationDTO(0, "might be holding an item you just lost", memberID, sensorID, articleID, fullName, picture);
+                        boolean checkCreateNoti = notiDAO.NotificationArticle(noti);
+                        NotificationDTO noti2 = new NotificationDTO(0, "can may be found the item that you are picked", sensorID, memberID, articleID, fullName, picture);
+                        boolean checkCreateNoti2 = notiDAO.NotificationArticle(noti2);
+                            url = SUCCESS;
+                    }
                 }
             } else {
                 List<ArticleDTO> listNotiArticleLost = new ArticleDAO().getArticlebyArticleTypeLocationItems2(itemID, locationID);
@@ -120,13 +122,15 @@ public class CreateController extends HttpServlet {
                     String fullName = listArticle.getFullName();
                     int articleID = listArticle.getArticleID();
                     int sensorID = listArticle.getMemberID();
+                    String picture = listArticle.getPicture();
                     NotificationDAO notiDAO = new NotificationDAO();
-                    NotificationDTO noti = new NotificationDTO(0, "can may be found the map that you are picked", memberID, sensorID, fullName);
-                    boolean checkCreateNoti = notiDAO.NotificationArticle(noti);
-//                    if (checkCreateNoti) {
-//                        request.setAttribute("LIST_NOTI_ARTICLE_Lost", listNotiArticleLost);
-//                        url = SUCCESS;
-//                    }
+                    if (sensorID != memberID) {
+                        NotificationDTO noti = new NotificationDTO(0, "can may be found the item that you are picked", memberID, sensorID, articleID, fullName, picture);
+                        boolean checkCreateNoti = notiDAO.NotificationArticle(noti);
+                        NotificationDTO noti2 = new NotificationDTO(0, "might be holding an item you just lost", sensorID, memberID, articleID, fullName, picture);
+                        boolean checkCreateNoti2 = notiDAO.NotificationArticle(noti2);
+                            url = SUCCESS;
+                    }
                 }
             }
         } catch (Exception e) {

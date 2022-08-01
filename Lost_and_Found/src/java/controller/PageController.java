@@ -29,23 +29,30 @@ public class PageController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        HttpSession session = request.getSession();
-        MemberDTO memberLogin = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
-
         try {
+            HttpSession session = request.getSession();
+            MemberDTO memberLogin = (MemberDTO) session.getAttribute("LOGIN_MEMBER");
+//            int memberID = memberLogin.getId();
+//            MemberDAO memberDao = new MemberDAO();
             if (memberLogin != null) {
-//                int memberID = memberLogin.getId();
-//                MemberDAO memberDao = new MemberDAO();
-                List<NotificationDTO> listNotification = new NotificationDAO().getListNotificationComment(memberLogin.getId());
+                List<NotificationDTO> listNotification = new NotificationDAO().getListNotification(memberLogin.getId());
                 session.setAttribute("LIST_NOTIFICATION", listNotification);
-//                List<NotificationDTO> listNotificationArticleFind = new NotificationDAO().getListNotificationArticleFind(memberID);
-//                session.setAttribute("LIST_NOTIFICATION", listNotificationArticleFind);
-                url = SUCCESS;
-            } 
+                List<NotificationDTO> listNotificationSeen = new NotificationDAO().getListSeenNoti(memberLogin.getId());
+                session.setAttribute("LIST_NOTIFICATION_SEEN", listNotificationSeen);
+            }
             List<ArticleDTO> listLostArticles = new ArticleDAO().getLostArticles();
             request.setAttribute("LIST_LOST_ARTICLE", listLostArticles);
             List<ArticleDTO> listPickedArticles = new ArticleDAO().getPickedArticles();
             request.setAttribute("LIST_PICKED_ARTICLE", listPickedArticles);
+            List<ArticleDTO> listArticlesTopLikes = new ArticleDAO().getTopLikesArticle();
+            request.setAttribute("LIST_TOP_LIKES_ARTICLE", listArticlesTopLikes);
+//            List<NotificationDTO> listNotification = new NotificationDAO().getListNotification(memberLogin.getId());
+//            session.setAttribute("LIST_NOTIFICATION", listNotification);
+//            List<NotificationDTO> listNotificationSeen = new NotificationDAO().getListSeenNoti(memberLogin.getId());
+//            session.setAttribute("LIST_NOTIFICATION_SEEN", listNotificationSeen);
+//            
+//            List<NotificationDTO> listNotificationArticleFind = new NotificationDAO().getListNotificationArticleFind(memberID);
+//            session.setAttribute("LIST_NOTIFICATION_ARTICLE_FIND", listNotificationArticleFind);
             url = SUCCESS;
         } catch (Exception e) {
             log("Error at PageController" + e.toString());

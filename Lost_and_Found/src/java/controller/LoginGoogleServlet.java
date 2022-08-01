@@ -44,16 +44,22 @@ public class LoginGoogleServlet extends HttpServlet {
                     boolean check = dao.checkDuplicate(member.getEmail());
                     if (check) {
                         member = dao.getMemberByEmail(member.getEmail());
-                        int roleID = member.getRoleID();
-                        member.setPicture(googlePojo.getPicture());
-                        if (roleID == 1) {
-                            session.setAttribute("LOGIN_MEMBER", member);
-                            url = ADMIN_PAGE;
-                        } else { 
-                            session.setAttribute("LOGIN_MEMBER", member);
-                            request.setAttribute("SUCCESS_MESSAGE", member);
-                            url = INDEX_PAGE;
+                        if (member == null) {
+                            url = LOGIN;
+                            request.setAttribute("ERROR_MESSAGE_ACC_BAN", "Your account is temporarily locked, please wait for our response!");
+                        } else {
+                            int roleID = member.getRoleID();
+                            member.setPicture(googlePojo.getPicture());
+                            if (roleID == 1) {
+                                session.setAttribute("LOGIN_MEMBER", member);
+                                url = ADMIN_PAGE;
+                            } else {
+                                session.setAttribute("LOGIN_MEMBER", member);
+                                request.setAttribute("SUCCESS_MESSAGE", member);
+                                url = INDEX_PAGE;
+                            }
                         }
+
                     } else {
                         dao.createMember(member);
                         session.setAttribute("LOGIN_MEMBER", member);

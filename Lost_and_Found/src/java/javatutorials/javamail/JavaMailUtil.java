@@ -29,7 +29,7 @@ public class JavaMailUtil {
                     + "<h4> This is the content of your post report : " + "<h3>" + reportContent + "</h3>" + "</h4> \n"
                     + "<h4>  If your post gets more than 5 reports then we have to delete your post </h4> \n"
                     + "<h4> please check your article again and any questions or complaints regarding for account deactivation, please reply to this email for consideration ! </h4>"             
-                    + "<h4>  synqse151029@fpt.edu.vn </h4> \n";;
+                    + "<h4>  thyhnse151101@fpt.edu.vn </h4> \n";;
             message.setContent(htmlCode, "text/html");
             return message;
         } catch (Exception ex) {
@@ -46,8 +46,8 @@ public class JavaMailUtil {
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
 
-        String myAccountEmail = "synqse151029@fpt.edu.vn";
-        String password = "0983709791ad";
+        String myAccountEmail = "thyhnse151101@fpt.edu.vn ";
+        String password = "thyhan2907";
 
         Session session = Session.getInstance(properties, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -80,7 +80,7 @@ public class JavaMailUtil {
                     + "<h5> - Stealing trademarks, copyrights, intellectual property rights.  </h5> \n"
                     + "<h5> - Spam. </h5> \n"
                     + "<h4>  Any questions or complaints regarding for account deactivation, please reply to this email for consideration ! </h4> \n"
-                    + "<h4>  synqse151029@fpt.edu.vn </h4> \n";
+                    + "<h4>  thyhnse151101@fpt.edu.vn </h4> \n";
             message.setContent(htmlCode, "text/html");
             return message;
         } catch (Exception ex) {
@@ -97,8 +97,8 @@ public class JavaMailUtil {
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
 
-        String myAccountEmail = "synqse151029@fpt.edu.vn";
-        String password = "0983709791ad";
+        String myAccountEmail = "thyhnse151101@fpt.edu.vn";
+        String password = "thyhan2907";
 
         Session session = Session.getInstance(properties, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -126,7 +126,7 @@ public class JavaMailUtil {
                     + "<h4> We deeply apologize for the convenience of your web usage experience </h4> \n"
                     + "<h4>  Any questions or complaints regarding for account deactivation, please reply to this email for consideration ! </h4> \n"
                     + "<h2>  THANKS  </h2> \n"
-                    + "<h4>  synqse151029@fpt.edu.vn </h4> \n";
+                    + "<h4>  thyhnse151101@fpt.edu.vn </h4> \n";
             message.setContent(htmlCode, "text/html");
             return message;
         } catch (Exception ex) {
@@ -143,8 +143,8 @@ public class JavaMailUtil {
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
 
-        String myAccountEmail = "synqse151029@fpt.edu.vn";
-        String password = "0983709791ad";
+        String myAccountEmail = "thyhnse151101@fpt.edu.vn";
+        String password = "thyhan2907";
 
         Session session = Session.getInstance(properties, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {

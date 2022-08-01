@@ -27,6 +27,7 @@ public class ArticleDTO {
     private String itemName;
     private String locationName;
     private int totalReport;
+    private int totalLike;
 
     public ArticleDTO(int articleID, String articleContent, String imgURL, String postTime, int locationID, int memberID, int articleTypeID, int ItemID, String fullName, String email, int phone, String picture, String articleTypeName, String itemName, String locationName, int totalReport) {
         this.articleID = articleID;
@@ -65,6 +66,27 @@ public class ArticleDTO {
         this.locationName = locationName;
     }
 
+    public ArticleDTO(int articleID, String articleContent, String imgURL, String postTime, int locationID, int memberID, int articleTypeID, int ItemID, String fullName, String email, int phone, String picture, String articleTypeName, String itemName, String locationName, int totalReport, int totalLike) {
+        this.articleID = articleID;
+        this.articleContent = articleContent;
+        this.imgURL = imgURL;
+        this.postTime = postTime;
+        this.locationID = locationID;
+        this.memberID = memberID;
+        this.articleTypeID = articleTypeID;
+        this.ItemID = ItemID;
+        this.fullName = fullName;
+        this.email = email;
+        this.phone = phone;
+        this.picture = picture;
+        this.articleTypeName = articleTypeName;
+        this.itemName = itemName;
+        this.locationName = locationName;
+        this.totalReport = totalReport;
+        this.totalLike = totalLike;
+    }
+
+    
     public ArticleDTO(int articleID, String articleContent, int locationID, String imgURL) {
         this.articleID = articleID;
         this.articleContent = articleContent;
@@ -207,4 +229,13 @@ public class ArticleDTO {
         this.totalReport = totalReport;
     }
 
+    public int getTotalLike() {
+        return totalLike;
+    }
+
+    public void setTotalLike(int totalLike) {
+        this.totalLike = totalLike;
+    }
+    
+    
 }

@@ -5,6 +5,7 @@
  */
 package controller;
 
+import article.ArticleDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javatutorials.javamail.JavaMailUtil;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import member.MemberDAO;
 import member.MemberDTO;
 import report.ReportDAO;
 import report.ReportDTO;
@@ -23,7 +25,7 @@ import report.ReportDTO;
  */
 public class ReportController extends HttpServlet {
 
-    private static final String ERROR = "DetailArticleController";
+    private static final String ERROR = "PageController";
     private static final String SUCCESS = "DetailArticleController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -41,21 +43,44 @@ public class ReportController extends HttpServlet {
         String fullName = request.getParameter("fullName");
         String articleContent = request.getParameter("articleContent");
 
+        ArticleDAO daoa = new ArticleDAO();
+        MemberDAO daom = new MemberDAO();
         try {
             if (memberID != articleMemberID) {
                 ReportDAO dao = new ReportDAO();
                 ReportDTO report = new ReportDTO(0, articleID, memberID, reportContent, "");
                 boolean checkCreate = dao.createReport(report);
                 if (checkCreate) {
-                    url = SUCCESS;
                     request.setAttribute("SUCCESS_MESSAGE_REPORT", dao);
-                    JavaMailUtil.sendMail(email, reportContent,fullName,articleContent);
-                }
-            } else {
-                url = ERROR;
-                request.setAttribute("ERORR_MESSAGE_REPORT", "");
-            }
+                    JavaMailUtil.sendMail(email, reportContent, fullName, articleContent);
+                    boolean checkUpdateTotalArticleReport = daoa.updateTotalReportArticle(articleID);
+                    boolean checkUpdateTotalMemberReport = daom.updateTotalReportMember(articleMemberID);
+//                    khi ma report thi tao dao dem thg user no co may report  
+                    int countReport = daoa.getCountReport(articleID);
+                    int countReportMember = daom.getCountReport(articleMemberID);
+                    if (countReportMember >= 10) {
+                        daom.deleteMember(articleMemberID);
+                        JavaMailUtil.sendMailBanMember(email, fullName);
+//                        url = SUCCESS;
+                    }
+                    if (countReport >= 5) {
+                        daoa.deleteArticle(articleID);
+                        url = ERROR;
+//                        JavaMailUtil.sendMail(email, reportContent, fullName, articleContent);
+                    } else {
+                        url = SUCCESS;
+                    }
 
+//                    if (checkCreate && checkUpdateTotalArticleReport && checkUpdateTotalMemberReport) {
+//                        url = SUCCESS;
+//                        request.setAttribute("SUCCESS_MESSAGE_REPORT", dao);
+//                    }
+                } else {
+                    url = ERROR;
+                    request.setAttribute("ERORR_MESSAGE_REPORT", "");
+                }
+
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

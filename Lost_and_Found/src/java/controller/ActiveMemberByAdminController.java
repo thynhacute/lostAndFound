@@ -33,7 +33,7 @@ public class ActiveMemberByAdminController extends HttpServlet {
         String  email = request.getParameter("email");
         String fullName = request.getParameter("fullName");
         try {
-            String memberID = request.getParameter("memberID");
+            int memberID = Integer.parseInt(request.getParameter("memberID"));
             MemberDAO dao = new MemberDAO();
             boolean check = dao.activeMember(memberID);
             if (check) {

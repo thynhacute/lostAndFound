@@ -19,10 +19,10 @@ import java.util.List;
  */
 public class MemberDAO {
 
-    private static final String CHECK_DUPLICATE = "SELECT  M.FullName FROM Member M\n"
+    private static final String CHECK_DUPLICATE = "SELECT  M.FullName FROM Member M \n"
             + "WHERE M.Email = ?";
     private static final String GET_MEMBER_BY_EMAIL = "SELECT M.MemberID, M.FullName, M.Email, M.Picture, M.Phone, M.ProfileInfo, M.RoleID FROM Member M , Role R\n"
-            + "WHERE M.Email = ? AND R.RoleID=M.RoleID";
+            + "WHERE M.Email = ? AND R.RoleID=M.RoleID AND M.MemberStatus=1";
     private static final String CREATE_MEMBER = "INSERT INTO [dbo].[Member]\n"
             + "           ([FullName]\n"
             + "           ,[Email]\n"
@@ -40,6 +40,11 @@ public class MemberDAO {
     private static final String GET_LIST_REPORT_MEMBER = "SELECT M.MemberID, A.ArticleContent, R.ReportContent, N.FullName, M.Email, M.Picture, M.Phone, M.ProfileInfo, M.RoleID, M.TotalReport \n"
             + "FROM Member M, Member N, Report R, Article A WHERE R.ArticleID = A.ArticleID AND A.MemberID = M.MemberID AND R.MemberID = N.MemberID AND R.ReportStatus = 1";
 
+    private static final String UPDATE_TOTAL_REPORT_MEMBER = "UPDATE Member SET TotalReport = TotalReport +1 WHERE MemberID = ?";
+
+    private static final String UPDATE_DELETE_TOTAL_REPORT_MEMBER = "UPDATE Member SET TotalReport = TotalReport -1 WHERE MemberID = ?";
+
+    private static final String GET_TOTAL_REPORT = "select TotalReport from Member Where MemberID = ?";
     public boolean checkDuplicate(String email) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -205,7 +210,9 @@ public class MemberDAO {
         return listMember;
     }
 
-    public boolean deleteMember(String memberID) throws SQLException {
+
+    public boolean deleteMember(int memberID) throws SQLException {
+
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -213,7 +220,7 @@ public class MemberDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(DELETE_MEMBER);
-                ptm.setString(1, memberID);
+                ptm.setInt(1, memberID);
                 check = ptm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {
@@ -229,7 +236,7 @@ public class MemberDAO {
         return check;
     }
 
-    public boolean activeMember(String memberID) throws SQLException {
+    public boolean activeMember(int memberID) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -237,7 +244,7 @@ public class MemberDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(ACTIVE_MEMBER);
-                ptm.setString(1, memberID);
+                ptm.setInt(1, memberID);
                 check = ptm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {
@@ -322,6 +329,89 @@ public class MemberDAO {
 
         }
         return check;
+    }
+
+
+    public boolean updateTotalReportMember(int memberID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UPDATE_TOTAL_REPORT_MEMBER);
+                ptm.setInt(1, memberID);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+
+        } catch (Exception e) {
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public boolean updateDeleteTotalReportMember(int memberIDArticle) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UPDATE_DELETE_TOTAL_REPORT_MEMBER);
+                ptm.setInt(1, memberIDArticle);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+
+        } catch (Exception e) {
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public int getCountReport(int memberID) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        int count = 0;
+        
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+            ptm = conn.prepareStatement(GET_TOTAL_REPORT);
+            ptm.setInt(1, memberID);
+            rs = ptm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt("TotalReport");
+            }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return count;
     }
 
 }
