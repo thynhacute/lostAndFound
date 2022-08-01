@@ -32,11 +32,12 @@ public class DeleteReportArticleController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+
             String reportID = request.getParameter("reportID");
             ReportDAO dao = new ReportDAO();
             boolean check = dao.deleteReportArticle(reportID);
             if (check) {
-                String articleID = request.getParameter("articleID");
+                int articleID = Integer.parseInt(request.getParameter("articleID"));
                 int memberIDArticle = Integer.parseInt(request.getParameter("memberIDArticle"));
                 ArticleDAO daoa = new ArticleDAO();
                 MemberDAO daom = new MemberDAO();
@@ -44,6 +45,16 @@ public class DeleteReportArticleController extends HttpServlet {
                 boolean checkDeleteTotalReport = daoa.deleteTotalReportArticle(articleID);
                 boolean checkDeleteReport = dao.deleteReportArticle(reportID);
                 boolean checkDeleteReportAdmin = daom.updateDeleteTotalReportMember(memberIDArticle);
+                int countReport = daoa.getCountReport(articleID);
+                int countReportMember = daom.getCountReport(memberIDArticle);
+                if (countReport < 5) {
+                    daoa.activeArticle(articleID);
+                    url = ERROR;
+                } 
+                if (countReportMember < 10) {
+                    daom.activeMember(memberIDArticle);
+                    url = ERROR;
+                } 
                 if (checkDeleteReport && checkDeleteTotalReport && checkDeleteReportAdmin) {
                     url = SUCCESS;
                 }
