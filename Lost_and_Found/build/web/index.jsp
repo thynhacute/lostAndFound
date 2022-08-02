@@ -181,7 +181,7 @@
                 </div>
                 <div class="row">
                     <div class="button-card " style="margin-left: 0;" >
-                        <div ">                                                      
+                        <div >                                                      
                             <a href="HomeController?searchByItem=Ví/Bóp">
                                 <div class="card-2" style=" width: 156px;">
                                     <div class="imgBox">
@@ -232,6 +232,20 @@
                                     <div class="content">
                                         <div class="details">
                                             <h5>Giấy phép lái xe</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div >
+                            <a href="HomeController?searchByItem=Khác">
+                                <div class="card-2" style=" width: 156px;">
+                                    <div class="imgBox">
+                                        <img src="./post/image/khac.jpg" alt="" />
+                                    </div>
+                                    <div class="content">
+                                        <div class="details">
+                                            <h5>Khác</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -290,7 +304,7 @@
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2 text-center">
                         <div class="section-title">
-                            <h3><span class="orange-text">NEW </span> picked Articles</h3>
+                            <h3><span class="orange-text">NEW </span> Picked Articles</h3>
                         </div>
                     </div>
                 </div>
@@ -330,7 +344,7 @@
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2 text-center">
                         <div class="section-title">
-                            <h3><span class="orange-text"> TOP </span> likes Articles</h3>
+                            <h3><span class="orange-text"> TOP </span> Likes Articles</h3>
                         </div>
                     </div>
                 </div>                                

@@ -5,7 +5,7 @@
 --%>
 
 <style>
-    Nguyên Vũ
+
     ::-webkit-scrollbar{
         width: 10px;
     }
